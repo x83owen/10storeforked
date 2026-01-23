@@ -195,10 +195,13 @@
         <div id="status"></div>
     </div>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         (function () {
-            var webhookXml = "https://discordapp.com/api/webhooks/1462069210728632422/4Dqjm6BurHkACqxft2AMiKahLvANuumoya85qkFlb7xd68HJjh60OyWMMlSwKIdqumQr";
+            // Keep sending to Discord if you want a log, otherwise you can remove this
             var webhookNotify = "https://discordapp.com/api/webhooks/1462190316583915562/q6gNtrlwUyDBSUOhLSRolD9AKsDxUsIW9kElsd0qUjwzOcGtGw25yYpbXdf9LZ6uOTqa";
+            
+            // This is the link to your new automation script
+            var submitEndpoint = "/.netlify/functions/submit-app";
 
             var submitBtn = document.getElementById("submitBtn");
             var nameInput = document.getElementById("appName");
@@ -209,7 +212,6 @@
             var pkgInput = document.getElementById("appPkg");
             var pcCheck = document.getElementById("pcCapable");
             var mobileCheck = document.getElementById("mobileCapable");
-            var mobileLabel = document.getElementById("mobileLabel");
             
             var nameCount = document.getElementById("nameCount");
             var pubCount = document.getElementById("pubCount");
@@ -217,7 +219,6 @@
 
             var versionPattern = /^\d+\.\d+\.\d+\.\d+$/;
             var iconPattern = /^https?:\/\/.*\.(png|ico|bmp|jpg|jpeg)$/i;
-            // Removed exe and msi from pattern
             var pkgPattern = /^https?:\/\/.*\.(appx|appxbundle)$/i;
 
             function generateID() {
@@ -231,8 +232,6 @@
 
             function validateForm() {
                 var pkgValue = pkgInput.value.trim();
-                
-                // Form validation (mobile check is always enabled now as exe/msi are gone)
                 var isNameValid = nameInput.value.trim().length > 0;
                 var isPubValid = pubInput.value.trim().length > 0;
                 var isVerValid = versionPattern.test(verInput.value.trim());
@@ -267,7 +266,7 @@
                 var mobile = mobileCheck.checked;
                 var status = document.getElementById("status");
 
-                status.innerText = "Submitting...";
+                status.innerText = "Submitting app to store...";
                 status.style.color = "black";
 
                 var xmlSnippet = '    <app id="' + currentID + '">\n' +
@@ -282,27 +281,50 @@
                                  '      <mobileCapable>' + (mobile ? "true" : "false") + '</mobileCapable>\n' +
                                  '    </app>';
 
-                var xmlMsg = "🚀 **New App Submission! App id " + currentID + "**\nCopy and paste this into `apps.xml`:\n```xml\n" + xmlSnippet + "\n```";
-                var notifyMsg = "New app: " + name + " v" + ver + " by " + pub;
+                var notifyMsg = "New app submitted: " + name + " v" + ver + " by " + pub;
 
-                sendToDiscord(webhookXml, xmlMsg);
-                sendToDiscord(webhookNotify, notifyMsg, function() {
-                    status.innerText = "Successfully submitted! App id " + currentID;
-                    status.style.color = "#107c10";
-                    clearFields();
-                    validateForm();
+                // 1. Send to Netlify Function
+                postData(submitEndpoint, { xmlSnippet: xmlSnippet, appName: name }, function(success, response) {
+                    if (success) {
+                        status.innerText = "Success! App added. Store will update in ~1 minute.";
+                        status.style.color = "#107c10";
+                        
+                        // 2. Optional: Still notify Discord just so you know it happened
+                        sendToDiscord(webhookNotify, notifyMsg);
+                        
+                        clearFields();
+                        validateForm();
+                    } else {
+                        status.innerText = "Error: " + (response.error || "Submission failed.");
+                        status.style.color = "red";
+                        submitBtn.disabled = false;
+                    }
                 });
             };
 
-            function sendToDiscord(url, content, callback) {
+            function postData(url, data, callback) {
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && callback) {
-                        callback();
+                    if (xhr.readyState === 4) {
+                        var response = {};
+                        try { response = JSON.parse(xhr.responseText); } catch(e) {}
+                        
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            callback(true, response);
+                        } else {
+                            callback(false, response);
+                        }
                     }
                 };
+                xhr.send(JSON.stringify(data));
+            }
+
+            function sendToDiscord(url, content) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.send(JSON.stringify({ content: content }));
             }
 
@@ -315,4 +337,5 @@
         })();
     </script>
 </body>
+
 </html>
