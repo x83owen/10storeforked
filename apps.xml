@@ -3,7 +3,10 @@
   <categories>
     <category title="Featured" type="featured" />
     <category title="Developer Picks" type="picks">
-      <appIds>fmaNojRN,L9h3OvMn,NR8KNi94,4jvHHTQI</appIds>
+      <appIds>fmaNojRN,L9h3OvMn,DecV6P0t,NR8KNi94,4jvHHTQI,I6LbwAai</appIds>
+    </category>
+    <category title="Essential" type="picks">
+      <appIds>G8I0kPFQ,aW1FNDTD,GrJoGJjh</appIds>
     </category>
     <category title="Art" type="picks">
       <appIds>uW8BXX9k,taM6Wrqd</appIds>
@@ -12,10 +15,10 @@
       <appIds>fmaNojRN,taM6Wrqd</appIds>
     </category>
     <category title="Media" type="picks">
-      <appIds>L9h3OvMn,p0t7BOUq</appIds>
+      <appIds>L9h3OvMn,p0t7BOUq,b34qM7q8,GrJoGJjh</appIds>
     </category>
     <category title="Games" type="picks">
-      <appIds>MGCOWfUB,NR8KNi94,4jvHHTQI</appIds>
+      <appIds>MGCOWfUB,NR8KNi94,4jvHHTQI,I6LbwAai,YznXfqXB,8WvwEEYk,LhEiIzol</appIds>
     </category>
   </categories>
 
@@ -125,23 +128,12 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-      <app id="6i01iaio">
-      <name>Test app</name>
-      <version>0.0.0.0</version>
-      <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/6i01iaio-8850401408_115500117635141_1767970552233.png</icon>
-      <publisher>DraydenYT</publisher>
-      <featured>false</featured>
-      <description>hehe</description>
-      <package>https://.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
       <app id="I6LbwAai">
       <name>Hill Climb Racing</name>
       <version>1.41.1.0</version>
       <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/I6LbwAai-1000154056.png</icon>
       <publisher>Fingersoft</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>One of the most addictive and entertaining physics based driving game ever made! And it's free! Meet Newton Bill, the young aspiring uphill racer. He is about to embark on a journey that takes him to where no ride has ever been before. With little respect to the laws of physics</description>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Games/Hill%20Climb%20Racing/FINGERSOFT.HILLCLIMBRACING_1.41.1.0_neutral_~_r6rtpscs7gwyg.appxbundle</package>
       <pcCapable>true</pcCapable>
@@ -152,7 +144,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <version>1.0.2.5</version>
       <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/DecV6P0t-SmallLogo.png</icon>
       <publisher>Maycon Devloper</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>Microsoft Edge for Windows Phone</description>
       <package>https://dl.dankassassin368.com/Microsoft%20Edge%20Unofficial.appx</package>
       <pcCapable>false</pcCapable>
@@ -176,7 +168,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <version>2.8.1.3</version>
       <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/rrDcTRXV-1000154112.png</icon>
       <publisher>Hipster Whale</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>Disney Crossy Road is a new version of the original Crossy Road, featuring all your favorite Disney characters. There are over a hundred different characters available, from movies like Toy Story, Zootopia, The Lion King, The Haunted Mansion, Tangled, Wreck-It Ralph, and many others.</description>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Games/Disney%20Crossy%20Road/Disney.DisneyCrossyRoad_2.8.1.3_x86__6rarf9sa4v8jt.appx</package>
       <pcCapable>true</pcCapable>
@@ -198,7 +190,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <version>1.0.20921.0</version>
       <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/G8I0kPFQ-AppPackageStoreLogo.scale-200.png</icon>
       <publisher>Microsoft Corporation</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>Microsoft App Installer for Windows Phone</description>
       <package>https://dl.dankassassin368.com/App%20Installer.appx</package>
       <pcCapable>false</pcCapable>
@@ -220,7 +212,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <version>9.2.0.0</version>
       <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/GrJoGJjh-YouTube_2017.png</icon>
       <publisher>Fake Google LLC</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>A YouTube for TV port to Windows Phone.</description>
       <package>https://dl.dankassassin368.com/YouTube%20TV_9.2.0.0_x86_x64_arm.appxbundle</package>
       <pcCapable>false</pcCapable>
@@ -231,7 +223,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <version>1.2.0.43</version>
       <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/VnpOXSdk-1000154115.png</icon>
       <publisher>ZeptoLab</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>Get ready to feed the adorable Om Nom in Cut The Rope, a mind-bending puzzle game packed with levels of fun! Your task? To cut ropes in just the right way to deliver candy to Om Nom's mouth. Each level brings a new challenge, featuring various mechanics and obstacles. From gravity-defying swings to</description>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Cut%20The%20Rope/x86/8.1/ZeptoLabUKLimited.CutTheRope_1.2.0.43_x86__sq9zxnwrk84pj.appx</package>
       <pcCapable>true</pcCapable>
@@ -253,7 +245,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <version>2.2.5.0</version>
       <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/LhEiIzol-1000154122.png</icon>
       <publisher>Outfit7</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description></description>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Talking%20Ginger/app.appx</package>
       <pcCapable>true</pcCapable>
@@ -265,7 +257,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/aW1FNDTD-1000154132.png</icon>
       <publisher>PanoramicSoftwareInc</publisher>
       <featured>false</featured>
-      <description>not the fucking 67 on the version</description>
+      <description>not the fucking ** on the version</description>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Apps/Converter%20Pro/6.6.7.0/x86/PanoramicSoftwareInc.ConverterPro-UnitCurrencyConv_6.6.7.0_x86__wna2f9n7wqgf8.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -284,4 +276,5 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
   </apps>
 
 </data>
+
 
