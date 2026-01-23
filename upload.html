@@ -63,14 +63,6 @@
 
         .switch input { opacity: 0; width: 0; height: 0; }
 
-        .switch input:disabled + .slider {
-            background-color: #eee !important;
-            cursor: not-allowed;
-        }
-        .switch input:disabled + .slider:before {
-            background-color: #ccc;
-        }
-
         .slider {
             position: absolute;
             cursor: pointer;
@@ -126,7 +118,7 @@
         .btn-host:hover { background: #e5e5e5; }
         .btn-host b { color: #0078D7; }
         
-        #status { text-align: center; margin-top: 15px; font-size: 14px; }
+        #status { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -135,19 +127,19 @@
         
         <div class="form-group">
             <label class="required">App Name (Max 30)</label>
-            <input type="text" id="appName" maxlength="30">
+            <input type="text" id="appName" name="appname" maxlength="30" autocomplete="organization-title">
             <div id="nameCount" class="char-count">0 / 30</div>
         </div>
 
         <div class="form-group">
             <label class="required">Publisher Name (Max 30)</label>
-            <input type="text" id="appPub" maxlength="30">
+            <input type="text" id="appPub" name="publisher" maxlength="30" autocomplete="name">
             <div id="pubCount" class="char-count">0 / 30</div>
         </div>
 
         <div class="form-group">
             <label class="required">Version (Format: 0.0.0.0)</label>
-            <input type="text" id="appVer" placeholder="1.0.0.0">
+            <input type="text" id="appVer" name="version" placeholder="1.0.0.0" autocomplete="off">
         </div>
 
         <div class="form-group">
@@ -158,12 +150,12 @@
 
         <div class="form-group">
             <label class="required">Package URL (.appx, .appxbundle)</label>
-            <input type="text" id="appPkg" placeholder="https://example.com/app.appx">
+            <input type="text" id="appPkg" name="packageurl" placeholder="https://example.com/app.appx" autocomplete="url">
         </div>
 
         <div class="form-group">
             <label>Description (Max 300 - Optional)</label>
-            <textarea id="appDesc" maxlength="300"></textarea>
+            <textarea id="appDesc" name="description" maxlength="300"></textarea>
             <div id="descCount" class="char-count">0 / 300</div>
         </div>
 
@@ -189,10 +181,6 @@
             Need to host your app? <b>Click here</b>
         </a>
 
-        <a href="https://imgbb.com" target="_blank" class="btn-host">
-            Need to host your icon? <b>Click here</b>
-        </a>
-
         <div id="status"></div>
     </div>
 
@@ -206,7 +194,7 @@
         var pubInput = document.getElementById("appPub");
         var descInput = document.getElementById("appDesc");
         var verInput = document.getElementById("appVer");
-        var iconFileInput = document.getElementById("appIconFile"); // New file input
+        var iconFileInput = document.getElementById("appIconFile");
         var pkgInput = document.getElementById("appPkg");
         var pcCheck = document.getElementById("pcCapable");
         var mobileCheck = document.getElementById("mobileCapable");
@@ -231,17 +219,17 @@
             var isNameValid = nameInput.value.trim().length > 0;
             var isPubValid = pubInput.value.trim().length > 0;
             var isVerValid = versionPattern.test(verInput.value.trim());
-            var isIconValid = iconFileInput.files.length > 0; // Check if file is selected
+            var isIconValid = iconFileInput.files.length > 0;
             var isPkgValid = pkgPattern.test(pkgInput.value.trim());
             var isCompatValid = pcCheck.checked || mobileCheck.checked;
 
             submitBtn.disabled = !(isNameValid && isPubValid && isVerValid && isIconValid && isPkgValid && isCompatValid);
         }
 
-        // Attach listeners
         var textInputs = [nameInput, pubInput, verInput, pkgInput];
         for (var i = 0; i < textInputs.length; i++) {
             textInputs[i].onkeyup = validateForm;
+            textInputs[i].onchange = validateForm;
         }
         iconFileInput.onchange = validateForm;
         pcCheck.onchange = validateForm;
@@ -254,18 +242,17 @@
         submitBtn.onclick = function () {
             submitBtn.disabled = true;
             var status = document.getElementById("status");
-            status.innerText = "Reading icon file...";
+            status.innerText = "Processing submission...";
             status.style.color = "black";
 
             var file = iconFileInput.files[0];
             var reader = new FileReader();
 
-            // When file is finished reading
             reader.onload = function(e) {
-                var base64Data = e.target.result.split(',')[1]; // Get just the data part
+                var base64Data = e.target.result.split(',')[1];
                 var fileName = file.name;
-
                 var currentID = generateID();
+                
                 var appData = {
                     id: currentID,
                     name: nameInput.value.trim(),
@@ -275,17 +262,18 @@
                     desc: descInput.value.trim(),
                     pc: pcCheck.checked,
                     mobile: mobileCheck.checked,
-                    iconBase64: base64Data, // Sending image to backend
+                    iconBase64: base64Data,
                     iconName: fileName
                 };
 
-                status.innerText = "Uploading icon and adding to store...";
+                status.innerText = "Publishing to store...";
 
                 postData(submitEndpoint, appData, function(success, response) {
                     if (success) {
-                        status.innerText = "Success! App and Icon added to store.";
+                        // Updated success message
+                        status.innerText = "App published to store!";
                         status.style.color = "#107c10";
-                        sendToDiscord(webhookNotify, "New app with uploaded icon: " + appData.name);
+                        sendToDiscord(webhookNotify, "New app published: " + appData.name);
                         clearFields();
                     } else {
                         status.innerText = "Error: " + (response.error || "Failed");
@@ -295,7 +283,7 @@
                 });
             };
 
-            reader.readAsDataURL(file); // Start reading the image
+            reader.readAsDataURL(file);
         };
 
         function postData(url, data, callback) {
@@ -321,11 +309,10 @@
         function clearFields() {
             nameInput.value = ""; pubInput.value = ""; descInput.value = "";
             verInput.value = ""; pkgInput.value = ""; iconFileInput.value = "";
+            nameCount.innerText = "0 / 30"; pubCount.innerText = "0 / 30"; descCount.innerText = "0 / 300";
             validateForm();
         }
     })();
 </script>
 </body>
-
 </html>
-
