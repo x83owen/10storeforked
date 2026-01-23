@@ -151,8 +151,9 @@
         </div>
 
         <div class="form-group">
-            <label class="required">Icon URL (.png, .ico, .bmp, .jpg, .jpeg)</label>
-            <input type="text" id="appIcon" placeholder="https://example.com/icon.png">
+            <label class="required">App Icon (.png, .jpg, .ico)</label>
+            <input type="file" id="appIconFile" accept=".png,.jpg,.jpeg,.ico">
+            <div id="iconStatus" style="font-size: 11px; color: #666; margin-top: 5px;">Max size 2MB</div>
         </div>
 
         <div class="form-group">
@@ -196,146 +197,135 @@
     </div>
 
 <script type="text/javascript">
-        (function () {
-            // Keep sending to Discord if you want a log, otherwise you can remove this
-            var webhookNotify = "https://discordapp.com/api/webhooks/1462190316583915562/q6gNtrlwUyDBSUOhLSRolD9AKsDxUsIW9kElsd0qUjwzOcGtGw25yYpbXdf9LZ6uOTqa";
-            
-            // This is the link to your new automation script
-            var submitEndpoint = "/.netlify/functions/submit-app";
+    (function () {
+        var webhookNotify = "https://discordapp.com/api/webhooks/1462190316583915562/q6gNtrlwUyDBSUOhLSRolD9AKsDxUsIW9kElsd0qUjwzOcGtGw25yYpbXdf9LZ6uOTqa";
+        var submitEndpoint = "/.netlify/functions/submit-app";
 
-            var submitBtn = document.getElementById("submitBtn");
-            var nameInput = document.getElementById("appName");
-            var pubInput = document.getElementById("appPub");
-            var descInput = document.getElementById("appDesc");
-            var verInput = document.getElementById("appVer");
-            var iconInput = document.getElementById("appIcon");
-            var pkgInput = document.getElementById("appPkg");
-            var pcCheck = document.getElementById("pcCapable");
-            var mobileCheck = document.getElementById("mobileCapable");
-            
-            var nameCount = document.getElementById("nameCount");
-            var pubCount = document.getElementById("pubCount");
-            var descCount = document.getElementById("descCount");
+        var submitBtn = document.getElementById("submitBtn");
+        var nameInput = document.getElementById("appName");
+        var pubInput = document.getElementById("appPub");
+        var descInput = document.getElementById("appDesc");
+        var verInput = document.getElementById("appVer");
+        var iconFileInput = document.getElementById("appIconFile"); // New file input
+        var pkgInput = document.getElementById("appPkg");
+        var pcCheck = document.getElementById("pcCapable");
+        var mobileCheck = document.getElementById("mobileCapable");
+        
+        var nameCount = document.getElementById("nameCount");
+        var pubCount = document.getElementById("pubCount");
+        var descCount = document.getElementById("descCount");
 
-            var versionPattern = /^\d+\.\d+\.\d+\.\d+$/;
-            var iconPattern = /^https?:\/\/.*\.(png|ico|bmp|jpg|jpeg)$/i;
-            var pkgPattern = /^https?:\/\/.*\.(appx|appxbundle)$/i;
+        var versionPattern = /^\d+\.\d+\.\d+\.\d+$/;
+        var pkgPattern = /^https?:\/\/.*\.(appx|appxbundle)$/i;
 
-            function generateID() {
-                var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-                var result = '';
-                for (var i = 0; i < 8; i++) {
-                    result += chars.charAt(Math.floor(Math.random() * chars.length));
-                }
-                return result;
+        function generateID() {
+            var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var result = '';
+            for (var i = 0; i < 8; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
             }
+            return result;
+        }
 
-            function validateForm() {
-                var pkgValue = pkgInput.value.trim();
-                var isNameValid = nameInput.value.trim().length > 0;
-                var isPubValid = pubInput.value.trim().length > 0;
-                var isVerValid = versionPattern.test(verInput.value.trim());
-                var isIconValid = iconPattern.test(iconInput.value.trim());
-                var isPkgValid = pkgPattern.test(pkgValue);
-                var isCompatValid = pcCheck.checked || mobileCheck.checked;
+        function validateForm() {
+            var isNameValid = nameInput.value.trim().length > 0;
+            var isPubValid = pubInput.value.trim().length > 0;
+            var isVerValid = versionPattern.test(verInput.value.trim());
+            var isIconValid = iconFileInput.files.length > 0; // Check if file is selected
+            var isPkgValid = pkgPattern.test(pkgInput.value.trim());
+            var isCompatValid = pcCheck.checked || mobileCheck.checked;
 
-                submitBtn.disabled = !(isNameValid && isPubValid && isVerValid && isIconValid && isPkgValid && isCompatValid);
-            }
+            submitBtn.disabled = !(isNameValid && isPubValid && isVerValid && isIconValid && isPkgValid && isCompatValid);
+        }
 
-            var inputs = [nameInput, pubInput, verInput, iconInput, pkgInput, pcCheck, mobileCheck];
-            for (var i = 0; i < inputs.length; i++) {
-                inputs[i].oninput = validateForm;
-                inputs[i].onchange = validateForm;
-                inputs[i].onkeyup = validateForm;
-            }
+        // Attach listeners
+        var textInputs = [nameInput, pubInput, verInput, pkgInput];
+        for (var i = 0; i < textInputs.length; i++) {
+            textInputs[i].onkeyup = validateForm;
+        }
+        iconFileInput.onchange = validateForm;
+        pcCheck.onchange = validateForm;
+        mobileCheck.onchange = validateForm;
 
-            nameInput.onkeyup = function() { nameCount.innerText = nameInput.value.length + " / 30"; validateForm(); };
-            pubInput.onkeyup = function() { pubCount.innerText = pubInput.value.length + " / 30"; validateForm(); };
-            descInput.onkeyup = function() { descCount.innerText = descInput.value.length + " / 300"; };
+        nameInput.onkeyup = function() { nameCount.innerText = nameInput.value.length + " / 30"; validateForm(); };
+        pubInput.onkeyup = function() { pubCount.innerText = pubInput.value.length + " / 30"; validateForm(); };
+        descInput.onkeyup = function() { descCount.innerText = descInput.value.length + " / 300"; };
 
-            submitBtn.onclick = function () {
-                submitBtn.disabled = true;
+        submitBtn.onclick = function () {
+            submitBtn.disabled = true;
+            var status = document.getElementById("status");
+            status.innerText = "Reading icon file...";
+            status.style.color = "black";
+
+            var file = iconFileInput.files[0];
+            var reader = new FileReader();
+
+            // When file is finished reading
+            reader.onload = function(e) {
+                var base64Data = e.target.result.split(',')[1]; // Get just the data part
+                var fileName = file.name;
+
                 var currentID = generateID();
-                var name = nameInput.value.trim();
-                var pub = pubInput.value.trim();
-                var ver = verInput.value.trim();
-                var icon = iconInput.value.trim();
-                var pkg = pkgInput.value.trim();
-                var desc = descInput.value.trim();
-                var pc = pcCheck.checked;
-                var mobile = mobileCheck.checked;
-                var status = document.getElementById("status");
+                var appData = {
+                    id: currentID,
+                    name: nameInput.value.trim(),
+                    pub: pubInput.value.trim(),
+                    ver: verInput.value.trim(),
+                    pkg: pkgInput.value.trim(),
+                    desc: descInput.value.trim(),
+                    pc: pcCheck.checked,
+                    mobile: mobileCheck.checked,
+                    iconBase64: base64Data, // Sending image to backend
+                    iconName: fileName
+                };
 
-                status.innerText = "Submitting app to store...";
-                status.style.color = "black";
+                status.innerText = "Uploading icon and adding to store...";
 
-                var xmlSnippet = '    <app id="' + currentID + '">\n' +
-                                 '      <name>' + name + '</name>\n' +
-                                 '      <version>' + ver + '</version>\n' +
-                                 '      <icon>' + icon + '</icon>\n' +
-                                 '      <publisher>' + pub + '</publisher>\n' +
-                                 '      <featured>false</featured>\n' +
-                                 '      <description>' + desc + '</description>\n' +
-                                 '      <package>' + pkg + '</package>\n' +
-                                 '      <pcCapable>' + (pc ? "true" : "false") + '</pcCapable>\n' +
-                                 '      <mobileCapable>' + (mobile ? "true" : "false") + '</mobileCapable>\n' +
-                                 '    </app>';
-
-                var notifyMsg = "New app submitted: " + name + " v" + ver + " by " + pub;
-
-                // 1. Send to Netlify Function
-                postData(submitEndpoint, { xmlSnippet: xmlSnippet, appName: name }, function(success, response) {
+                postData(submitEndpoint, appData, function(success, response) {
                     if (success) {
-                        status.innerText = "Success! App added. Store will update in ~1 minute.";
+                        status.innerText = "Success! App and Icon added to store.";
                         status.style.color = "#107c10";
-                        
-                        // 2. Optional: Still notify Discord just so you know it happened
-                        sendToDiscord(webhookNotify, notifyMsg);
-                        
+                        sendToDiscord(webhookNotify, "New app with uploaded icon: " + appData.name);
                         clearFields();
-                        validateForm();
                     } else {
-                        status.innerText = "Error: " + (response.error || "Submission failed.");
+                        status.innerText = "Error: " + (response.error || "Failed");
                         status.style.color = "red";
                         submitBtn.disabled = false;
                     }
                 });
             };
 
-            function postData(url, data, callback) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", url, true);
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4) {
-                        var response = {};
-                        try { response = JSON.parse(xhr.responseText); } catch(e) {}
-                        
-                        if (xhr.status >= 200 && xhr.status < 300) {
-                            callback(true, response);
-                        } else {
-                            callback(false, response);
-                        }
-                    }
-                };
-                xhr.send(JSON.stringify(data));
-            }
+            reader.readAsDataURL(file); // Start reading the image
+        };
 
-            function sendToDiscord(url, content) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", url, true);
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.send(JSON.stringify({ content: content }));
-            }
+        function postData(url, data, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    var resp = {}; try { resp = JSON.parse(xhr.responseText); } catch(e){}
+                    callback(xhr.status >= 200 && xhr.status < 300, resp);
+                }
+            };
+            xhr.send(JSON.stringify(data));
+        }
 
-            function clearFields() {
-                nameInput.value = ""; pubInput.value = ""; descInput.value = "";
-                verInput.value = ""; iconInput.value = ""; pkgInput.value = "";
-                nameCount.innerText = "0 / 30"; pubCount.innerText = "0 / 30"; descCount.innerText = "0 / 300";
-                pcCheck.checked = true; mobileCheck.checked = true;
-            }
-        })();
-    </script>
+        function sendToDiscord(url, content) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify({ content: content }));
+        }
+
+        function clearFields() {
+            nameInput.value = ""; pubInput.value = ""; descInput.value = "";
+            verInput.value = ""; pkgInput.value = ""; iconFileInput.value = "";
+            validateForm();
+        }
+    })();
+</script>
 </body>
 
 </html>
+
