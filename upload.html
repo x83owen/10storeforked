@@ -149,7 +149,7 @@
         </div>
 
         <div class="form-group">
-            <label class="required">Package URL (.appx, .appxbundle)</label>
+            <label class="required">Package URL (.appx, .appxbundle, .msix, .msixbundle)</label>
             <input type="text" id="appPkg" name="packageurl" placeholder="https://example.com/app.appx" autocomplete="url">
         </div>
 
@@ -204,7 +204,7 @@
         var descCount = document.getElementById("descCount");
 
         var versionPattern = /^\d+\.\d+\.\d+\.\d+$/;
-        var pkgPattern = /^https?:\/\/.*\.(appx|appxbundle)$/i;
+        var pkgPattern = /^https?:\/\/.*\.(appx|appxbundle|msix|msixbundle)$/i;
 
         function generateID() {
             var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -316,3 +316,4 @@
 </script>
 </body>
 </html>
+
