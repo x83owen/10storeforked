@@ -182,6 +182,17 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+      <app id="SRakVHuW">
+      <name>Samsung Gallery</name>
+      <version>2.3.25.0</version>
+      <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/SRakVHuW-Square44x44Logo.targetsize-256_altform-unplated.png</icon>
+      <publisher>Samsung Electronics Co. Ltd.</publisher>
+      <featured>false</featured>
+      <description>Samsung Gallery for Windows Phone</description>
+      <package>https://dl.dankassassin368.com/Samsung%20GalleryApp_2.3.25.0_ARM.appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 
 </data>
