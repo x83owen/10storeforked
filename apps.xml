@@ -125,5 +125,16 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+      <app id="yayJy18J">
+      <name>Test App</name>
+      <version>0.0.0.0</version>
+      <icon>https://cdn4.vectorstock.com/i/1000x1000/48/43/google-symbol-logo-black-and-white-design-vector-46334843.jpg</icon>
+      <publisher>Test</publisher>
+      <featured>false</featured>
+      <description>https://cdn4.vectorstock.com/i/1000x1000/48/43/google-symbol-logo-black-and-white-design-vector-46334843.jpg</description>
+      <package>https:// .appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 </data>
