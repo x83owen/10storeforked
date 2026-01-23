@@ -259,6 +259,17 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+      <app id="aW1FNDTD">
+      <name>Converter Pro</name>
+      <version>6.6.7.0</version>
+      <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/aW1FNDTD-1000154132.png</icon>
+      <publisher>PanoramicSoftwareInc</publisher>
+      <featured>false</featured>
+      <description>not the fucking 67 on the version</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Apps/Converter%20Pro/6.6.7.0/x86/PanoramicSoftwareInc.ConverterPro-UnitCurrencyConv_6.6.7.0_x86__wna2f9n7wqgf8.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
   </apps>
 
 </data>
