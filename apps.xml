@@ -299,6 +299,17 @@ More info at https://files.catbox.moe/rokw5h.txt (please note you got to copy it
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
+      <app id="35pbG8B4">
+      <name>Unigram Mobile Messenger</name>
+      <version>21.12.6009.0</version>
+      <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/35pbG8B4-Square44x44Logo.altform-unplated_targetsize-256.png</icon>
+      <publisher>abaculi</publisher>
+      <featured>false</featured>
+      <description>Unigram Mobile is a fork of the original Unigram UWP app aimed to keep supporting Windows 10 Mobile after the Unigram dropped support for Mobile.</description>
+      <package>https://dl.dankassassin368.com/Unigram%20Mobile%20Messenger_21.12.6009.0_ARM.appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 
 </data>
