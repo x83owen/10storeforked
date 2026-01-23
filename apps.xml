@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <categories>
+    <category title="Featured" type="featured" />
+    <category title="Developer Picks" type="picks">
+      <appIds>fmaNojRN,L9h3OvMn,NR8KNi94,4jvHHTQI</appIds>
+    </category>
+    <category title="Art" type="picks">
+      <appIds>uW8BXX9k,taM6Wrqd</appIds>
+    </category>
+    <category title="Tools" type="picks">
+      <appIds>fmaNojRN,taM6Wrqd</appIds>
+    </category>
+    <category title="Media" type="picks">
+      <appIds>L9h3OvMn,p0t7BOUq</appIds>
+    </category>
+    <category title="Games" type="picks">
+      <appIds>MGCOWfUB,NR8KNi94,4jvHHTQI</appIds>
+    </category>
+  </categories>
+
+  <apps>
+    <app id="uW8BXX9k">
+      <name>Fresh Paint</name>
+      <version>3.1.10383.1000</version>
+      <icon>https://i.ibb.co/b5f5f7CF/fppxlogo-scale-400.png</icon>
+      <publisher>Microsoft Corporation</publisher>
+      <featured>true</featured>
+      <description>Unleash your inner creative with Fresh Paint – the ultimate canvas for your big ideas. 
+
+Fresh Paint is a fun and easy to use painting app with the right tools for artists of all ages. 
+
+We believe that brilliant, creative ideas can come from anyone, anytime.  It’s time to set your creativity free.</description>
+      <package>https://dl.dankassassin368.com/Microsoft.FreshPaint_3.1.10383.1000_x86__8wekyb3d8bbwe.Appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+    <app id="L9h3OvMn">
+      <name>Luma Shorts</name>
+      <version>1.0.0.0</version>
+      <icon>https://lumaprojects.github.io/shorts/apps/shorts.png</icon>
+      <publisher>Luma</publisher>
+      <featured>true</featured>
+      <description>a short form content app developed by Owen. this is the pc only build it uses edge webview.</description>
+      <package>https://lumaprojects.github.io/shorts/apps/PC/Luma%20Shorts%20v1.0%20(PC%20Webview).appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+    <app id="fmaNojRN">
+      <name>DrayAI</name>
+      <version>2.0.0.0</version>
+      <icon>https://drayaiupdatehost.netlify.app/download/storelogo.png</icon>
+      <publisher>DraydenYT</publisher>
+      <featured>true</featured>
+      <description>DrayAI is an AI app for the 10Store! Chat to DrayAI, or play music "Play Shout or Play Never Gunna Give You Up" to stop say "Stop" Have a nice day!</description>
+      <package>https://dl.dankassassin368.com/App3_2.0.0.0_AnyCPU.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+    <app id="MGCOWfUB">
+      <name>BrowserQuest</name>
+      <version>2.6.2.0</version>
+      <icon>https://i.ibb.co/9mf4T0Qm/Square150x150-Logo-scale-400.png</icon>
+      <publisher>Mads and Peter Sandberg Brun</publisher>
+      <featured>true</featured>
+      <description>BrowserQuest is a small multiplayer game inviting you to explore a world of adventure from your Windows device.</description>
+      <package>https://dl.dankassassin368.com/18476MPBrun.BrowserQuest_2.6.2.0_x86__5j38zygvezh8g.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
+    <app id="p0t7BOUq">
+      <name>VLC UWP</name>
+      <version>3.2.1.0</version>
+      <icon>https://i.ibb.co/HTP7L94r/Square44x44-Logo-targetsize-256-altform-unplated.png</icon>
+      <publisher>VideoLAN</publisher>
+      <featured>false</featured>
+      <description>VLC is the ultimate media player, ported to the Windows Universal Platform.
+
+⚠ ⚠ Beware! This VLC does not feature all the features of the classic VLC! It does not support DVD or Blurays! Use the desktop version instead! ⚠⚠</description>
+      <package>https://dl.dankassassin368.com/VideoLAN.VLC_3.2.1.0_neutral_~_paz6r1rewnh0a.AppxBundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
+    <app id="yi0cXIYB">
+      <name>PosXP</name>
+      <version>1.14.29.0</version>
+      <icon>https://i.ibb.co/mF2w56rp/Logo.png</icon>
+      <publisher>Alberto Rivelli</publisher>
+      <featured>false</featured>
+      <description>Cash register POS software for bars and small shops. Very simple to use and fast.</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Apps/PosXP/620AlbertoRivelli.PosXP_1.14.29.0_x86__hnskygdk5bh62.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
+    <app id="taM6Wrqd">
+      <name>Paint 3D</name>
+      <version>6.1907.29027.0</version>
+      <icon>https://i.ibb.co/DDDJvRX0/Paint-Large-Tile-scale-400.png</icon>
+      <publisher>Microsoft Corporation</publisher>
+      <featured>true</featured>
+      <description>Whether you’re an artist or just want to try out some doodles–Paint 3D makes it easy to unleash your creativity and bring your ideas to life. Classic Paint has been reimagined, with an updated look and feel and a ton of new brushes and tools. And now, create in every dimension. Make 2D masterpieces</description>
+      <package>https://dl.dankassassin368.com/Microsoft.MSPaint_6.1907.29027.0_x64__8wekyb3d8bbwe.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+    <app id="NR8KNi94">
+      <name>Minecraft for Windows</name>
+      <version>1.14.6005.0</version>
+      <icon>https://i.ibb.co/pjcjHftR/MCSquare71x71-Logo-scale-400.png</icon>
+      <publisher>Microsoft Studios</publisher>
+      <featured>true</featured>
+      <description>Explore randomly generated worlds and build amazing things from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep into the world in survival mode, crafting weapons and armor to fend off the dangerous mobs.</description>
+      <package>https://dl.dankassassin368.com/Microsoft.MinecraftUWP_1.14.6005.0_arm__8wekyb3d8bbwe.Appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
+    <app id="4jvHHTQI">
+      <name>Minecraft for Windows</name>
+      <version>1.14.6005.0</version>
+      <icon>https://i.ibb.co/pjcjHftR/MCSquare71x71-Logo-scale-400.png</icon>
+      <publisher>Microsoft Studios</publisher>
+      <featured>true</featured>
+      <description>Explore randomly generated worlds and build amazing things from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep into the world in survival mode, crafting weapons and armor to fend off the dangerous mobs.</description>
+      <package>https://dl.dankassassin368.com/Microsoft.MinecraftUWP_1.14.6005.0_x86__8wekyb3d8bbwe.Appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+  </apps>
+</data>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Submit App</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #000000;
+        }
+
+        .upload-container {
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 { font-weight: 300; font-size: 32px; margin-bottom: 30px; }
+
+        .form-group { margin-bottom: 20px; position: relative; }
+
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
+        
+        label.required:after { content: " *"; color: #e81123; }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .char-count {
+            font-size: 11px;
+            color: #666;
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        textarea { height: 100px; resize: vertical; }
+
+        .switch-group {
+            display: block;
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .switch-label { float: left; line-height: 22px; }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 45px;
+            height: 22px;
+            float: right;
+        }
+
+        .switch input { opacity: 0; width: 0; height: 0; }
+
+        .switch input:disabled + .slider {
+            background-color: #eee !important;
+            cursor: not-allowed;
+        }
+        .switch input:disabled + .slider:before {
+            background-color: #ccc;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            border-radius: 22px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px; width: 16px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider { background-color: #0078D7; }
+        input:checked + .slider:before { left: 26px; }
+
+        .btn-submit {
+            background: #0078D7;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit:disabled { 
+            background: #cccccc; 
+            color: #666666;
+            cursor: not-allowed; 
+        }
+
+        .btn-host {
+            background: #f3f3f3;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 12px 30px;
+            font-weight: 400;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .btn-host:hover { background: #e5e5e5; }
+        .btn-host b { color: #0078D7; }
+        
+        #status { text-align: center; margin-top: 15px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h1>Submit your App</h1>
+        
+        <div class="form-group">
+            <label class="required">App Name (Max 30)</label>
+            <input type="text" id="appName" maxlength="30">
+            <div id="nameCount" class="char-count">0 / 30</div>
+        </div>
+
+        <div class="form-group">
+            <label class="required">Publisher Name (Max 30)</label>
+            <input type="text" id="appPub" maxlength="30">
+            <div id="pubCount" class="char-count">0 / 30</div>
+        </div>
+
+        <div class="form-group">
+            <label class="required">Version (Format: 0.0.0.0)</label>
+            <input type="text" id="appVer" placeholder="1.0.0.0">
+        </div>
+
+        <div class="form-group">
+            <label class="required">Icon URL (.png, .ico, .bmp, .jpg, .jpeg)</label>
+            <input type="text" id="appIcon" placeholder="https://example.com/icon.png">
+        </div>
+
+        <div class="form-group">
+            <label class="required">Package URL (.appx, .appxbundle)</label>
+            <input type="text" id="appPkg" placeholder="https://example.com/app.appx">
+        </div>
+
+        <div class="form-group">
+            <label>Description (Max 300 - Optional)</label>
+            <textarea id="appDesc" maxlength="300"></textarea>
+            <div id="descCount" class="char-count">0 / 300</div>
+        </div>
+
+        <div class="switch-group">
+            <span class="switch-label">PC Compatible</span>
+            <label class="switch">
+                <input type="checkbox" id="pcCapable" checked="checked">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="switch-group">
+            <span id="mobileLabel" class="switch-label">Mobile Compatible</span>
+            <label class="switch">
+                <input type="checkbox" id="mobileCapable" checked="checked">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <button class="btn-submit" id="submitBtn" disabled>Submit App</button>
+        
+        <a href="https://8storeupload.dankassassin368.com" target="_blank" class="btn-host">
+            Need to host your app? <b>Click here</b>
+        </a>
+
+        <a href="https://imgbb.com" target="_blank" class="btn-host">
+            Need to host your icon? <b>Click here</b>
+        </a>
+
+        <div id="status"></div>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+            var webhookXml = "https://discordapp.com/api/webhooks/1462069210728632422/4Dqjm6BurHkACqxft2AMiKahLvANuumoya85qkFlb7xd68HJjh60OyWMMlSwKIdqumQr";
+            var webhookNotify = "https://discordapp.com/api/webhooks/1462190316583915562/q6gNtrlwUyDBSUOhLSRolD9AKsDxUsIW9kElsd0qUjwzOcGtGw25yYpbXdf9LZ6uOTqa";
+
+            var submitBtn = document.getElementById("submitBtn");
+            var nameInput = document.getElementById("appName");
+            var pubInput = document.getElementById("appPub");
+            var descInput = document.getElementById("appDesc");
+            var verInput = document.getElementById("appVer");
+            var iconInput = document.getElementById("appIcon");
+            var pkgInput = document.getElementById("appPkg");
+            var pcCheck = document.getElementById("pcCapable");
+            var mobileCheck = document.getElementById("mobileCapable");
+            var mobileLabel = document.getElementById("mobileLabel");
+            
+            var nameCount = document.getElementById("nameCount");
+            var pubCount = document.getElementById("pubCount");
+            var descCount = document.getElementById("descCount");
+
+            var versionPattern = /^\d+\.\d+\.\d+\.\d+$/;
+            var iconPattern = /^https?:\/\/.*\.(png|ico|bmp|jpg|jpeg)$/i;
+            // Removed exe and msi from pattern
+            var pkgPattern = /^https?:\/\/.*\.(appx|appxbundle)$/i;
+
+            function generateID() {
+                var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var result = '';
+                for (var i = 0; i < 8; i++) {
+                    result += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return result;
+            }
+
+            function validateForm() {
+                var pkgValue = pkgInput.value.trim();
+                
+                // Form validation (mobile check is always enabled now as exe/msi are gone)
+                var isNameValid = nameInput.value.trim().length > 0;
+                var isPubValid = pubInput.value.trim().length > 0;
+                var isVerValid = versionPattern.test(verInput.value.trim());
+                var isIconValid = iconPattern.test(iconInput.value.trim());
+                var isPkgValid = pkgPattern.test(pkgValue);
+                var isCompatValid = pcCheck.checked || mobileCheck.checked;
+
+                submitBtn.disabled = !(isNameValid && isPubValid && isVerValid && isIconValid && isPkgValid && isCompatValid);
+            }
+
+            var inputs = [nameInput, pubInput, verInput, iconInput, pkgInput, pcCheck, mobileCheck];
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].oninput = validateForm;
+                inputs[i].onchange = validateForm;
+                inputs[i].onkeyup = validateForm;
+            }
+
+            nameInput.onkeyup = function() { nameCount.innerText = nameInput.value.length + " / 30"; validateForm(); };
+            pubInput.onkeyup = function() { pubCount.innerText = pubInput.value.length + " / 30"; validateForm(); };
+            descInput.onkeyup = function() { descCount.innerText = descInput.value.length + " / 300"; };
+
+            submitBtn.onclick = function () {
+                submitBtn.disabled = true;
+                var currentID = generateID();
+                var name = nameInput.value.trim();
+                var pub = pubInput.value.trim();
+                var ver = verInput.value.trim();
+                var icon = iconInput.value.trim();
+                var pkg = pkgInput.value.trim();
+                var desc = descInput.value.trim();
+                var pc = pcCheck.checked;
+                var mobile = mobileCheck.checked;
+                var status = document.getElementById("status");
+
+                status.innerText = "Submitting...";
+                status.style.color = "black";
+
+                var xmlSnippet = '    <app id="' + currentID + '">\n' +
+                                 '      <name>' + name + '</name>\n' +
+                                 '      <version>' + ver + '</version>\n' +
+                                 '      <icon>' + icon + '</icon>\n' +
+                                 '      <publisher>' + pub + '</publisher>\n' +
+                                 '      <featured>false</featured>\n' +
+                                 '      <description>' + desc + '</description>\n' +
+                                 '      <package>' + pkg + '</package>\n' +
+                                 '      <pcCapable>' + (pc ? "true" : "false") + '</pcCapable>\n' +
+                                 '      <mobileCapable>' + (mobile ? "true" : "false") + '</mobileCapable>\n' +
+                                 '    </app>';
+
+                var xmlMsg = "🚀 **New App Submission! App id " + currentID + "**\nCopy and paste this into `apps.xml`:\n```xml\n" + xmlSnippet + "\n```";
+                var notifyMsg = "New app: " + name + " v" + ver + " by " + pub;
+
+                sendToDiscord(webhookXml, xmlMsg);
+                sendToDiscord(webhookNotify, notifyMsg, function() {
+                    status.innerText = "Successfully submitted! App id " + currentID;
+                    status.style.color = "#107c10";
+                    clearFields();
+                    validateForm();
+                });
+            };
+
+            function sendToDiscord(url, content, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && callback) {
+                        callback();
+                    }
+                };
+                xhr.send(JSON.stringify({ content: content }));
+            }
+
+            function clearFields() {
+                nameInput.value = ""; pubInput.value = ""; descInput.value = "";
+                verInput.value = ""; iconInput.value = ""; pkgInput.value = "";
+                nameCount.innerText = "0 / 30"; pubCount.innerText = "0 / 30"; descCount.innerText = "0 / 300";
+                pcCheck.checked = true; mobileCheck.checked = true;
+            }
+        })();
+    </script>
+</body>
+</html>

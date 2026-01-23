@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Submit Feedback</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #000000;
+        }
+
+        .container {
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 { font-weight: 300; font-size: 32px; margin-bottom: 30px; }
+
+        .form-group { margin-bottom: 20px; position: relative; }
+
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
+        
+        label.required:after { content: " *"; color: #e81123; }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .char-count {
+            font-size: 11px;
+            color: #666;
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        textarea { height: 150px; resize: vertical; }
+
+        .btn-submit {
+            background: #0078D7;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit:disabled { 
+            background: #cccccc; 
+            color: #666666;
+            cursor: not-allowed; 
+        }
+        
+        #status { text-align: center; margin-top: 15px; font-size: 14px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Send Feedback</h1>
+        
+        <div class="form-group">
+            <label class="required">Your Name</label>
+            <input type="text" id="userName" maxlength="30" placeholder="Enter your name">
+            <div id="nameCount" class="char-count">0 / 30</div>
+        </div>
+
+        <div class="form-group">
+            <label class="required">Feedback / Suggestion</label>
+            <textarea id="feedbackText" maxlength="500" placeholder="What's on your mind?"></textarea>
+            <div id="textCount" class="char-count">0 / 500</div>
+        </div>
+
+        <button class="btn-submit" id="submitBtn" disabled>Send Feedback</button>
+
+        <div id="status"></div>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+            var feedbackWebhook = "https://discordapp.com/api/webhooks/1462229530612600853/X3QOaMIMyXmm7TF2HZQZtUEwDK3_ztUhLLIAtEn5dwra1bJnzR-yWBPWqcPwu7MNQ7T1";
+
+            var submitBtn = document.getElementById("submitBtn");
+            var nameInput = document.getElementById("userName");
+            var textInput = document.getElementById("feedbackText");
+            var status = document.getElementById("status");
+            
+            var nameCount = document.getElementById("nameCount");
+            var textCount = document.getElementById("textCount");
+
+            function validateForm() {
+                var isNameValid = nameInput.value.trim().length > 0;
+                var isTextValid = textInput.value.trim().length > 2; 
+
+                submitBtn.disabled = !(isNameValid && isTextValid);
+            }
+
+            nameInput.oninput = function() { 
+                nameCount.innerText = nameInput.value.length + " / 30"; 
+                validateForm(); 
+            };
+
+            textInput.oninput = function() { 
+                textCount.innerText = textInput.value.length + " / 500"; 
+                validateForm(); 
+            };
+
+            submitBtn.onclick = function () {
+                submitBtn.disabled = true;
+                var name = nameInput.value.trim();
+                var feedback = textInput.value.trim();
+
+                status.innerText = "Sending feedback...";
+                status.style.color = "black";
+
+                var payload = {
+                    embeds: [{
+                        title: "💬 New Feedback Received",
+                        color: 0x0078D7,
+                        fields: [
+                            { name: "User", value: name, inline: true },
+                            { name: "Message", value: feedback }
+                        ],
+                        footer: { text: "10Store Feedback System" },
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", feedbackWebhook, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            status.innerText = "Thank you! Your feedback has been sent.";
+                            status.style.color = "#107c10";
+                            
+                            nameInput.value = "";
+                            textInput.value = "";
+                            nameCount.innerText = "0 / 30";
+                            textCount.innerText = "0 / 500";
+                            validateForm();
+                        } else {
+                            status.innerText = "Error: Could not send feedback. Please try again later.";
+                            status.style.color = "#e81123";
+                            submitBtn.disabled = false;
+                        }
+                    }
+                };
+                
+                xhr.onerror = function() {
+                    status.innerText = "Network error. Check your connection.";
+                    status.style.color = "#e81123";
+                    submitBtn.disabled = false;
+                };
+
+                xhr.send(JSON.stringify(payload));
+            };
+        })();
+    </script>
+</body>
+</html>
