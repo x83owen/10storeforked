@@ -334,6 +334,17 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <pcCapable>true</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
+      <app id="XtZbpVmp">
+      <name>2048</name>
+      <version>1.9.3.0</version>
+      <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/XtZbpVmp-StoreLogo.scale-200.png</icon>
+      <publisher>Slytery</publisher>
+      <featured>false</featured>
+      <description>A 2048 game.</description>
+      <package>https://dl.dankassassin368.com/2048%21_1.9.3.0.appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 
 </data>
