@@ -323,6 +323,17 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+      <app id="uO48Fdb3">
+      <name>Test</name>
+      <version>0.0.0.0</version>
+      <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/uO48Fdb3-image.png</icon>
+      <publisher>Test</publisher>
+      <featured>false</featured>
+      <description>test</description>
+      <package>https://.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 
 </data>
