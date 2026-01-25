@@ -356,6 +356,17 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+      <app id="XW2VB89E">
+      <name>myTube! Beta</name>
+      <version>4.0.21.0</version>
+      <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/XW2VB89E-App%20Icon.altform-unplated_targetsize-256.png</icon>
+      <publisher>Ryken Studio</publisher>
+      <featured>false</featured>
+      <description>Watch YouTube videos on your Lumia device.</description>
+      <package>https://dl.dankassassin368.com/myTubeBeta_4.0.21.0_arm.Appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 
 </data>
