@@ -422,6 +422,17 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <pcCapable>true</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
+      <app id="tsTKPfQA">
+      <name>some dicks</name>
+      <version>1.24.4.4</version>
+      <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/tsTKPfQA-dick.png</icon>
+      <publisher>dick</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://catbox.com/dick.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 
 </data>
