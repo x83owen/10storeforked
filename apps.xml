@@ -367,6 +367,17 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
+      <app id="Rz7GmjT1">
+      <name>Shazam</name>
+      <version>4.7.8.0</version>
+      <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/main/icons/Rz7GmjT1-ApplicationIcon.scale-240.png</icon>
+      <publisher>Shazam</publisher>
+      <featured>false</featured>
+      <description>Find the music your currently listening to with Shazam!</description>
+      <package>https://dl.dankassassin368.com/Shazam%20v4.7.8.0.appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 
 </data>
