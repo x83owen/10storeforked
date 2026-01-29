@@ -140,28 +140,21 @@
                 
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4) {
-if (xhr.status >= 200 && xhr.status < 300) {
-    status.innerText = "Thank you! Your feedback has been sent.";
-    status.style.color = "#107c10";
-    
-    // Clear inputs
-    nameInput.value = "";
-    textInput.value = "";
-
-    // CHECK: Are we inside the Windows App Service Window?
-    var isWindowsApp = (typeof Windows !== 'undefined');
-
-    if (isWindowsApp) {
-        status.innerText = "Thank you! Closing window...";
-        setTimeout(function() {
-            // Redirect to trigger the auto-close in the app
-            window.location.href = "https://10storedraydenyt.netlify.app/success"; 
-        }, 1500);
-    } else {
-        // We are in Chrome/Edge/Firefox - just stay on the page
-        status.innerText = "Thank you! Your feedback has been sent successfully.";
-    }
-}
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            status.innerText = "Thank you! Your feedback has been sent.";
+                            status.style.color = "#107c10";
+                            
+                            nameInput.value = "";
+                            textInput.value = "";
+                            nameCount.innerText = "0 / 30";
+                            textCount.innerText = "0 / 500";
+                            validateForm();
+                        } else {
+                            status.innerText = "Error: Could not send feedback. Please try again later.";
+                            status.style.color = "#e81123";
+                            submitBtn.disabled = false;
+                        }
+                    }
                 };
                 
                 xhr.onerror = function() {
@@ -175,5 +168,4 @@ if (xhr.status >= 200 && xhr.status < 300) {
         })();
     </script>
 </body>
-
 </html>
