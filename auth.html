@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Account</title>
+    <style>
+        html, body {
+            height: 100%; margin: 0; background: #ffffff;
+            font-family: 'Segoe UI', Tahoma, sans-serif; color: #000;
+        }
+        .auth-container { padding: 40px; max-width: 400px; margin: 0 auto; }
+        h1 { font-weight: 300; font-size: 32px; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
+        input[type="email"], input[type="password"] {
+            width: 100%; padding: 10px; border: 1px solid #ccc; box-sizing: border-box;
+        }
+        .btn-primary {
+            background: #0078D7; color: white; border: none; padding: 12px;
+            font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px;
+        }
+        .btn-secondary {
+            background: #f3f3f3; color: #333; border: 1px solid #ccc; padding: 10px;
+            cursor: pointer; width: 100%; margin-top: 10px; font-size: 13px;
+        }
+        .btn-primary:disabled { background: #ccc; cursor: not-allowed; }
+        #status { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h1 id="authTitle">Sign in</h1>
+        
+        <div class="form-group">
+            <label>Email address</label>
+            <input type="email" id="userEmail" placeholder="example@outlook.com">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="userPass">
+        </div>
+
+        <button class="btn-primary" id="mainBtn">Sign in</button>
+        <button class="btn-secondary" id="toggleBtn">Create new account</button>
+        
+        <div id="status"></div>
+    </div>
+
+<script>
+    (function () {
+        var mode = "signin"; // or "signup"
+        var endpoint = "/.netlify/functions/handle-accounts";
+        
+        var mainBtn = document.getElementById("mainBtn");
+        var toggleBtn = document.getElementById("toggleBtn");
+        var title = document.getElementById("authTitle");
+        var status = document.getElementById("status");
+        
+        var emailInput = document.getElementById("userEmail");
+        var passInput = document.getElementById("userPass");
+
+        toggleBtn.onclick = function() {
+            mode = (mode === "signin") ? "signup" : "signin";
+            title.innerText = (mode === "signin") ? "Sign in" : "Create account";
+            mainBtn.innerText = (mode === "signin") ? "Sign in" : "Register";
+            toggleBtn.innerText = (mode === "signin") ? "Create new account" : "Back to Sign in";
+        };
+
+        mainBtn.onclick = function() {
+            status.innerText = "Connecting...";
+            status.style.color = "black";
+            mainBtn.disabled = true;
+
+            var payload = {
+                action: mode,
+                email: emailInput.value.trim().toLowerCase(),
+                password: passInput.value.trim()
+            };
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", endpoint, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    var resp = JSON.parse(xhr.responseText || "{}");
+                    if (xhr.status === 200) {
+                        status.innerText = resp.message;
+                        status.style.color = "#107c10";
+                        if(mode === "signin") {
+                            // Save session and redirect
+                            localStorage.setItem("user", payload.email);
+                            setTimeout(() => { window.location.href = "home.html"; }, 1500);
+                        }
+                    } else {
+                        status.innerText = "Error: " + (resp.error || "Failed");
+                        status.style.color = "red";
+                        mainBtn.disabled = false;
+                    }
+                }
+            };
+            xhr.send(JSON.stringify(payload));
+        };
+    })();
+</script>
+</body>
+</html>
