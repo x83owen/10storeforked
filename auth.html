@@ -35,8 +35,12 @@
 <body>
     <div class="auth-container">
         <h1 id="authTitle">Sign in</h1>
-        
         <div id="statusMsg"></div>
+
+        <div class="form-group" id="nameGroup" style="display:none;">
+            <label>Display Name</label>
+            <input type="text" id="userName" placeholder="Your Name">
+        </div>
 
         <div class="form-group">
             <label>Email address</label>
@@ -48,124 +52,95 @@
             <input type="password" id="userPass">
         </div>
 
+        <div class="form-group" id="photoGroup" style="display:none;">
+            <label>Profile Photo</label>
+            <input type="file" id="userPhoto" accept="image/*">
+        </div>
+
         <button type="button" class="btn-primary" id="mainBtn">Sign in</button>
         <button type="button" class="btn-secondary" id="toggleBtn">Create new account</button>
     </div>
 
 <script>
-    // 1. GLOBAL ERROR HANDLER (Catches syntax errors in WAB)
-    window.onerror = function(msg, url, line) {
-        var el = document.getElementById("statusMsg");
-        if (el) el.innerHTML = "<span class='error-text'>Error: " + msg + " (Line " + line + ")</span>";
-        return false;
-    };
-
     (function () {
-        "use strict";
-
-        // IE11 Helper to get URL parameters
-        function getQueryParam(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-            var results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-
-        // Variables
         var mode = "signin"; 
-        var endpoint = "/.netlify/functions/handle-accounts";
-        
-        var mainBtn = document.getElementById("mainBtn");
-        var toggleBtn = document.getElementById("toggleBtn");
-        var titleLabel = document.getElementById("authTitle");
-        var statusEl = document.getElementById("statusMsg"); // Renamed to avoid 'window.status' conflict
-        
-        var emailInput = document.getElementById("userEmail");
-        var passInput = document.getElementById("userPass");
+        var photoBase64 = "";
 
-        // UI Toggle Logic
-        toggleBtn.onclick = function() {
-            if (mode === "signin") {
-                mode = "signup";
-                titleLabel.innerText = "Create account";
-                mainBtn.innerText = "Register";
-                toggleBtn.innerText = "Back to Sign in";
-            } else {
-                mode = "signin";
-                titleLabel.innerText = "Sign in";
-                mainBtn.innerText = "Sign in";
-                toggleBtn.innerText = "Create new account";
+        // UI Elements
+        var nameGroup = document.getElementById("nameGroup");
+        var photoGroup = document.getElementById("photoGroup");
+        var fileInput = document.getElementById("userPhoto");
+        var toggleBtn = document.getElementById("toggleBtn");
+        var mainBtn = document.getElementById("mainBtn");
+        var statusEl = document.getElementById("statusMsg");
+
+        // Convert Image to Base64
+        fileInput.onchange = function() {
+            var file = fileInput.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) { photoBase64 = e.target.result; };
+                reader.readAsDataURL(file);
             }
         };
 
-        // Main Action Logic
-        mainBtn.onclick = function() {
-            // Clear previous errors
-            statusEl.innerHTML = "Connecting...";
-            statusEl.className = ""; 
+        toggleBtn.onclick = function() {
+            mode = (mode === "signin") ? "signup" : "signin";
+            document.getElementById("authTitle").innerText = (mode === "signin") ? "Sign in" : "Create account";
+            mainBtn.innerText = (mode === "signin") ? "Sign in" : "Register";
+            toggleBtn.innerText = (mode === "signin") ? "Create new account" : "Back to Sign in";
             
+            // Show/Hide extra fields
+            nameGroup.style.display = (mode === "signup") ? "block" : "none";
+            photoGroup.style.display = (mode === "signup") ? "block" : "none";
+        };
+
+        mainBtn.onclick = function() {
+            statusEl.innerText = "Processing...";
             mainBtn.disabled = true;
 
             var payload = {
                 action: mode,
-                email: emailInput.value.trim().toLowerCase(),
-                password: passInput.value.trim()
+                email: document.getElementById("userEmail").value.trim().toLowerCase(),
+                password: document.getElementById("userPass").value.trim(),
+                name: document.getElementById("userName").value.trim(),
+                photo: photoBase64
             };
 
-            // Basic Validation
-            if (!payload.email || !payload.password) {
-                statusEl.innerHTML = "<span class='error-text'>Please enter email and password</span>";
-                mainBtn.disabled = false;
-                return;
-            }
-
-            try {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", endpoint, true);
-                xhr.setRequestHeader("Content-Type", "application/json");
-                
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4) {
-                        mainBtn.disabled = false;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/.netlify/functions/handle-accounts", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    mainBtn.disabled = false;
+                    if (xhr.status === 200) {
+                        statusEl.innerText = "Success!";
+                        var resp = JSON.parse(xhr.responseText);
                         
-                        var resp = {};
-                        try {
-                            resp = JSON.parse(xhr.responseText);
-                        } catch(e) {
-                            resp = { error: "Server response error" };
+                        // Parse URL params for redirect_uri
+                        var urlParams = location.search.substring(1).split('&');
+                        var redirectUri = "";
+                        for(var i=0; i < urlParams.length; i++) {
+                            if(urlParams[i].indexOf("redirect_uri=") === 0) {
+                                redirectUri = decodeURIComponent(urlParams[i].split('=')[1]);
+                            }
                         }
 
-                        if (xhr.status === 200) {
-                            statusEl.innerHTML = "<span class='success-text'>Success! Redirecting...</span>";
+                        if (redirectUri) {
+                            // Pass back email, name, and photo (encode carefully!)
+                            var resultStr = "#email=" + encodeURIComponent(payload.email) + 
+                                            "&name=" + encodeURIComponent(resp.name || payload.name) + 
+                                            "&photo=" + encodeURIComponent(resp.photo || photoBase64);
                             
-                            // --- REDIRECT LOGIC ---
-                            var callbackUri = getQueryParam('redirect_uri');
-                            
-                            if (callbackUri && callbackUri !== "") {
-                                // Redirect to Windows app
-                                window.location.href = callbackUri + "#email=" + encodeURIComponent(payload.email);
-                            } else {
-                                // Browser fallback
-                                try {
-                                    localStorage.setItem("user_session", payload.email);
-                                } catch(e) {} // LocalStorage might be blocked in WAB
-                                
-                                setTimeout(function() { 
-                                    window.location.href = "home.html"; 
-                                }, 1000);
-                            }
-                        } else {
-                            statusEl.innerHTML = "<span class='error-text'>" + (resp.error || "Request Failed") + "</span>";
+                            window.location.href = redirectUri + resultStr;
                         }
+                    } else {
+                        statusEl.innerText = "Error";
                     }
-                };
-                
-                xhr.send(JSON.stringify(payload));
-                
-            } catch (err) {
-                statusEl.innerHTML = "<span class='error-text'>Network Error: " + err.message + "</span>";
-                mainBtn.disabled = false;
-            }
+                }
+            };
+            xhr.send(JSON.stringify(payload));
         };
     })();
 </script>
