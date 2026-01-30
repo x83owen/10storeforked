@@ -1,3 +1,6 @@
+// netlify/functions/handle-accounts.js
+const fetch = require('node-fetch');
+
 exports.handler = async function(event, context) {
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Method Not Allowed" };
@@ -7,85 +10,66 @@ exports.handler = async function(event, context) {
         const body = JSON.parse(event.body);
         const { action, email, password } = body;
 
-        // Ensure we are only handling signups here based on your request
-        if (action !== "signup") {
-            return { statusCode: 400, body: JSON.stringify({ error: "Invalid action" }) };
-        }
-
         const token = process.env.GITHUB_TOKEN;
         const owner = process.env.REPO_OWNER;
         const repo = process.env.REPO_NAME;
-
-        if (!token || !owner || !repo) {
-            return { statusCode: 500, body: JSON.stringify({ error: "Missing configuration secrets" }) };
-        }
-
         const xmlUrl = `https://api.github.com/repos/${owner}/${repo}/contents/accounts.xml`;
 
-        // --- STEP 1: GET CURRENT ACCOUNTS.XML ---
+        // 1. Get current XML from GitHub
         const getXml = await fetch(xmlUrl, {
             headers: { Authorization: `Bearer ${token}` }
         });
 
-        let fileData;
-        let oldContent = "<accounts>\n</accounts>";
-        let sha = null;
-
+        let fileData = { content: Buffer.from("<accounts></accounts>").toString('base64'), sha: null };
         if (getXml.ok) {
             fileData = await getXml.json();
-            oldContent = Buffer.from(fileData.content, 'base64').toString('utf-8');
-            sha = fileData.sha;
-        } else if (getXml.status !== 404) {
-            throw new Error("Error accessing GitHub repository");
         }
 
-        // --- STEP 2: CHECK IF EMAIL EXISTS ---
-        if (oldContent.includes(`<email>${email}</email>`)) {
-            return { 
-                statusCode: 400, 
-                body: JSON.stringify({ error: "An account with this email already exists." }) 
-            };
+        let oldContent = Buffer.from(fileData.content, 'base64').toString('utf-8');
+
+        // --- ACTION: SIGN IN ---
+        if (action === "signin") {
+            const userMatch = oldContent.includes(`<email>${email}</email>`) && 
+                              oldContent.includes(`<password>${password}</password>`);
+            
+            if (userMatch) {
+                return {
+                    statusCode: 200,
+                    body: JSON.stringify({ success: true, email: email })
+                };
+            } else {
+                return { statusCode: 401, body: JSON.stringify({ error: "Invalid credentials" }) };
+            }
         }
 
-        // --- STEP 3: CONSTRUCT USER SNIPPET ---
-        const userSnippet = `    <user>
-        <email>${email}</email>
-        <password>${password}</password>
-    </user>`;
+        // --- ACTION: SIGN UP ---
+        if (action === "signup") {
+            if (oldContent.includes(`<email>${email}</email>`)) {
+                return { statusCode: 400, body: JSON.stringify({ error: "User already exists" }) };
+            }
 
-        // --- STEP 4: UPDATE CONTENT ---
-        // Insert before the closing tag
-        const newContent = oldContent.replace('</accounts>', userSnippet + '\n</accounts>');
+            const userSnippet = `    <user>\n        <email>${email}</email>\n        <password>${password}</password>\n    </user>`;
+            const newContent = oldContent.replace('</accounts>', userSnippet + '\n</accounts>');
 
-        // --- STEP 5: PUSH TO GITHUB ---
-        const putXml = await fetch(xmlUrl, {
-            method: "PUT",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: `New user registration: ${email}`,
-                content: Buffer.from(newContent).toString('base64'),
-                sha: sha // Required by GitHub to update existing files
-            })
-        });
+            const putXml = await fetch(xmlUrl, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: `New User: ${email}`,
+                    content: Buffer.from(newContent).toString('base64'),
+                    sha: fileData.sha
+                })
+            });
 
-        if (!putXml.ok) {
-            const errLog = await putXml.text();
-            throw new Error("Failed to save accounts.xml: " + errLog);
+            if (!putXml.ok) throw new Error("Failed to write to GitHub");
+
+            return { statusCode: 200, body: JSON.stringify({ success: true }) };
         }
-
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ success: true, message: "Account created successfully!" })
-        };
 
     } catch (error) {
-        console.error(error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: error.message })
-        };
+        return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
     }
 };
