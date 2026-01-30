@@ -67,20 +67,21 @@
             toggleBtn.innerText = (mode === "signin") ? "Create new account" : "Back to Sign in";
         };
 
-// Inside auth.html script
+// Replace the mainBtn.onclick in your auth.html script with this:
+
 mainBtn.onclick = function() {
     status.innerText = "Connecting to service...";
     status.style.color = "black";
     mainBtn.disabled = true;
 
     var payload = {
-        action: mode, // "signin" or "signup"
+        action: mode,
         email: emailInput.value.trim().toLowerCase(),
         password: passInput.value.trim()
     };
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/.netlify/functions/handle-accounts", true);
+    xhr.open("POST", endpoint, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     
     xhr.onreadystatechange = function () {
@@ -90,15 +91,16 @@ mainBtn.onclick = function() {
                 status.innerText = "Authenticated!";
                 status.style.color = "#107c10";
 
-                // Communicate back to the main UWP/WinJS app
-                if (window.external && window.external.notify) {
-                    // If running in a WebView/WebAuthenticationBroker
-                    window.external.notify(JSON.stringify({ 
-                        type: "auth_success", 
-                        email: payload.email 
-                    }));
+                // --- WAB REDIRECT LOGIC ---
+                // 1. Check if we have a redirect_uri from Windows (passed in the URL)
+                const urlParams = new URLSearchParams(window.location.search);
+                const callbackUri = urlParams.get('redirect_uri');
+
+                if (callbackUri) {
+                    // Redirect to the Windows callback with the user data
+                    window.location.href = callbackUri + "#email=" + encodeURIComponent(payload.email);
                 } else {
-                    // Fallback for browser-based testing
+                    // Standard browser fallback
                     localStorage.setItem("user_session", payload.email);
                     setTimeout(() => { window.location.href = "home.html"; }, 1000);
                 }
