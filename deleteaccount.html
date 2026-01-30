@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <title>Delete Account</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 40px; text-align: center; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; }
+        button { width: 100%; padding: 10px; background: #d70000; color: white; border: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Delete Account</h1>
+    <p style="color:red">This cannot be undone.</p>
+    <div id="status"></div>
+
+    <input type="email" id="dEmail" placeholder="Confirm Email">
+    <input type="password" id="dPass" placeholder="Confirm Password">
+    <button id="delBtn">DELETE ACCOUNT</button>
+
+<script>
+    document.getElementById("delBtn").onclick = function() {
+        var btn = this;
+        btn.disabled = true;
+        document.getElementById("status").innerText = "Deleting...";
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/.netlify/functions/handle-accounts", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState === 4) {
+                if(xhr.status === 200) {
+                    document.getElementById("status").innerText = "Account Deleted.";
+                    
+                    // Return to app with "deleted" flag
+                    var urlParams = location.search.substring(1).split('&');
+                    var redirectUri = "";
+                    for(var i=0; i < urlParams.length; i++) {
+                        if(urlParams[i].indexOf("redirect_uri=") === 0) {
+                            redirectUri = decodeURIComponent(urlParams[i].split('=')[1]);
+                        }
+                    }
+                    if(redirectUri) window.location.href = redirectUri + "#status=deleted";
+                } else {
+                    document.getElementById("status").innerText = "Failed.";
+                    btn.disabled = false;
+                }
+            }
+        };
+        xhr.send(JSON.stringify({
+            action: "delete",
+            email: document.getElementById("dEmail").value.trim().toLowerCase(),
+            password: document.getElementById("dPass").value.trim()
+        }));
+    };
+</script>
+</body>
+</html>
