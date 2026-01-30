@@ -1,2 +1,7 @@
 <accounts>
+    <user>
+        <email>test</email>
+        <password>test</password>
+        <name>test</name>
+    </user>
 </accounts>
