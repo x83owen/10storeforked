@@ -3,98 +3,73 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8" />
-    <title>Auth</title>
+    <title>Account</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background: transparent; 
-            color: white; 
-            padding: 20px; 
-            text-align: center;
+        html, body {
+            height: 100%; margin: 0; background: #ffffff;
+            font-family: 'Segoe UI', Tahoma, sans-serif; color: #000;
         }
-        .container { 
-            max-width: 320px; 
-            margin: 0 auto; 
+        .auth-container { padding: 40px; max-width: 400px; margin: 0 auto; }
+        h1 { font-weight: 300; font-size: 32px; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
+        input[type="email"], input[type="password"], input[type="text"] {
+            width: 100%; padding: 10px; border: 1px solid #ccc; box-sizing: border-box;
         }
-        h2 { font-weight: lighter; margin-top: 0; }
+        .btn-primary {
+            background: #0078D7; color: white; border: none; padding: 12px;
+            font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px;
+        }
+        .btn-secondary {
+            background: #f3f3f3; color: #333; border: 1px solid #ccc; padding: 10px;
+            cursor: pointer; width: 100%; margin-top: 10px; font-size: 13px;
+        }
+        /* Grey out style */
+        .btn-primary:disabled { background: #ccc !important; cursor: not-allowed; opacity: 0.8; }
         
-        .form-group { margin-bottom: 10px; }
-        
-        input { 
-            width: 100%; 
-            padding: 10px; 
-            background: rgba(255,255,255,0.1); 
-            border: 1px solid rgba(255,255,255,0.5); 
-            color: white; 
-            box-sizing: border-box; 
-            outline: none;
-        }
-        input:focus { border-color: #0078d7; }
-
-        button { 
-            width: 100%; 
-            padding: 12px; 
-            margin-top: 10px; 
-            border: none; 
-            font-weight: bold; 
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-primary { background: #0078d7; color: white; }
-        .btn-primary:hover { background: #0086f0; }
-
-        /* Grey out logic */
-        button:disabled { 
-            background: #555 !important; 
-            cursor: not-allowed; 
-            opacity: 0.5; 
-        }
-
-        #toggleBtn { 
-            background: transparent; 
-            color: rgba(255,255,255,0.7); 
-            text-decoration: underline; 
-            font-size: 13px; 
-            margin-top: 15px;
-        }
-        #toggleBtn:hover { color: white; }
-
-        #status { 
-            min-height: 20px; 
-            font-size: 13px; 
-            color: #ff8c8c; 
-            margin-bottom: 10px; 
-        }
+        #statusMsg { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 600; min-height: 20px; }
+        .error-text { color: red; }
+        .success-text { color: #107c10; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2 id="title">Sign In</h2>
-        <div id="status"></div>
-        
-        <div class="form-group" id="nameBox" style="display:none">
-            <input type="text" id="name" placeholder="Display Name">
-        </div>
-        <div class="form-group">
-            <input type="email" id="email" placeholder="Email Address">
-        </div>
-        <div class="form-group">
-            <input type="password" id="pass" placeholder="Password">
+    <div class="auth-container">
+        <h1 id="authTitle">Sign in</h1>
+        <div id="statusMsg"></div>
+
+        <div class="form-group" id="nameGroup" style="display:none;">
+            <label>Display Name</label>
+            <input type="text" id="userName" placeholder="Your Name">
         </div>
 
-        <button id="mainBtn" class="btn-primary" disabled>Sign In</button>
-        <button id="toggleBtn">Create Account</button>
+        <div class="form-group">
+            <label>Email address</label>
+            <input type="email" id="userEmail" placeholder="example@outlook.com">
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="userPass">
+        </div>
+
+        <button type="button" class="btn-primary" id="mainBtn" disabled>Sign in</button>
+        <button type="button" class="btn-secondary" id="toggleBtn">Create new account</button>
     </div>
 
-    <script>
-        var mode = "signin";
-        var nameInput = document.getElementById('name');
-        var emailInput = document.getElementById('email');
-        var passInput = document.getElementById('pass');
-        var mainBtn = document.getElementById('mainBtn');
-        var statusDiv = document.getElementById('status');
+<script>
+    (function () {
+        var mode = "signin"; 
 
+        // UI Elements
+        var nameGroup = document.getElementById("nameGroup");
+        var nameInput = document.getElementById("userName");
+        var emailInput = document.getElementById("userEmail");
+        var passInput = document.getElementById("userPass");
+        var toggleBtn = document.getElementById("toggleBtn");
+        var mainBtn = document.getElementById("mainBtn");
+        var statusEl = document.getElementById("statusMsg");
+
+        // --- GREY OUT LOGIC ---
         function validate() {
             var emailVal = emailInput.value.trim();
             var passVal = passInput.value.trim();
@@ -111,58 +86,73 @@
             i.oninput = validate; 
         });
 
-        document.getElementById('toggleBtn').onclick = function() {
+        // --- TOGGLE LOGIC ---
+        toggleBtn.onclick = function() {
             mode = (mode === "signin") ? "signup" : "signin";
-            document.getElementById('title').innerText = (mode === "signin") ? "Sign In" : "Create Account";
-            document.getElementById('nameBox').style.display = (mode === "signin") ? "none" : "block";
-            mainBtn.innerText = (mode === "signin") ? "Sign In" : "Register";
-            this.innerText = (mode === "signin") ? "Create Account" : "Already have an account? Sign In";
-            statusDiv.innerText = "";
+            document.getElementById("authTitle").innerText = (mode === "signin") ? "Sign in" : "Create account";
+            mainBtn.innerText = (mode === "signin") ? "Sign in" : "Register";
+            toggleBtn.innerText = (mode === "signin") ? "Create new account" : "Back to Sign in";
+            
+            nameGroup.style.display = (mode === "signup") ? "block" : "none";
+            statusEl.innerText = "";
             validate();
         };
 
+        // --- SUBMIT LOGIC ---
         mainBtn.onclick = function() {
-            this.disabled = true;
-            statusDiv.style.color = "white";
-            statusDiv.innerText = "Connecting...";
+            statusEl.className = "";
+            statusEl.innerText = "Processing...";
+            mainBtn.disabled = true;
 
-            var payload = { 
-                action: mode, 
-                email: emailInput.value.trim().toLowerCase(), 
-                password: passInput.value.trim(), 
-                name: nameInput.value.trim() 
+            var payload = {
+                action: mode,
+                email: emailInput.value.trim().toLowerCase(),
+                password: passInput.value.trim(),
+                name: nameInput.value.trim()
             };
 
             var xhr = new XMLHttpRequest();
+            // Using absolute URL to ensure connectivity in WAB
             xhr.open("POST", "https://10storedraydenyt.netlify.app/.netlify/functions/handle-accounts", true);
             xhr.setRequestHeader("Content-Type", "application/json");
             
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     try {
                         var resp = JSON.parse(xhr.responseText);
                         if (xhr.status === 200) {
-                            statusDiv.style.color = "#71f571";
-                            statusDiv.innerText = "Success! Redirecting...";
+                            statusEl.className = "success-text";
+                            statusEl.innerText = "Success! Redirecting...";
                             
-                            var redirect = new RegExp('[?&]redirect_uri=([^&#]*)').exec(window.location.href);
-                            if (redirect) {
-                                window.location.href = decodeURIComponent(redirect[1]) + "#email=" + payload.email + "&name=" + (resp.name || payload.name);
+                            var urlParams = location.search.substring(1).split('&');
+                            var redirectUri = "";
+                            for(var i=0; i < urlParams.length; i++) {
+                                if(urlParams[i].indexOf("redirect_uri=") === 0) {
+                                    redirectUri = decodeURIComponent(urlParams[i].split('=')[1]);
+                                }
+                            }
+
+                            if (redirectUri) {
+                                // Returning email and name (No photo requirement)
+                                var resultStr = "#email=" + encodeURIComponent(payload.email) + 
+                                               "&name=" + encodeURIComponent(resp.name || payload.name);
+                                window.location.href = redirectUri + resultStr;
                             }
                         } else {
-                            statusDiv.style.color = "#ff8c8c";
-                            statusDiv.innerText = resp.error || "Authentication failed.";
+                            statusEl.className = "error-text";
+                            statusEl.innerText = resp.error || "Error";
                             mainBtn.disabled = false;
                         }
                     } catch (e) {
-                        statusDiv.style.color = "#ff8c8c";
-                        statusDiv.innerText = "Server Error.";
+                        statusEl.className = "error-text";
+                        statusEl.innerText = "Server Error";
                         mainBtn.disabled = false;
                     }
                 }
             };
             xhr.send(JSON.stringify(payload));
         };
-    </script>
+    })();
+</script>
 </body>
 </html>
