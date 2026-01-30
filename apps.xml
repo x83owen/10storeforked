@@ -444,9 +444,78 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+      <app id="kRSswZ9K">
+      <name>Twitter (Bluetweety)</name>
+      <version>1.1.13.8</version>
+      <icon>https://i.ibb.co/5hHSWFht/124021.png</icon>
+      <publisher>migbrunluz</publisher>
+      <featured>false</featured>
+      <description>X (formerly Twitter) is a major microblogging and social networking service where users post short, 280-character messages, known as "tweets," which can include text, images, videos, and links.</description>
+      <package>https://dl.dankassassin368.com/9E2F88E3.Twitter_1.1.13.8_x86__wgeqdkkx372wm.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="7M0AlgjH">
+      <name>Global Clock Tile</name>
+      <version>2014.1219.1624.2797</version>
+      <icon>https://i.ibb.co/TxcxMDXf/apps-2829-13527373401109910-65bfb7b2-c1f6-4ead-9d20-9c1bc0ce4d45.png</icon>
+      <publisher>VassilArabadjiev</publisher>
+      <featured>false</featured>
+      <description>The app displays the time, day of the week and the date in the tile on start screen. Please make sure you open the app first and allow it to lock screen for the tile update to work. Then, you can pin it to your start screen.</description>
+      <package>https://dl.dankassassin368.com/1476VassilArabadjiev.Globalclocktile_2014.1219.1624.2797_neutral_~_4epssmbyxfjw2.AppxBundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="36r1s6d9">
+      <name>BatteryInfo</name>
+      <version>1.7.0.0</version>
+      <icon>https://i.ibb.co/RGkdYfh0/images.png</icon>
+      <publisher>HoYeonHan</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://dl.dankassassin368.com/45849HoYeonHan.BatteryInfo_1.7.0.0_x64__h1jdabs0g06va.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="9XrDWeBp">
+      <name>VK</name>
+      <version>2.3.2.1</version>
+      <icon>https://i.ibb.co/39QZf27C/1437159014-0.png</icon>
+      <publisher>VK.com</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://dl.dankassassin368.com/C6965DD5.VK_2.3.2.1_x64__v422avzh127ra.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="wUQYvaL6">
+      <name>Despicable Me - Minion Rush</name>
+      <version>4.1.4.1</version>
+      <icon>https://i.ibb.co/s9mMd4yK/3-2-0-ico.png</icon>
+      <publisher>Gameloft</publisher>
+      <featured>false</featured>
+      <description>if won't work, it needs game assets
+download it from https://archive.org/details/despicable-me-minion-rush-archive
+dont delete it please, it need</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/MinionRush/GAMELOFTSA.DespicableMeMinionRush_4.1.4.1_x86__0pp20fcewvvtj.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="ejwJaoRi">
+      <name>Doodle Jump</name>
+      <version>1.0.0.0</version>
+      <icon>https://dankassassin368.com/random/icons/099179c4aa949483f8251b9e27579b33.jpg</icon>
+      <publisher>SquareDude</publisher>
+      <featured>false</featured>
+      <description>This is Doodle Jump of Windows 10 not for Windows phone since they already have one.</description>
+      <package>https://dl.dankassassin368.com/DoodleJump_1.0.0.0_x86__xygddxjqvswne.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
   </apps>
 
 </data>
+
 
 
 
