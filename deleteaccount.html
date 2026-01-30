@@ -5,73 +5,134 @@
     <meta charset="utf-8" />
     <title>Delete Account</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; padding: 40px; text-align: center; }
-        input { width: 100%; padding: 10px; margin-bottom: 10px; }
-        button { width: 100%; padding: 10px; background: #d70000; color: white; border: none; font-weight: bold; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            padding: 20px; 
+            text-align: center; 
+            background: transparent; 
+            color: white; 
+        }
+        .container { max-width: 300px; margin: 0 auto; }
+        h1 { font-weight: lighter; margin-bottom: 5px; }
+        p { font-size: 14px; margin-bottom: 20px; }
+        
+        input { 
+            width: 100%; 
+            padding: 10px; 
+            margin-bottom: 10px; 
+            background: rgba(255,255,255,0.1); 
+            border: 1px solid rgba(255,255,255,0.5); 
+            color: white; 
+            box-sizing: border-box; 
+        }
+        
+        button { 
+            width: 100%; 
+            padding: 12px; 
+            background: #d13438; /* Windows Red */
+            color: white; 
+            border: none; 
+            font-weight: bold; 
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        /* Grey out style */
+        button:disabled { 
+            background: #555 !important; 
+            cursor: not-allowed; 
+            opacity: 0.5; 
+        }
+
+        #status { margin-bottom: 15px; font-size: 13px; min-height: 18px; }
     </style>
 </head>
 <body>
-    <h1>Delete Account</h1>
-    <p style="color:red">This cannot be undone.</p>
-    <div id="status"></div>
+    <div class="container">
+        <h1>Delete Account</h1>
+        <p style="color:#ffb900">This action is permanent.</p>
+        
+        <div id="status"></div>
 
-    <input type="email" id="dEmail" placeholder="Confirm Email">
-    <input type="password" id="dPass" placeholder="Confirm Password">
-    <button id="delBtn">DELETE ACCOUNT</button>
+        <input type="text" id="dName" placeholder="Full Name">
+        <input type="email" id="dEmail" placeholder="Email Address">
+        <input type="password" id="dPass" placeholder="Password">
+        
+        <button id="delBtn" disabled>DELETE PERMANENTLY</button>
+    </div>
 
 <script>
-document.getElementById("delBtn").onclick = function() {
-    var btn = this;
+    var btn = document.getElementById("delBtn");
     var statusDiv = document.getElementById("status");
-    var email = document.getElementById("dEmail").value.trim().toLowerCase();
-    var password = document.getElementById("dPass").value.trim();
+    var inputs = [
+        document.getElementById("dName"),
+        document.getElementById("dEmail"),
+        document.getElementById("dPass")
+    ];
 
-    if (!email || !password) {
-        statusDiv.innerText = "Please fill in all fields.";
-        return;
+    // --- GREY OUT LOGIC ---
+    function validateInputs() {
+        var allFilled = inputs.every(function(input) {
+            return input.value.trim().length > 0;
+        });
+        btn.disabled = !allFilled;
     }
 
-    btn.disabled = true;
-    statusDiv.innerText = "Connecting to server...";
+    // Attach listener to all inputs
+    inputs.forEach(function(input) {
+        input.oninput = validateInputs;
+    });
 
-    var xhr = new XMLHttpRequest();
-    // Use the absolute URL to your Netlify function
-    xhr.open("POST", "https://10storedraydenyt.netlify.app/.netlify/functions/handle-accounts", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
+    // --- DELETE LOGIC ---
+    btn.onclick = function() {
+        var name = inputs[0].value.trim();
+        var email = inputs[1].value.trim().toLowerCase();
+        var password = inputs[2].value.trim();
 
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            btn.disabled = false;
-            try {
-                var resp = JSON.parse(xhr.responseText);
-                if (xhr.status === 200) {
-                    statusDiv.innerHTML = "<span style='color:green'>Account Deleted. Closing...</span>";
-                    
-                    // Find redirect_uri in the address bar
-                    var urlParams = new RegExp('[?&]redirect_uri=([^&#]*)').exec(window.location.href);
-                    var redirectUri = urlParams ? decodeURIComponent(urlParams[1]) : "";
+        btn.disabled = true;
+        statusDiv.style.color = "white";
+        statusDiv.innerText = "Verifying details...";
 
-                    if (redirectUri) {
-                        // Return to app with the "deleted" flag
-                        setTimeout(function() {
-                            window.location.href = redirectUri + "#status=deleted";
-                        }, 1500);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://10storedraydenyt.netlify.app/.netlify/functions/handle-accounts", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                try {
+                    var resp = JSON.parse(xhr.responseText);
+                    if (xhr.status === 200) {
+                        statusDiv.style.color = "#71f571";
+                        statusDiv.innerText = "Account deleted. Redirecting...";
+                        
+                        var urlParams = new RegExp('[?&]redirect_uri=([^&#]*)').exec(window.location.href);
+                        var redirectUri = urlParams ? decodeURIComponent(urlParams[1]) : "";
+
+                        if (redirectUri) {
+                            setTimeout(function() {
+                                window.location.href = redirectUri + "#status=deleted";
+                            }, 1500);
+                        }
+                    } else {
+                        statusDiv.style.color = "#ff8c8c";
+                        statusDiv.innerText = resp.error || "Details didn't match our records.";
+                        btn.disabled = false;
                     }
-                } else {
-                    statusDiv.innerText = "Error: " + (resp.error || "Invalid credentials or server error.");
+                } catch (e) {
+                    statusDiv.style.color = "#ff8c8c";
+                    statusDiv.innerText = "Server communication error.";
+                    btn.disabled = false;
                 }
-            } catch (e) {
-                statusDiv.innerText = "Server Error: Check Netlify Logs.";
             }
-        }
-    };
+        };
 
-    xhr.send(JSON.stringify({
-        action: "delete",
-        email: email,
-        password: password
-    }));
-};
+        xhr.send(JSON.stringify({
+            action: "delete",
+            name: name,
+            email: email,
+            password: password
+        }));
+    };
 </script>
 </body>
 </html>
