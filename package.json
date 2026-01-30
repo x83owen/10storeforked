@@ -1,0 +1,9 @@
+{
+  "name": "10store-backend",
+  "version": "1.0.0",
+  "description": "Auth backend for 10Store",
+  "main": "index.html",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
