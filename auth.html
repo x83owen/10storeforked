@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Account</title>
     <style>
         html, body {
@@ -49,7 +50,17 @@
 
 <script>
     (function () {
-        var mode = "signin"; // or "signup"
+        "use strict";
+        
+        // IE11 Helper to get URL parameters (Replaces URLSearchParams)
+        function getQueryParam(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+            var results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var mode = "signin"; 
         var endpoint = "/.netlify/functions/handle-accounts";
         
         var mainBtn = document.getElementById("mainBtn");
@@ -67,52 +78,55 @@
             toggleBtn.innerText = (mode === "signin") ? "Create new account" : "Back to Sign in";
         };
 
-// Replace the mainBtn.onclick in your auth.html script with this:
+        mainBtn.onclick = function() {
+            status.innerText = "Connecting to service...";
+            status.style.color = "black";
+            mainBtn.disabled = true;
 
-mainBtn.onclick = function() {
-    status.innerText = "Connecting to service...";
-    status.style.color = "black";
-    mainBtn.disabled = true;
+            var payload = {
+                action: mode,
+                email: emailInput.value.trim().toLowerCase(),
+                password: passInput.value.trim()
+            };
 
-    var payload = {
-        action: mode,
-        email: emailInput.value.trim().toLowerCase(),
-        password: passInput.value.trim()
-    };
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", endpoint, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    var resp = {};
+                    try {
+                        resp = JSON.parse(xhr.responseText);
+                    } catch(e) {}
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", endpoint, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            var resp = JSON.parse(xhr.responseText || "{}");
-            if (xhr.status === 200) {
-                status.innerText = "Authenticated!";
-                status.style.color = "#107c10";
+                    if (xhr.status === 200) {
+                        status.innerText = "Authenticated!";
+                        status.style.color = "#107c10";
 
-                // --- WAB REDIRECT LOGIC ---
-                // 1. Check if we have a redirect_uri from Windows (passed in the URL)
-                const urlParams = new URLSearchParams(window.location.search);
-                const callbackUri = urlParams.get('redirect_uri');
+                        // --- WAB REDIRECT LOGIC FOR IE11 ---
+                        // 1. Use the helper function instead of URLSearchParams
+                        var callbackUri = getQueryParam('redirect_uri');
 
-                if (callbackUri) {
-                    // Redirect to the Windows callback with the user data
-                    window.location.href = callbackUri + "#email=" + encodeURIComponent(payload.email);
-                } else {
-                    // Standard browser fallback
-                    localStorage.setItem("user_session", payload.email);
-                    setTimeout(() => { window.location.href = "home.html"; }, 1000);
+                        if (callbackUri) {
+                            // Redirect to Windows callback
+                            window.location.href = callbackUri + "#email=" + encodeURIComponent(payload.email);
+                        } else {
+                            // Standard browser fallback
+                            localStorage.setItem("user_session", payload.email);
+                            setTimeout(function() { 
+                                window.location.href = "home.html"; 
+                            }, 1000);
+                        }
+                    } else {
+                        status.innerText = "Error: " + (resp.error || "Login failed");
+                        status.style.color = "red";
+                        mainBtn.disabled = false;
+                    }
                 }
-            } else {
-                status.innerText = "Error: " + (resp.error || "Login failed");
-                status.style.color = "red";
-                mainBtn.disabled = false;
-            }
-        }
-    };
-    xhr.send(JSON.stringify(payload));
-};
+            };
+            xhr.send(JSON.stringify(payload));
+        };
     })();
 </script>
 </body>
