@@ -67,40 +67,50 @@
             toggleBtn.innerText = (mode === "signin") ? "Create new account" : "Back to Sign in";
         };
 
-        mainBtn.onclick = function() {
-            status.innerText = "Connecting...";
-            status.style.color = "black";
-            mainBtn.disabled = true;
+// Inside auth.html script
+mainBtn.onclick = function() {
+    status.innerText = "Connecting to service...";
+    status.style.color = "black";
+    mainBtn.disabled = true;
 
-            var payload = {
-                action: mode,
-                email: emailInput.value.trim().toLowerCase(),
-                password: passInput.value.trim()
-            };
+    var payload = {
+        action: mode, // "signin" or "signup"
+        email: emailInput.value.trim().toLowerCase(),
+        password: passInput.value.trim()
+    };
 
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", endpoint, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    var resp = JSON.parse(xhr.responseText || "{}");
-                    if (xhr.status === 200) {
-                        status.innerText = resp.message;
-                        status.style.color = "#107c10";
-                        if(mode === "signin") {
-                            // Save session and redirect
-                            localStorage.setItem("user", payload.email);
-                            setTimeout(() => { window.location.href = "home.html"; }, 1500);
-                        }
-                    } else {
-                        status.innerText = "Error: " + (resp.error || "Failed");
-                        status.style.color = "red";
-                        mainBtn.disabled = false;
-                    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/.netlify/functions/handle-accounts", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            var resp = JSON.parse(xhr.responseText || "{}");
+            if (xhr.status === 200) {
+                status.innerText = "Authenticated!";
+                status.style.color = "#107c10";
+
+                // Communicate back to the main UWP/WinJS app
+                if (window.external && window.external.notify) {
+                    // If running in a WebView/WebAuthenticationBroker
+                    window.external.notify(JSON.stringify({ 
+                        type: "auth_success", 
+                        email: payload.email 
+                    }));
+                } else {
+                    // Fallback for browser-based testing
+                    localStorage.setItem("user_session", payload.email);
+                    setTimeout(() => { window.location.href = "home.html"; }, 1000);
                 }
-            };
-            xhr.send(JSON.stringify(payload));
-        };
+            } else {
+                status.innerText = "Error: " + (resp.error || "Login failed");
+                status.style.color = "red";
+                mainBtn.disabled = false;
+            }
+        }
+    };
+    xhr.send(JSON.stringify(payload));
+};
     })();
 </script>
 </body>
