@@ -5,134 +5,134 @@
     <meta charset="utf-8" />
     <title>Delete Account</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            padding: 20px; 
-            text-align: center; 
-            background: transparent; 
-            color: white; 
+        html, body {
+            height: 100%; margin: 0; background: #ffffff;
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            color: #000000 !important; /* Forces black text */
         }
-        .container { max-width: 300px; margin: 0 auto; }
-        h1 { font-weight: lighter; margin-bottom: 5px; }
-        p { font-size: 14px; margin-bottom: 20px; }
+        .auth-container { padding: 40px; max-width: 400px; margin: 0 auto; }
+        h1 { font-weight: 300; font-size: 32px; margin-bottom: 10px; color: #000; }
+        p { color: #d13438; font-size: 14px; margin-bottom: 30px; font-weight: 600; }
         
-        input { 
-            width: 100%; 
-            padding: 10px; 
-            margin-bottom: 10px; 
-            background: rgba(255,255,255,0.1); 
-            border: 1px solid rgba(255,255,255,0.5); 
-            color: white; 
-            box-sizing: border-box; 
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; color: #000; }
+        
+        input {
+            width: 100%; padding: 10px; border: 1px solid #ccc; box-sizing: border-box;
+            color: #000 !important; background: #fff !important;
         }
         
-        button { 
-            width: 100%; 
-            padding: 12px; 
-            background: #d13438; /* Windows Red */
-            color: white; 
-            border: none; 
-            font-weight: bold; 
-            cursor: pointer;
-            transition: opacity 0.3s;
+        .btn-danger {
+            background: #d13438; color: white; border: none; padding: 12px;
+            font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px;
         }
-
+        
         /* Grey out style */
-        button:disabled { 
-            background: #555 !important; 
-            cursor: not-allowed; 
-            opacity: 0.5; 
-        }
-
-        #status { margin-bottom: 15px; font-size: 13px; min-height: 18px; }
+        .btn-danger:disabled { background: #ccc !important; cursor: not-allowed; opacity: 0.8; }
+        
+        #statusMsg { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 600; min-height: 20px; }
+        .error-text { color: #d13438; }
+        .success-text { color: #107c10; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Delete Account</h1>
-        <p style="color:#ffb900">This action is permanent.</p>
+    <div class="auth-container">
+        <h1 id="authTitle">Delete account</h1>
+        <p>This action is permanent and cannot be undone.</p>
         
-        <div id="status"></div>
+        <div id="statusMsg"></div>
 
-        <input type="text" id="dName" placeholder="Full Name">
-        <input type="email" id="dEmail" placeholder="Email Address">
-        <input type="password" id="dPass" placeholder="Password">
-        
-        <button id="delBtn" disabled>DELETE PERMANENTLY</button>
+        <div class="form-group">
+            <label>Confirm Full Name</label>
+            <input type="text" id="userName" placeholder="Your Name">
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Email address</label>
+            <input type="email" id="userEmail" placeholder="example@outlook.com">
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" id="userPass">
+        </div>
+
+        <button type="button" class="btn-danger" id="delBtn" disabled>Delete permanently</button>
     </div>
 
 <script>
-    var btn = document.getElementById("delBtn");
-    var statusDiv = document.getElementById("status");
-    var inputs = [
-        document.getElementById("dName"),
-        document.getElementById("dEmail"),
-        document.getElementById("dPass")
-    ];
+    (function () {
+        var nameInput = document.getElementById("userName");
+        var emailInput = document.getElementById("userEmail");
+        var passInput = document.getElementById("userPass");
+        var delBtn = document.getElementById("delBtn");
+        var statusEl = document.getElementById("statusMsg");
 
-    // --- GREY OUT LOGIC ---
-    function validateInputs() {
-        var allFilled = inputs.every(function(input) {
-            return input.value.trim().length > 0;
+        // --- GREY OUT LOGIC ---
+        function validate() {
+            var n = nameInput.value.trim();
+            var e = emailInput.value.trim();
+            var p = passInput.value.trim();
+            delBtn.disabled = !(n && e && p);
+        }
+
+        [nameInput, emailInput, passInput].forEach(function(i) { 
+            i.oninput = validate; 
         });
-        btn.disabled = !allFilled;
-    }
 
-    // Attach listener to all inputs
-    inputs.forEach(function(input) {
-        input.oninput = validateInputs;
-    });
+        // --- DELETE LOGIC ---
+        delBtn.onclick = function() {
+            statusEl.className = "";
+            statusEl.innerText = "Processing deletion...";
+            delBtn.disabled = true;
 
-    // --- DELETE LOGIC ---
-    btn.onclick = function() {
-        var name = inputs[0].value.trim();
-        var email = inputs[1].value.trim().toLowerCase();
-        var password = inputs[2].value.trim();
+            var payload = {
+                action: "delete",
+                email: emailInput.value.trim().toLowerCase(),
+                password: passInput.value.trim(),
+                name: nameInput.value.trim()
+            };
 
-        btn.disabled = true;
-        statusDiv.style.color = "white";
-        statusDiv.innerText = "Verifying details...";
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://10storedraydenyt.netlify.app/.netlify/functions/handle-accounts", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    try {
+                        var resp = JSON.parse(xhr.responseText);
+                        if (xhr.status === 200) {
+                            statusEl.className = "success-text";
+                            statusEl.innerText = "Account deleted. Redirecting...";
+                            
+                            var urlParams = location.search.substring(1).split('&');
+                            var redirectUri = "";
+                            for(var i=0; i < urlParams.length; i++) {
+                                if(urlParams[i].indexOf("redirect_uri=") === 0) {
+                                    redirectUri = decodeURIComponent(urlParams[i].split('=')[1]);
+                                }
+                            }
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://10storedraydenyt.netlify.app/.netlify/functions/handle-accounts", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                try {
-                    var resp = JSON.parse(xhr.responseText);
-                    if (xhr.status === 200) {
-                        statusDiv.style.color = "#71f571";
-                        statusDiv.innerText = "Account deleted. Redirecting...";
-                        
-                        var urlParams = new RegExp('[?&]redirect_uri=([^&#]*)').exec(window.location.href);
-                        var redirectUri = urlParams ? decodeURIComponent(urlParams[1]) : "";
-
-                        if (redirectUri) {
-                            setTimeout(function() {
-                                window.location.href = redirectUri + "#status=deleted";
-                            }, 1500);
+                            if (redirectUri) {
+                                setTimeout(function() {
+                                    window.location.href = redirectUri + "#status=deleted";
+                                }, 1500);
+                            }
+                        } else {
+                            statusEl.className = "error-text";
+                            statusEl.innerText = resp.error || "Details do not match our records.";
+                            delBtn.disabled = false;
                         }
-                    } else {
-                        statusDiv.style.color = "#ff8c8c";
-                        statusDiv.innerText = resp.error || "Details didn't match our records.";
-                        btn.disabled = false;
+                    } catch (e) {
+                        statusEl.className = "error-text";
+                        statusEl.innerText = "Server Error";
+                        delBtn.disabled = false;
                     }
-                } catch (e) {
-                    statusDiv.style.color = "#ff8c8c";
-                    statusDiv.innerText = "Server communication error.";
-                    btn.disabled = false;
                 }
-            }
+            };
+            xhr.send(JSON.stringify(payload));
         };
-
-        xhr.send(JSON.stringify({
-            action: "delete",
-            name: name,
-            email: email,
-            password: password
-        }));
-    };
+    })();
 </script>
 </body>
 </html>
