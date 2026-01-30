@@ -1,40 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
     <title>Auth</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: transparent; color: white; padding: 20px; }
-        .form-group { margin-bottom: 15px; }
-        input { width: 100%; padding: 8px; background: rgba(255,255,255,0.1); border: 1px solid white; color: white; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; margin-top: 10px; border: none; font-weight: bold; cursor: pointer; }
-        button:disabled { background: #555 !important; cursor: not-allowed; opacity: 0.5; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: transparent; 
+            color: white; 
+            padding: 20px; 
+            text-align: center;
+        }
+        .container { 
+            max-width: 320px; 
+            margin: 0 auto; 
+        }
+        h2 { font-weight: lighter; margin-top: 0; }
+        
+        .form-group { margin-bottom: 10px; }
+        
+        input { 
+            width: 100%; 
+            padding: 10px; 
+            background: rgba(255,255,255,0.1); 
+            border: 1px solid rgba(255,255,255,0.5); 
+            color: white; 
+            box-sizing: border-box; 
+            outline: none;
+        }
+        input:focus { border-color: #0078d7; }
+
+        button { 
+            width: 100%; 
+            padding: 12px; 
+            margin-top: 10px; 
+            border: none; 
+            font-weight: bold; 
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
         .btn-primary { background: #0078d7; color: white; }
+        .btn-primary:hover { background: #0086f0; }
+
+        /* Grey out logic */
+        button:disabled { 
+            background: #555 !important; 
+            cursor: not-allowed; 
+            opacity: 0.5; 
+        }
+
+        #toggleBtn { 
+            background: transparent; 
+            color: rgba(255,255,255,0.7); 
+            text-decoration: underline; 
+            font-size: 13px; 
+            margin-top: 15px;
+        }
+        #toggleBtn:hover { color: white; }
+
+        #status { 
+            min-height: 20px; 
+            font-size: 13px; 
+            color: #ff8c8c; 
+            margin-bottom: 10px; 
+        }
     </style>
 </head>
 <body>
-    <h2 id="title">Sign In</h2>
-    <div id="status"></div>
-    <div class="form-group" id="nameBox" style="display:none">
-        <input type="text" id="name" placeholder="Display Name">
+    <div class="container">
+        <h2 id="title">Sign In</h2>
+        <div id="status"></div>
+        
+        <div class="form-group" id="nameBox" style="display:none">
+            <input type="text" id="name" placeholder="Display Name">
+        </div>
+        <div class="form-group">
+            <input type="email" id="email" placeholder="Email Address">
+        </div>
+        <div class="form-group">
+            <input type="password" id="pass" placeholder="Password">
+        </div>
+
+        <button id="mainBtn" class="btn-primary" disabled>Sign In</button>
+        <button id="toggleBtn">Create Account</button>
     </div>
-    <div class="form-group">
-        <input type="email" id="email" placeholder="Email">
-    </div>
-    <div class="form-group">
-        <input type="password" id="pass" placeholder="Password">
-    </div>
-    <button id="mainBtn" class="btn-primary" disabled>Sign In</button>
-    <button id="toggleBtn" style="background:transparent; color:white; text-decoration:underline; font-size:12px">Create Account</button>
 
     <script>
         var mode = "signin";
-        var inputs = [document.getElementById('email'), document.getElementById('pass'), document.getElementById('name')];
+        var nameInput = document.getElementById('name');
+        var emailInput = document.getElementById('email');
+        var passInput = document.getElementById('pass');
         var mainBtn = document.getElementById('mainBtn');
+        var statusDiv = document.getElementById('status');
 
         function validate() {
-            var emailVal = inputs[0].value.trim();
-            var passVal = inputs[1].value.trim();
-            var nameVal = inputs[2].value.trim();
+            var emailVal = emailInput.value.trim();
+            var passVal = passInput.value.trim();
+            var nameVal = nameInput.value.trim();
+            
             if (mode === "signin") {
                 mainBtn.disabled = !(emailVal && passVal);
             } else {
@@ -42,29 +107,56 @@
             }
         }
 
-        inputs.forEach(function(i) { i.oninput = validate; });
+        [nameInput, emailInput, passInput].forEach(function(i) { 
+            i.oninput = validate; 
+        });
 
         document.getElementById('toggleBtn').onclick = function() {
             mode = (mode === "signin") ? "signup" : "signin";
-            document.getElementById('title').innerText = (mode === "signin") ? "Sign In" : "Register";
+            document.getElementById('title').innerText = (mode === "signin") ? "Sign In" : "Create Account";
             document.getElementById('nameBox').style.display = (mode === "signin") ? "none" : "block";
-            this.innerText = (mode === "signin") ? "Create Account" : "Back to Login";
+            mainBtn.innerText = (mode === "signin") ? "Sign In" : "Register";
+            this.innerText = (mode === "signin") ? "Create Account" : "Already have an account? Sign In";
+            statusDiv.innerText = "";
             validate();
         };
 
         mainBtn.onclick = function() {
             this.disabled = true;
-            var payload = { action: mode, email: inputs[0].value, password: inputs[1].value, name: inputs[2].value };
+            statusDiv.style.color = "white";
+            statusDiv.innerText = "Connecting...";
+
+            var payload = { 
+                action: mode, 
+                email: emailInput.value.trim().toLowerCase(), 
+                password: passInput.value.trim(), 
+                name: nameInput.value.trim() 
+            };
+
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/.netlify/functions/handle-accounts");
+            xhr.open("POST", "https://10storedraydenyt.netlify.app/.netlify/functions/handle-accounts", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
+                    try {
                         var resp = JSON.parse(xhr.responseText);
-                        var redirect = new RegExp('[?&]redirect_uri=([^&#]*)').exec(window.location.href);
-                        if (redirect) window.location.href = decodeURIComponent(redirect[1]) + "#email=" + payload.email + "&name=" + (resp.name || payload.name);
-                    } else {
-                        document.getElementById('status').innerText = "Error processing request.";
+                        if (xhr.status === 200) {
+                            statusDiv.style.color = "#71f571";
+                            statusDiv.innerText = "Success! Redirecting...";
+                            
+                            var redirect = new RegExp('[?&]redirect_uri=([^&#]*)').exec(window.location.href);
+                            if (redirect) {
+                                window.location.href = decodeURIComponent(redirect[1]) + "#email=" + payload.email + "&name=" + (resp.name || payload.name);
+                            }
+                        } else {
+                            statusDiv.style.color = "#ff8c8c";
+                            statusDiv.innerText = resp.error || "Authentication failed.";
+                            mainBtn.disabled = false;
+                        }
+                    } catch (e) {
+                        statusDiv.style.color = "#ff8c8c";
+                        statusDiv.innerText = "Server Error.";
                         mainBtn.disabled = false;
                     }
                 }
