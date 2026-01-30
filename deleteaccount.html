@@ -20,40 +20,58 @@
     <button id="delBtn">DELETE ACCOUNT</button>
 
 <script>
-    document.getElementById("delBtn").onclick = function() {
-        var btn = this;
-        btn.disabled = true;
-        document.getElementById("status").innerText = "Deleting...";
+document.getElementById("delBtn").onclick = function() {
+    var btn = this;
+    var statusDiv = document.getElementById("status");
+    var email = document.getElementById("dEmail").value.trim().toLowerCase();
+    var password = document.getElementById("dPass").value.trim();
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/.netlify/functions/handle-accounts", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function() {
-            if(xhr.readyState === 4) {
-                if(xhr.status === 200) {
-                    document.getElementById("status").innerText = "Account Deleted.";
+    if (!email || !password) {
+        statusDiv.innerText = "Please fill in all fields.";
+        return;
+    }
+
+    btn.disabled = true;
+    statusDiv.innerText = "Connecting to server...";
+
+    var xhr = new XMLHttpRequest();
+    // Use the absolute URL to your Netlify function
+    xhr.open("POST", "https://10storedraydenyt.netlify.app/.netlify/functions/handle-accounts", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            btn.disabled = false;
+            try {
+                var resp = JSON.parse(xhr.responseText);
+                if (xhr.status === 200) {
+                    statusDiv.innerHTML = "<span style='color:green'>Account Deleted. Closing...</span>";
                     
-                    // Return to app with "deleted" flag
-                    var urlParams = location.search.substring(1).split('&');
-                    var redirectUri = "";
-                    for(var i=0; i < urlParams.length; i++) {
-                        if(urlParams[i].indexOf("redirect_uri=") === 0) {
-                            redirectUri = decodeURIComponent(urlParams[i].split('=')[1]);
-                        }
+                    // Find redirect_uri in the address bar
+                    var urlParams = new RegExp('[?&]redirect_uri=([^&#]*)').exec(window.location.href);
+                    var redirectUri = urlParams ? decodeURIComponent(urlParams[1]) : "";
+
+                    if (redirectUri) {
+                        // Return to app with the "deleted" flag
+                        setTimeout(function() {
+                            window.location.href = redirectUri + "#status=deleted";
+                        }, 1500);
                     }
-                    if(redirectUri) window.location.href = redirectUri + "#status=deleted";
                 } else {
-                    document.getElementById("status").innerText = "Failed.";
-                    btn.disabled = false;
+                    statusDiv.innerText = "Error: " + (resp.error || "Invalid credentials or server error.");
                 }
+            } catch (e) {
+                statusDiv.innerText = "Server Error: Check Netlify Logs.";
             }
-        };
-        xhr.send(JSON.stringify({
-            action: "delete",
-            email: document.getElementById("dEmail").value.trim().toLowerCase(),
-            password: document.getElementById("dPass").value.trim()
-        }));
+        }
     };
+
+    xhr.send(JSON.stringify({
+        action: "delete",
+        email: email,
+        password: password
+    }));
+};
 </script>
 </body>
 </html>
