@@ -29,7 +29,8 @@ exports.handler = async function(event, context) {
 
     try {
         const body = JSON.parse(event.body);
-        const { action, email, password, name } = body;
+        // Added appId, text, date to destructuring for reviews
+        const { action, email, password, name, appId, text, date } = body;
         
         const token = process.env.GITHUB_TOKEN;
         const owner = process.env.REPO_OWNER;
@@ -83,7 +84,6 @@ exports.handler = async function(event, context) {
 
         // --- ACTION: DELETE ---
         if (action === "delete") {
-            // Check if credentials match before deleting
             const verifyRegex = new RegExp(`<user>[\\s\\S]*?<email>${email}<\\/email>[\\s\\S]*?<password>${password}<\\/password>[\\s\\S]*?<name>${name}<\\/name>[\\s\\S]*?<\\/user>`);
             
             if (!verifyRegex.test(xmlContent)) {
@@ -97,7 +97,33 @@ exports.handler = async function(event, context) {
             return { statusCode: 200, body: JSON.stringify({ success: true }) };
         }
 
+        // --- ACTION: ADD REVIEW (NEW) ---
+        if (action === "add-review") {
+            if (!email || !appId || !text) {
+                return { statusCode: 400, body: JSON.stringify({ error: "Missing review data" }) };
+            }
+
+            // 1. Sanitize text to prevent XML breakage
+            const safeText = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            
+            // 2. Find the specific user block
+            // This Regex finds the user block containing the email, and captures the closing </user> tag in group 2
+            const userBlockRegex = new RegExp(`(<user>[\\s\\S]*?<email>${email}<\\/email>[\\s\\S]*?)(<\\/user>)`);
+
+            if (!userBlockRegex.test(xmlContent)) {
+                return { statusCode: 404, body: JSON.stringify({ error: "User not found" }) };
+            }
+
+            // 3. Insert review before the closing </user> tag
+            const newReview = `        <review appId="${appId}"><date>${date}</date>${safeText}</review>\n`;
+            const updatedXml = xmlContent.replace(userBlockRegex, `$1${newReview}$2`);
+
+            await saveToGithub(xmlUrl, token, updatedXml, fileData.sha, `Add review by ${email} for ${appId}`);
+            return { statusCode: 200, body: JSON.stringify({ success: true }) };
+        }
+
     } catch (e) { 
+        console.error(e);
         return { statusCode: 500, body: JSON.stringify({ error: e.message }) }; 
     }
 };
