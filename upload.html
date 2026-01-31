@@ -96,7 +96,6 @@
     const FILE_PATH = "apppending.xml";
     const webhookNotify = "https://discordapp.com/api/webhooks/1462190316583915562/q6gNtrlwUyDBSUOhLSRolD9AKsDxUsIW9kElsd0qUjwzOcGtGw25yYpbXdf9LZ6uOTqa";
 
-    // DOM Elements
     const submitBtn = document.getElementById("submitBtn");
     const nameInput = document.getElementById("appName");
     const pubInput = document.getElementById("appPub");
@@ -108,7 +107,7 @@
     const mobileCheck = document.getElementById("mobileCapable");
     const status = document.getElementById("status");
 
-    // Validation Patterns
+    // Validation patterns
     const versionPattern = /^\d+\.\d+\.\d+\.\d+$/;
     const iconPattern = /^https?:\/\/.*\.(png|ico|bmp|jpg|jpeg)$/i;
     const pkgPattern = /^https?:\/\/.*\.(appx|appxbundle)$/i;
@@ -128,21 +127,27 @@
         submitBtn.disabled = !(isNameValid && isPubValid && isVerValid && isIconValid && isPkgValid && isCompatValid);
     }
 
-    // Listeners for Validation
+    // Input listeners
     [nameInput, pubInput, verInput, iconInput, pkgInput, pcCheck, mobileCheck].forEach(el => {
         el.addEventListener('input', validateForm);
     });
 
+    // Character counters
     nameInput.onkeyup = () => { document.getElementById("nameCount").innerText = nameInput.value.length + " / 30"; };
     pubInput.onkeyup = () => { document.getElementById("pubCount").innerText = pubInput.value.length + " / 30"; };
     descInput.onkeyup = () => { document.getElementById("descCount").innerText = descInput.value.length + " / 300"; };
 
     async function commitToGithub(name, xmlSnippet) {
-        // Accessing the variables that were exported to window in config.js
-        const token = window.GITHUB_TOKEN;
-        const owner = window.GITHUB_OWNER;
-        const repo = window.GITHUB_REPO;
-        
+        // MATCHING YOUR REAL config.js NAMES
+        const token = typeof GITHUB_TOKEN !== 'undefined' ? GITHUB_TOKEN : null;
+        const owner = typeof GITHUB_OWNER !== 'undefined' ? GITHUB_OWNER : null;
+        const repo = typeof GITHUB_REPO !== 'undefined' ? GITHUB_REPO : null;
+
+        if (!token || !owner || !repo) {
+            console.error("Credentials missing from config.js");
+            return false;
+        }
+
         const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${FILE_PATH}`;
         const appId = generateIdFromName(name);
         
@@ -151,7 +156,7 @@
                 headers: { "Authorization": `token ${token}` }
             });
             
-            if (!response.ok) throw new Error("Could not find apppending.xml");
+            if (!response.ok) throw new Error("File not found or access denied.");
             
             const fileData = await response.json();
             let currentContent = decodeURIComponent(escape(atob(fileData.content)));
@@ -190,7 +195,7 @@
         const nameValue = nameInput.value.trim();
         const appId = generateIdFromName(nameValue);
         
-        status.innerText = "Processing submission...";
+        status.innerText = "Connecting to GitHub...";
         status.style.color = "black";
         
         const xmlSnippet = `<app id="${appId}">
@@ -208,16 +213,16 @@
         const success = await commitToGithub(nameValue, xmlSnippet);
 
         if (success) {
-            status.innerText = `Successfully uploaded! (ID: ${appId})`;
+            status.innerText = `Success! "${nameValue}" is now pending.`;
             status.style.color = "#107c10";
             
             fetch(webhookNotify, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ content: `📦 **App Updated/Added to Pending:** ${nameValue}` })
+                body: JSON.stringify({ content: `🚀 **App Submitted:** ${nameValue} (ID: ${appId})` })
             });
         } else {
-            status.innerText = "Error uploading. Check console.";
+            status.innerText = "Upload failed. Check console (F12) for details.";
             status.style.color = "#e81123";
             submitBtn.disabled = false;
         }
@@ -226,3 +231,4 @@
     </script>
 </body>
 </html>
+
