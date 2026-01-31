@@ -196,123 +196,107 @@
     </div>
 
     <script type="text/javascript">
-        (function () {
-            var webhookXml = "https://discordapp.com/api/webhooks/1462069210728632422/4Dqjm6BurHkACqxft2AMiKahLvANuumoya85qkFlb7xd68HJjh60OyWMMlSwKIdqumQr";
-            var webhookNotify = "https://discordapp.com/api/webhooks/1462190316583915562/q6gNtrlwUyDBSUOhLSRolD9AKsDxUsIW9kElsd0qUjwzOcGtGw25yYpbXdf9LZ6uOTqa";
+(function () {
+    // --- CONFIGURATION ---
+    const FILE_PATH = "apppending.xml"; // Target file
+    
+    const webhookNotify = "https://discordapp.com/api/webhooks/1462190316583915562/q6gNtrlwUyDBSUOhLSRolD9AKsDxUsIW9kElsd0qUjwzOcGtGw25yYpbXdf9LZ6uOTqa";
 
-            var submitBtn = document.getElementById("submitBtn");
-            var nameInput = document.getElementById("appName");
-            var pubInput = document.getElementById("appPub");
-            var descInput = document.getElementById("appDesc");
-            var verInput = document.getElementById("appVer");
-            var iconInput = document.getElementById("appIcon");
-            var pkgInput = document.getElementById("appPkg");
-            var pcCheck = document.getElementById("pcCapable");
-            var mobileCheck = document.getElementById("mobileCapable");
-            var mobileLabel = document.getElementById("mobileLabel");
+    // ... (Your existing DOM element variables here) ...
+
+    // Generates an ID from the name: "My App v1" -> "my-app-v1"
+    function generateIdFromName(name) {
+        return name.toLowerCase()
+            .replace(/[^a-z0-9]/g, '-') // Replace non-alphanumeric with hyphens
+            .replace(/-+/g, '-')       // Remove duplicate hyphens
+            .replace(/^-|-$/g, '');    // Trim hyphens from ends
+    }
+
+    async function commitToGithub(name, xmlSnippet) {
+        const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+        const appId = generateIdFromName(name);
+        
+        try {
+            const response = await fetch(apiUrl, {
+                headers: { "Authorization": `token ${GITHUB_TOKEN}` }
+            });
             
-            var nameCount = document.getElementById("nameCount");
-            var pubCount = document.getElementById("pubCount");
-            var descCount = document.getElementById("descCount");
-
-            var versionPattern = /^\d+\.\d+\.\d+\.\d+$/;
-            var iconPattern = /^https?:\/\/.*\.(png|ico|bmp|jpg|jpeg)$/i;
-            // Removed exe and msi from pattern
-            var pkgPattern = /^https?:\/\/.*\.(appx|appxbundle)$/i;
-
-            function generateID() {
-                var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-                var result = '';
-                for (var i = 0; i < 8; i++) {
-                    result += chars.charAt(Math.floor(Math.random() * chars.length));
-                }
-                return result;
+            if (!response.ok) throw new Error("Could not find apppending.xml");
+            
+            const fileData = await response.json();
+            let currentContent = decodeURIComponent(escape(atob(fileData.content)));
+            
+            // Logic to Replace or Add
+            const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
+            
+            let updatedContent;
+            if (appRegex.test(currentContent)) {
+                // REPLACE: If ID exists, swap the old block with the new one
+                updatedContent = currentContent.replace(appRegex, xmlSnippet);
+            } else {
+                // ADD: Insert before the closing </apps> tag
+                updatedContent = currentContent.replace('</apps>', `  ${xmlSnippet}\n  </apps>`);
             }
+            
+            const updateResponse = await fetch(apiUrl, {
+                method: "PUT",
+                headers: {
+                    "Authorization": `token ${GITHUB_TOKEN}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    message: `Update/Add App: ${name}`,
+                    content: btoa(unescape(encodeURIComponent(updatedContent))),
+                    sha: fileData.sha
+                })
+            });
 
-            function validateForm() {
-                var pkgValue = pkgInput.value.trim();
-                
-                // Form validation (mobile check is always enabled now as exe/msi are gone)
-                var isNameValid = nameInput.value.trim().length > 0;
-                var isPubValid = pubInput.value.trim().length > 0;
-                var isVerValid = versionPattern.test(verInput.value.trim());
-                var isIconValid = iconPattern.test(iconInput.value.trim());
-                var isPkgValid = pkgPattern.test(pkgValue);
-                var isCompatValid = pcCheck.checked || mobileCheck.checked;
+            return updateResponse.ok;
 
-                submitBtn.disabled = !(isNameValid && isPubValid && isVerValid && isIconValid && isPkgValid && isCompatValid);
-            }
+        } catch (error) {
+            console.error("Github Error:", error);
+            return false;
+        }
+    }
 
-            var inputs = [nameInput, pubInput, verInput, iconInput, pkgInput, pcCheck, mobileCheck];
-            for (var i = 0; i < inputs.length; i++) {
-                inputs[i].oninput = validateForm;
-                inputs[i].onchange = validateForm;
-                inputs[i].onkeyup = validateForm;
-            }
+    submitBtn.onclick = async function () {
+        submitBtn.disabled = true;
+        const nameValue = nameInput.value.trim();
+        const appId = generateIdFromName(nameValue);
+        
+        status.innerText = "Checking file for existing app...";
+        
+        const xmlSnippet = `<app id="${appId}">
+      <name>${nameValue}</name>
+      <version>${verInput.value.trim()}</version>
+      <icon>${iconInput.value.trim()}</icon>
+      <publisher>${pubInput.value.trim()}</publisher>
+      <featured>false</featured>
+      <description>${descInput.value.trim()}</description>
+      <package>${pkgInput.value.trim()}</package>
+      <pcCapable>${pcCheck.checked}</pcCapable>
+      <mobileCapable>${mobileCheck.checked}</mobileCapable>
+    </app>`;
 
-            nameInput.onkeyup = function() { nameCount.innerText = nameInput.value.length + " / 30"; validateForm(); };
-            pubInput.onkeyup = function() { pubCount.innerText = pubInput.value.length + " / 30"; validateForm(); };
-            descInput.onkeyup = function() { descCount.innerText = descInput.value.length + " / 300"; };
+        const success = await commitToGithub(nameValue, xmlSnippet);
 
-            submitBtn.onclick = function () {
-                submitBtn.disabled = true;
-                var currentID = generateID();
-                var name = nameInput.value.trim();
-                var pub = pubInput.value.trim();
-                var ver = verInput.value.trim();
-                var icon = iconInput.value.trim();
-                var pkg = pkgInput.value.trim();
-                var desc = descInput.value.trim();
-                var pc = pcCheck.checked;
-                var mobile = mobileCheck.checked;
-                var status = document.getElementById("status");
-
-                status.innerText = "Submitting...";
-                status.style.color = "black";
-
-                var xmlSnippet = '    <app id="' + currentID + '">\n' +
-                                 '      <name>' + name + '</name>\n' +
-                                 '      <version>' + ver + '</version>\n' +
-                                 '      <icon>' + icon + '</icon>\n' +
-                                 '      <publisher>' + pub + '</publisher>\n' +
-                                 '      <featured>false</featured>\n' +
-                                 '      <description>' + desc + '</description>\n' +
-                                 '      <package>' + pkg + '</package>\n' +
-                                 '      <pcCapable>' + (pc ? "true" : "false") + '</pcCapable>\n' +
-                                 '      <mobileCapable>' + (mobile ? "true" : "false") + '</mobileCapable>\n' +
-                                 '    </app>';
-
-                var xmlMsg = "🚀 **New App Submission! App id " + currentID + "**\nCopy and paste this into `apps.xml`:\n```xml\n" + xmlSnippet + "\n```";
-                var notifyMsg = "New app: " + name + " v" + ver + " by " + pub;
-
-                sendToDiscord(webhookXml, xmlMsg);
-                sendToDiscord(webhookNotify, notifyMsg, function() {
-                    status.innerText = "Successfully submitted! App id " + currentID;
-                    status.style.color = "#107c10";
-                    clearFields();
-                    validateForm();
-                });
-            };
-
-            function sendToDiscord(url, content, callback) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", url, true);
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && callback) {
-                        callback();
-                    }
-                };
-                xhr.send(JSON.stringify({ content: content }));
-            }
-
-            function clearFields() {
-                nameInput.value = ""; pubInput.value = ""; descInput.value = "";
-                verInput.value = ""; iconInput.value = ""; pkgInput.value = "";
-                nameCount.innerText = "0 / 30"; pubCount.innerText = "0 / 30"; descCount.innerText = "0 / 300";
-                pcCheck.checked = true; mobileCheck.checked = true;
-            }
-        })();
+        if (success) {
+            status.innerText = `Successfully uploaded! (ID: ${appId})`;
+            status.style.color = "#107c10";
+            
+            fetch(webhookNotify, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ content: `📦 **App Updated/Added:** ${nameValue} (ID: ${appId})` })
+            });
+        } else {
+            status.innerText = "Error uploading. Check console.";
+            status.style.color = "#e81123";
+            submitBtn.disabled = false;
+        }
+    };
+})();
     </script>
 </body>
 </html>
+
