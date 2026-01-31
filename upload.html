@@ -5,127 +5,31 @@
     <title>Submit App</title>
     <style>
         html, body {
-            height: 100%;
-            margin: 0;
-            background: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #000000;
+            height: 100%; margin: 0; background: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #000000;
         }
-
-        .upload-container {
-            padding: 40px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
+        .upload-container { padding: 40px; max-width: 600px; margin: 0 auto; }
         h1 { font-weight: 300; font-size: 32px; margin-bottom: 30px; }
-
         .form-group { margin-bottom: 20px; position: relative; }
-
         label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
-        
         label.required:after { content: " *"; color: #e81123; }
-
         input[type="text"], textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            font-family: inherit;
+            width: 100%; padding: 10px; border: 1px solid #ccc;
+            box-sizing: border-box; font-family: inherit;
         }
-
-        .char-count {
-            font-size: 11px;
-            color: #666;
-            text-align: right;
-            margin-top: 4px;
-        }
-
+        .char-count { font-size: 11px; color: #666; text-align: right; margin-top: 4px; }
         textarea { height: 100px; resize: vertical; }
-
-        .switch-group {
-            display: block;
-            background: #f9f9f9;
-            padding: 15px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
+        .switch-group { display: block; background: #f9f9f9; padding: 15px; margin-bottom: 10px; overflow: hidden; }
         .switch-label { float: left; line-height: 22px; }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 45px;
-            height: 22px;
-            float: right;
-        }
-
+        .switch { position: relative; display: inline-block; width: 45px; height: 22px; float: right; }
         .switch input { opacity: 0; width: 0; height: 0; }
-
-        .switch input:disabled + .slider {
-            background-color: #eee !important;
-            cursor: not-allowed;
-        }
-        .switch input:disabled + .slider:before {
-            background-color: #ccc;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #ccc;
-            border-radius: 22px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px; width: 16px;
-            left: 3px; bottom: 3px;
-            background-color: white;
-            border-radius: 50%;
-        }
-
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; border-radius: 22px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; border-radius: 50%; }
         input:checked + .slider { background-color: #0078D7; }
         input:checked + .slider:before { left: 26px; }
-
-        .btn-submit {
-            background: #0078D7;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .btn-submit:disabled { 
-            background: #cccccc; 
-            color: #666666;
-            cursor: not-allowed; 
-        }
-
-        .btn-host {
-            background: #f3f3f3;
-            color: #333;
-            border: 1px solid #ccc;
-            padding: 12px 30px;
-            font-weight: 400;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-        .btn-host:hover { background: #e5e5e5; }
-        .btn-host b { color: #0078D7; }
-        
+        .btn-submit { background: #0078D7; color: white; border: none; padding: 12px 30px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 20px; }
+        .btn-submit:disabled { background: #cccccc; color: #666666; cursor: not-allowed; }
+        .btn-host { background: #f3f3f3; color: #333; border: 1px solid #ccc; padding: 12px 30px; font-weight: 400; cursor: pointer; width: 100%; margin-top: 10px; text-align: center; text-decoration: none; display: block; box-sizing: border-box; font-size: 14px; }
         #status { text-align: center; margin-top: 15px; font-size: 14px; }
     </style>
 </head>
@@ -169,50 +73,72 @@
         <div class="switch-group">
             <span class="switch-label">PC Compatible</span>
             <label class="switch">
-                <input type="checkbox" id="pcCapable" checked="checked">
+                <input type="checkbox" id="pcCapable" checked>
                 <span class="slider"></span>
             </label>
         </div>
 
         <div class="switch-group">
-            <span id="mobileLabel" class="switch-label">Mobile Compatible</span>
+            <span class="switch-label">Mobile Compatible</span>
             <label class="switch">
-                <input type="checkbox" id="mobileCapable" checked="checked">
+                <input type="checkbox" id="mobileCapable" checked>
                 <span class="slider"></span>
             </label>
         </div>
 
         <button class="btn-submit" id="submitBtn" disabled>Submit App</button>
-        
-        <a href="https://8storeupload.dankassassin368.com" target="_blank" class="btn-host">
-            Need to host your app? <b>Click here</b>
-        </a>
-
-        <a href="https://imgbb.com" target="_blank" class="btn-host">
-            Need to host your icon? <b>Click here</b>
-        </a>
-
         <div id="status"></div>
     </div>
 
     <script src="config.js"></script>
     <script type="text/javascript">
 (function () {
-    // --- CONFIGURATION ---
-    const FILE_PATH = "apppending.xml"; // Target file
-    
+    const FILE_PATH = "apppending.xml";
     const webhookNotify = "https://discordapp.com/api/webhooks/1462190316583915562/q6gNtrlwUyDBSUOhLSRolD9AKsDxUsIW9kElsd0qUjwzOcGtGw25yYpbXdf9LZ6uOTqa";
 
-    // ... (Your existing DOM element variables here) ...
+    // DOM Elements
+    const submitBtn = document.getElementById("submitBtn");
+    const nameInput = document.getElementById("appName");
+    const pubInput = document.getElementById("appPub");
+    const descInput = document.getElementById("appDesc");
+    const verInput = document.getElementById("appVer");
+    const iconInput = document.getElementById("appIcon");
+    const pkgInput = document.getElementById("appPkg");
+    const pcCheck = document.getElementById("pcCapable");
+    const mobileCheck = document.getElementById("mobileCapable");
+    const status = document.getElementById("status");
 
-    // Generates an ID from the name: "My App v1" -> "my-app-v1"
+    // Validation Patterns
+    const versionPattern = /^\d+\.\d+\.\d+\.\d+$/;
+    const iconPattern = /^https?:\/\/.*\.(png|ico|bmp|jpg|jpeg)$/i;
+    const pkgPattern = /^https?:\/\/.*\.(appx|appxbundle)$/i;
+
     function generateIdFromName(name) {
-        return name.toLowerCase()
-            .replace(/[^a-z0-9]/g, '-') // Replace non-alphanumeric with hyphens
-            .replace(/-+/g, '-')       // Remove duplicate hyphens
-            .replace(/^-|-$/g, '');    // Trim hyphens from ends
+        return name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
     }
 
+    // --- NEW VALIDATION LOGIC ---
+    function validateForm() {
+        const isNameValid = nameInput.value.trim().length > 0;
+        const isPubValid = pubInput.value.trim().length > 0;
+        const isVerValid = versionPattern.test(verInput.value.trim());
+        const isIconValid = iconPattern.test(iconInput.value.trim());
+        const isPkgValid = pkgPattern.test(pkgInput.value.trim());
+        const isCompatValid = pcCheck.checked || mobileCheck.checked;
+
+        submitBtn.disabled = !(isNameValid && isPubValid && isVerValid && isIconValid && isPkgValid && isCompatValid);
+    }
+
+    // Listeners for Validation and Counters
+    [nameInput, pubInput, verInput, iconInput, pkgInput, pcCheck, mobileCheck].forEach(el => {
+        el.addEventListener('input', validateForm);
+    });
+
+    nameInput.onkeyup = () => { document.getElementById("nameCount").innerText = nameInput.value.length + " / 30"; };
+    pubInput.onkeyup = () => { document.getElementById("pubCount").innerText = pubInput.value.length + " / 30"; };
+    descInput.onkeyup = () => { document.getElementById("descCount").innerText = descInput.value.length + " / 300"; };
+
+    // --- GITHUB LOGIC ---
     async function commitToGithub(name, xmlSnippet) {
         const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
         const appId = generateIdFromName(name);
@@ -227,16 +153,13 @@
             const fileData = await response.json();
             let currentContent = decodeURIComponent(escape(atob(fileData.content)));
             
-            // Logic to Replace or Add
             const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
-            
             let updatedContent;
+
             if (appRegex.test(currentContent)) {
-                // REPLACE: If ID exists, swap the old block with the new one
                 updatedContent = currentContent.replace(appRegex, xmlSnippet);
             } else {
-                // ADD: Insert before the closing </apps> tag
-                updatedContent = currentContent.replace('</apps>', `  ${xmlSnippet}\n  </apps>`);
+                updatedContent = currentContent.replace('</apps>', `    ${xmlSnippet}\n  </apps>`);
             }
             
             const updateResponse = await fetch(apiUrl, {
@@ -253,7 +176,6 @@
             });
 
             return updateResponse.ok;
-
         } catch (error) {
             console.error("Github Error:", error);
             return false;
@@ -265,7 +187,8 @@
         const nameValue = nameInput.value.trim();
         const appId = generateIdFromName(nameValue);
         
-        status.innerText = "Checking file for existing app...";
+        status.innerText = "Processing submission...";
+        status.style.color = "black";
         
         const xmlSnippet = `<app id="${appId}">
       <name>${nameValue}</name>
@@ -288,7 +211,7 @@
             fetch(webhookNotify, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ content: `📦 **App Updated/Added:** ${nameValue} (ID: ${appId})` })
+                body: JSON.stringify({ content: `📦 **App Updated/Added to Pending:** ${nameValue}` })
             });
         } else {
             status.innerText = "Error uploading. Check console.";
@@ -300,5 +223,3 @@
     </script>
 </body>
 </html>
-
-
