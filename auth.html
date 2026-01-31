@@ -5,27 +5,15 @@
     <meta charset="utf-8" />
     <title>Account</title>
     <style>
-        html, body {
-            height: 100%; margin: 0; background: #ffffff;
-            font-family: 'Segoe UI', Tahoma, sans-serif; color: #000;
-        }
+        html, body { height: 100%; margin: 0; background: #ffffff; font-family: 'Segoe UI', sans-serif; color: #000; }
         .auth-container { padding: 40px; max-width: 400px; margin: 0 auto; }
         h1 { font-weight: 300; font-size: 32px; margin-bottom: 30px; }
         .form-group { margin-bottom: 20px; }
         label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; }
-        input[type="email"], input[type="password"], input[type="text"] {
-            width: 100%; padding: 10px; border: 1px solid #ccc; box-sizing: border-box;
-        }
-        .btn-primary {
-            background: #0078D7; color: white; border: none; padding: 12px;
-            font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px;
-        }
-        .btn-secondary {
-            background: #f3f3f3; color: #333; border: 1px solid #ccc; padding: 10px;
-            cursor: pointer; width: 100%; margin-top: 10px; font-size: 13px;
-        }
-        .btn-primary:disabled { background: #ccc !important; cursor: not-allowed; opacity: 0.8; }
-        
+        input { width: 100%; padding: 10px; border: 1px solid #ccc; box-sizing: border-box; }
+        .btn-primary { background: #0078D7; color: white; border: none; padding: 12px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; }
+        .btn-secondary { background: #f3f3f3; color: #333; border: 1px solid #ccc; padding: 10px; cursor: pointer; width: 100%; margin-top: 10px; font-size: 13px; }
+        .btn-primary:disabled { background: #ccc !important; cursor: default; opacity: 0.8; }
         #statusMsg { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 600; min-height: 20px; }
         .error-text { color: red; }
         .success-text { color: #107c10; }
@@ -40,34 +28,28 @@
             <label>Display Name</label>
             <input type="text" id="userName" placeholder="Your Name">
         </div>
-
         <div class="form-group">
             <label>Email address</label>
             <input type="email" id="userEmail" placeholder="example@outlook.com">
         </div>
-
         <div class="form-group">
             <label>Password</label>
             <input type="password" id="userPass">
         </div>
 
-        <button type="button" class="btn-primary" id="mainBtn" disabled>Sign in</button>
+        <button type="button" class="btn-primary" id="mainBtn">Sign in</button>
         <button type="button" class="btn-secondary" id="toggleBtn">Create new account</button>
     </div>
 
 <script>
     (function () {
         var mode = "signin"; 
-        
-        // --- CONFIGURATION ---
-        // Fill these in with your actual details
-        const GITHUB_TOKEN = "YOUR_GITHUB_TOKEN_HERE";
-        const GITHUB_OWNER = "draydenthemiiyt-maker";
-        const GITHUB_REPO = "10-Store";
-        const FILE_PATH = "accounts.xml";
-        const API_URL = "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + FILE_PATH;
+        var GITHUB_TOKEN = "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";
+        var GITHUB_OWNER = "draydenthemiiyt-maker";
+        var GITHUB_REPO = "10-Store";
+        var FILE_PATH = "accounts.xml";
+        var API_URL = "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + FILE_PATH;
 
-        // UI Elements
         var nameGroup = document.getElementById("nameGroup"),
             nameInput = document.getElementById("userName"),
             emailInput = document.getElementById("userEmail"),
@@ -76,16 +58,8 @@
             mainBtn = document.getElementById("mainBtn"),
             statusEl = document.getElementById("statusMsg");
 
-        function validate() {
-            var emailVal = emailInput.value.trim();
-            var passVal = passInput.value.trim();
-            var nameVal = nameInput.value.trim();
-            mainBtn.disabled = (mode === "signin") ? !(emailVal && passVal) : !(emailVal && passVal && nameVal);
-        }
-
-        [nameInput, emailInput, passInput].forEach(function(i) { 
-            i.oninput = validate; 
-        });
+        // Fixed: Enabled by default so it's always clickable
+        mainBtn.disabled = false;
 
         toggleBtn.onclick = function() {
             mode = (mode === "signin") ? "signup" : "signin";
@@ -94,103 +68,110 @@
             toggleBtn.innerText = (mode === "signin") ? "Create new account" : "Back to Sign in";
             nameGroup.style.display = (mode === "signup") ? "block" : "none";
             statusEl.innerText = "";
-            validate();
         };
 
-        mainBtn.onclick = async function() {
+        mainBtn.onclick = function() {
+            var email = emailInput.value.trim().toLowerCase();
+            var password = passInput.value.trim();
+            var name = nameInput.value.trim();
+
+            if (!email || !password || (mode === "signup" && !name)) {
+                statusEl.className = "error-text";
+                statusEl.innerText = "Please fill in all fields.";
+                return;
+            }
+
             statusEl.className = "";
-            statusEl.innerText = "Connecting to GitHub...";
+            statusEl.innerText = "Connecting...";
             mainBtn.disabled = true;
 
-            const email = emailInput.value.trim().toLowerCase();
-            const password = passInput.value.trim();
-            const name = nameInput.value.trim();
-
-            try {
-                // 1. Fetch the accounts.xml from GitHub
-                const res = await fetch(API_URL, {
-                    headers: { "Authorization": "token " + GITHUB_TOKEN.trim() }
-                });
-                if (!res.ok) throw new Error("Could not connect to database.");
-
-                const data = await res.json();
-                const sha = data.sha;
-                // Decode Base64 content from GitHub
-                const xmlText = decodeURIComponent(escape(atob(data.content)));
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-                
-                const users = xmlDoc.getElementsByTagName("user");
-                let existingUser = null;
-
-                for (let i = 0; i < users.length; i++) {
-                    if (users[i].getElementsByTagName("email")[0].textContent.toLowerCase() === email) {
-                        existingUser = users[i];
-                        break;
-                    }
-                }
-
-                if (mode === "signin") {
-                    if (existingUser && existingUser.getElementsByTagName("password")[0].textContent === password) {
-                        const foundName = existingUser.getElementsByTagName("name")[0].textContent;
-                        handleSuccess(email, foundName);
+            // Step 1: GET the file
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", API_URL, true);
+            xhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        processData(JSON.parse(xhr.responseText), email, password, name);
                     } else {
-                        throw new Error("Invalid email or password.");
+                        showError("Database connection failed.");
                     }
-                } else {
-                    if (existingUser) throw new Error("Account already exists.");
-
-                    // Add new user to XML
-                    const newUser = xmlDoc.createElement("user");
-                    const nName = xmlDoc.createElement("name"); nName.textContent = name;
-                    const nEmail = xmlDoc.createElement("email"); nEmail.textContent = email;
-                    const nPass = xmlDoc.createElement("password"); nPass.textContent = password;
-                    
-                    newUser.appendChild(nName);
-                    newUser.appendChild(nEmail);
-                    newUser.appendChild(nPass);
-                    xmlDoc.documentElement.appendChild(newUser);
-
-                    const serializer = new XMLSerializer();
-                    const updatedXml = serializer.serializeToString(xmlDoc);
-                    
-                    // 2. Push updated XML back to GitHub
-                    const putRes = await fetch(API_URL, {
-                        method: "PUT",
-                        headers: { 
-                            "Authorization": "token " + GITHUB_TOKEN.trim(),
-                            "Content-Type": "application/json" 
-                        },
-                        body: JSON.stringify({
-                            message: "Register user: " + email,
-                            content: btoa(unescape(encodeURIComponent(updatedXml))),
-                            sha: sha
-                        })
-                    });
-
-                    if (putRes.ok) handleSuccess(email, name);
-                    else throw new Error("Failed to save account.");
                 }
-            } catch (err) {
-                statusEl.className = "error-text";
-                statusEl.innerText = err.message;
-                mainBtn.disabled = false;
-            }
+            };
+            xhr.send();
         };
+
+        function processData(data, email, password, name) {
+            var sha = data.sha;
+            var xmlText = decodeURIComponent(escape(window.atob(data.content)));
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(xmlText, "text/xml");
+            var users = xmlDoc.getElementsByTagName("user");
+            var existingUser = null;
+
+            for (var i = 0; i < users.length; i++) {
+                var e = users[i].getElementsByTagName("email")[0].textContent;
+                if (e.toLowerCase() === email) {
+                    existingUser = users[i];
+                    break;
+                }
+            }
+
+            if (mode === "signin") {
+                if (existingUser && existingUser.getElementsByTagName("password")[0].textContent === password) {
+                    handleSuccess(email, existingUser.getElementsByTagName("name")[0].textContent);
+                } else {
+                    showError("Invalid email or password.");
+                }
+            } else {
+                if (existingUser) {
+                    showError("Account already exists.");
+                    return;
+                }
+                var newUser = xmlDoc.createElement("user");
+                var nN = xmlDoc.createElement("name"); nN.textContent = name;
+                var nE = xmlDoc.createElement("email"); nE.textContent = email;
+                var nP = xmlDoc.createElement("password"); nP.textContent = password;
+                newUser.appendChild(nN); newUser.appendChild(nE); newUser.appendChild(nP);
+                xmlDoc.documentElement.appendChild(newUser);
+
+                var serializer = new XMLSerializer();
+                var updatedXml = serializer.serializeToString(xmlDoc);
+
+                var putXhr = new XMLHttpRequest();
+                putXhr.open("PUT", API_URL, true);
+                putXhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN);
+                putXhr.setRequestHeader("Content-Type", "application/json");
+                putXhr.onreadystatechange = function() {
+                    if (putXhr.readyState === 4) {
+                        if (putXhr.status === 200 || putXhr.status === 201) handleSuccess(email, name);
+                        else showError("Failed to save account.");
+                    }
+                };
+                putXhr.send(JSON.stringify({
+                    message: "Register: " + email,
+                    content: window.btoa(unescape(encodeURIComponent(updatedXml))),
+                    sha: sha
+                }));
+            }
+        }
 
         function handleSuccess(email, name) {
             statusEl.className = "success-text";
             statusEl.innerText = "Success! Redirecting...";
-            
-            const params = new URLSearchParams(window.location.search);
-            const redirectUri = params.get("redirect_uri");
-
+            var match = window.location.search.match(/[?&]redirect_uri=([^&]+)/);
+            var redirectUri = match ? decodeURIComponent(match[1]) : null;
             if (redirectUri) {
-                const resultStr = "#email=" + encodeURIComponent(email) + "&name=" + encodeURIComponent(name);
-                window.location.href = redirectUri + resultStr;
+                window.location.href = redirectUri + "#email=" + encodeURIComponent(email) + "&name=" + encodeURIComponent(name);
             } else {
-                alert("Logged in as " + name);
+                alert("Signed in as " + name);
             }
+        }
+
+        function showError(msg) {
+            statusEl.className = "error-text";
+            statusEl.innerText = msg;
+            mainBtn.disabled = false;
         }
     })();
 </script>
