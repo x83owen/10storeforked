@@ -558,6 +558,17 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="windows-scan">
+      <name>Windows Scan</name>
+      <version>1.0.0.0</version>
+      <icon>https://i.ibb.co/YT4YTp3J/apps-46418-9007199266246187-4a088546-84d9-4ec6-ba55-56ffb7d49ad9.png</icon>
+      <publisher>Microsoft Corporation</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://dl.dankassassin368.com/Microsoft.WindowsScan_2014.523.326.3026_neutral_~_8wekyb3d8bbwe.AppxBundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
