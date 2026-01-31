@@ -569,6 +569,17 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="winjs-2-0">
+      <name>WinJS 2.0</name>
+      <version>2.0.0.0</version>
+      <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
+      <publisher>Microsoft Corporation</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://dl.dankassassin368.com/Microsoft.WinJS.2.0_1.0.9600.17018_neutral__8wekyb3d8bbwe.Appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
