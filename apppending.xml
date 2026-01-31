@@ -12,5 +12,16 @@
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+      <app id="test">
+      <name>Test</name>
+      <version>0.0.0.0</version>
+      <icon>https://freesantools.com/wp-content/uploads/2025/07/converted-5-e1751809052831.png</icon>
+      <publisher>TestDev</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://th.bing.com/th/id.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 </data>
