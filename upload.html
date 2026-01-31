@@ -185,7 +185,7 @@
 
             return updateResponse.ok;
         } catch (error) {
-            console.error("Github Error:", error);
+            console.error("Error:", error);
             return false;
         }
     }
@@ -195,7 +195,7 @@
         const nameValue = nameInput.value.trim();
         const appId = generateIdFromName(nameValue);
         
-        status.innerText = "Connecting to GitHub...";
+        status.innerText = "Connecting...";
         status.style.color = "black";
         
         const xmlSnippet = `<app id="${appId}">
@@ -231,4 +231,5 @@
     </script>
 </body>
 </html>
+
 
