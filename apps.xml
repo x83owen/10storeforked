@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <data>
   <categories>
-    <category title="Featured" type="featured" />
+    <category title="Featured" type="featured"/>
     <category title="Developer Picks" type="picks">
       <appIds>fmaNojRN,L9h3OvMn,DecV6P0t,NR8KNi94,4jvHHTQI,I6LbwAai</appIds>
     </category>
@@ -127,7 +127,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <package>https://dl.dankassassin368.com/Microsoft.MinecraftUWP_1.14.6005.0_x86__8wekyb3d8bbwe.Appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
-    </app>
+    <review><user>Anonymous</user><rating>1</rating><comment>test</comment></review></app>
       <app id="I6LbwAai">
       <name>Hill Climb Racing</name>
       <version>1.41.1.0</version>
@@ -235,7 +235,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <icon>https://10storedraydenyt.netlify.app/icons/8WvwEEYk-1000154117.png</icon>
       <publisher>GameHive</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Apps/Beat%20The%20Boss%202/2.3.0.3/x86/GameHive.BeatTheBoss2_2.3.0.3_x86__2snrr3jr3f292.Appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -246,7 +246,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <icon>https://10storedraydenyt.netlify.app/icons/LhEiIzol-1000154122.png</icon>
       <publisher>Outfit7</publisher>
       <featured>true</featured>
-      <description></description>
+      <description/>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Talking%20Ginger/app.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -268,7 +268,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <icon>https://10storedraydenyt.netlify.app/icons/6ZXvMZVa-1000154136.jpg</icon>
       <publisher>EurosportSAS</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Apps/Eurosport/4.1.0.0/x86/EurosportSAS.Eurosport.com_4.1.0.0_x86__zbz8cfsntg0dj.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -373,7 +373,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <icon>https://10storedraydenyt.netlify.app/icons/IzTuV2zi-1000154589.png</icon>
       <publisher>ClassiCube (idk)</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/ClassiCube/ClassiCube.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -406,7 +406,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <icon>https://i.ibb.co/gZCMMMrK/Angry-Birds-Space-icon.png</icon>
       <publisher>Rovio</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://dl.dankassassin368.com/1ED5AEA5.AngryBirdsSpace_1.3.1.0_x86__p2gbknwb5d8r2.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -417,7 +417,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <icon>https://i.ibb.co/NdR8FGqk/channels4-profile.jpg</icon>
       <publisher>Netflix, Inc</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://dl.dankassassin368.com/4DF9E0F8.Netflix_1.10.0.58_x64__mcm4njqhnhss8.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -428,7 +428,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <icon>https://i.ibb.co/r2pf2ZFn/1492065916-1491916517-logo-2.png</icon>
       <publisher>Rakuten Viber</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://dl.dankassassin368.com/2414FC7A.Viber-FreePhoneCallsText_4.1.3.0_x86__p61zvh252yqyr.Appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -439,7 +439,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <icon>https://i.ibb.co/mVb2rwkb/Metrotube-01.jpg</icon>
       <publisher>LazyWorm Applications Ltd.</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://dl.dankassassin368.com/Ametrotube.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -472,7 +472,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <icon>https://i.ibb.co/RGkdYfh0/images.png</icon>
       <publisher>HoYeonHan</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://dl.dankassassin368.com/45849HoYeonHan.BatteryInfo_1.7.0.0_x64__h1jdabs0g06va.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -483,7 +483,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <icon>https://i.ibb.co/39QZf27C/1437159014-0.png</icon>
       <publisher>VK.com</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://dl.dankassassin368.com/C6965DD5.VK_2.3.2.1_x64__v422avzh127ra.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
@@ -515,10 +515,3 @@ dont delete it please, it need</description>
   </apps>
 
 </data>
-
-
-
-
-
-
-
