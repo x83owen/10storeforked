@@ -29,19 +29,19 @@
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider {
             position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #ccc; border-radius: 22px; transition: .4s;
+            background-color: #ccc; border-radius: 22px;
         }
         .slider:before {
             position: absolute; content: ""; height: 16px; width: 16px;
-            left: 3px; bottom: 3px; background-color: white; border-radius: 50%; transition: .4s;
+            left: 3px; bottom: 3px; background-color: white; border-radius: 50%;
         }
         input:checked + .slider { background-color: #0078D7; }
-        input:checked + .slider:before { transform: translateX(24px); }
+        input:checked + .slider:before { left: 26px; }
         .btn-submit {
             background: #0078D7; color: white; border: none; padding: 15px;
             font-weight: 600; cursor: pointer; width: 100%; margin-top: 20px;
         }
-        .btn-submit:disabled { background: #cccccc; cursor: not-allowed; }
+        .btn-submit:disabled { background: #cccccc; cursor: not-allowed; color: #666; }
         #status { text-align: center; margin-top: 15px; font-size: 14px; font-weight: bold; }
     </style>
 </head>
@@ -51,27 +51,27 @@
         
         <div class="form-group">
             <label class="required">App Name</label>
-            <input type="text" id="appName" maxlength="30">
+            <input type="text" id="appName" maxlength="30" class="validate">
         </div>
 
         <div class="form-group">
             <label class="required">Publisher</label>
-            <input type="text" id="appPub" maxlength="30">
+            <input type="text" id="appPub" maxlength="30" class="validate">
         </div>
 
         <div class="form-group">
             <label class="required">Version</label>
-            <input type="text" id="appVer" placeholder="1.0.0.0">
+            <input type="text" id="appVer" placeholder="1.0.0.0" class="validate">
         </div>
 
         <div class="form-group">
             <label class="required">Select Icon (.png, .jpg)</label>
-            <input type="file" id="iconFile" accept=".png,.jpg,.jpeg,.ico">
+            <input type="file" id="iconFile" accept=".png,.jpg,.jpeg,.ico" class="validate">
         </div>
 
         <div class="form-group">
             <label class="required">Select Package (.appx, .appxbundle)</label>
-            <input type="file" id="pkgFile" accept=".appx,.appxbundle">
+            <input type="file" id="pkgFile" accept=".appx,.appxbundle" class="validate">
         </div>
 
         <div class="form-group">
@@ -81,122 +81,144 @@
 
         <div class="switch-group">
             <span class="switch-label">PC Compatible</span>
-            <label class="switch"><input type="checkbox" id="pcCapable" checked><span class="slider"></span></label>
+            <label class="switch"><input type="checkbox" id="pcCapable" class="validate-check" checked><span class="slider"></span></label>
         </div>
 
         <div class="switch-group">
             <span class="switch-label">Mobile Compatible</span>
-            <label class="switch"><input type="checkbox" id="mobileCapable" checked><span class="slider"></span></label>
+            <label class="switch"><input type="checkbox" id="mobileCapable" class="validate-check" checked><span class="slider"></span></label>
         </div>
 
-        <button class="btn-submit" id="submitBtn">Upload & Submit</button>
+        <button class="btn-submit" id="submitBtn" disabled>Upload & Submit</button>
         <div id="status"></div>
     </div>
 
     <script>
         (function () {
-            const webhookXml = "https://discordapp.com/api/webhooks/1462069210728632422/4Dqjm6BurHkACqxft2AMiKahLvANuumoya85qkFlb7xd68HJjh60OyWMMlSwKIdqumQr";
-            const status = document.getElementById("status");
-            const submitBtn = document.getElementById("submitBtn");
+            var webhookXml = "https://discordapp.com/api/webhooks/1462069210728632422/4Dqjm6BurHkACqxft2AMiKahLvANuumoya85qkFlb7xd68HJjh60OyWMMlSwKIdqumQr";
+            var status = document.getElementById("status");
+            var submitBtn = document.getElementById("submitBtn");
+            
+            // --- Validation Logic ---
+            function validate() {
+                var name = document.getElementById("appName").value.trim();
+                var pub = document.getElementById("appPub").value.trim();
+                var ver = document.getElementById("appVer").value.trim();
+                var icon = document.getElementById("iconFile").value;
+                var pkg = document.getElementById("pkgFile").value;
+                var pc = document.getElementById("pcCapable").checked;
+                var mobile = document.getElementById("mobileCapable").checked;
 
+                var isValid = (name !== "" && pub !== "" && ver !== "" && icon !== "" && pkg !== "" && (pc || mobile));
+                submitBtn.disabled = !isValid;
+            }
+
+            var inputs = document.querySelectorAll(".validate, .validate-check");
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].addEventListener("change", validate);
+                inputs[i].addEventListener("keyup", validate);
+                inputs[i].addEventListener("input", validate);
+            }
+
+            // --- Helper Functions ---
             function generateID() {
                 return Math.random().toString(36).substring(2, 10);
             }
 
-            async function uploadToGithub(file, folder) {
-                const fileName = `${Date.now()}_${file.name.replace(/\s+/g, '_')}`;
-                const path = `${folder}/${fileName}`;
-                const reader = new FileReader();
+            function uploadToGithub(file, folder, callback, errorCallback) {
+                var fileName = new Date().getTime() + "_" + file.name.replace(/\s+/g, '_');
+                var path = folder + "/" + fileName;
+                var reader = new FileReader();
                 
-                return new Promise((resolve, reject) => {
-                    reader.onload = async () => {
-                        const content = reader.result.split(',')[1];
-                        const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`;
-                        try {
-                            const res = await fetch(url, {
-                                method: "PUT",
-                                headers: { "Authorization": `token ${GITHUB_TOKEN.trim()}`, "Content-Type": "application/json" },
-                                body: JSON.stringify({ message: `Upload ${file.name}`, content: content })
-                            });
-                            if (!res.ok) throw new Error("File upload failed");
-                            resolve(`https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${path}`);
-                        } catch (e) { reject(e); }
+                reader.onload = function(e) {
+                    var content = e.target.result.split(',')[1];
+                    var url = "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + path;
+                    
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("PUT", url, true);
+                    xhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN.trim());
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200 || xhr.status === 201) {
+                                callback("https://raw.githubusercontent.com/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/main/" + path);
+                            } else { errorCallback("Upload Error: " + xhr.status); }
+                        }
                     };
-                    reader.readAsDataURL(file);
-                });
-            }
-
-            async function updateXml(newAppSnippet) {
-                const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/apps.xml`;
-                const res = await fetch(url, { headers: { "Authorization": `token ${GITHUB_TOKEN.trim()}` } });
-                const data = await res.json();
-                let xmlText = decodeURIComponent(escape(atob(data.content.replace(/\s/g, ''))));
-
-                if (xmlText.includes("</store>")) xmlText = xmlText.replace("</store>", `${newAppSnippet}\n</store>`);
-                else if (xmlText.includes("</apps>")) xmlText = xmlText.replace("</apps>", `${newAppSnippet}\n</apps>`);
-
-                const updateRes = await fetch(url, {
-                    method: "PUT",
-                    headers: { "Authorization": `token ${GITHUB_TOKEN.trim()}`, "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        message: "Add new app to apps.xml",
-                        content: btoa(unescape(encodeURIComponent(xmlText))),
-                        sha: data.sha
-                    })
-                });
-                return updateRes.ok;
-            }
-
-            function sendToDiscord(snippet, appId) {
-                const payload = {
-                    content: `🚀 **New Live Submission! App ID: ${appId}**\nAutomatically added to apps.xml:\n\`\`\`xml\n${snippet}\n\`\`\``
+                    xhr.send(JSON.stringify({ message: "Upload " + file.name, content: content }));
                 };
-                fetch(webhookXml, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                });
+                reader.readAsDataURL(file);
             }
 
-            submitBtn.onclick = async function () {
-                const iconFile = document.getElementById("iconFile").files[0];
-                const pkgFile = document.getElementById("pkgFile").files[0];
-                
-                if (!iconFile || !pkgFile) { alert("Please select both files."); return; }
+            function updateXml(snippet, callback, errorCallback) {
+                var url = "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/apps.xml";
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", url, true);
+                xhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN.trim());
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            var data = JSON.parse(xhr.responseText);
+                            var xmlText = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
+                            
+                            if (xmlText.indexOf("</store>") !== -1) xmlText = xmlText.replace("</store>", snippet + "\n</store>");
+                            else if (xmlText.indexOf("</apps>") !== -1) xmlText = xmlText.replace("</apps>", snippet + "\n</apps>");
 
+                            var updateXhr = new XMLHttpRequest();
+                            updateXhr.open("PUT", url, true);
+                            updateXhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN.trim());
+                            updateXhr.onreadystatechange = function() {
+                                if (updateXhr.readyState === 4) {
+                                    if (updateXhr.status === 200) callback();
+                                    else errorCallback("XML Update Failed");
+                                }
+                            };
+                            updateXhr.send(JSON.stringify({
+                                message: "Add app to apps.xml",
+                                content: window.btoa(unescape(encodeURIComponent(xmlText))),
+                                sha: data.sha
+                            }));
+                        }
+                    }
+                };
+                xhr.send();
+            }
+
+            submitBtn.onclick = function () {
+                var iconFile = document.getElementById("iconFile").files[0];
+                var pkgFile = document.getElementById("pkgFile").files[0];
+                
                 submitBtn.disabled = true;
-                status.innerText = "Uploading files to GitHub...";
+                status.innerText = "Processing files...";
                 status.style.color = "blue";
 
-                try {
-                    const iconUrl = await uploadToGithub(iconFile, "uploads/icons");
-                    const pkgUrl = await uploadToGithub(pkgFile, "uploads/packages");
+                uploadToGithub(iconFile, "uploads/icons", function(iconUrl) {
+                    uploadToGithub(pkgFile, "uploads/packages", function(pkgUrl) {
+                        var currentID = generateID();
+                        var snippet = "    <app id=\"" + currentID + "\">\n" +
+                            "      <name>" + document.getElementById("appName").value + "</name>\n" +
+                            "      <version>" + document.getElementById("appVer").value + "</version>\n" +
+                            "      <icon>" + iconUrl + "</icon>\n" +
+                            "      <publisher>" + document.getElementById("appPub").value + "</publisher>\n" +
+                            "      <featured>false</featured>\n" +
+                            "      <description>" + document.getElementById("appDesc").value + "</description>\n" +
+                            "      <package>" + pkgUrl + "</package>\n" +
+                            "      <pcCapable>" + document.getElementById("pcCapable").checked + "</pcCapable>\n" +
+                            "      <mobileCapable>" + document.getElementById("mobileCapable").checked + "</mobileCapable>\n" +
+                            "    </app>";
 
-                    status.innerText = "Syncing apps.xml...";
-                    const currentID = generateID();
-                    const snippet = `    <app id="${currentID}">
-      <name>${document.getElementById("appName").value}</name>
-      <version>${document.getElementById("appVer").value}</version>
-      <icon>${iconUrl}</icon>
-      <publisher>${document.getElementById("appPub").value}</publisher>
-      <featured>false</featured>
-      <description>${document.getElementById("appDesc").value}</description>
-      <package>${pkgUrl}</package>
-      <pcCapable>${document.getElementById("pcCapable").checked}</pcCapable>
-      <mobileCapable>${document.getElementById("mobileCapable").checked}</mobileCapable>
-    </app>`;
-
-                    const success = await updateXml(snippet);
-                    if (success) {
-                        sendToDiscord(snippet, currentID);
-                        status.innerText = "Success! App is live and Discord notified.";
-                        status.style.color = "green";
-                    } else { throw new Error("Sync failed."); }
-                } catch (e) {
-                    status.innerText = "Error: " + e.message;
-                    status.style.color = "red";
-                    submitBtn.disabled = false;
-                }
+                        updateXml(snippet, function() {
+                            var discordPayload = JSON.stringify({ content: "🚀 **New Submission! ID: " + currentID + "**\n```xml\n" + snippet + "\n```" });
+                            var dxhr = new XMLHttpRequest();
+                            dxhr.open("POST", webhookXml, true);
+                            dxhr.setRequestHeader("Content-Type", "application/json");
+                            dxhr.send(discordPayload);
+                            
+                            status.innerText = "Success! Live on GitHub and Discord.";
+                            status.style.color = "green";
+                        }, function(err) { status.innerText = err; status.style.color = "red"; });
+                    }, function(err) { status.innerText = err; status.style.color = "red"; });
+                }, function(err) { status.innerText = err; status.style.color = "red"; });
             };
         })();
     </script>
