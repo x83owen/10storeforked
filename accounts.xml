@@ -1,16 +1,2 @@
 <accounts>
-    <user>
-        <email>draydenthemiiyt@10store.com</email>
-        <password>drayden111</password>
-        <name>DraydenYT</name>
-            
-        
-        
-        
-        
-        
-        
-        <review rating="4" appId="I6LbwAai"><date>2026-01-31</date>test</review>
-        <review rating="4" appId="L9h3OvMn"><date>2026-01-31</date>nice</review>
-        <review rating="5" appId="fmaNojRN"><date>2026-01-31</date>this is an edit</review><review rating="5" appId="4jvHHTQI"><date>2026-01-31</date>2026-01-31test</review></user>
-<user><name>bob</name><email>bob</email><password>bob</password><review rating="5" appId="4jvHHTQI"><date>2026-01-31</date>lol</review></user></accounts>
+</accounts>
