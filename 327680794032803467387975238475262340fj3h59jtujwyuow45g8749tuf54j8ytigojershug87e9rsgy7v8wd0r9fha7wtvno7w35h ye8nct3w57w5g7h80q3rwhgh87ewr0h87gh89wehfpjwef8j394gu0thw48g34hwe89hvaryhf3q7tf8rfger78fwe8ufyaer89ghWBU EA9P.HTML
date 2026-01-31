@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Admin Review - 10-Store</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; padding: 20px; }
+        .dashboard { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .app-card { border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 5px; display: flex; gap: 20px; }
+        .app-icon { width: 100px; height: 100px; object-fit: contain; background: #eee; border-radius: 10px; }
+        .app-info { flex-grow: 1; }
+        .app-info h2 { margin: 0 0 10px 0; color: #0078D7; }
+        .details { font-size: 14px; line-height: 1.6; }
+        .controls { margin-top: 15px; display: flex; gap: 10px; align-items: center; }
+        button { padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer; font-weight: 600; }
+        .btn-approve { background: #107c10; color: white; }
+        .btn-decline { background: #e81123; color: white; }
+        .status-msg { text-align: center; font-weight: bold; margin-bottom: 20px; }
+        #no-apps { text-align: center; color: #666; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <h1>App Review Queue</h1>
+    <div id="status" class="status-msg">Loading apps...</div>
+    <div id="no-apps">No apps currently pending review.</div>
+    <div id="app-list"></div>
+</div>
+
+<script src="config.js"></script>
+<script>
+(async function() {
+    const PENDING_FILE = "apppending.xml";
+    const FINAL_FILE = "apps.xml";
+    
+    // Safety Check: Try to get variables from window or direct global scope
+    const token = window.GITHUB_TOKEN || (typeof GITHUB_TOKEN !== 'undefined' ? GITHUB_TOKEN : null);
+    const owner = window.GITHUB_OWNER || (typeof GITHUB_OWNER !== 'undefined' ? GITHUB_OWNER : null);
+    const repo = window.GITHUB_REPO || (typeof GITHUB_REPO !== 'undefined' ? GITHUB_REPO : null);
+
+    const listContainer = document.getElementById('app-list');
+    const status = document.getElementById('status');
+
+    // If any variable is missing, stop and show an error on the screen
+    if (!token || !owner || !repo) {
+        status.innerHTML = `<span style="color:red">Error: Credentials not found!</span><br>
+        Make sure <strong>config.js</strong> is in the same folder and variables are named correctly.`;
+        console.error("Missing:", { token: !!token, owner: !!owner, repo: !!repo });
+        return;
+    }
+
+    async function getFile(path) {
+        const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        try {
+            const res = await fetch(url, { 
+                headers: { "Authorization": `token ${token}` } 
+            });
+            if (!res.ok) return null;
+            const data = await res.json();
+            // Use decodeURIComponent(escape()) to handle special characters in XML
+            return {
+                sha: data.sha,
+                content: decodeURIComponent(escape(atob(data.content)))
+            };
+        } catch (e) {
+            console.error("Fetch error:", e);
+            return null;
+        }
+    }
+
+    async function updateFiles(pendingContent, pendingSha, finalContent = null, finalSha = null) {
+        // Update Pending File (Delete or Update)
+        await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
+            method: "PUT",
+            headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+                message: "Admin: Processed review queue",
+                content: btoa(unescape(encodeURIComponent(pendingContent))),
+                sha: pendingSha
+            })
+        });
+
+        // Update Final File if approving
+        if (finalContent && finalSha) {
+            await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
+                method: "PUT",
+                headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    message: "Admin: Approved new app",
+                    content: btoa(unescape(encodeURIComponent(finalContent))),
+                    sha: finalSha
+                })
+            });
+        }
+        location.reload(); // Refresh to show current state
+    }
+
+    const pendingData = await getFile(PENDING_FILE);
+    if (!pendingData) {
+        status.innerText = "Error: Could not load pending file.";
+        return;
+    }
+
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(pendingData.content, "text/xml");
+    const apps = xmlDoc.getElementsByTagName("app");
+
+    if (apps.length === 0) {
+        status.style.display = "none";
+        document.getElementById('no-apps').style.display = "block";
+        return;
+    }
+
+    status.innerText = `Found ${apps.length} app(s) waiting for review.`;
+
+    Array.from(apps).forEach(app => {
+        const id = app.getAttribute("id");
+        const name = app.getElementsByTagName("name")[0].textContent;
+        const icon = app.getElementsByTagName("icon")[0].textContent;
+        const version = app.getElementsByTagName("version")[0].textContent;
+        const publisher = app.getElementsByTagName("publisher")[0].textContent;
+        const desc = app.getElementsByTagName("description")[0].textContent;
+
+        const card = document.createElement('div');
+        card.className = 'app-card';
+        card.innerHTML = `
+            <img src="${icon}" class="app-icon" onerror="this.src='https://via.placeholder.com/100?text=No+Icon'">
+            <div class="app-info">
+                <h2>${name}</h2>
+                <div class="details">
+                    <strong>ID:</strong> ${id} | <strong>Version:</strong> ${version}<br>
+                    <strong>Publisher:</strong> ${publisher}<br>
+                    <p>${desc}</p>
+                </div>
+                <div class="controls">
+                    <input type="checkbox" id="feat-${id}"> <label for="feat-${id}">Featured</label>
+                    <button class="btn-approve" onclick="processApp('${id}', true)">Approve</button>
+                    <button class="btn-decline" onclick="processApp('${id}', false)">Decline</button>
+                </div>
+            </div>
+        `;
+        listContainer.appendChild(card);
+    });
+
+    window.processApp = async function(appId, isApproved) {
+        status.innerText = "Processing... please wait.";
+        const isFeatured = document.getElementById(`feat-${appId}`).checked;
+        
+        // 1. Get the app XML string
+        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
+        const appMatches = pendingData.content.match(appRegex);
+        if (!appMatches) return;
+        
+        let appXml = appMatches[0];
+        // Update featured status in the string
+        appXml = appXml.replace(/<featured>.*?<\/featured>/, `<featured>${isFeatured}</featured>`);
+
+        // 2. Remove from Pending
+        const newPendingContent = pendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
+
+        if (isApproved) {
+            const finalData = await getFile(FINAL_FILE);
+            if (!finalData) { alert("apps.xml not found!"); return; }
+            
+            const newFinalContent = finalData.content.replace('</apps>', `    ${appXml}\n</apps>`);
+            await updateFiles(newPendingContent, pendingData.sha, newFinalContent, finalData.sha);
+        } else {
+            // Just delete from pending
+            await updateFiles(newPendingContent, pendingData.sha);
+        }
+    };
+})();
+</script>
+
+</body>
+</html>
