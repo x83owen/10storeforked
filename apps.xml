@@ -602,6 +602,17 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
+    <app id="rfuy0ewsdyf89suf89ewsyhf09sduf">
+      <name>rfuy0ewsdyf89suf89ewsyhf09sduf</name>
+      <version>1.2.3.4</version>
+      <icon>https://example.com/asfdasd.png</icon>
+      <publisher>se79fdydwsijufdshgcuhgshdf8yes</publisher>
+      <featured>true</featured>
+      <description>dsftjisdfuhjdsidfjds9usoxpfudsiofuseiodefjksdhf89reuhfoidfyf8dsuf9sduf09esudf09sduf98ewhf09sduf98esyfsod9iuf8dsf7e89suf8sdyfu8ef9sfyu78esyfisudfye78fy8esdfyes98fyds89fu8ds97fe89ridsfhudsuyfydsfiudstfd7sfgusdfhdsu9ifyds89fu94ret90ewfdsgfd9fguer9fd9sfusdkuidsfjudgfsuioresu9ewu9tr8ew59fdserwiurewifdsjj</description>
+      <package>https://example.com/asfdasd.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
 </apps>
 
 </data>
