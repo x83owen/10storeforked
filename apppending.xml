@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
+      <app id="67">
+      <name>67</name>
+      <version>6.7.6.7</version>
+      <icon>https://67.com/67.png</icon>
+      <publisher>67</publisher>
+      <featured>false</featured>
+      <description>fuck you drayden</description>
+      <package>https://67.com/67.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 </data>
