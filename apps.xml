@@ -545,6 +545,19 @@ dont delete it please, it need</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="we-become-what-we-behold">
+      <name>We Become What We Behold</name>
+      <version>1.0.0.0</version>
+      <icon>https://dankassassin368.com/random/icons/b68f06fe677586f649fa3a530c4ac5eb.png</icon>
+      <publisher>SquareDude</publisher>
+      <featured>false</featured>
+      <description>This is a unofficial port of We Become What we Behold. Please ask me on Discord if you need help or feedback or ask another person.
+
+Original Game: https://ncase.itch.io/wbwwb</description>
+      <package>https://dl.dankassassin368.com/WBWWB_1.0.0.0_x86__xygddxjqvswne.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
