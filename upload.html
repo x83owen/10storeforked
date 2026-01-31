@@ -117,7 +117,6 @@
         return name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
     }
 
-    // --- NEW VALIDATION LOGIC ---
     function validateForm() {
         const isNameValid = nameInput.value.trim().length > 0;
         const isPubValid = pubInput.value.trim().length > 0;
@@ -129,7 +128,7 @@
         submitBtn.disabled = !(isNameValid && isPubValid && isVerValid && isIconValid && isPkgValid && isCompatValid);
     }
 
-    // Listeners for Validation and Counters
+    // Listeners for Validation
     [nameInput, pubInput, verInput, iconInput, pkgInput, pcCheck, mobileCheck].forEach(el => {
         el.addEventListener('input', validateForm);
     });
@@ -138,14 +137,18 @@
     pubInput.onkeyup = () => { document.getElementById("pubCount").innerText = pubInput.value.length + " / 30"; };
     descInput.onkeyup = () => { document.getElementById("descCount").innerText = descInput.value.length + " / 300"; };
 
-    // --- GITHUB LOGIC ---
     async function commitToGithub(name, xmlSnippet) {
-        const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+        // Accessing the variables that were exported to window in config.js
+        const token = window.GITHUB_TOKEN;
+        const owner = window.GITHUB_OWNER;
+        const repo = window.GITHUB_REPO;
+        
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${FILE_PATH}`;
         const appId = generateIdFromName(name);
         
         try {
             const response = await fetch(apiUrl, {
-                headers: { "Authorization": `token ${GITHUB_TOKEN}` }
+                headers: { "Authorization": `token ${token}` }
             });
             
             if (!response.ok) throw new Error("Could not find apppending.xml");
@@ -165,7 +168,7 @@
             const updateResponse = await fetch(apiUrl, {
                 method: "PUT",
                 headers: {
-                    "Authorization": `token ${GITHUB_TOKEN}`,
+                    "Authorization": `token ${token}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
