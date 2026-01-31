@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
+      <app id="accuweather-64-bit">
+      <name>AccuWeather (64 bit)</name>
+      <version>2.1.7.2</version>
+      <icon>https://i.ibb.co/1JZvRLW5/App-Icon-WMW.png</icon>
+      <publisher>AccuWeather for Windows</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Apps/AccuWeather/AccuWeather.AccuWeatherforWindows8_2.1.7.2_x64__8zz2pj9h1h1d8.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
   </apps>
 </data>
