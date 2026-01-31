@@ -24,7 +24,6 @@
             background: #f3f3f3; color: #333; border: 1px solid #ccc; padding: 10px;
             cursor: pointer; width: 100%; margin-top: 10px; font-size: 13px;
         }
-        /* Grey out style */
         .btn-primary:disabled { background: #ccc !important; cursor: not-allowed; opacity: 0.8; }
         
         #statusMsg { text-align: center; margin-top: 15px; font-size: 14px; font-weight: 600; min-height: 20px; }
@@ -55,6 +54,7 @@
         <button type="button" class="btn-primary" id="mainBtn" disabled>Sign in</button>
         <button type="button" class="btn-secondary" id="toggleBtn">Create new account</button>
     </div>
+
 <script>
 (function () {
     var mode = "signin"; 
@@ -62,9 +62,8 @@
     const GITHUB_OWNER = "draydenthemiiyt-maker";
     const GITHUB_REPO = "10-Store";
     const FILE_PATH = "accounts.xml";
-    const API_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`;
+    const API_URL = "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + FILE_PATH;
 
-    // UI Elements
     var nameGroup = document.getElementById("nameGroup"),
         nameInput = document.getElementById("userName"),
         emailInput = document.getElementById("userEmail"),
@@ -73,14 +72,23 @@
         mainBtn = document.getElementById("mainBtn"),
         statusEl = document.getElementById("statusMsg");
 
+    // Force validation on load
     function validate() {
-        var emailVal = emailInput.value.trim(),
-            passVal = passInput.value.trim(),
-            nameVal = nameInput.value.trim();
-        mainBtn.disabled = (mode === "signin") ? !(emailVal && passVal) : !(emailVal && passVal && nameVal);
+        var emailVal = emailInput.value.trim();
+        var passVal = passInput.value.trim();
+        var nameVal = nameInput.value.trim();
+        
+        if (mode === "signin") {
+            mainBtn.disabled = (emailVal.length === 0 || passVal.length === 0);
+        } else {
+            mainBtn.disabled = (emailVal.length === 0 || passVal.length === 0 || nameVal.length === 0);
+        }
     }
 
-    [nameInput, emailInput, passInput].forEach(function(i) { i.oninput = validate; });
+    // Attach listeners
+    emailInput.addEventListener('input', validate);
+    passInput.addEventListener('input', validate);
+    nameInput.addEventListener('input', validate);
 
     toggleBtn.onclick = function() {
         mode = (mode === "signin") ? "signup" : "signin";
@@ -92,7 +100,6 @@
         validate();
     };
 
-    // --- GITHUB AUTH LOGIC ---
     mainBtn.onclick = async function() {
         statusEl.className = "";
         statusEl.innerText = "Connecting to GitHub...";
@@ -103,10 +110,10 @@
         const name = nameInput.value.trim();
 
         try {
-            // 1. Get current accounts.xml
             const res = await fetch(API_URL, {
-                headers: { "Authorization": `token ${GITHUB_TOKEN.trim()}` }
+                headers: { "Authorization": "token " + GITHUB_TOKEN.trim() }
             });
+            
             if (!res.ok) throw new Error("Could not connect to account database.");
 
             const data = await res.json();
@@ -119,14 +126,14 @@
             let existingUser = null;
 
             for (let i = 0; i < users.length; i++) {
-                if (users[i].getElementsByTagName("email")[0].textContent.toLowerCase() === email) {
+                var emailNode = users[i].getElementsByTagName("email")[0];
+                if (emailNode && emailNode.textContent.toLowerCase() === email) {
                     existingUser = users[i];
                     break;
                 }
             }
 
             if (mode === "signin") {
-                // SIGN IN LOGIC
                 if (existingUser && existingUser.getElementsByTagName("password")[0].textContent === password) {
                     const foundName = existingUser.getElementsByTagName("name")[0].textContent;
                     handleSuccess(email, foundName);
@@ -134,10 +141,8 @@
                     throw new Error("Invalid email or password.");
                 }
             } else {
-                // SIGN UP LOGIC
                 if (existingUser) throw new Error("Account already exists.");
 
-                // Create new user XML nodes
                 const newUser = xmlDoc.createElement("user");
                 const nName = xmlDoc.createElement("name"); nName.textContent = name;
                 const nEmail = xmlDoc.createElement("email"); nEmail.textContent = email;
@@ -148,18 +153,17 @@
                 newUser.appendChild(nPass);
                 xmlDoc.documentElement.appendChild(newUser);
 
-                // Push back to GitHub
                 const serializer = new XMLSerializer();
                 const updatedXml = serializer.serializeToString(xmlDoc);
                 
                 const putRes = await fetch(API_URL, {
                     method: "PUT",
                     headers: { 
-                        "Authorization": `token ${GITHUB_TOKEN.trim()}`,
+                        "Authorization": "token " + GITHUB_TOKEN.trim(),
                         "Content-Type": "application/json" 
                     },
                     body: JSON.stringify({
-                        message: `Register user: ${email}`,
+                        message: "Register user: " + email,
                         content: btoa(unescape(encodeURIComponent(updatedXml))),
                         sha: sha
                     })
@@ -180,7 +184,6 @@
         statusEl.className = "success-text";
         statusEl.innerText = "Success! Redirecting...";
         
-        // Find redirect URI in query string
         const params = new URLSearchParams(window.location.search);
         const redirectUri = params.get("redirect_uri");
 
@@ -188,7 +191,6 @@
             const resultStr = "#email=" + encodeURIComponent(email) + "&name=" + encodeURIComponent(name);
             window.location.href = redirectUri + resultStr;
         } else {
-            // Default fallback if no redirect provided
             alert("Signed in as " + name);
         }
     }
