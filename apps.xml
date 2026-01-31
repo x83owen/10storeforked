@@ -545,6 +545,17 @@ dont delete it please, it need</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="test">
+      <name>test</name>
+      <version>0.0.0.0</version>
+      <icon>https://.png</icon>
+      <publisher>test</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
 </apps>
 
 </data>
