@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8" />
-    <title>Account</title>
+    <title>logon</title>
     <style>
         html, body {
             height: 100%; margin: 0; background: #ffffff;
@@ -55,104 +55,144 @@
         <button type="button" class="btn-primary" id="mainBtn" disabled>Sign in</button>
         <button type="button" class="btn-secondary" id="toggleBtn">Create new account</button>
     </div>
-
 <script>
-    (function () {
-        var mode = "signin"; 
+(function () {
+    var mode = "signin"; 
+    const GITHUB_TOKEN = "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";
+    const GITHUB_OWNER = "draydenthemiiyt-maker";
+    const GITHUB_REPO = "10-Store";
+    const FILE_PATH = "accounts.xml";
+    const API_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${FILE_PATH}`;
 
-        // UI Elements
-        var nameGroup = document.getElementById("nameGroup");
-        var nameInput = document.getElementById("userName");
-        var emailInput = document.getElementById("userEmail");
-        var passInput = document.getElementById("userPass");
-        var toggleBtn = document.getElementById("toggleBtn");
-        var mainBtn = document.getElementById("mainBtn");
-        var statusEl = document.getElementById("statusMsg");
+    // UI Elements
+    var nameGroup = document.getElementById("nameGroup"),
+        nameInput = document.getElementById("userName"),
+        emailInput = document.getElementById("userEmail"),
+        passInput = document.getElementById("userPass"),
+        toggleBtn = document.getElementById("toggleBtn"),
+        mainBtn = document.getElementById("mainBtn"),
+        statusEl = document.getElementById("statusMsg");
 
-        // --- GREY OUT LOGIC ---
-        function validate() {
-            var emailVal = emailInput.value.trim();
-            var passVal = passInput.value.trim();
-            var nameVal = nameInput.value.trim();
+    function validate() {
+        var emailVal = emailInput.value.trim(),
+            passVal = passInput.value.trim(),
+            nameVal = nameInput.value.trim();
+        mainBtn.disabled = (mode === "signin") ? !(emailVal && passVal) : !(emailVal && passVal && nameVal);
+    }
+
+    [nameInput, emailInput, passInput].forEach(function(i) { i.oninput = validate; });
+
+    toggleBtn.onclick = function() {
+        mode = (mode === "signin") ? "signup" : "signin";
+        document.getElementById("authTitle").innerText = (mode === "signin") ? "Sign in" : "Create account";
+        mainBtn.innerText = (mode === "signin") ? "Sign in" : "Register";
+        toggleBtn.innerText = (mode === "signin") ? "Create new account" : "Back to Sign in";
+        nameGroup.style.display = (mode === "signup") ? "block" : "none";
+        statusEl.innerText = "";
+        validate();
+    };
+
+    // --- GITHUB AUTH LOGIC ---
+    mainBtn.onclick = async function() {
+        statusEl.className = "";
+        statusEl.innerText = "Connecting to GitHub...";
+        mainBtn.disabled = true;
+
+        const email = emailInput.value.trim().toLowerCase();
+        const password = passInput.value.trim();
+        const name = nameInput.value.trim();
+
+        try {
+            // 1. Get current accounts.xml
+            const res = await fetch(API_URL, {
+                headers: { "Authorization": `token ${GITHUB_TOKEN.trim()}` }
+            });
+            if (!res.ok) throw new Error("Could not connect to account database.");
+
+            const data = await res.json();
+            const sha = data.sha;
+            const xmlText = decodeURIComponent(escape(atob(data.content)));
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlText, "text/xml");
             
-            if (mode === "signin") {
-                mainBtn.disabled = !(emailVal && passVal);
-            } else {
-                mainBtn.disabled = !(emailVal && passVal && nameVal);
-            }
-        }
+            const users = xmlDoc.getElementsByTagName("user");
+            let existingUser = null;
 
-        [nameInput, emailInput, passInput].forEach(function(i) { 
-            i.oninput = validate; 
-        });
-
-        // --- TOGGLE LOGIC ---
-        toggleBtn.onclick = function() {
-            mode = (mode === "signin") ? "signup" : "signin";
-            document.getElementById("authTitle").innerText = (mode === "signin") ? "Sign in" : "Create account";
-            mainBtn.innerText = (mode === "signin") ? "Sign in" : "Register";
-            toggleBtn.innerText = (mode === "signin") ? "Create new account" : "Back to Sign in";
-            
-            nameGroup.style.display = (mode === "signup") ? "block" : "none";
-            statusEl.innerText = "";
-            validate();
-        };
-
-        // --- SUBMIT LOGIC ---
-        mainBtn.onclick = function() {
-            statusEl.className = "";
-            statusEl.innerText = "Processing...";
-            mainBtn.disabled = true;
-
-            var payload = {
-                action: mode,
-                email: emailInput.value.trim().toLowerCase(),
-                password: passInput.value.trim(),
-                name: nameInput.value.trim()
-            };
-
-            var xhr = new XMLHttpRequest();
-            // Using absolute URL to ensure connectivity in WAB
-            xhr.open("POST", "https://10storedraydenyt.netlify.app/.netlify/functions/handle-accounts", true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    try {
-                        var resp = JSON.parse(xhr.responseText);
-                        if (xhr.status === 200) {
-                            statusEl.className = "success-text";
-                            statusEl.innerText = "Success! Redirecting...";
-                            
-                            var urlParams = location.search.substring(1).split('&');
-                            var redirectUri = "";
-                            for(var i=0; i < urlParams.length; i++) {
-                                if(urlParams[i].indexOf("redirect_uri=") === 0) {
-                                    redirectUri = decodeURIComponent(urlParams[i].split('=')[1]);
-                                }
-                            }
-
-                            if (redirectUri) {
-                                // Returning email and name (No photo requirement)
-                                var resultStr = "#email=" + encodeURIComponent(payload.email) + 
-                                               "&name=" + encodeURIComponent(resp.name || payload.name);
-                                window.location.href = redirectUri + resultStr;
-                            }
-                        } else {
-                            statusEl.className = "error-text";
-                            statusEl.innerText = resp.error || "Error";
-                            mainBtn.disabled = false;
-                        }
-                    } catch (e) {
-                        statusEl.className = "error-text";
-                        statusEl.innerText = "Server Error";
-                        mainBtn.disabled = false;
-                    }
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].getElementsByTagName("email")[0].textContent.toLowerCase() === email) {
+                    existingUser = users[i];
+                    break;
                 }
-            };
-            xhr.send(JSON.stringify(payload));
-        };
-    })();
+            }
+
+            if (mode === "signin") {
+                // SIGN IN LOGIC
+                if (existingUser && existingUser.getElementsByTagName("password")[0].textContent === password) {
+                    const foundName = existingUser.getElementsByTagName("name")[0].textContent;
+                    handleSuccess(email, foundName);
+                } else {
+                    throw new Error("Invalid email or password.");
+                }
+            } else {
+                // SIGN UP LOGIC
+                if (existingUser) throw new Error("Account already exists.");
+
+                // Create new user XML nodes
+                const newUser = xmlDoc.createElement("user");
+                const nName = xmlDoc.createElement("name"); nName.textContent = name;
+                const nEmail = xmlDoc.createElement("email"); nEmail.textContent = email;
+                const nPass = xmlDoc.createElement("password"); nPass.textContent = password;
+                
+                newUser.appendChild(nName);
+                newUser.appendChild(nEmail);
+                newUser.appendChild(nPass);
+                xmlDoc.documentElement.appendChild(newUser);
+
+                // Push back to GitHub
+                const serializer = new XMLSerializer();
+                const updatedXml = serializer.serializeToString(xmlDoc);
+                
+                const putRes = await fetch(API_URL, {
+                    method: "PUT",
+                    headers: { 
+                        "Authorization": `token ${GITHUB_TOKEN.trim()}`,
+                        "Content-Type": "application/json" 
+                    },
+                    body: JSON.stringify({
+                        message: `Register user: ${email}`,
+                        content: btoa(unescape(encodeURIComponent(updatedXml))),
+                        sha: sha
+                    })
+                });
+
+                if (putRes.ok) handleSuccess(email, name);
+                else throw new Error("Failed to save account to GitHub.");
+            }
+
+        } catch (err) {
+            statusEl.className = "error-text";
+            statusEl.innerText = err.message;
+            mainBtn.disabled = false;
+        }
+    };
+
+    function handleSuccess(email, name) {
+        statusEl.className = "success-text";
+        statusEl.innerText = "Success! Redirecting...";
+        
+        // Find redirect URI in query string
+        const params = new URLSearchParams(window.location.search);
+        const redirectUri = params.get("redirect_uri");
+
+        if (redirectUri) {
+            const resultStr = "#email=" + encodeURIComponent(email) + "&name=" + encodeURIComponent(name);
+            window.location.href = redirectUri + resultStr;
+        } else {
+            // Default fallback if no redirect provided
+            alert("Signed in as " + name);
+        }
+    }
+})();
 </script>
 </body>
 </html>
