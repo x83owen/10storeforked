@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-      <app id="luma-store-desktop">
-      <name>Luma Store (Desktop)</name>
-      <version>1.0.0.0</version>
-      <icon>https://lumaprojects.github.io/store/icons/store.png</icon>
-      <publisher>Luma</publisher>
-      <featured>false</featured>
-      <description>app store for windows 10</description>
-      <package>https://lumaprojects.github.io/store/apps/LumaStoreDesktop.appxbundle</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
   </apps>
 </data>
