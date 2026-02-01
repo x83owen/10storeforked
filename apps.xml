@@ -624,6 +624,17 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="luma-store">
+      <name>Luma Store</name>
+      <version>1.0.0.0</version>
+      <icon>https://lumaprojects.github.io/store/icons/store.png</icon>
+      <publisher>Luma</publisher>
+      <featured>true</featured>
+      <description>app store for windows 10 mobile</description>
+      <package>https://lumaprojects.github.io/store/apps/LumaStoreMobile.appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
 </apps>
 
 </data>
