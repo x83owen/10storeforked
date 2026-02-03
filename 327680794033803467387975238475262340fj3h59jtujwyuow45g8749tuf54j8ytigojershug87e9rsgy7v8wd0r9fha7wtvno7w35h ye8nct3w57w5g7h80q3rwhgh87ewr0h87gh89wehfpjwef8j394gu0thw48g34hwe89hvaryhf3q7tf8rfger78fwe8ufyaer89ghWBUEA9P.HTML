@@ -40,33 +40,25 @@
         header h1 { margin: 0; font-size: 18px; font-weight: 400; }
 
         .main-layout { display: flex; flex: 1; overflow: hidden; }
-        .sidebar { width: 260px; background: #E6E6E6; padding: 20px; border-right: 1px solid #CCC; overflow-y: auto; }
+        .sidebar { width: 280px; background: #E6E6E6; padding: 20px; border-right: 1px solid #CCC; overflow-y: auto; }
         .content { flex: 1; padding: 30px; overflow-y: auto; }
-        .dashboard-container { max-width: 900px; margin: 0 auto; }
-
-        .section-title { font-size: 20px; font-weight: 300; margin: 30px 0 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; color: #333; }
+        
+        .section-title { font-size: 18px; font-weight: 300; margin: 20px 0 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px; color: var(--win-blue); }
 
         .upload-form input, .upload-form textarea { width: 100%; padding: 5px; margin-bottom: 8px; border: 1px solid #ccc; font-size: 12px; box-sizing: border-box; }
-        .upload-form textarea { resize: none; } /* Lock resize */
-        .upload-form h4 { margin: 10px 0 5px; font-size: 13px; color: var(--win-blue); }
+        .upload-form textarea { resize: none; }
         
-        .check-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
-        .check-group label { font-size: 11px; display: flex; align-items: center; gap: 3px; }
+        .cat-item { background: #DDD; padding: 5px 10px; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+        .cat-item button { padding: 2px 5px; font-size: 10px; margin-left: 2px; }
 
-        .app-card { background: white; border: 1px solid #DDD; padding: 20px; margin-bottom: 25px; display: flex; gap: 25px; position: relative; }
-        .app-icon { width: 100px; height: 100px; object-fit: contain; background: #F0F0F0; border: 1px solid #EEE; }
-        .app-info { flex-grow: 1; }
-        .app-info h2 { margin: 0 0 5px 0; color: #333; font-weight: 300; font-size: 22px; }
-        .pub-text { color: #666; font-size: 13px; margin-bottom: 10px; }
-
-        .controls { margin-top: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-        button { padding: 6px 20px; border: none; cursor: pointer; font-size: 13px; }
+        .app-card { background: white; border: 1px solid #DDD; padding: 15px; margin-bottom: 15px; display: flex; gap: 15px; }
+        .app-icon { width: 60px; height: 60px; object-fit: contain; background: #EEE; }
+        .app-info h2 { margin: 0; font-size: 18px; font-weight: 400; }
+        
+        button { cursor: pointer; border: none; padding: 5px 10px; font-size: 12px; }
         .btn-approve { background: var(--win-green); color: white; }
-        .btn-decline { background: #CCC; color: black; }
-        .btn-unpublish { background: #444; color: white; }
-        .btn-edit { background: var(--win-blue); color: white; }
-
-        .stats-box { background: white; border: 1px solid #CCC; padding: 15px; margin-top: 20px; font-size: 14px; }
+        .btn-red { background: var(--win-red); color: white; }
+        .btn-blue { background: var(--win-blue); color: white; }
     </style>
 </head>
 <body>
@@ -74,20 +66,20 @@
 <div id="login-overlay">
     <div class="login-box">
         <div class="user-avatar">👤</div>
-        <h2 style="font-weight:300;">10Store Admin</h2>
+        <h2>10Store Admin</h2>
         <input type="password" id="pass-input" placeholder="Password" autofocus>
         <button onclick="checkPass()">Log on</button>
-        <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Error</p>
+        <p id="fail-msg" style="color:red; display:none;">Incorrect Password</p>
     </div>
 </div>
 
 <div id="edit-modal">
     <div class="modal-box">
-        <h3 style="margin-top:0;">Edit App XML</h3>
+        <h3 id="modal-title">Edit XML</h3>
         <textarea id="xml-edit-area"></textarea>
         <div style="text-align:right;">
             <button onclick="closeEdit()">Cancel</button>
-            <button class="btn-approve" onclick="saveXmlEdit()">Save Changes</button>
+            <button class="btn-approve" onclick="saveXmlEdit()">Save</button>
         </div>
     </div>
 </div>
@@ -96,196 +88,183 @@
 
 <div class="main-layout">
     <div class="sidebar">
-        <h3>Dashboard</h3>
-        <div id="status" style="font-size:13px; color:#666; margin-bottom: 10px;">Waiting</div>
-        <hr>
+        <div id="status" style="font-weight:bold; margin-bottom:10px;">Waiting</div>
         
+        <div class="section-title">Categories</div>
+        <div id="category-list"></div>
+        <div style="margin-top:10px; display:flex; gap:2px;">
+            <input type="text" id="new-cat-name" placeholder="New Category" style="flex:1; padding:4px;">
+            <button class="btn-blue" onclick="addCategory()">+</button>
+        </div>
+
+        <div class="section-title">Quick Upload</div>
         <div class="upload-form">
-            <h4 style="margin-top:0;">Quick Upload</h4>
             <input type="text" id="up-name" placeholder="App Name">
             <input type="text" id="up-pub" placeholder="Publisher">
             <input type="text" id="up-ver" placeholder="Version">
             <input type="text" id="up-icon" placeholder="Icon URL">
             <input type="text" id="up-pkg" placeholder="Package URL">
-            <textarea id="up-desc" placeholder="Description" style="height:60px;"></textarea>
-            
-            <div class="check-group">
+            <textarea id="up-desc" placeholder="Description" style="height:50px;"></textarea>
+            <div style="font-size:11px;">
                 <label><input type="checkbox" id="up-feat"> Featured</label>
                 <label><input type="checkbox" id="up-pc" checked> PC</label>
-                <label><input type="checkbox" id="up-mob" checked> Mobile</label>
+                <label><input type="checkbox" id="up-mob" checked> Mob</label>
             </div>
-            
-            <button class="btn-approve" style="width:100%; margin-top:5px;" onclick="directUpload()">Publish</button>
-        </div>
-
-        <div class="stats-box">
-            Live Apps: <strong id="live-count">...</strong>
+            <button class="btn-approve" style="width:100%; margin-top:5px;" onclick="directUpload()">Publish App</button>
         </div>
     </div>
 
     <div class="content">
-        <div class="dashboard-container">
-            <h2 class="section-title">Pending</h2>
-            <div id="app-list"></div>
-            
-            <h2 class="section-title">Published</h2>
-            <div id="live-list"></div>
-        </div>
+        <h2 class="section-title">Pending</h2>
+        <div id="app-list"></div>
+        <h2 class="section-title">Published</h2>
+        <div id="live-list"></div>
     </div>
 </div>
 
 <script src="config.js"></script>
 <script src="pasw.js"></script>
 <script>
-let currentEditingId = null;
 let cachedFinalData = null;
 let cachedPendingData = null;
 
 function checkPass() {
-    const val = document.getElementById('pass-input').value;
-    if (val === PASSW) {
+    if (document.getElementById('pass-input').value === PASSW) {
         document.getElementById('login-overlay').style.display = 'none';
-        initDashboard(); // <--- THIS MUST BE HERE
-    } else {
-        document.getElementById('fail-msg').style.display = 'block';
-    }
+        initDashboard();
+    } else { document.getElementById('fail-msg').style.display = 'block'; }
 }
 
 async function initDashboard() {
+    const status = document.getElementById('status');
     const token = window.GITHUB_TOKEN || GITHUB_TOKEN;
     const owner = window.GITHUB_OWNER || GITHUB_OWNER;
     const repo = window.GITHUB_REPO || GITHUB_REPO;
-    const status = document.getElementById('status');
-    const PENDING_FILE = "apppending.xml";
-    const FINAL_FILE = "apps.xml";
 
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         try {
             const res = await fetch(url, { headers: { "Authorization": `token ${token}` } });
-            if (!res.ok) return null;
             const data = await res.json();
             return { sha: data.sha, content: decodeURIComponent(escape(atob(data.content))) };
         } catch (e) { return null; }
     }
 
-    cachedFinalData = await getFile(FINAL_FILE);
-    cachedPendingData = await getFile(PENDING_FILE);
+    cachedFinalData = await getFile("apps.xml");
+    cachedPendingData = await getFile("apppending.xml");
 
-    if (cachedFinalData || cachedPendingData) {
+    if (cachedFinalData) {
         status.innerText = "Connected";
-    } else {
-        status.innerText = "Error Loading Files";
+        renderCategories();
+        renderApps(cachedFinalData.content, 'live-list', true);
+        if(cachedPendingData) renderApps(cachedPendingData.content, 'app-list', false);
     }
 
-    function render(xmlContent, container, isLive) {
+    function renderCategories() {
+        const list = document.getElementById('category-list');
+        list.innerHTML = "";
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(cachedFinalData.content, "text/xml");
+        const cats = xmlDoc.getElementsByTagName("category");
+
+        Array.from(cats).forEach(cat => {
+            const title = cat.getAttribute("title");
+            const type = cat.getAttribute("type");
+            if (type === "featured") return; // Skip featured as requested
+
+            const div = document.createElement('div');
+            div.className = 'cat-item';
+            div.innerHTML = `
+                <span>${title}</span>
+                <div>
+                    <button onclick="renameCategory('${title}')">✎</button>
+                    <button class="btn-red" onclick="deleteCategory('${title}')">×</button>
+                </div>`;
+            list.appendChild(div);
+        });
+    }
+
+    function renderApps(xmlContent, containerId, isLive) {
+        const container = document.getElementById(containerId);
         container.innerHTML = "";
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlContent, "text/xml");
         const apps = xmlDoc.getElementsByTagName("app");
-        if(apps.length === 0) { container.innerHTML = "<p>No pending apps</p>"; return; }
 
         Array.from(apps).forEach(app => {
             const id = app.getAttribute("id");
             const name = app.getElementsByTagName("name")[0].textContent;
             const icon = app.getElementsByTagName("icon")[0].textContent;
-            
             const card = document.createElement('div');
             card.className = 'app-card';
             card.innerHTML = `
-                <img src="${icon}" class="app-icon" onerror="this.src='https://via.placeholder.com/100'">
+                <img src="${icon}" class="app-icon">
                 <div class="app-info">
                     <h2>${name}</h2>
-                    <div class="pub-text">ID: ${id}</div>
-                    <div class="controls">
-                        ${isLive ? 
-                            `<button class="btn-edit" onclick="openEdit('${id}')">Edit</button>
-                             <button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>` :
-                            `<input type="checkbox" id="feat-${id}"> Featured
-                             <button class="btn-decline" onclick="processApp('${id}', false)">Decline</button>
-                             <button class="btn-approve" onclick="processApp('${id}', true)">Approve</button>`
-                        }
-                    </div>
+                    <p style="font-size:10px; color:#666; margin:0;">ID: ${id}</p>
+                    <button class="btn-blue" onclick="openEdit('${id}')">Edit XML</button>
+                    ${isLive ? `<button class="btn-red" onclick="removeLive('${id}')">Remove</button>` : ''}
                 </div>`;
             container.appendChild(card);
         });
-        if(isLive) document.getElementById('live-count').innerText = apps.length;
     }
 
-    if(cachedPendingData) render(cachedPendingData.content, document.getElementById('app-list'), false);
-    if(cachedFinalData) render(cachedFinalData.content, document.getElementById('live-list'), true);
+    window.addCategory = async () => {
+        const name = document.getElementById('new-cat-name').value;
+        if(!name) return;
+        const newCatXml = `    <category title="${name}" type="picks">\n      <appIds></appIds>\n    </category>`;
+        const updatedXml = cachedFinalData.content.replace('</categories>', `${newCatXml}\n  </categories>`);
+        await commit(updatedXml);
+    };
 
-    window.directUpload = async function() {
-        const nameVal = document.getElementById('up-name').value;
-        const idVal = nameVal.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-        
-        const pub = document.getElementById('up-pub').value;
-        const ver = document.getElementById('up-ver').value;
-        const icon = document.getElementById('up-icon').value;
-        const pkg = document.getElementById('up-pkg').value;
-        const desc = document.getElementById('up-desc').value;
-        const feat = document.getElementById('up-feat').checked;
-        const pc = document.getElementById('up-pc').checked;
-        const mob = document.getElementById('up-mob').checked;
+    window.renameCategory = async (oldName) => {
+        const newName = prompt("Rename category to:", oldName);
+        if(!newName || newName === oldName) return;
+        const updatedXml = cachedFinalData.content.replace(`title="${oldName}"`, `title="${newName}"`);
+        await commit(updatedXml);
+    };
 
-        if(!nameVal || !pkg) return alert("Name and Package URL required!");
+    window.deleteCategory = async (name) => {
+        if(!confirm(`Delete category "${name}"?`)) return;
+        const regex = new RegExp(`\\s*<category title="${name}"[\\s\\S]*?<\\/category>`, 'g');
+        const updatedXml = cachedFinalData.content.replace(regex, "");
+        await commit(updatedXml);
+    };
 
+    window.directUpload = async () => {
+        const name = document.getElementById('up-name').value;
+        const id = name.toLowerCase().replace(/[^a-z0-9]/g, '-');
         const appXml = `
-    <app id="${idVal}">
-        <name>${nameVal}</name>
-        <version>${ver}</version>
-        <icon>${icon}</icon>
-        <publisher>${pub}</publisher>
-        <featured>${feat}</featured>
-        <description>${desc}</description>
-        <package>${pkg}</package>
-        <pcCapable>${pc}</pcCapable>
-        <mobileCapable>${mob}</mobileCapable>
+    <app id="${id}">
+        <name>${name}</name>
+        <version>${document.getElementById('up-ver').value}</version>
+        <icon>${document.getElementById('up-icon').value}</icon>
+        <publisher>${document.getElementById('up-pub').value}</publisher>
+        <featured>${document.getElementById('up-feat').checked}</featured>
+        <description>${document.getElementById('up-desc').value}</description>
+        <package>${document.getElementById('up-pkg').value}</package>
+        <pcCapable>${document.getElementById('up-pc').checked}</pcCapable>
+        <mobileCapable>${document.getElementById('up-mob').checked}</mobileCapable>
     </app>`;
-
-        status.innerText = "Uploading...";
-        const newFinal = cachedFinalData.content.replace('</apps>', `${appXml}\n</apps>`);
-        await commit(null, null, newFinal, cachedFinalData.sha);
-    }
-
-    window.openEdit = (id) => {
-        currentEditingId = id;
-        const match = cachedFinalData.content.match(new RegExp(`<app id="${id}">[\\s\\S]*?<\\/app>`));
-        if (match) {
-            document.getElementById('xml-edit-area').value = match[0].trim();
-            document.getElementById('edit-modal').style.display = 'flex';
-        }
+        const updatedXml = cachedFinalData.content.replace('</apps>', `${appXml}\n</apps>`);
+        await commit(updatedXml);
     };
 
-    window.closeEdit = () => document.getElementById('edit-modal').style.display = 'none';
-
-    window.saveXmlEdit = async () => {
-        const newXml = document.getElementById('xml-edit-area').value;
-        const newFinal = cachedFinalData.content.replace(new RegExp(`<app id="${currentEditingId}">[\\s\\S]*?<\\/app>`), newXml);
-        await commit(null, null, newFinal, cachedFinalData.sha);
-    };
-
-    window.removeLive = async (id) => {
-        if(!confirm("Remove?")) return;
-        const newFinal = cachedFinalData.content.replace(new RegExp(`<app id="${id}">[\\s\\S]*?<\\/app>`, 'g'), "").replace(/\n\s*\n/g, '\n');
-        await commit(null, null, newFinal, cachedFinalData.sha);
-    };
-
-    async function commit(pContent, pSha, fContent, fSha) {
-        const headers = { "Authorization": `token ${token}`, "Content-Type": "application/json" };
-        if (fContent) {
-            await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
-                method: "PUT", headers,
-                body: JSON.stringify({ message: "Update Live", content: btoa(unescape(encodeURIComponent(fContent))), sha: fSha })
-            });
-        }
-        location.reload();
+    async function commit(newXml) {
+        status.innerText = "Saving...";
+        const url = `https://api.github.com/repos/${owner}/${repo}/contents/apps.xml`;
+        const res = await fetch(url, {
+            method: "PUT",
+            headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+                message: "Admin Update",
+                content: btoa(unescape(encodeURIComponent(newXml))),
+                sha: cachedFinalData.sha
+            })
+        });
+        if(res.ok) location.reload();
     }
 }
 </script>
 </body>
 </html>
-
-
-
-
