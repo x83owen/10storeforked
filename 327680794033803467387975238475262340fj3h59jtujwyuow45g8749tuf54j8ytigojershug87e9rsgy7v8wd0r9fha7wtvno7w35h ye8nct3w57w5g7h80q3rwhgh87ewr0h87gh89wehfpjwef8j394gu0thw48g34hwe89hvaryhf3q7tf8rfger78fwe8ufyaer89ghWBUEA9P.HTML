@@ -141,6 +141,7 @@ async function initDashboard() {
     const token = window.GITHUB_TOKEN || GITHUB_TOKEN;
     const owner = window.GITHUB_OWNER || GITHUB_OWNER;
     const repo = window.GITHUB_REPO || GITHUB_REPO;
+    document.getElementById('status').innerText = "Connected";
 
     const listContainer = document.getElementById('app-list');
     const liveContainer = document.getElementById('live-list');
@@ -193,7 +194,7 @@ async function initDashboard() {
                     <div class="pub-text">ID: ${id}</div>
                     <div class="controls">
                         ${isLive ? 
-                            `<button class="btn-unpublish" onclick="removeLive('${id}')">Remove from Store</button>` :
+                            `<button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>` :
                             `<input type="checkbox" id="feat-${id}"> Featured
                              <button class="btn-decline" onclick="processApp('${id}', false)">Decline</button>
                              <button class="btn-approve" onclick="processApp('${id}', true)">Approve</button>`
@@ -259,4 +260,5 @@ async function initDashboard() {
 </script>
 </body>
 </html>
+
 
