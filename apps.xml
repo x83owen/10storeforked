@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><data>
   <categories>
     <category title="Featured" type="featured"/>
-    
-    <category title="Developer Picks" type="picks">
-      <appIds>fmaNojRN,DecV6P0t,NR8KNi94,4jvHHTQI,I6LbwAai</appIds>
-    </category>
   </categories>
   <apps>
     <app id="fresh-paint">
