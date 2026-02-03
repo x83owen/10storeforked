@@ -560,17 +560,5 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
-    <app id="test-app">
-        <name>Test app</name>
-        <version>0.0.0.0</version>
-        <icon>https://</icon>
-        <publisher>test</publisher>
-        <featured>true</featured>
-        <description></description>
-        <package>https://</package>
-        <pcCapable>true</pcCapable>
-        <mobileCapable>true</mobileCapable>
-    </app>
 </apps>
 </data>
