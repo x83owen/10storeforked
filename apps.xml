@@ -294,6 +294,17 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="LhEiIzol">
+      <name>Talking Ginger</name>
+      <version>2.2.5.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/LhEiIzol-1000154122.png</icon>
+      <publisher>Outfit7</publisher>
+      <featured>false</featured>
+      <description/>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Talking%20Ginger/app.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
