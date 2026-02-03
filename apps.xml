@@ -72,6 +72,17 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>true</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
+    <app id="yi0cXIYB">
+      <name>PosXP</name>
+      <version>1.14.29.0</version>
+      <icon>https://i.ibb.co/mF2w56rp/Logo.png</icon>
+      <publisher>Alberto Rivelli</publisher>
+      <featured>false</featured>
+      <description>Cash register POS software for bars and small shops. Very simple to use and fast.</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Apps/PosXP/620AlbertoRivelli.PosXP_1.14.29.0_x86__hnskygdk5bh62.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
 </apps>
 
 </data>
