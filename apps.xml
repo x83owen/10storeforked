@@ -7,6 +7,9 @@
       <category title="Art" type="picks">
       <appIds></appIds>
     </category>
+      <category title="Dependencies" type="picks">
+      <appIds></appIds>
+    </category>
   </categories>
   <apps>
     <app id="fresh-paint">
