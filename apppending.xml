@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-      <app id="G8I0kPFQ">
-      <name>App Installer</name>
-      <version>1.0.20921.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/G8I0kPFQ-AppPackageStoreLogo.scale-200.png</icon>
-      <publisher>Microsoft Corporation</publisher>
-      <featured>true</featured>
-      <description>Microsoft App Installer for Windows Phone</description>
-      <package>https://dl.dankassassin368.com/App%20Installer.appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
       <app id="b34qM7q8">
       <name>7digital Music Store</name>
       <version>2.1.10.3</version>
