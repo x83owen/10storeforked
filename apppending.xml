@@ -34,17 +34,6 @@
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-      <app id="dY265Bi3">
-      <name>myTube!</name>
-      <version>4.0.19.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/dY265Bi3-Small%20Tile.scale-400.png</icon>
-      <publisher>Ryken Studio</publisher>
-      <featured>false</featured>
-      <description>A YouTube client. You need the API Keys for it to work</description>
-      <package>https://dl.dankassassin368.com/myTube%21_4.0.19.0_arm.Appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
       <app id="35pbG8B4">
       <name>Unigram Mobile Messenger</name>
       <version>21.12.6009.0</version>
