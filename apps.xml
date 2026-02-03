@@ -49,6 +49,17 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="MGCOWfUB">
+      <name>BrowserQuest</name>
+      <version>2.6.2.0</version>
+      <icon>https://i.ibb.co/9mf4T0Qm/Square150x150-Logo-scale-400.png</icon>
+      <publisher>Mads and Peter Sandberg Brun</publisher>
+      <featured>false</featured>
+      <description>BrowserQuest is a small multiplayer game inviting you to explore a world of adventure from your Windows device.</description>
+      <package>https://dl.dankassassin368.com/18476MPBrun.BrowserQuest_2.6.2.0_x86__5j38zygvezh8g.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
 </apps>
 
 </data>
