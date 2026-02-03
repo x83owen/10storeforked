@@ -159,8 +159,6 @@ async function initDashboard() {
     const PENDING_FILE = "apppending.xml";
     const FINAL_FILE = "apps.xml";
 
-status.innerText = "Connected";
-
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         try {
@@ -173,6 +171,12 @@ status.innerText = "Connected";
 
     cachedFinalData = await getFile(FINAL_FILE);
     cachedPendingData = await getFile(PENDING_FILE);
+
+    if (cachedFinalData || cachedPendingData) {
+        status.innerText = "Connected";
+    } else {
+        status.innerText = "Error Loading Files";
+    }
 
     function render(xmlContent, container, isLive) {
         container.innerHTML = "";
@@ -281,6 +285,7 @@ status.innerText = "Connected";
 </script>
 </body>
 </html>
+
 
 
 
