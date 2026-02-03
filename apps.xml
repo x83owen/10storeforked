@@ -484,6 +484,17 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="kRSswZ9K">
+      <name>Twitter (Bluetweety)</name>
+      <version>1.1.13.8</version>
+      <icon>https://i.ibb.co/5hHSWFht/124021.png</icon>
+      <publisher>migbrunluz</publisher>
+      <featured>false</featured>
+      <description>X (formerly Twitter) is a major microblogging and social networking service where users post short, 280-character messages, known as "tweets," which can include text, images, videos, and links.</description>
+      <package>https://dl.dankassassin368.com/9E2F88E3.Twitter_1.1.13.8_x86__wgeqdkkx372wm.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
