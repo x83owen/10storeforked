@@ -159,6 +159,8 @@ async function initDashboard() {
     const PENDING_FILE = "apppending.xml";
     const FINAL_FILE = "apps.xml";
 
+status.innerText = "Connected";
+
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         try {
@@ -279,5 +281,6 @@ async function initDashboard() {
 </script>
 </body>
 </html>
+
 
 
