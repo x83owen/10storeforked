@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?><data>
   <categories>
     <category title="Featured" type="featured"/>
+      <category title="Utilities" type="picks">
+      <appIds></appIds>
+    </category>
   </categories>
   <apps>
     <app id="fresh-paint">
