@@ -255,11 +255,12 @@ async function initDashboard() {
     if(cachedPendingData) render(cachedPendingData.content, listContainer, false);
     if(cachedFinalData) render(cachedFinalData.content, liveContainer, true);
 
-    // Direct Upload Action
+// Direct Upload Action
     window.directUpload = async function() {
-        const name = document.getElementById('up-name').value;
-        // Generate ID from Name: Lowercase, replace spaces/special chars with hyphens
-        const id = name.toLowerCase()
+        const originalName = document.getElementById('up-name').value; // Store original name
+        
+        // Generate ID from Name for internal use ONLY
+        const generatedId = originalName.toLowerCase()
                        .replace(/[^a-z0-9]/g, '-')
                        .replace(/-+/g, '-')
                        .replace(/^-|-$/g, '');
@@ -271,11 +272,12 @@ async function initDashboard() {
         const desc = document.getElementById('up-desc').value;
         const feat = document.getElementById('up-feat').checked;
 
-        if(!name || !pkg) return alert("Fill Name and Package URL!");
+        if(!originalName || !pkg) return alert("Fill Name and Package URL!");
 
+        // Use generatedId for the attribute, but originalName for the tag
         const appXml = `
-    <app id="${id}">
-        <name>${name}</name>
+    <app id="${generatedId}">
+        <name>${originalName}</name>
         <icon>${icon}</icon>
         <version>${ver}</version>
         <publisher>${pub}</publisher>
@@ -353,3 +355,4 @@ async function initDashboard() {
 </script>
 </body>
 </html>
+
