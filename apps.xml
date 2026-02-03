@@ -2,10 +2,10 @@
   <categories>
     <category title="Featured" type="featured"/>
     
-    <category title="Essential" type="picks">
-      <appIds>G8I0kPFQ,aW1FNDTD,GrJoGJjh</appIds>
-    </category><category title="Developer Picks" type="picks">
+    <category title="Developer Picks" type="picks">
       <appIds>fmaNojRN,DecV6P0t,NR8KNi94,4jvHHTQI,I6LbwAai</appIds>
+    </category><category title="Essential" type="picks">
+      <appIds>G8I0kPFQ,aW1FNDTD,GrJoGJjh</appIds>
     </category>
     <category title="Art" type="picks">
       <appIds>uW8BXX9k,taM6Wrqd</appIds>
