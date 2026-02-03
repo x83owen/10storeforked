@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>10-Store | Admin Panel</title>
+    <title>10-Store | Admin Review</title>
     <style>
         :root {
             --win-blue: #0078D7;
@@ -18,7 +18,7 @@
             display: flex; 
             flex-direction: column;
             height: 100vh;
-            overflow: hidden; 
+            overflow: hidden;
         }
 
         #login-overlay {
@@ -34,6 +34,7 @@
         }
 
         .login-box { text-align: center; width: 300px; }
+
         .user-avatar {
             width: 120px; height: 120px;
             background: #888; border-radius: 50%;
@@ -47,54 +48,60 @@
             background: rgba(0,0,0,0.2); color: white;
             box-sizing: border-box; outline: none; margin-bottom: 10px;
         }
+
         .login-box button {
-            background: rgba(255,255,255,0.2); border: 2px solid white;
-            color: white; width: 100%; padding: 8px; cursor: pointer;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white; color: white;
+            width: 100%; padding: 8px; cursor: pointer;
         }
 
         header {
-            background: var(--win-blue); color: white; padding: 10px 25px;
-            display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10;
+            background: var(--win-blue); color: white;
+            padding: 10px 25px; display: flex;
+            align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10;
         }
+
         header h1 { margin: 0; font-size: 18px; font-weight: 400; }
 
         .main-layout { display: flex; flex: 1; overflow: hidden; }
+
         .sidebar { width: 250px; background: #E6E6E6; padding: 20px; border-right: 1px solid #CCC; }
+
         .content { flex: 1; padding: 30px; overflow-y: auto; }
+
         .dashboard-container { max-width: 900px; margin: 0 auto; }
 
         .section-header { 
-            font-weight: 300; font-size: 28px; color: #333; 
-            margin: 40px 0 20px 0; padding-bottom: 10px; border-bottom: 2px solid #DDD; 
+            font-size: 20px; font-weight: 300; color: #333; 
+            margin: 30px 0 15px 0; padding-bottom: 5px; border-bottom: 2px solid #DDD;
         }
 
         .app-card { 
             background: white; border: 1px solid #DDD; 
-            padding: 20px; margin-bottom: 25px; display: flex; 
-            gap: 25px; position: relative;
+            padding: 20px; margin-bottom: 25px; 
+            display: flex; gap: 25px; position: relative;
         }
 
-        .app-icon { width: 120px; height: 120px; object-fit: contain; background: #F0F0F0; border: 1px solid #EEE; }
-        .app-info { flex-grow: 1; }
-        .app-info h2 { margin: 0 0 5px 0; color: #333; font-weight: 300; font-size: 24px; }
-        .pub-text { color: #666; font-size: 14px; margin-bottom: 15px; }
-        .details { font-size: 14px; line-height: 1.5; color: #444; }
-        
-        .asset-links { margin: 15px 0; padding: 10px 0; border-top: 1px solid #EEE; border-bottom: 1px solid #EEE; }
-        .asset-links a { color: var(--win-blue); text-decoration: none; margin-right: 20px; font-size: 13px; font-weight: 600; }
+        .app-icon { width: 100px; height: 100px; object-fit: contain; background: #F0F0F0; border: 1px solid #EEE; }
 
-        .controls { margin-top: 20px; display: flex; gap: 12px; align-items: center; }
-        button { padding: 8px 24px; border: none; cursor: pointer; font-family: inherit; font-size: 14px; }
+        .app-info { flex-grow: 1; }
+        .app-info h2 { margin: 0 0 5px 0; color: #333; font-weight: 300; font-size: 22px; }
         
+        .pub-text { color: #666; font-size: 13px; margin-bottom: 10px; }
+
+        .asset-links { margin: 10px 0; padding: 10px 0; border-top: 1px solid #EEE; border-bottom: 1px solid #EEE; }
+        .asset-links a { color: var(--win-blue); text-decoration: none; margin-right: 15px; font-size: 12px; font-weight: 600; }
+
+        .controls { margin-top: 15px; display: flex; gap: 10px; align-items: center; }
+
+        button { padding: 8px 20px; border: none; cursor: pointer; font-family: inherit; font-size: 13px; }
+
         .btn-approve { background: var(--win-green); color: white; }
         .btn-decline { background: #CCC; color: black; }
         .btn-unpublish { background: #555; color: white; }
         .btn-unpublish:hover { background: var(--win-red); }
 
-        .feat-container { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-right: auto; }
-        .status-msg { font-size: 14px; color: #666; margin-bottom: 20px; }
         .stats-box { background: white; border: 1px solid #CCC; padding: 15px; margin-top: 20px; font-size: 14px; }
-        .stats-box h4 { margin: 0 0 10px 0; font-weight: 600; color: var(--win-blue); }
     </style>
 </head>
 <body>
@@ -102,21 +109,21 @@
 <div id="login-overlay">
     <div class="login-box">
         <div class="user-avatar">👤</div>
-        <h2 style="font-weight:300;">10Store Admin</h2>
-        <input type="password" id="pass-input" placeholder="Admin Password" autofocus>
-        <button onclick="checkPass()">Log on</button>
-        <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Error</p>
+        <h2 style="font-weight:300;">Administrator</h2>
+        <input type="password" id="pass-input" placeholder="Password" autofocus>
+        <button onclick="checkPass()">Sign in</button>
+        <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Incorrect password.</p>
     </div>
 </div>
 
 <header>
-    <h1>10Store App Management</h1>
+    <h1>10-Store App Management</h1>
 </header>
 
 <div class="main-layout">
     <div class="sidebar">
         <h3>Dashboard</h3>
-        <p style="font-size: 13px; color: #555;">Review submissions or manage live listings.</p>
+        <p style="font-size: 13px; color: #555;">Review submissions or manage existing live apps.</p>
         <hr>
         <div id="status" class="status-msg">Waiting for login...</div>
         <div class="stats-box">
@@ -127,12 +134,12 @@
 
     <div class="content">
         <div class="dashboard-container">
-            <h2 class="section-header">Review Queue</h2>
-            <div id="no-apps" style="display:none; padding: 20px; color: #888;">Queue clear.</div>
+            <h2 class="section-header">Pending Reviews</h2>
+            <div id="no-apps" style="display:none; color: #888; font-style: italic;">No apps pending review.</div>
             <div id="app-list"></div>
 
             <h2 class="section-header">Live in Store</h2>
-            <div id="live-app-list"></div>
+            <div id="live-list"></div>
         </div>
     </div>
 </div>
@@ -142,8 +149,7 @@
 const CORRECT_PASS = "f578dsf67hsdf578h967g86s6f5875g69s7f8h5sd5g8sd9f67gds678fb7sv6dct6gensr7tc6w5et6cwfy9wr58hy84578wr578t4fw45ht8o";
 
 function checkPass() {
-    const input = document.getElementById('pass-input').value;
-    if (input === CORRECT_PASS) {
+    if (document.getElementById('pass-input').value === CORRECT_PASS) {
         document.getElementById('login-overlay').style.display = 'none';
         document.body.style.overflow = 'auto';
         initDashboard();
@@ -152,138 +158,137 @@ function checkPass() {
     }
 }
 
+document.getElementById('pass-input').addEventListener('keypress', (e) => e.key === 'Enter' && checkPass());
+
 async function initDashboard() {
     const PENDING_FILE = "apppending.xml";
     const FINAL_FILE = "apps.xml";
+    
     const token = window.GITHUB_TOKEN;
     const owner = window.GITHUB_OWNER;
     const repo = window.GITHUB_REPO;
 
     const listContainer = document.getElementById('app-list');
-    const liveListContainer = document.getElementById('live-app-list');
+    const liveContainer = document.getElementById('live-list');
     const status = document.getElementById('status');
     const liveCountEl = document.getElementById('live-count');
 
+    if (!token || !owner || !repo) {
+        status.innerHTML = `<span style="color:red">Config Error!</span>`;
+        return;
+    }
+
     async function getFile(path) {
-        const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-        try {
-            const res = await fetch(url, { headers: { "Authorization": `token ${token}` } });
-            if (!res.ok) return null;
-            const data = await res.json();
-            return { sha: data.sha, content: decodeURIComponent(escape(atob(data.content))) };
-        } catch (e) { return null; }
+        const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+            headers: { "Authorization": `token ${token}` }
+        });
+        if (!res.ok) return null;
+        const data = await res.json();
+        return { sha: data.sha, content: decodeURIComponent(escape(atob(data.content))) };
     }
 
-    // Load Live Apps
     const finalData = await getFile(FINAL_FILE);
-    if (finalData) {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(finalData.content, "text/xml");
-        const liveApps = xmlDoc.getElementsByTagName("app");
-        liveCountEl.innerText = liveApps.length;
-
-        Array.from(liveApps).forEach(app => {
-            renderCard(app, liveListContainer, true);
-        });
-    }
-
-    // Load Pending Apps
     const pendingData = await getFile(PENDING_FILE);
-    if (pendingData) {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(pendingData.content, "text/xml");
-        const apps = xmlDoc.getElementsByTagName("app");
-        if (apps.length === 0) document.getElementById('no-apps').style.display = "block";
-        status.innerText = `${apps.length} app(s) pending.`;
 
+    // --- Render Live Apps ---
+    if (finalData) {
+        const xmlDoc = new DOMParser().parseFromString(finalData.content, "text/xml");
+        const apps = xmlDoc.getElementsByTagName("app");
+        liveCountEl.innerText = apps.length;
+        
         Array.from(apps).forEach(app => {
-            renderCard(app, listContainer, false);
+            const id = app.getAttribute("id");
+            liveContainer.innerHTML += createCard(app, id, true);
         });
     }
 
-    function renderCard(app, container, isLive) {
-        const id = app.getAttribute("id");
+    // --- Render Pending Apps ---
+    if (pendingData) {
+        const xmlDoc = new DOMParser().parseFromString(pendingData.content, "text/xml");
+        const apps = xmlDoc.getElementsByTagName("app");
+        status.innerText = `${apps.length} pending apps.`;
+        if (apps.length === 0) document.getElementById('no-apps').style.display = "block";
+        
+        Array.from(apps).forEach(app => {
+            const id = app.getAttribute("id");
+            listContainer.innerHTML += createCard(app, id, false);
+        });
+    }
+
+    function createCard(app, id, isLive) {
         const name = app.getElementsByTagName("name")[0].textContent;
         const icon = app.getElementsByTagName("icon")[0].textContent;
         const version = app.getElementsByTagName("version")[0].textContent;
-        const publisher = app.getElementsByTagName("publisher")[0].textContent;
+        const pub = app.getElementsByTagName("publisher")[0].textContent;
         
-        const card = document.createElement('div');
-        card.className = 'app-card';
-        card.innerHTML = `
-            <img src="${icon}" class="app-icon" onerror="this.src='https://via.placeholder.com/120?text=No+Icon'">
-            <div class="app-info">
-                <h2>${name}</h2>
-                <div class="pub-text">ID: <strong>${id}</strong> | Publisher: <strong>${publisher}</strong></div>
-                <div class="details">Version: ${version}</div>
-                <div class="controls">
-                    ${isLive ? 
-                        `<button class="btn-unpublish" onclick="unpublishApp('${id}')">Unpublish App</button>` :
-                        `<div class="feat-container"><input type="checkbox" id="feat-${id}"><label for="feat-${id}">Featured</label></div>
-                         <button class="btn-decline" onclick="processApp('${id}', false)">Decline</button>
-                         <button class="btn-approve" onclick="processApp('${id}', true)">Approve</button>`
-                    }
+        return `
+            <div class="app-card">
+                <img src="${icon}" class="app-icon" onerror="this.src='https://via.placeholder.com/100'">
+                <div class="app-info">
+                    <h2>${name}</h2>
+                    <div class="pub-text">v${version} | ${pub}</div>
+                    <div class="controls">
+                        ${isLive ? 
+                            `<button class="btn-unpublish" onclick="unpublishApp('${id}')">Unpublish App</button>` : 
+                            `<div style="display:flex; gap:10px;">
+                                <input type="checkbox" id="feat-${id}"> Featured
+                                <button class="btn-decline" onclick="processApp('${id}', false)">Decline</button>
+                                <button class="btn-approve" onclick="processApp('${id}', true)">Approve</button>
+                             </div>`
+                        }
+                    </div>
                 </div>
             </div>`;
-        container.appendChild(card);
     }
 
-    window.unpublishApp = async function(appId) {
-        if (!confirm("Are you sure you want to remove this app from the live store?")) return;
-        status.innerText = "Removing...";
-        
-        const currentFinal = await getFile(FINAL_FILE);
-        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
-        const newContent = currentFinal.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
-
-        await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
-            method: "PUT",
-            headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
-            body: JSON.stringify({
-                message: `Admin: Unpublished ${appId}`,
-                content: btoa(unescape(encodeURIComponent(newContent))),
-                sha: currentFinal.sha
-            })
-        });
-        location.reload();
-    };
-
     window.processApp = async function(appId, isApproved) {
-        status.innerText = "Working...";
-        const isFeatured = !isApproved ? false : document.getElementById(`feat-${appId}`).checked;
+        status.innerText = "Processing...";
         const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
-        const appMatches = pendingData.content.match(appRegex);
-        
-        let appXml = appMatches[0].replace(/<featured>.*?<\/featured>/, `<featured>${isFeatured}</featured>`);
-        const newPendingContent = pendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
+        const match = pendingData.content.match(appRegex);
+        if (!match) return;
+
+        let appXml = match[0];
+        const isFeatured = document.getElementById(`feat-${appId}`)?.checked;
+        appXml = appXml.replace(/<featured>.*?<\/featured>/, `<featured>${isFeatured}</featured>`);
+
+        const newPending = pendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
+        let newFinal = null;
 
         if (isApproved) {
-            const currentFinal = await getFile(FINAL_FILE);
-            const existingAppRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`);
-            let newFinalContent = existingAppRegex.test(currentFinal.content) ? 
-                currentFinal.content.replace(existingAppRegex, appXml) : 
-                currentFinal.content.replace('</apps>', `    ${appXml}\n</apps>`);
+            const existingRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`);
+            newFinal = finalData.content.includes(`id="${appId}"`) ? 
+                       finalData.content.replace(existingRegex, appXml) : 
+                       finalData.content.replace('</apps>', `    ${appXml}\n</apps>`);
+        }
 
-            // Update both
+        await commitChanges(newPending, pendingData.sha, newFinal, finalData.sha);
+    };
+
+    window.unpublishApp = async function(appId) {
+        if (!confirm("Are you sure you want to remove this app from the store?")) return;
+        status.innerText = "Removing...";
+        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
+        const newFinal = finalData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
+        await commitChanges(null, null, newFinal, finalData.sha);
+    };
+
+    async function commitChanges(pContent, pSha, fContent, fSha) {
+        const headers = { "Authorization": `token ${token}`, "Content-Type": "application/json" };
+        
+        if (pContent !== null) {
             await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
-                method: "PUT",
-                headers: { "Authorization": `token ${token}` },
-                body: JSON.stringify({ message: "Admin: Remove from pending", content: btoa(unescape(encodeURIComponent(newPendingContent))), sha: pendingData.sha })
+                method: "PUT", headers,
+                body: JSON.stringify({ message: "Admin: Queue Update", content: btoa(unescape(encodeURIComponent(pContent))), sha: pSha })
             });
+        }
+        if (fContent !== null) {
             await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
-                method: "PUT",
-                headers: { "Authorization": `token ${token}` },
-                body: JSON.stringify({ message: "Admin: Approve to live", content: btoa(unescape(encodeURIComponent(newFinalContent))), sha: currentFinal.sha })
-            });
-        } else {
-            await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
-                method: "PUT",
-                headers: { "Authorization": `token ${token}` },
-                body: JSON.stringify({ message: "Admin: Decline app", content: btoa(unescape(encodeURIComponent(newPendingContent))), sha: pendingData.sha })
+                method: "PUT", headers,
+                body: JSON.stringify({ message: "Admin: Store Update", content: btoa(unescape(encodeURIComponent(fContent))), sha: fSha })
             });
         }
         location.reload();
-    };
+    }
 }
 </script>
 </body>
