@@ -112,10 +112,10 @@
             <div class="check-group">
                 <label><input type="checkbox" id="up-feat"> Featured</label>
                 <label><input type="checkbox" id="up-pc" checked> PC</label>
-                <label><input type="checkbox" id="up-mob"> Mobile</label>
+                <label><input type="checkbox" id="up-mob" checked> Mobile</label>
             </div>
             
-            <button class="btn-approve" style="width:100%; margin-top:5px;" onclick="directUpload()">Publish Now</button>
+            <button class="btn-approve" style="width:100%; margin-top:5px;" onclick="directUpload()">Publish</button>
         </div>
 
         <div class="stats-box">
@@ -174,7 +174,7 @@ async function initDashboard() {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlContent, "text/xml");
         const apps = xmlDoc.getElementsByTagName("app");
-        if(apps.length === 0) { container.innerHTML = "<p>Empty.</p>"; return; }
+        if(apps.length === 0) { container.innerHTML = "<p>No pending apps</p>"; return; }
 
         Array.from(apps).forEach(app => {
             const id = app.getAttribute("id");
@@ -190,7 +190,7 @@ async function initDashboard() {
                     <div class="pub-text">ID: ${id}</div>
                     <div class="controls">
                         ${isLive ? 
-                            `<button class="btn-edit" onclick="openEdit('${id}')">Edit XML</button>
+                            `<button class="btn-edit" onclick="openEdit('${id}')">Edit</button>
                              <button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>` :
                             `<input type="checkbox" id="feat-${id}"> Featured
                              <button class="btn-decline" onclick="processApp('${id}', false)">Decline</button>
@@ -276,3 +276,4 @@ async function initDashboard() {
 </script>
 </body>
 </html>
+
