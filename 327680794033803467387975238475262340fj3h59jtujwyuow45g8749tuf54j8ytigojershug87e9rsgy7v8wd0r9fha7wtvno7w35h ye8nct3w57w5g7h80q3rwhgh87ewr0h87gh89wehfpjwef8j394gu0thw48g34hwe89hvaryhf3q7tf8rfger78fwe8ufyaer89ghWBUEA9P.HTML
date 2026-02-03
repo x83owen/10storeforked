@@ -274,7 +274,7 @@ async function initDashboard() {
         
         currentEditingId = title;
         currentEditingType = 'cat';
-        document.getElementById('modal-label').innerText = "(Format: app1,app2,app3)Edit Apps in " + title;
+        document.getElementById('modal-label').innerText = "(Format: app1,app2,app3) Edit Apps in " + title;
         document.getElementById('xml-edit-area').value = appIdsNode ? appIdsNode.textContent : "";
         document.getElementById('edit-modal').style.display = 'flex';
     };
@@ -368,4 +368,5 @@ async function initDashboard() {
 </script>
 </body>
 </html>
+
 
