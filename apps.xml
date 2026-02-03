@@ -127,6 +127,18 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
+    <app id="YznXfqXB">
+      <name>Transport Empire</name>
+      <version>3.0.38.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/YznXfqXB-1000154107.jpg</icon>
+      <publisher>Game Insight</publisher>
+      <featured>false</featured>
+      <description>Transport Empire is a real-time strategy management game where players have to build a transport empire, constructing commercial networks, mines, factories, and much more.
+Your aim in Transport Empire is to build the biggest commercial network in the world with a steampunk aesthetic. To achieve tha</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Games/Transport%20Empire/0EB8BD08.TransportEmpire_3.0.38.0_neutral_~_erk4rrwmt7jyt.appxbundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
