@@ -33,8 +33,33 @@
         .login-box button { background: rgba(255,255,255,0.2); border: 2px solid white; color: white; width: 100%; padding: 8px; cursor: pointer; }
 
         #edit-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center; }
-        .modal-box { background: white; width: 80%; max-width: 700px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .modal-box { background: white; width: 80%; max-width: 700px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
         .modal-box textarea { width: 100%; height: 300px; font-family: 'Consolas', monospace; font-size: 13px; margin: 15px 0; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; }
+
+        /* New Suggestion Box Styles */
+        #suggestions-box {
+            display: none;
+            position: absolute;
+            bottom: 60px; /* Positioned above buttons, inside modal */
+            left: 20px;
+            width: 300px;
+            max-height: 180px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #0078D7;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10001;
+        }
+        .suggestion-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .suggestion-item:hover { background: #e6f7ff; }
+        .sug-name { font-weight: bold; color: #333; font-size: 13px; }
+        .sug-id { font-size: 11px; color: #666; font-family: monospace; }
 
         header { background: var(--win-blue); color: white; padding: 10px 25px; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
         header h1 { margin: 0; font-size: 18px; font-weight: 400; }
@@ -89,7 +114,11 @@
 <div id="edit-modal">
     <div class="modal-box">
         <h3 id="modal-label">Edit XML</h3>
-        <textarea id="xml-edit-area"></textarea>
+        
+        <textarea id="xml-edit-area" placeholder="Enter content..."></textarea>
+        
+        <div id="suggestions-box"></div>
+
         <div style="text-align:right;">
             <button onclick="closeEdit()">Cancel</button>
             <button class="btn-approve" onclick="saveXmlEdit()">Save Changes</button>
@@ -155,6 +184,7 @@ let currentEditingId = null;
 let currentEditingType = 'app';
 let cachedFinalData = null;
 let cachedPendingData = null;
+let allAppsCache = []; // Stores {name, id} for autocomplete
 
 function checkPass() {
     if (document.getElementById('pass-input').value === PASSW) {
@@ -193,6 +223,19 @@ async function initDashboard() {
         if(cachedPendingData) renderApps(cachedPendingData.content, document.getElementById('app-list'), false);
     }
 
+    // Extract all apps for autocomplete
+    function updateAppCache(xmlContent) {
+        allAppsCache = [];
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlContent, "text/xml");
+        const apps = xmlDoc.getElementsByTagName("app");
+        Array.from(apps).forEach(app => {
+            const name = app.getElementsByTagName("name")[0].textContent;
+            const id = app.getAttribute("id");
+            allAppsCache.push({ name, id });
+        });
+    }
+
     function renderCategories() {
         const container = document.getElementById('cat-list');
         container.innerHTML = "";
@@ -221,10 +264,13 @@ async function initDashboard() {
     }
 
     function renderApps(xmlContent, container, isLive) {
-        container.innerHTML = "";
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlContent, "text/xml");
         const apps = xmlDoc.getElementsByTagName("app");
+        
+        if(isLive) updateAppCache(xmlContent); // Update cache when rendering live apps
+
+        container.innerHTML = "";
         if(apps.length === 0) { container.innerHTML = "<p>Empty</p>"; return; }
 
         Array.from(apps).forEach(app => {
@@ -247,6 +293,74 @@ async function initDashboard() {
         });
         if(isLive) document.getElementById('live-count').innerText = apps.length;
     }
+
+    // ------------------------------------------
+    //  AUTOCOMPLETE LOGIC
+    // ------------------------------------------
+    const textArea = document.getElementById('xml-edit-area');
+    const suggestBox = document.getElementById('suggestions-box');
+
+    textArea.addEventListener('input', function(e) {
+        if(currentEditingType !== 'cat') {
+            suggestBox.style.display = 'none';
+            return;
+        }
+
+        const cursor = this.selectionStart;
+        const val = this.value;
+        
+        // Find the word currently being typed (after last comma)
+        const leftSide = val.slice(0, cursor);
+        const lastCommaIndex = leftSide.lastIndexOf(',');
+        const currentTerm = leftSide.slice(lastCommaIndex + 1).trim();
+
+        if(currentTerm.length < 2) {
+            suggestBox.style.display = 'none';
+            return;
+        }
+
+        // Filter apps
+        const matches = allAppsCache.filter(app => 
+            app.name.toLowerCase().includes(currentTerm.toLowerCase()) || 
+            app.id.toLowerCase().includes(currentTerm.toLowerCase())
+        );
+
+        if(matches.length > 0) {
+            suggestBox.innerHTML = '';
+            matches.slice(0, 10).forEach(app => { // Limit to 10 suggestions
+                const div = document.createElement('div');
+                div.className = 'suggestion-item';
+                div.innerHTML = `<span class="sug-name">${app.name}</span><span class="sug-id">${app.id}</span>`;
+                
+                div.onclick = () => {
+                    const before = val.slice(0, lastCommaIndex + 1); // Content before current term
+                    const after = val.slice(cursor); // Content after cursor
+                    
+                    // Add space after comma if it exists, insert ID, add comma for next entry
+                    const prefix = (before.length > 0 && !before.endsWith(' ')) ? ' ' : ''; 
+                    
+                    this.value = before + prefix + app.id + after;
+                    suggestBox.style.display = 'none';
+                    this.focus();
+                };
+                suggestBox.appendChild(div);
+            });
+            suggestBox.style.display = 'block';
+        } else {
+            suggestBox.style.display = 'none';
+        }
+    });
+
+    // Close suggestions if clicking elsewhere
+    document.addEventListener('click', function(e) {
+        if (e.target !== textArea && e.target.parentNode !== suggestBox) {
+            suggestBox.style.display = 'none';
+        }
+    });
+
+    // ------------------------------------------
+    //  EXISTING LOGIC
+    // ------------------------------------------
 
     window.moveCat = async function(index, direction) {
         const parser = new DOMParser();
@@ -274,9 +388,10 @@ async function initDashboard() {
         
         currentEditingId = title;
         currentEditingType = 'cat';
-        document.getElementById('modal-label').innerText = "(Format: app1,app2,app3) Edit Apps in " + title;
+        document.getElementById('modal-label').innerText = "Edit Apps in " + title;
         document.getElementById('xml-edit-area').value = appIdsNode ? appIdsNode.textContent : "";
         document.getElementById('edit-modal').style.display = 'flex';
+        document.getElementById('suggestions-box').style.display = 'none'; // Ensure closed on open
     };
 
     window.addCategory = async function() {
@@ -308,6 +423,7 @@ async function initDashboard() {
         if (match) {
             document.getElementById('xml-edit-area').value = match[0].trim();
             document.getElementById('edit-modal').style.display = 'flex';
+            document.getElementById('suggestions-box').style.display = 'none';
         }
     };
 
@@ -330,7 +446,10 @@ async function initDashboard() {
         await commit(updated);
     };
 
-    window.closeEdit = () => document.getElementById('edit-modal').style.display = 'none';
+    window.closeEdit = () => {
+        document.getElementById('edit-modal').style.display = 'none';
+        document.getElementById('suggestions-box').style.display = 'none';
+    };
 
     async function commit(fContent) {
         status.innerText = "Saving...";
@@ -368,5 +487,3 @@ async function initDashboard() {
 </script>
 </body>
 </html>
-
-
