@@ -5,10 +5,10 @@
       <appIds>posxp,G8I0kPFQ</appIds>
     </category>
       <category title="Art" type="picks">
-      <appIds></appIds>
+      <appIds/>
     </category>
       <category title="Dependencies" type="picks">
-      <appIds></appIds>
+      <appIds>winjs-1-0,winjs-2-0</appIds>
     </category>
   </categories>
   <apps>
