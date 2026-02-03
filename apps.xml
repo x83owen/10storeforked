@@ -35,7 +35,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="fmaNojRN">
+    <app id="drayai">
       <name>DrayAI</name>
       <version>2.0.0.0</version>
       <icon>https://drayaiupdatehost.netlify.app/download/storelogo.png</icon>
