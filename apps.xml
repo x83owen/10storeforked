@@ -11,6 +11,9 @@
       <category title="Dependencies" type="picks">
       <appIds>winjs-1-0,winjs-2-0</appIds>
     </category>
+      <category title="Games" type="picks">
+      <appIds></appIds>
+    </category>
   </categories>
   <apps>
     <app id="fresh-paint">
