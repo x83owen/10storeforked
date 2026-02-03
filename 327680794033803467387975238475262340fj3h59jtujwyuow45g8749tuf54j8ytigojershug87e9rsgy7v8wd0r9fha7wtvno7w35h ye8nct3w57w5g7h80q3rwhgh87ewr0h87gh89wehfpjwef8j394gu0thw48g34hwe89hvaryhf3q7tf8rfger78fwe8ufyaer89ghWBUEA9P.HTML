@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>10-Store | Admin Review</title>
+    <title>10-Store | Admin Panel</title>
     <style>
         :root {
             --win-blue: #0078D7;
@@ -97,14 +97,14 @@
     </div>
 </div>
 
-<header><h1>10-Store App Management</h1></header>
+<header><h1>10Store Admin Panel</h1></header>
 
 <div class="main-layout">
     <div class="sidebar">
         <h3>Dashboard</h3>
         <p style="font-size: 12px; color: #555;">Manage pending reviews and live store inventory.</p>
         <hr>
-        <div id="status" style="font-size:13px; color:#666;">Waiting for login...</div>
+        <div id="status" style="font-size:13px; color:#666;">Waiting</div>
         <div class="stats-box">
             Live Apps: <strong id="live-count">...</strong>
         </div>
@@ -112,24 +112,22 @@
 
     <div class="content">
         <div class="dashboard-container">
-            <h2 class="section-title">Pending Submissions</h2>
+            <h2 class="section-title">Pending</h2>
             <div id="app-list"></div>
             
-            <h2 class="section-title">Live Inventory</h2>
+            <h2 class="section-title">Published</h2>
             <div id="live-list"></div>
         </div>
     </div>
 </div>
 
 <script src="config.js"></script>
+<script src="pasw.js"></script>
 <script>
-const CORRECT_PASS = "f578dsf67hsdf578h967g86s6f5875g69s7f8h5sd5g8sd9f67gds678fb7sv6dct6gensr7tc6w5et6cwfy9wr58hy84578wr578t4fw45ht8o";
-
 function checkPass() {
     const val = document.getElementById('pass-input').value;
-    if (val === CORRECT_PASS) {
+    if (val === PASSW) {
         document.getElementById('login-overlay').style.display = 'none';
-        // Delay init slightly to ensure config.js variables are fully bound to window
         setTimeout(initDashboard, 100);
     } else {
         document.getElementById('fail-msg').style.display = 'block';
@@ -137,7 +135,6 @@ function checkPass() {
 }
 
 async function initDashboard() {
-    // FORCE CHECK: If config.js failed, try to grab them from global scope or window
     const token = window.GITHUB_TOKEN || GITHUB_TOKEN;
     const owner = window.GITHUB_OWNER || GITHUB_OWNER;
     const repo = window.GITHUB_REPO || GITHUB_REPO;
@@ -260,5 +257,6 @@ async function initDashboard() {
 </script>
 </body>
 </html>
+
 
 
