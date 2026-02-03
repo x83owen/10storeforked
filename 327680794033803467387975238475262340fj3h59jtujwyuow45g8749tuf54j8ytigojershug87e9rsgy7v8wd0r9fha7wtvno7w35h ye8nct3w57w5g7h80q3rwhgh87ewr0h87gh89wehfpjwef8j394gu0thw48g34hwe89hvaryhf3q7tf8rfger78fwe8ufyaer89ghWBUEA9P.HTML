@@ -142,10 +142,13 @@ let cachedFinalData = null;
 let cachedPendingData = null;
 
 function checkPass() {
-    if (document.getElementById('pass-input').value === PASSW) {
+    const val = document.getElementById('pass-input').value;
+    if (val === PASSW) {
         document.getElementById('login-overlay').style.display = 'none';
-        setTimeout(initDashboard, 100);
-    } else { document.getElementById('fail-msg').style.display = 'block'; }
+        initDashboard(); // <--- THIS MUST BE HERE
+    } else {
+        document.getElementById('fail-msg').style.display = 'block';
+    }
 }
 
 async function initDashboard() {
@@ -276,4 +279,5 @@ async function initDashboard() {
 </script>
 </body>
 </html>
+
 
