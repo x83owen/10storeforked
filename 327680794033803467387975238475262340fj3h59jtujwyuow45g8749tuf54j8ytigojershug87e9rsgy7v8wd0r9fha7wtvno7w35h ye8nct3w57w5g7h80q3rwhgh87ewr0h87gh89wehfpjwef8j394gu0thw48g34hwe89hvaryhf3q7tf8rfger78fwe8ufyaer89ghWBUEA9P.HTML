@@ -91,6 +91,7 @@
 
         /* Uploader Form */
         .upload-form input, .upload-form textarea { width: 100%; padding: 5px; margin-bottom: 8px; border: 1px solid #ccc; font-size: 12px; box-sizing: border-box; }
+        .upload-form textarea { resize: none; } /* Disabled Resizing */
         .upload-form h4 { margin: 10px 0 5px; font-size: 13px; color: var(--win-blue); }
 
         .app-card { background: white; border: 1px solid #DDD; padding: 20px; margin-bottom: 25px; display: flex; gap: 25px; position: relative; }
@@ -143,12 +144,11 @@
         <div class="upload-form">
             <h4 style="margin-top:0;">Quick Upload</h4>
             <input type="text" id="up-name" placeholder="App Name">
-            <input type="text" id="up-id" placeholder="App ID (e.g. com.app)">
             <input type="text" id="up-pub" placeholder="Publisher">
             <input type="text" id="up-ver" placeholder="Version">
             <input type="text" id="up-icon" placeholder="Icon URL">
             <input type="text" id="up-pkg" placeholder="Package URL">
-            <textarea id="up-desc" placeholder="Description" style="height:50px;"></textarea>
+            <textarea id="up-desc" placeholder="Description" style="height:60px;"></textarea>
             <label style="font-size:11px;"><input type="checkbox" id="up-feat"> Featured</label>
             <button class="btn-approve" style="width:100%; margin-top:5px;" onclick="directUpload()">Publish Now</button>
         </div>
@@ -258,7 +258,12 @@ async function initDashboard() {
     // Direct Upload Action
     window.directUpload = async function() {
         const name = document.getElementById('up-name').value;
-        const id = document.getElementById('up-id').value;
+        // Generate ID from Name: Lowercase, replace spaces/special chars with hyphens
+        const id = name.toLowerCase()
+                       .replace(/[^a-z0-9]/g, '-')
+                       .replace(/-+/g, '-')
+                       .replace(/^-|-$/g, '');
+
         const pub = document.getElementById('up-pub').value;
         const ver = document.getElementById('up-ver').value;
         const icon = document.getElementById('up-icon').value;
@@ -266,7 +271,7 @@ async function initDashboard() {
         const desc = document.getElementById('up-desc').value;
         const feat = document.getElementById('up-feat').checked;
 
-        if(!name || !id || !pkg) return alert("Fill Name, ID and Package!");
+        if(!name || !pkg) return alert("Fill Name and Package URL!");
 
         const appXml = `
     <app id="${id}">
