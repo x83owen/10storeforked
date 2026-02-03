@@ -18,10 +18,10 @@
             display: flex; 
             flex-direction: column;
             height: 100vh;
-            overflow: hidden; 
+            overflow: hidden; /* Lock scroll until login */
         }
 
-        /* Login Overlay */
+        /* Login Overlay - Forces full screen coverage */
         #login-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -52,6 +52,8 @@
             outline: none; margin-bottom: 15px;
         }
 
+        .login-box input:focus { border-color: white; }
+
         .login-box button {
             background: rgba(255,255,255,0.2);
             border: 2px solid white; color: white;
@@ -59,30 +61,20 @@
             font-weight: bold;
         }
 
-        /* Dashboard UI (Hidden by default) */
+        .login-box button:hover { background: rgba(255,255,255,0.4); }
+
+        /* Dashboard UI (Hidden until login) */
         #main-ui { display: none; flex-direction: column; height: 100%; }
 
-        header { background: var(--win-blue); color: white; padding: 10px 25px; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
-        header h1 { margin: 0; font-size: 18px; font-weight: 400; }
+        header { background: var(--win-blue); color: white; padding: 10px 25px; display: flex; align-items: center; }
         .main-layout { display: flex; flex: 1; overflow: hidden; }
         .sidebar { width: 250px; background: #E6E6E6; padding: 20px; border-right: 1px solid #CCC; }
         .content { flex: 1; padding: 30px; overflow-y: auto; }
-        .dashboard-container { max-width: 900px; margin: 0 auto; }
-        .app-card { background: white; border: 1px solid #DDD; padding: 20px; margin-bottom: 25px; display: flex; gap: 25px; position: relative; }
-        .app-icon { width: 120px; height: 120px; object-fit: contain; background: #F0F0F0; border: 1px solid #EEE; }
-        .app-info { flex-grow: 1; }
-        .app-info h2 { margin: 0 0 5px 0; color: #333; font-weight: 300; font-size: 24px; }
-        .pub-text { color: #666; font-size: 14px; margin-bottom: 15px; }
-        .asset-links { margin: 15px 0; padding: 10px 0; border-top: 1px solid #EEE; border-bottom: 1px solid #EEE; }
-        .asset-links a { color: var(--win-blue); text-decoration: none; margin-right: 20px; font-size: 13px; font-weight: 600; }
+        .app-card { background: white; border: 1px solid #DDD; padding: 20px; margin-bottom: 25px; display: flex; gap: 25px; }
+        .app-icon { width: 120px; height: 120px; object-fit: contain; background: #F0F0F0; }
         .controls { margin-top: 20px; display: flex; gap: 12px; align-items: center; }
-        .feat-container { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-right: auto; }
-        
-        button.action-btn { padding: 8px 24px; border: none; cursor: pointer; font-family: inherit; font-size: 14px; }
-        .btn-approve { background: var(--win-green); color: white; }
-        .btn-decline { background: #CCC; color: black; }
-        .btn-decline:hover { background: var(--win-red); color: white; }
-        .status-msg { font-size: 14px; color: #666; margin-bottom: 20px; }
+        .btn-approve { background: var(--win-green); color: white; padding: 8px 24px; border: none; cursor: pointer; }
+        .btn-decline { background: #CCC; color: black; padding: 8px 24px; border: none; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -91,7 +83,7 @@
     <div class="login-box">
         <div class="user-avatar">👤</div>
         <h2 style="font-weight:300;">Administrator</h2>
-        <input type="password" id="pass-input" placeholder="Password" autofocus>
+        <input type="password" id="pass-input" placeholder="Password" autofocus autocomplete="off">
         <button onclick="checkPass()">Sign in</button>
         <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Access Denied.</p>
     </div>
@@ -107,16 +99,16 @@
             <div id="status" class="status-msg">Authenticated</div>
         </div>
         <div class="content">
-            <div class="dashboard-container">
-                <div id="no-apps" style="display:none; text-align: center; padding: 50px; color: #888;">The review queue is currently empty.</div>
-                <div id="app-list"></div>
-            </div>
+            <div id="app-list"></div>
         </div>
     </div>
 </div>
 
 <script src="config.js"></script>
 <script>
+// FORCE CLEAR INPUT ON LOAD to ensure password screen is useful
+document.getElementById('pass-input').value = "";
+
 const CORRECT_PASS = "wuirfhuiesrhuigseuihfdghuiserghuiewrhuisgehuiwrsguhiersguhieruihgeruihghuiersghuiersuhigerhuigehuirghuierghuierghuiehiughuierghuieruihsgerhuighiuerghuierhuigehuirguiherghuierihugeuirhsghuierihugeruihghuierghuierghuirdhuigsdilhgresnfjroogvseviesrjvmsoeinvsioevlbnersbnrviusenrvusdnviusrdvnrnirdlintv745684375645873694648395673495689748346975436385764476543085734673757347853759375903793075930576395768390576493085769375639756937";
 
 function checkPass() {
@@ -128,10 +120,13 @@ function checkPass() {
         initDashboard(); 
     } else {
         document.getElementById('fail-msg').style.display = 'block';
+        document.getElementById('pass-input').value = ""; // Clear bad attempt
     }
 }
 
-document.getElementById('pass-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') checkPass(); });
+document.getElementById('pass-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') checkPass();
+});
 
 async function initDashboard() {
     const PENDING_FILE = "apppending.xml";
@@ -150,6 +145,7 @@ async function initDashboard() {
 
     status.innerText = "Loading queue...";
 
+    // 1. Helper to fetch file content
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         try {
@@ -163,7 +159,10 @@ async function initDashboard() {
         } catch (e) { return null; }
     }
 
+    // 2. Helper to save files back to GitHub
     async function updateFiles(pendingContent, pendingSha, finalContent = null, finalSha = null) {
+        status.innerText = "Saving changes...";
+        // Update Pending File
         await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
             method: "PUT",
             headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
@@ -174,6 +173,7 @@ async function initDashboard() {
             })
         });
 
+        // Update Final File (if approving)
         if (finalContent && finalSha) {
             await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
                 method: "PUT",
@@ -185,69 +185,63 @@ async function initDashboard() {
                 })
             });
         }
-        location.reload();
+        location.reload(); // Refresh to lock screen and show updates
     }
 
+    // 3. Load Data
     const pendingData = await getFile(PENDING_FILE);
-    if (!pendingData) { status.innerText = "Error loading queue."; return; }
+    if (!pendingData) { status.innerText = "Queue empty or file error."; return; }
 
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(pendingData.content, "text/xml");
     const apps = xmlDoc.getElementsByTagName("app");
 
-    if (apps.length === 0) {
-        status.innerText = "Queue clear.";
-        document.getElementById('no-apps').style.display = "block";
-        return;
-    }
+    if (apps.length === 0) status.innerText = "No pending apps.";
+    else status.innerText = `${apps.length} app(s) waiting.`;
 
-    status.innerText = `${apps.length} app(s) pending.`;
-
+    // 4. Render Cards (Using YOUR EXACT LAYOUT)
+    listContainer.innerHTML = "";
     Array.from(apps).forEach(app => {
         const id = app.getAttribute("id");
         const name = app.getElementsByTagName("name")[0].textContent;
-        const icon = app.getElementsByTagName("icon")[0].textContent;
-        const publisher = app.getElementsByTagName("publisher")[0].textContent;
-        const pkg = app.getElementsByTagName("package")[0].textContent;
-
+        
         const card = document.createElement('div');
         card.className = 'app-card';
+        // EXACT HTML structure you requested
         card.innerHTML = `
-            <img src="${icon}" class="app-icon">
             <div class="app-info">
                 <h2>${name}</h2>
-                <div class="pub-text">By: ${publisher}</div>
-                <div class="asset-links">
-                    <a href="${icon}" target="_blank">View Icon</a>
-                    <a href="${pkg}" target="_blank">Download Pkg</a>
-                </div>
                 <div class="controls">
-                    <div class="feat-container"><input type="checkbox" id="feat-${id}"><label for="feat-${id}">Featured</label></div>
-                    <button class="action-btn btn-decline" onclick="processApp('${id}', false)">Decline</button>
-                    <button class="action-btn btn-approve" onclick="processApp('${id}', true)">Approve</button>
+                    <button class="btn-approve" onclick="processApp('${id}', true)">Approve</button>
+                    <button class="btn-decline" onclick="processApp('${id}', false)">Decline</button>
                 </div>
             </div>`;
         listContainer.appendChild(card);
     });
 
+    // 5. Logic to move/delete apps
     window.processApp = async function(appId, isApproved) {
-        status.innerText = "Processing...";
-        const isFeatured = document.getElementById(`feat-${appId}`).checked;
         const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
         const appMatches = pendingData.content.match(appRegex);
-        if (!appMatches) return;
         
-        let appXml = appMatches[0];
-        appXml = appXml.replace(/<featured>.*?<\/featured>/, `<featured>${isFeatured}</featured>`);
+        if (!appMatches) { alert("Error finding app data"); return; }
+        
+        const appXml = appMatches[0];
+        // Remove app from pending string
         const newPendingContent = pendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
 
         if (isApproved) {
             const finalData = await getFile(FINAL_FILE);
-            if (!finalData) return;
+            if (!finalData) { alert("Could not load target file"); return; }
+            
+            // Add app to final string (simple append before closing tag)
             const newFinalContent = finalData.content.replace('</apps>', `    ${appXml}\n</apps>`);
             await updateFiles(newPendingContent, pendingData.sha, newFinalContent, finalData.sha);
         } else {
-            await updateFiles(newPendingContent, pendingData.sha);
+            // Just delete from pending
+            if(confirm("Delete " + appId + "?")) {
+                await updateFiles(newPendingContent, pendingData.sha);
+            }
         }
     };
 }
