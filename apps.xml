@@ -3,22 +3,22 @@
   <categories>
     <category title="Featured" type="featured"/>
     <category title="Developer Picks" type="picks">
-      <appIds></appIds>
+      <appIds>fmaNojRN,L9h3OvMn,DecV6P0t,NR8KNi94,4jvHHTQI,I6LbwAai</appIds>
     </category>
     <category title="Essential" type="picks">
-      <appIds></appIds>
+      <appIds>G8I0kPFQ,aW1FNDTD,GrJoGJjh</appIds>
     </category>
     <category title="Art" type="picks">
-      <appIds></appIds>
+      <appIds>uW8BXX9k,taM6Wrqd</appIds>
     </category>
     <category title="Tools" type="picks">
-      <appIds></appIds>
+      <appIds>fmaNojRN,taM6Wrqd</appIds>
     </category>
     <category title="Media" type="picks">
-      <appIds></appIds>
+      <appIds>L9h3OvMn,p0t7BOUq,b34qM7q8,GrJoGJjh</appIds>
     </category>
     <category title="Games" type="picks">
-      <appIds></appIds>
+      <appIds>MGCOWfUB,NR8KNi94,4jvHHTQI,I6LbwAai,YznXfqXB,8WvwEEYk,LhEiIzol</appIds>
     </category>
   </categories>
 
@@ -38,6 +38,17 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="L9h3OvMn">
+      <name>Luma Shorts</name>
+      <version>1.0.0.0</version>
+      <icon>https://lumaprojects.github.io/shorts/apps/shorts.png</icon>
+      <publisher>Luma</publisher>
+      <featured>true</featured>
+      <description>a short form content app developed by Owen. this is the pc only build it uses edge webview.</description>
+      <package>https://lumaprojects.github.io/shorts/apps/PC/Luma%20Shorts%20v1.0%20(PC%20Webview).appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
     <app id="fmaNojRN">
       <name>DrayAI</name>
       <version>2.0.0.0</version>
@@ -54,7 +65,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <version>2.6.2.0</version>
       <icon>https://i.ibb.co/9mf4T0Qm/Square150x150-Logo-scale-400.png</icon>
       <publisher>Mads and Peter Sandberg Brun</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>BrowserQuest is a small multiplayer game inviting you to explore a world of adventure from your Windows device.</description>
       <package>https://dl.dankassassin368.com/18476MPBrun.BrowserQuest_2.6.2.0_x86__5j38zygvezh8g.appx</package>
       <pcCapable>true</pcCapable>
@@ -67,6 +78,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <publisher>VideoLAN</publisher>
       <featured>false</featured>
       <description>VLC is the ultimate media player, ported to the Windows Universal Platform.
+
 ⚠ ⚠ Beware! This VLC does not feature all the features of the classic VLC! It does not support DVD or Blurays! Use the desktop version instead! ⚠⚠</description>
       <package>https://dl.dankassassin368.com/VideoLAN.VLC_3.2.1.0_neutral_~_paz6r1rewnh0a.AppxBundle</package>
       <pcCapable>true</pcCapable>
@@ -105,41 +117,53 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
-    <app id="I6LbwAai">
+    <app id="4jvHHTQI">
+      <name>Minecraft for Windows</name>
+      <version>1.14.6005.0</version>
+      <icon>https://i.ibb.co/pjcjHftR/MCSquare71x71-Logo-scale-400.png</icon>
+      <publisher>Microsoft Studios</publisher>
+      <featured>true</featured>
+      <description>Explore randomly generated worlds and build amazing things from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep into the world in survival mode, crafting weapons and armor to fend off the dangerous mobs.</description>
+      <package>https://dl.dankassassin368.com/Microsoft.MinecraftUWP_1.14.6005.0_x86__8wekyb3d8bbwe.Appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    <review><user>Anonymous</user><rating>1</rating><comment>test</comment></review></app>
+      <app id="I6LbwAai">
       <name>Hill Climb Racing</name>
       <version>1.41.1.0</version>
       <icon>https://10storedraydenyt.netlify.app/icons/I6LbwAai-1000154056.png</icon>
       <publisher>Fingersoft</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>One of the most addictive and entertaining physics based driving game ever made! And it's free! Meet Newton Bill, the young aspiring uphill racer. He is about to embark on a journey that takes him to where no ride has ever been before. With little respect to the laws of physics</description>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Games/Hill%20Climb%20Racing/FINGERSOFT.HILLCLIMBRACING_1.41.1.0_neutral_~_r6rtpscs7gwyg.appxbundle</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="DecV6P0t">
+      <app id="DecV6P0t">
       <name>Microsoft Edge Unofficial</name>
       <version>1.0.2.5</version>
       <icon>https://10storedraydenyt.netlify.app/icons/DecV6P0t-SmallLogo.png</icon>
       <publisher>Maycon Devloper</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>Microsoft Edge for Windows Phone</description>
       <package>https://dl.dankassassin368.com/Microsoft%20Edge%20Unofficial.appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
-    <app id="YznXfqXB">
+      <app id="YznXfqXB">
       <name>Transport Empire</name>
       <version>3.0.38.0</version>
       <icon>https://10storedraydenyt.netlify.app/icons/YznXfqXB-1000154107.jpg</icon>
       <publisher>Game Insight</publisher>
       <featured>false</featured>
       <description>Transport Empire is a real-time strategy management game where players have to build a transport empire, constructing commercial networks, mines, factories, and much more.
+
 Your aim in Transport Empire is to build the biggest commercial network in the world with a steampunk aesthetic. To achieve tha</description>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Games/Transport%20Empire/0EB8BD08.TransportEmpire_3.0.38.0_neutral_~_erk4rrwmt7jyt.appxbundle</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="rrDcTRXV">
+      <app id="rrDcTRXV">
       <name>Disney Crossy Road</name>
       <version>2.8.1.3</version>
       <icon>https://10storedraydenyt.netlify.app/icons/rrDcTRXV-1000154112.png</icon>
@@ -150,7 +174,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="SRakVHuW">
+      <app id="SRakVHuW">
       <name>Samsung Gallery</name>
       <version>2.3.25.0</version>
       <icon>https://10storedraydenyt.netlify.app/icons/SRakVHuW-Square44x44Logo.targetsize-256_altform-unplated.png</icon>
@@ -161,18 +185,18 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
-    <app id="G8I0kPFQ">
+      <app id="G8I0kPFQ">
       <name>App Installer</name>
       <version>1.0.20921.0</version>
       <icon>https://10storedraydenyt.netlify.app/icons/G8I0kPFQ-AppPackageStoreLogo.scale-200.png</icon>
       <publisher>Microsoft Corporation</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>Microsoft App Installer for Windows Phone</description>
       <package>https://dl.dankassassin368.com/App%20Installer.appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
-    <app id="b34qM7q8">
+      <app id="b34qM7q8">
       <name>7digital Music Store</name>
       <version>2.1.10.3</version>
       <icon>https://10storedraydenyt.netlify.app/icons/b34qM7q8-1000154113.png</icon>
@@ -183,18 +207,18 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="GrJoGJjh">
+      <app id="GrJoGJjh">
       <name>YouTube TV Touch</name>
       <version>9.2.0.0</version>
       <icon>https://10storedraydenyt.netlify.app/icons/GrJoGJjh-YouTube_2017.png</icon>
       <publisher>Fake Google LLC</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>A YouTube for TV port to Windows Phone.</description>
       <package>https://dl.dankassassin368.com/YouTube%20TV_9.2.0.0_x86_x64_arm.appxbundle</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
-    <app id="VnpOXSdk">
+      <app id="VnpOXSdk">
       <name>Cut the Rope</name>
       <version>1.2.0.43</version>
       <icon>https://10storedraydenyt.netlify.app/icons/VnpOXSdk-1000154115.png</icon>
@@ -205,7 +229,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="8WvwEEYk">
+      <app id="8WvwEEYk">
       <name>Beat the Boss 2</name>
       <version>2.3.0.3</version>
       <icon>https://10storedraydenyt.netlify.app/icons/8WvwEEYk-1000154117.png</icon>
@@ -216,47 +240,321 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="8WvwEEYk">
-      <name>Beat the Boss 2</name>
-      <version>2.3.0.3</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/8WvwEEYk-1000154117.png</icon>
-      <publisher>GameHive</publisher>
-      <featured>false</featured>
+      <app id="LhEiIzol">
+      <name>Talking Ginger</name>
+      <version>2.2.5.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/LhEiIzol-1000154122.png</icon>
+      <publisher>Outfit7</publisher>
+      <featured>true</featured>
       <description/>
-      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Apps/Beat%20The%20Boss%202/2.3.0.3/x86/GameHive.BeatTheBoss2_2.3.0.3_x86__2snrr3jr3f292.Appx</package>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Talking%20Ginger/app.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="winjs-1-0">
-      <name>WinJS 1.0</name>
+      <app id="aW1FNDTD">
+      <name>Converter Pro</name>
+      <version>6.6.7.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/aW1FNDTD-1000154132.png</icon>
+      <publisher>PanoramicSoftwareInc</publisher>
+      <featured>false</featured>
+      <description>not the fucking ** on the version</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Apps/Converter%20Pro/6.6.7.0/x86/PanoramicSoftwareInc.ConverterPro-UnitCurrencyConv_6.6.7.0_x86__wna2f9n7wqgf8.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="6ZXvMZVa">
+      <name>Eurosport</name>
+      <version>4.1.0.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/6ZXvMZVa-1000154136.jpg</icon>
+      <publisher>EurosportSAS</publisher>
+      <featured>false</featured>
+      <description/>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Apps/Eurosport/4.1.0.0/x86/EurosportSAS.Eurosport.com_4.1.0.0_x86__zbz8cfsntg0dj.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="6y23CAjd">
+      <name>AdBlocker</name>
+      <version>1.1.0.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/6y23CAjd-StoreLogo.scale-200.png</icon>
+      <publisher>sensboston</publisher>
+      <featured>false</featured>
+      <description>A adblocker app for W10M.
+
+YOUR PHONE MUST BE INTEROP UNLOCKED!
+
+More info at https://files.catbox.moe/rokw5h.txt (please note you got to copy it to the browser)</description>
+      <package>https://dl.dankassassin368.com/AdBlocker_1.1.0.0_ARM.appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
+      <app id="dY265Bi3">
+      <name>myTube!</name>
+      <version>4.0.19.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/dY265Bi3-Small%20Tile.scale-400.png</icon>
+      <publisher>Ryken Studio</publisher>
+      <featured>false</featured>
+      <description>A YouTube client. You need the API Keys for it to work</description>
+      <package>https://dl.dankassassin368.com/myTube%21_4.0.19.0_arm.Appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
+      <app id="35pbG8B4">
+      <name>Unigram Mobile Messenger</name>
+      <version>21.12.6009.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/35pbG8B4-Square44x44Logo.altform-unplated_targetsize-256.png</icon>
+      <publisher>abaculi</publisher>
+      <featured>false</featured>
+      <description>Unigram Mobile is a fork of the original Unigram UWP app aimed to keep supporting Windows 10 Mobile after the Unigram dropped support for Mobile.</description>
+      <package>https://dl.dankassassin368.com/Unigram%20Mobile%20Messenger_21.12.6009.0_ARM.appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
+      <app id="HNJhbHf7">
+      <name>Dominoes</name>
+      <version>4.3.29.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/HNJhbHf7-Logo.scale-200.png</icon>
+      <publisher>Random Salad Games LLC</publisher>
+      <featured>false</featured>
+      <description>Play the BEST dominoes game for Windows today!
+
+Enjoy the simple pleasures of this classic game on your computer, laptop, or tablet. Play 3 classic game modes (Muggins, Block, and Draw) against a clever computer opponent. Custom themes and backgrounds round out this spectacular game.</description>
+      <package>https://dl.dankassassin368.com/Dominoes.UWP_4.3.29.0_x64.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="XtZbpVmp">
+      <name>2048</name>
+      <version>1.9.3.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/XtZbpVmp-StoreLogo.scale-200.png</icon>
+      <publisher>Slytery</publisher>
+      <featured>false</featured>
+      <description>A 2048 game.</description>
+      <package>https://dl.dankassassin368.com/2048%21_1.9.3.0.appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
+      <app id="0Mm2fpUA">
+      <name>Radon Browser for Windows 10</name>
+      <version>1.14.17.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/0Mm2fpUA-Project Radon.png</icon>
+      <publisher>Scythra</publisher>
+      <featured>false</featured>
+      <description>A version of Radon Browser made for 10Store</description>
+      <package>https://dl.dankassassin368.com/Project%2520Radon_1.14.17.0_x86.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="XW2VB89E">
+      <name>myTube! Beta</name>
+      <version>4.0.21.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/XW2VB89E-App%20Icon.altform-unplated_targetsize-256.png</icon>
+      <publisher>Ryken Studio</publisher>
+      <featured>false</featured>
+      <description>Watch YouTube videos on your Lumia device.</description>
+      <package>https://dl.dankassassin368.com/myTubeBeta_4.0.21.0_arm.Appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
+      <app id="Rz7GmjT1">
+      <name>Shazam</name>
+      <version>4.7.8.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/Rz7GmjT1-ApplicationIcon.scale-240.png</icon>
+      <publisher>Shazam</publisher>
+      <featured>false</featured>
+      <description>Find the music your currently listening to with Shazam!</description>
+      <package>https://dl.dankassassin368.com/Shazam%20v4.7.8.0.appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
+      <app id="IzTuV2zi">
+      <name>ClassiCube</name>
       <version>1.0.0.0</version>
-      <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
-      <publisher>Microsoft Corporation</publisher>
-      <featured>false</featured>
-      <description></description>
-      <package>https://dl.dankassassin368.com/Microsoft.WinJS.1.0_1.0.9200.20789_neutral__8wekyb3d8bbwe.Appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="8WvwEEYk">
-      <name>Beat the Boss 2</name>
-      <version>2.3.0.3</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/8WvwEEYk-1000154117.png</icon>
-      <publisher>GameHive</publisher>
+      <icon>https://10storedraydenyt.netlify.app/icons/IzTuV2zi-1000154589.png</icon>
+      <publisher>ClassiCube (idk)</publisher>
       <featured>false</featured>
       <description/>
-      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Apps/Beat%20The%20Boss%202/2.3.0.3/x86/GameHive.BeatTheBoss2_2.3.0.3_x86__2snrr3jr3f292.Appx</package>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/ClassiCube/ClassiCube.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="winjs-2-0">
-      <name>WinJS 2.0</name>
-      <version>2.0.0.0</version>
-      <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
-      <publisher>Microsoft Corporation</publisher>
+      <app id="suVzYAz7">
+      <name>Hill Climb Racing (Win 8.1)</name>
+      <version>1.29.10.71</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/suVzYAz7-1000154056.png</icon>
+      <publisher>Fingersoft</publisher>
+      <featured>false</featured>
+      <description>You can download Win 8.1 version, if Windows 10 version is not downloading.</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Hill%20Climb%20Racing/Fingersoft.HillClimbRacing_1.29.10.71_x86__r6rtpscs7gwyg.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="zLL7sl3w">
+      <name>Kinectimals Unleashed</name>
+      <version>1.14.12.16</version>
+      <icon>https://i.ibb.co/v4WXbLn2/341847502d.jpg</icon>
+      <publisher>Microsoft Corporation (?)</publisher>
+      <featured>false</featured>
+      <description>A special version of the family game from the Xbox 360 console, designed for users of tablets and computers with Windows 8. The game allows us to take care of one of several dozen virtual animals with which we can play, following the growth and development of our pet. We must also ensure that the ba</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Kinectimals/Microsoft.KinectimalsUnleashed_1.14.12.16_x86__8wekyb3d8bbwe.Appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="tk0RL62i">
+      <name>Angry Birds Space</name>
+      <version>1.3.1.0</version>
+      <icon>https://i.ibb.co/gZCMMMrK/Angry-Birds-Space-icon.png</icon>
+      <publisher>Rovio</publisher>
+      <featured>false</featured>
+      <description/>
+      <package>https://dl.dankassassin368.com/1ED5AEA5.AngryBirdsSpace_1.3.1.0_x86__p2gbknwb5d8r2.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="Y0wouMtZ">
+      <name>Netflix</name>
+      <version>1.10.0.58</version>
+      <icon>https://i.ibb.co/NdR8FGqk/channels4-profile.jpg</icon>
+      <publisher>Netflix, Inc</publisher>
+      <featured>false</featured>
+      <description/>
+      <package>https://dl.dankassassin368.com/4DF9E0F8.Netflix_1.10.0.58_x64__mcm4njqhnhss8.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="EzDH6wta">
+      <name>Viber</name>
+      <version>4.1.3.0</version>
+      <icon>https://i.ibb.co/r2pf2ZFn/1492065916-1491916517-logo-2.png</icon>
+      <publisher>Rakuten Viber</publisher>
+      <featured>false</featured>
+      <description/>
+      <package>https://dl.dankassassin368.com/2414FC7A.Viber-FreePhoneCallsText_4.1.3.0_x86__p61zvh252yqyr.Appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="g9QQPJD0">
+      <name>MetroTube</name>
+      <version>0.10.1.0</version>
+      <icon>https://i.ibb.co/mVb2rwkb/Metrotube-01.jpg</icon>
+      <publisher>LazyWorm Applications Ltd.</publisher>
+      <featured>false</featured>
+      <description/>
+      <package>https://dl.dankassassin368.com/Ametrotube.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="kRSswZ9K">
+      <name>Twitter (Bluetweety)</name>
+      <version>1.1.13.8</version>
+      <icon>https://i.ibb.co/5hHSWFht/124021.png</icon>
+      <publisher>migbrunluz</publisher>
+      <featured>false</featured>
+      <description>X (formerly Twitter) is a major microblogging and social networking service where users post short, 280-character messages, known as "tweets," which can include text, images, videos, and links.</description>
+      <package>https://dl.dankassassin368.com/9E2F88E3.Twitter_1.1.13.8_x86__wgeqdkkx372wm.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="7M0AlgjH">
+      <name>Global Clock Tile</name>
+      <version>2014.1219.1624.2797</version>
+      <icon>https://i.ibb.co/TxcxMDXf/apps-2829-13527373401109910-65bfb7b2-c1f6-4ead-9d20-9c1bc0ce4d45.png</icon>
+      <publisher>VassilArabadjiev</publisher>
+      <featured>false</featured>
+      <description>The app displays the time, day of the week and the date in the tile on start screen. Please make sure you open the app first and allow it to lock screen for the tile update to work. Then, you can pin it to your start screen.</description>
+      <package>https://dl.dankassassin368.com/1476VassilArabadjiev.Globalclocktile_2014.1219.1624.2797_neutral_~_4epssmbyxfjw2.AppxBundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="36r1s6d9">
+      <name>BatteryInfo</name>
+      <version>1.7.0.0</version>
+      <icon>https://i.ibb.co/RGkdYfh0/images.png</icon>
+      <publisher>HoYeonHan</publisher>
+      <featured>false</featured>
+      <description/>
+      <package>https://dl.dankassassin368.com/45849HoYeonHan.BatteryInfo_1.7.0.0_x64__h1jdabs0g06va.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="9XrDWeBp">
+      <name>VK</name>
+      <version>2.3.2.1</version>
+      <icon>https://i.ibb.co/39QZf27C/1437159014-0.png</icon>
+      <publisher>VK.com</publisher>
+      <featured>false</featured>
+      <description/>
+      <package>https://dl.dankassassin368.com/C6965DD5.VK_2.3.2.1_x64__v422avzh127ra.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="wUQYvaL6">
+      <name>Despicable Me - Minion Rush</name>
+      <version>4.1.4.1</version>
+      <icon>https://i.ibb.co/s9mMd4yK/3-2-0-ico.png</icon>
+      <publisher>Gameloft</publisher>
+      <featured>false</featured>
+      <description>if won't work, it needs game assets
+download it from https://archive.org/details/despicable-me-minion-rush-archive
+dont delete it please, it need</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/MinionRush/GAMELOFTSA.DespicableMeMinionRush_4.1.4.1_x86__0pp20fcewvvtj.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="ejwJaoRi">
+      <name>Doodle Jump</name>
+      <version>1.0.0.0</version>
+      <icon>https://dankassassin368.com/random/icons/099179c4aa949483f8251b9e27579b33.jpg</icon>
+      <publisher>SquareDude</publisher>
+      <featured>false</featured>
+      <description>This is Doodle Jump of Windows 10 not for Windows phone since they already have one.</description>
+      <package>https://dl.dankassassin368.com/DoodleJump_1.0.0.0_x86__xygddxjqvswne.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+      <app id="where-s-my-water">
+      <name>Where's My Water</name>
+      <version>1.13.1.3</version>
+      <icon>https://i.ibb.co/1JZvRLW5/App-Icon-WMW.png</icon>
+      <publisher>Disney</publisher>
+      <featured>true</featured>
+      <description></description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Where%27s%20My%20Water/Disney.WheresMyWater_1.13.1.3_x86__6rarf9sa4v8jt.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+    <app id="accuweather-64-bit">
+      <name>AccuWeather (64 bit)</name>
+      <version>2.1.7.2</version>
+      <icon>https://i.ibb.co/1JZvRLW5/App-Icon-WMW.png</icon>
+      <publisher>AccuWeather for Windows</publisher>
       <featured>false</featured>
       <description></description>
-      <package>https://dl.dankassassin368.com/Microsoft.WinJS.2.0_1.0.9600.17018_neutral__8wekyb3d8bbwe.Appx</package>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Apps/AccuWeather/AccuWeather.AccuWeatherforWindows8_2.1.7.2_x64__8zz2pj9h1h1d8.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+    <app id="el-chavo-juego">
+      <name>El Chavo Juego</name>
+      <version>2014.603.2039.2034</version>
+      <icon>https://i.ibb.co/9B26yFm/apps-6583-9007199266255243-1f6fd017-437a-40bb-8b71-202dce40d3e6.png</icon>
+      <publisher>Televisa Interactive</publisher>
+      <featured>true</featured>
+      <description></description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/El%20Chavo%20Juego/TelevisaInteractive.ElChavoJuego_2014.603.2039.2034_neutral_~_f8bxs1j31vqvr.appxbundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
+    <app id="we-become-what-we-behold">
+      <name>We Become What We Behold</name>
+      <version>1.0.0.0</version>
+      <icon>https://dankassassin368.com/random/icons/b68f06fe677586f649fa3a530c4ac5eb.png</icon>
+      <publisher>SquareDude</publisher>
+      <featured>false</featured>
+      <description>This is a unofficial port of We Become What we Behold. Please ask me on Discord if you need help or feedback or ask another person.
+
+Original Game: https://ncase.itch.io/wbwwb</description>
+      <package>https://dl.dankassassin368.com/WBWWB_1.0.0.0_x86__xygddxjqvswne.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -271,260 +569,25 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="we-become-what-we-behold">
-      <name>We Become What We Behold</name>
-      <version>1.0.0.0</version>
-      <icon>https://dankassassin368.com/random/icons/b68f06fe677586f649fa3a530c4ac5eb.png</icon>
-      <publisher>SquareDude</publisher>
-      <featured>false</featured>
-      <description>This is a unofficial port of We Become What we Behold. Please ask me on Discord if you need help or feedback or ask another person.
-Original Game: https://ncase.itch.io/wbwwb</description>
-      <package>https://dl.dankassassin368.com/WBWWB_1.0.0.0_x86__xygddxjqvswne.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="el-chavo-juego">
-      <name>El Chavo Juego</name>
-      <version>2014.603.2039.2034</version>
-      <icon>https://i.ibb.co/9B26yFm/apps-6583-9007199266255243-1f6fd017-437a-40bb-8b71-202dce40d3e6.png</icon>
-      <publisher>Televisa Interactive</publisher>
+    <app id="winjs-2-0">
+      <name>WinJS 2.0</name>
+      <version>2.0.0.0</version>
+      <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
+      <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
       <description></description>
-      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/El%20Chavo%20Juego/TelevisaInteractive.ElChavoJuego_2014.603.2039.2034_neutral_~_f8bxs1j31vqvr.appxbundle</package>
+      <package>https://dl.dankassassin368.com/Microsoft.WinJS.2.0_1.0.9600.17018_neutral__8wekyb3d8bbwe.Appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="LhEiIzol">
-      <name>Talking Ginger</name>
-      <version>2.2.5.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/LhEiIzol-1000154122.png</icon>
-      <publisher>Outfit7</publisher>
-      <featured>false</featured>
-      <description/>
-      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Talking%20Ginger/app.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="aW1FNDTD">
-      <name>Converter Pro</name>
-      <version>6.6.7.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/aW1FNDTD-1000154132.png</icon>
-      <publisher>PanoramicSoftwareInc</publisher>
-      <featured>false</featured>
-      <description>not the fucking ** on the version</description>
-      <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Apps/Converter%20Pro/6.6.7.0/x86/PanoramicSoftwareInc.ConverterPro-UnitCurrencyConv_6.6.7.0_x86__wna2f9n7wqgf8.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="6y23CAjd">
-      <name>AdBlocker</name>
-      <version>1.1.0.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/6y23CAjd-StoreLogo.scale-200.png</icon>
-      <publisher>sensboston</publisher>
-      <featured>false</featured>
-      <description>A adblocker app for W10M.
-YOUR PHONE MUST BE INTEROP UNLOCKED!
-More info at https://files.catbox.moe/rokw5h.txt (please note you got to copy it to the browser)</description>
-      <package>https://dl.dankassassin368.com/AdBlocker_1.1.0.0_ARM.appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
-    <app id="dY265Bi3">
-      <name>myTube!</name>
-      <version>4.0.19.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/dY265Bi3-Small%20Tile.scale-400.png</icon>
-      <publisher>Ryken Studio</publisher>
-      <featured>true</featured>
-      <description>A YouTube client. You need the API Keys for it to work</description>
-      <package>https://dl.dankassassin368.com/myTube%21_4.0.19.0_arm.Appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
-    <app id="35pbG8B4">
-      <name>Unigram Mobile Messenger</name>
-      <version>21.12.6009.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/35pbG8B4-Square44x44Logo.altform-unplated_targetsize-256.png</icon>
-      <publisher>abaculi</publisher>
-      <featured>false</featured>
-      <description>Unigram Mobile is a fork of the original Unigram UWP app aimed to keep supporting Windows 10 Mobile after the Unigram dropped support for Mobile.</description>
-      <package>https://dl.dankassassin368.com/Unigram%20Mobile%20Messenger_21.12.6009.0_ARM.appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
-    <app id="6ZXvMZVa">
-      <name>Eurosport</name>
-      <version>4.1.0.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/6ZXvMZVa-1000154136.jpg</icon>
-      <publisher>EurosportSAS</publisher>
-      <featured>false</featured>
-      <description/>
-      <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Apps/Eurosport/4.1.0.0/x86/EurosportSAS.Eurosport.com_4.1.0.0_x86__zbz8cfsntg0dj.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="HNJhbHf7">
-      <name>Dominoes</name>
-      <version>4.3.29.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/HNJhbHf7-Logo.scale-200.png</icon>
-      <publisher>Random Salad Games LLC</publisher>
-      <featured>false</featured>
-      <description>Play the BEST dominoes game for Windows today!
-Enjoy the simple pleasures of this classic game on your computer, laptop, or tablet. Play 3 classic game modes (Muggins, Block, and Draw) against a clever computer opponent. Custom themes and backgrounds round out this spectacular game.</description>
-      <package>https://dl.dankassassin368.com/Dominoes.UWP_4.3.29.0_x64.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="XtZbpVmp">
-      <name>2048</name>
-      <version>1.9.3.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/XtZbpVmp-StoreLogo.scale-200.png</icon>
-      <publisher>Slytery</publisher>
-      <featured>false</featured>
-      <description>A 2048 game.</description>
-      <package>https://dl.dankassassin368.com/2048%21_1.9.3.0.appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
-    <app id="0Mm2fpUA">
-      <name>Radon Browser for Windows 10</name>
-      <version>1.14.17.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/0Mm2fpUA-Project Radon.png</icon>
-      <publisher>Scythra</publisher>
-      <featured>false</featured>
-      <description>A version of Radon Browser made for 10Store</description>
-      <package>https://dl.dankassassin368.com/Project%2520Radon_1.14.17.0_x86.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="XW2VB89E">
-      <name>myTube! Beta</name>
-      <version>4.0.21.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/XW2VB89E-App%20Icon.altform-unplated_targetsize-256.png</icon>
-      <publisher>Ryken Studio</publisher>
-      <featured>false</featured>
-      <description>Watch YouTube videos on your Lumia device.</description>
-      <package>https://dl.dankassassin368.com/myTubeBeta_4.0.21.0_arm.Appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
-    <app id="Rz7GmjT1">
-      <name>Shazam</name>
-      <version>4.7.8.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/Rz7GmjT1-ApplicationIcon.scale-240.png</icon>
-      <publisher>Shazam</publisher>
-      <featured>false</featured>
-      <description>Find the music your currently listening to with Shazam!</description>
-      <package>https://dl.dankassassin368.com/Shazam%20v4.7.8.0.appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
-    <app id="IzTuV2zi">
-      <name>ClassiCube</name>
+    <app id="winjs-1-0">
+      <name>WinJS 1.0</name>
       <version>1.0.0.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/IzTuV2zi-1000154589.png</icon>
-      <publisher>ClassiCube (idk)</publisher>
+      <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
+      <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
-      <description/>
-      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/ClassiCube/ClassiCube.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="zLL7sl3w">
-      <name>Kinectimals Unleashed</name>
-      <version>1.14.12.16</version>
-      <icon>https://i.ibb.co/v4WXbLn2/341847502d.jpg</icon>
-      <publisher>Microsoft Corporation (?)</publisher>
-      <featured>false</featured>
-      <description>A special version of the family game from the Xbox 360 console, designed for users of tablets and computers with Windows 8. The game allows us to take care of one of several dozen virtual animals with which we can play, following the growth and development of our pet. We must also ensure that the ba</description>
-      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Kinectimals/Microsoft.KinectimalsUnleashed_1.14.12.16_x86__8wekyb3d8bbwe.Appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="tk0RL62i">
-      <name>Angry Birds Space</name>
-      <version>1.3.1.0</version>
-      <icon>https://i.ibb.co/gZCMMMrK/Angry-Birds-Space-icon.png</icon>
-      <publisher>Rovio</publisher>
-      <featured>false</featured>
-      <description/>
-      <package>https://dl.dankassassin368.com/1ED5AEA5.AngryBirdsSpace_1.3.1.0_x86__p2gbknwb5d8r2.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="Y0wouMtZ">
-      <name>Netflix</name>
-      <version>1.10.0.58</version>
-      <icon>https://i.ibb.co/NdR8FGqk/channels4-profile.jpg</icon>
-      <publisher>Netflix, Inc</publisher>
-      <featured>true</featured>
-      <description/>
-      <package>https://dl.dankassassin368.com/4DF9E0F8.Netflix_1.10.0.58_x64__mcm4njqhnhss8.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="EzDH6wta">
-      <name>Viber</name>
-      <version>4.1.3.0</version>
-      <icon>https://i.ibb.co/r2pf2ZFn/1492065916-1491916517-logo-2.png</icon>
-      <publisher>Rakuten Viber</publisher>
-      <featured>false</featured>
-      <description/>
-      <package>https://dl.dankassassin368.com/2414FC7A.Viber-FreePhoneCallsText_4.1.3.0_x86__p61zvh252yqyr.Appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="g9QQPJD0">
-      <name>MetroTube</name>
-      <version>0.10.1.0</version>
-      <icon>https://i.ibb.co/mVb2rwkb/Metrotube-01.jpg</icon>
-      <publisher>LazyWorm Applications Ltd.</publisher>
-      <featured>false</featured>
-      <description/>
-      <package>https://dl.dankassassin368.com/Ametrotube.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="kRSswZ9K">
-      <name>Twitter (Bluetweety)</name>
-      <version>1.1.13.8</version>
-      <icon>https://i.ibb.co/5hHSWFht/124021.png</icon>
-      <publisher>migbrunluz</publisher>
-      <featured>false</featured>
-      <description>X (formerly Twitter) is a major microblogging and social networking service where users post short, 280-character messages, known as "tweets," which can include text, images, videos, and links.</description>
-      <package>https://dl.dankassassin368.com/9E2F88E3.Twitter_1.1.13.8_x86__wgeqdkkx372wm.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="kRSswZ9K">
-      <name>Twitter (Bluetweety)</name>
-      <version>1.1.13.8</version>
-      <icon>https://i.ibb.co/5hHSWFht/124021.png</icon>
-      <publisher>migbrunluz</publisher>
-      <featured>false</featured>
-      <description>X (formerly Twitter) is a major microblogging and social networking service where users post short, 280-character messages, known as "tweets," which can include text, images, videos, and links.</description>
-      <package>https://dl.dankassassin368.com/9E2F88E3.Twitter_1.1.13.8_x86__wgeqdkkx372wm.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="7M0AlgjH">
-      <name>Global Clock Tile</name>
-      <version>2014.1219.1624.2797</version>
-      <icon>https://i.ibb.co/TxcxMDXf/apps-2829-13527373401109910-65bfb7b2-c1f6-4ead-9d20-9c1bc0ce4d45.png</icon>
-      <publisher>VassilArabadjiev</publisher>
-      <featured>false</featured>
-      <description>The app displays the time, day of the week and the date in the tile on start screen. Please make sure you open the app first and allow it to lock screen for the tile update to work. Then, you can pin it to your start screen.</description>
-      <package>https://dl.dankassassin368.com/1476VassilArabadjiev.Globalclocktile_2014.1219.1624.2797_neutral_~_4epssmbyxfjw2.AppxBundle</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-    <app id="7M0AlgjH">
-      <name>Global Clock Tile</name>
-      <version>2014.1219.1624.2797</version>
-      <icon>https://i.ibb.co/TxcxMDXf/apps-2829-13527373401109910-65bfb7b2-c1f6-4ead-9d20-9c1bc0ce4d45.png</icon>
-      <publisher>VassilArabadjiev</publisher>
-      <featured>false</featured>
-      <description>The app displays the time, day of the week and the date in the tile on start screen. Please make sure you open the app first and allow it to lock screen for the tile update to work. Then, you can pin it to your start screen.</description>
-      <package>https://dl.dankassassin368.com/1476VassilArabadjiev.Globalclocktile_2014.1219.1624.2797_neutral_~_4epssmbyxfjw2.AppxBundle</package>
+      <description></description>
+      <package>https://dl.dankassassin368.com/Microsoft.WinJS.1.0_1.0.9200.20789_neutral__8wekyb3d8bbwe.Appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
