@@ -105,6 +105,17 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
+    <app id="I6LbwAai">
+      <name>Hill Climb Racing</name>
+      <version>1.41.1.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/I6LbwAai-1000154056.png</icon>
+      <publisher>Fingersoft</publisher>
+      <featured>false</featured>
+      <description>One of the most addictive and entertaining physics based driving game ever made! And it's free! Meet Newton Bill, the young aspiring uphill racer. He is about to embark on a journey that takes him to where no ride has ever been before. With little respect to the laws of physics</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Games/Hill%20Climb%20Racing/FINGERSOFT.HILLCLIMBRACING_1.41.1.0_neutral_~_r6rtpscs7gwyg.appxbundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
