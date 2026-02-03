@@ -18,7 +18,7 @@
       <appIds>kRSswZ9K,9XrDWeBp</appIds>
     </category>
       <category title="Video" type="picks">
-      <appIds></appIds>
+      <appIds>vlc-uwp,GrJoGJjh,dY265Bi3,XW2VB89E,Y0wouMtZ,g9QQPJD0</appIds>
     </category>
   </categories>
   <apps>
@@ -675,7 +675,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <icon>https://images.seeklogo.com/logo-png/32/1/youtube-music-logo-png_seeklogo-327636.png</icon>
         <publisher>DraydenYT</publisher>
         <featured>false</featured>
-        <description></description>
+        <description/>
         <package>https://dl.dankassassin368.com/App13_1.0.0.0_AnyCPU.appxbundle</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
