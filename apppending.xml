@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-    <app id="L9h3OvMn">
-      <name>Luma Shorts</name>
-      <version>1.0.0.0</version>
-      <icon>https://lumaprojects.github.io/shorts/apps/shorts.png</icon>
-      <publisher>Luma</publisher>
-      <featured>true</featured>
-      <description>a short form content app developed by Owen. this is the pc only build it uses edge webview.</description>
-      <package>https://lumaprojects.github.io/shorts/apps/PC/Luma%20Shorts%20v1.0%20(PC%20Webview).appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
     <app id="fmaNojRN">
       <name>DrayAI</name>
       <version>2.0.0.0</version>
