@@ -18,7 +18,62 @@
             display: flex; 
             flex-direction: column;
             height: 100vh;
+            overflow: hidden; /* Hide scrollbars until logged in */
         }
+
+        /* Login Overlay */
+        #login-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .login-box {
+            text-align: center;
+            width: 300px;
+        }
+
+        .user-avatar {
+            width: 120px;
+            height: 120px;
+            background: #888;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid rgba(255,255,255,0.5);
+            background: rgba(0,0,0,0.2);
+            color: white;
+            box-sizing: border-box;
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        .login-box input:focus { border-color: white; }
+
+        .login-box button {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            width: 100%;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .login-box button:hover { background: rgba(255,255,255,0.4); }
 
         /* Header Bar */
         header {
@@ -146,6 +201,16 @@
 </head>
 <body>
 
+<div id="login-overlay">
+    <div class="login-box">
+        <div class="user-avatar">👤</div>
+        <h2 style="font-weight:300;">Administrator</h2>
+        <input type="password" id="pass-input" placeholder="Password" autofocus>
+        <button onclick="checkPass()">Sign in</button>
+        <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Incorrect password.</p>
+    </div>
+</div>
+
 <header>
     <h1>10-Store App Management</h1>
 </header>
@@ -155,7 +220,7 @@
         <h3>Dashboard</h3>
         <p style="font-size: 13px; color: #555;">Review incoming submissions to the store. Check assets before approving.</p>
         <hr>
-        <div id="status" class="status-msg">Loading...</div>
+        <div id="status" class="status-msg">Waiting for login...</div>
     </div>
 
     <div class="content">
@@ -168,7 +233,26 @@
 
 <script src="config.js"></script>
 <script>
-(async function() {
+// --- PASSWORD CONFIG ---
+const CORRECT_PASS = "wuirfhuiesrhuigseuihfdghuiserghuiewrhuisgehuiwrsguhiersguhieruihgeruihghuiersghuiersuhigerhuigehuirghuierghuierghuiehiughuierghuieruihsgerhuighiuerghuierhuigehuirguiherghuierihugeuirhsghuierihugeruihghuierghuierghuirdhuigsdilhgresnfjroogvseviesrjvmsoeinvsioevlbnersbnrviusenrvusdnviusrdvnrnirdlintv745684375645873694648395673495689748346975436385764476543085734673757347853759375903793075930576395768390576493085769375639756937"; // CHANGE YOUR PASSWORD HERE
+
+function checkPass() {
+    const input = document.getElementById('pass-input').value;
+    if (input === CORRECT_PASS) {
+        document.getElementById('login-overlay').style.display = 'none';
+        document.body.style.overflow = 'auto';
+        initDashboard(); // Only start loading data after login
+    } else {
+        document.getElementById('fail-msg').style.display = 'block';
+    }
+}
+
+// Allow "Enter" key to submit password
+document.getElementById('pass-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') checkPass();
+});
+
+async function initDashboard() {
     const PENDING_FILE = "apppending.xml";
     const FINAL_FILE = "apps.xml";
     
@@ -184,6 +268,8 @@
         return;
     }
 
+    status.innerText = "Loading queue...";
+
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         try {
@@ -198,7 +284,6 @@
     }
 
     async function updateFiles(pendingContent, pendingSha, finalContent = null, finalSha = null) {
-        // Step 1: Update Pending
         await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
             method: "PUT",
             headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
@@ -209,7 +294,6 @@
             })
         });
 
-        // Step 2: Update Final
         if (finalContent && finalSha) {
             await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
                 method: "PUT",
@@ -264,8 +348,8 @@
                 </div>
 
                 <div class="asset-links">
-                    <a href="${icon}" target="_blank">🔍 Verify Icon</a>
-                    <a href="${pkg}" target="_blank">📦 Download Package</a>
+                    <a href="${icon}" target="_blank">Review Icon</a>
+                    <a href="${pkg}" target="_blank">Test Package</a>
                 </div>
 
                 <div class="controls">
@@ -303,7 +387,7 @@
             await updateFiles(newPendingContent, pendingData.sha);
         }
     };
-})();
+}
 </script>
 </body>
 </html>
