@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-    <app id="fmaNojRN">
-      <name>DrayAI</name>
-      <version>2.0.0.0</version>
-      <icon>https://drayaiupdatehost.netlify.app/download/storelogo.png</icon>
-      <publisher>DraydenYT</publisher>
-      <featured>true</featured>
-      <description>DrayAI is an AI app for the 10Store! Chat to DrayAI, or play music "Play Shout or Play Never Gunna Give You Up" to stop say "Stop" Have a nice day!</description>
-      <package>https://dl.dankassassin368.com/App3_2.0.0.0_AnyCPU.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
     <app id="MGCOWfUB">
       <name>BrowserQuest</name>
       <version>2.6.2.0</version>
