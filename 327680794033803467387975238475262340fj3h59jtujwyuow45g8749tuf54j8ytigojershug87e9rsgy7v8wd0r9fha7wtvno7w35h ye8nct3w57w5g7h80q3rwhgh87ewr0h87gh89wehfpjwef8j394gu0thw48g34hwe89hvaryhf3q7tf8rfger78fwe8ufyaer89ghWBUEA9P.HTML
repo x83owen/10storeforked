@@ -196,6 +196,16 @@
             margin-bottom: 20px;
         }
 
+        /* New Stats Box Style */
+        .stats-box {
+            background: white;
+            border: 1px solid #CCC;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .stats-box h4 { margin: 0 0 10px 0; font-weight: 600; color: var(--win-blue); }
+
         #no-apps { text-align: center; padding: 50px; color: #888; font-style: italic; }
     </style>
 </head>
@@ -221,6 +231,11 @@
         <p style="font-size: 13px; color: #555;">Review incoming submissions to the store. Check assets before approving.</p>
         <hr>
         <div id="status" class="status-msg">Waiting for login...</div>
+        
+        <div class="stats-box">
+            <h4>Store Stats</h4>
+            Live Apps: <strong id="live-count">...</strong>
+        </div>
     </div>
 
     <div class="content">
@@ -234,20 +249,19 @@
 <script src="config.js"></script>
 <script>
 // --- PASSWORD CONFIG ---
-const CORRECT_PASS = "f578dsf67hsdf578h967g86s6f5875g69s7f8h5sd5g8sd9f67gds678fb7sv6dct6gensr7tc6w5et6cwfy9wr58hy84578wr578t4fw45ht8o"; // CHANGE YOUR PASSWORD HERE
+const CORRECT_PASS = "f578dsf67hsdf578h967g86s6f5875g69s7f8h5sd5g8sd9f67gds678fb7sv6dct6gensr7tc6w5et6cwfy9wr58hy84578wr578t4fw45ht8o";
 
 function checkPass() {
     const input = document.getElementById('pass-input').value;
     if (input === CORRECT_PASS) {
         document.getElementById('login-overlay').style.display = 'none';
         document.body.style.overflow = 'auto';
-        initDashboard(); // Only start loading data after login
+        initDashboard();
     } else {
         document.getElementById('fail-msg').style.display = 'block';
     }
 }
 
-// Allow "Enter" key to submit password
 document.getElementById('pass-input').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') checkPass();
 });
@@ -262,13 +276,14 @@ async function initDashboard() {
 
     const listContainer = document.getElementById('app-list');
     const status = document.getElementById('status');
+    const liveCountEl = document.getElementById('live-count');
 
     if (!token || !owner || !repo) {
         status.innerHTML = `<span style="color:red">Missing Config!</span>`;
         return;
     }
 
-    status.innerText = "Loading queue...";
+    status.innerText = "Loading data...";
 
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -283,31 +298,18 @@ async function initDashboard() {
         } catch (e) { return null; }
     }
 
-    async function updateFiles(pendingContent, pendingSha, finalContent = null, finalSha = null) {
-        await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
-            method: "PUT",
-            headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
-            body: JSON.stringify({
-                message: "Admin: Processed review queue",
-                content: btoa(unescape(encodeURIComponent(pendingContent))),
-                sha: pendingSha
-            })
-        });
-
-        if (finalContent && finalSha) {
-            await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
-                method: "PUT",
-                headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    message: "Admin: Approved app",
-                    content: btoa(unescape(encodeURIComponent(finalContent))),
-                    sha: finalSha
-                })
-            });
-        }
-        location.reload();
+    // 1. Fetch apps.xml first to get Stats
+    const finalData = await getFile(FINAL_FILE);
+    if (finalData) {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(finalData.content, "text/xml");
+        const count = xmlDoc.getElementsByTagName("app").length;
+        liveCountEl.innerText = count;
+    } else {
+        liveCountEl.innerText = "Err";
     }
 
+    // 2. Fetch Pending Queue
     const pendingData = await getFile(PENDING_FILE);
     if (!pendingData) {
         status.innerText = "Error loading pending queue.";
@@ -326,6 +328,7 @@ async function initDashboard() {
 
     status.innerText = `${apps.length} app(s) pending.`;
 
+    // 3. Render Cards
     Array.from(apps).forEach(app => {
         const id = app.getAttribute("id");
         const name = app.getElementsByTagName("name")[0].textContent;
@@ -365,10 +368,39 @@ async function initDashboard() {
         listContainer.appendChild(card);
     });
 
+    async function updateFiles(pendingContent, pendingSha, finalContent = null, finalSha = null) {
+        // Update Pending File
+        await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
+            method: "PUT",
+            headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+                message: "Admin: Processed review queue",
+                content: btoa(unescape(encodeURIComponent(pendingContent))),
+                sha: pendingSha
+            })
+        });
+
+        // Update Final File (if approving)
+        if (finalContent && finalSha) {
+            await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
+                method: "PUT",
+                headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    message: "Admin: Approved app",
+                    content: btoa(unescape(encodeURIComponent(finalContent))),
+                    sha: finalSha
+                })
+            });
+        }
+        location.reload();
+    }
+
+    // 4. Process Logic (Updated for Replacement)
     window.processApp = async function(appId, isApproved) {
         status.innerText = "Working...";
         const isFeatured = document.getElementById(`feat-${appId}`).checked;
         
+        // Find app in pending data
         const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
         const appMatches = pendingData.content.match(appRegex);
         if (!appMatches) return;
@@ -376,13 +408,27 @@ async function initDashboard() {
         let appXml = appMatches[0];
         appXml = appXml.replace(/<featured>.*?<\/featured>/, `<featured>${isFeatured}</featured>`);
 
+        // Remove from Pending
         const newPendingContent = pendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
 
         if (isApproved) {
-            const finalData = await getFile(FINAL_FILE);
-            if (!finalData) { alert("apps.xml missing!"); return; }
-            const newFinalContent = finalData.content.replace('</apps>', `    ${appXml}\n</apps>`);
-            await updateFiles(newPendingContent, pendingData.sha, newFinalContent, finalData.sha);
+            // Get fresh apps.xml
+            const currentFinalData = await getFile(FINAL_FILE);
+            if (!currentFinalData) { alert("apps.xml missing!"); return; }
+
+            // CHECK: Does App ID exist in apps.xml?
+            const existingAppRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`);
+            let newFinalContent;
+
+            if (existingAppRegex.test(currentFinalData.content)) {
+                // REPLACE existing app
+                newFinalContent = currentFinalData.content.replace(existingAppRegex, appXml);
+            } else {
+                // APPEND new app
+                newFinalContent = currentFinalData.content.replace('</apps>', `    ${appXml}\n</apps>`);
+            }
+
+            await updateFiles(newPendingContent, pendingData.sha, newFinalContent, currentFinalData.sha);
         } else {
             await updateFiles(newPendingContent, pendingData.sha);
         }
@@ -391,4 +437,3 @@ async function initDashboard() {
 </script>
 </body>
 </html>
-
