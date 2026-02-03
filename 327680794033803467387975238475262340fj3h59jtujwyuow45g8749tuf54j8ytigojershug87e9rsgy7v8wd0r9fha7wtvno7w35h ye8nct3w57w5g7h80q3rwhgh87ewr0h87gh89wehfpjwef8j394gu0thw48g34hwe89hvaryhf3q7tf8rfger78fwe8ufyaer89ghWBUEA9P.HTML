@@ -106,7 +106,7 @@
 
 <script src="config.js"></script>
 <script>
-// FORCE CLEAR INPUT ON LOAD to ensure password screen is useful
+// FORCE CLEAR INPUT ON LOAD (Security)
 document.getElementById('pass-input').value = "";
 
 const CORRECT_PASS = "wuirfhuiesrhuigseuihfdghuiserghuiewrhuisgehuiwrsguhiersguhieruihgeruihghuiersghuiersuhigerhuigehuirghuierghuierghuiehiughuierghuieruihsgerhuighiuerghuierhuigehuirguiherghuierihugeuirhsghuierihugeruihghuierghuierghuirdhuigsdilhgresnfjroogvseviesrjvmsoeinvsioevlbnersbnrviusenrvusdnviusrdvnrnirdlintv745684375645873694648395673495689748346975436385764476543085734673757347853759375903793075930576395768390576493085769375639756937";
@@ -120,10 +120,11 @@ function checkPass() {
         initDashboard(); 
     } else {
         document.getElementById('fail-msg').style.display = 'block';
-        document.getElementById('pass-input').value = ""; // Clear bad attempt
+        document.getElementById('pass-input').value = "";
     }
 }
 
+// Enter key support
 document.getElementById('pass-input').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') checkPass();
 });
@@ -143,9 +144,6 @@ async function initDashboard() {
         return;
     }
 
-    status.innerText = "Loading queue...";
-
-    // 1. Helper to fetch file content
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         try {
@@ -159,10 +157,10 @@ async function initDashboard() {
         } catch (e) { return null; }
     }
 
-    // 2. Helper to save files back to GitHub
+    // Logic to save changes to GitHub
     async function updateFiles(pendingContent, pendingSha, finalContent = null, finalSha = null) {
-        status.innerText = "Saving changes...";
-        // Update Pending File
+        status.innerText = "Saving...";
+        // Update Pending
         await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
             method: "PUT",
             headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
@@ -173,7 +171,7 @@ async function initDashboard() {
             })
         });
 
-        // Update Final File (if approving)
+        // Update Final if approved
         if (finalContent && finalSha) {
             await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
                 method: "PUT",
@@ -185,10 +183,9 @@ async function initDashboard() {
                 })
             });
         }
-        location.reload(); // Refresh to lock screen and show updates
+        location.reload();
     }
 
-    // 3. Load Data
     const pendingData = await getFile(PENDING_FILE);
     if (!pendingData) { status.innerText = "Queue empty or file error."; return; }
 
@@ -197,17 +194,13 @@ async function initDashboard() {
     const apps = xmlDoc.getElementsByTagName("app");
 
     if (apps.length === 0) status.innerText = "No pending apps.";
-    else status.innerText = `${apps.length} app(s) waiting.`;
 
-    // 4. Render Cards (Using YOUR EXACT LAYOUT)
-    listContainer.innerHTML = "";
+    // Render with OLD LAYOUT
     Array.from(apps).forEach(app => {
         const id = app.getAttribute("id");
         const name = app.getElementsByTagName("name")[0].textContent;
-        
         const card = document.createElement('div');
         card.className = 'app-card';
-        // EXACT HTML structure you requested
         card.innerHTML = `
             <div class="app-info">
                 <h2>${name}</h2>
@@ -219,27 +212,23 @@ async function initDashboard() {
         listContainer.appendChild(card);
     });
 
-    // 5. Logic to move/delete apps
+    // Function to handle button clicks
     window.processApp = async function(appId, isApproved) {
         const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
         const appMatches = pendingData.content.match(appRegex);
         
-        if (!appMatches) { alert("Error finding app data"); return; }
+        if (!appMatches) return;
         
         const appXml = appMatches[0];
-        // Remove app from pending string
         const newPendingContent = pendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
 
         if (isApproved) {
             const finalData = await getFile(FINAL_FILE);
-            if (!finalData) { alert("Could not load target file"); return; }
-            
-            // Add app to final string (simple append before closing tag)
+            if (!finalData) return;
             const newFinalContent = finalData.content.replace('</apps>', `    ${appXml}\n</apps>`);
             await updateFiles(newPendingContent, pendingData.sha, newFinalContent, finalData.sha);
         } else {
-            // Just delete from pending
-            if(confirm("Delete " + appId + "?")) {
+            if(confirm("Reject this app?")) {
                 await updateFiles(newPendingContent, pendingData.sha);
             }
         }
