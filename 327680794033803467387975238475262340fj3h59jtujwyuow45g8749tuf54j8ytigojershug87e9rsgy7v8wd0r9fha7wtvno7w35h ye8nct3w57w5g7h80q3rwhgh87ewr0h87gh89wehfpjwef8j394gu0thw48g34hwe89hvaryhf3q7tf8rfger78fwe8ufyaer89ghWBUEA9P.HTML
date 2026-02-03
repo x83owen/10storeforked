@@ -126,30 +126,43 @@
 const CORRECT_PASS = "f578dsf67hsdf578h967g86s6f5875g69s7f8h5sd5g8sd9f67gds678fb7sv6dct6gensr7tc6w5et6cwfy9wr58hy84578wr578t4fw45ht8o";
 
 function checkPass() {
-    if (document.getElementById('pass-input').value === CORRECT_PASS) {
+    const val = document.getElementById('pass-input').value;
+    if (val === CORRECT_PASS) {
         document.getElementById('login-overlay').style.display = 'none';
-        initDashboard();
+        // Delay init slightly to ensure config.js variables are fully bound to window
+        setTimeout(initDashboard, 100);
     } else {
         document.getElementById('fail-msg').style.display = 'block';
     }
 }
 
 async function initDashboard() {
-    const PENDING_FILE = "apppending.xml";
-    const FINAL_FILE = "apps.xml";
-    const token = window.GITHUB_TOKEN;
-    const owner = window.GITHUB_OWNER;
-    const repo = window.GITHUB_REPO;
+    // FORCE CHECK: If config.js failed, try to grab them from global scope or window
+    const token = window.GITHUB_TOKEN || GITHUB_TOKEN;
+    const owner = window.GITHUB_OWNER || GITHUB_OWNER;
+    const repo = window.GITHUB_REPO || GITHUB_REPO;
 
     const listContainer = document.getElementById('app-list');
     const liveContainer = document.getElementById('live-list');
     const status = document.getElementById('status');
     const liveCountEl = document.getElementById('live-count');
 
+    // If still undefined, show a clear error instead of crashing the URL
+    if (!token || !owner || !repo) {
+        console.error("Config missing!", { token, owner, repo });
+        status.innerHTML = `<b style="color:red">Config Error:</b> Variables are undefined. Check config.js`;
+        return;
+    }
+
+    const PENDING_FILE = "apppending.xml";
+    const FINAL_FILE = "apps.xml";
+
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         try {
-            const res = await fetch(url, { headers: { "Authorization": `token ${token}` } });
+            const res = await fetch(url, { 
+                headers: { "Authorization": `token ${token}` } 
+            });
             if (!res.ok) return null;
             const data = await res.json();
             return { sha: data.sha, content: decodeURIComponent(escape(atob(data.content))) };
@@ -246,3 +259,4 @@ async function initDashboard() {
 </script>
 </body>
 </html>
+
