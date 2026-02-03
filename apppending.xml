@@ -23,17 +23,6 @@
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-      <app id="XtZbpVmp">
-      <name>2048</name>
-      <version>1.9.3.0</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/XtZbpVmp-StoreLogo.scale-200.png</icon>
-      <publisher>Slytery</publisher>
-      <featured>false</featured>
-      <description>A 2048 game.</description>
-      <package>https://dl.dankassassin368.com/2048%21_1.9.3.0.appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
       <app id="0Mm2fpUA">
       <name>Radon Browser for Windows 10</name>
       <version>1.14.17.0</version>
