@@ -57,6 +57,28 @@
             width: 100%; padding: 8px; cursor: pointer;
         }
 
+        /* XML Editor Modal */
+        #edit-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-box {
+            background: white; width: 80%; max-width: 700px;
+            padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-box textarea {
+            width: 100%; height: 300px; font-family: 'Consolas', monospace;
+            font-size: 13px; margin: 15px 0; padding: 10px; box-sizing: border-box;
+            border: 1px solid #ccc;
+        }
+
         header { background: var(--win-blue); color: white; padding: 10px 25px; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
         header h1 { margin: 0; font-size: 18px; font-weight: 400; }
 
@@ -72,15 +94,13 @@
         .app-info { flex-grow: 1; }
         .app-info h2 { margin: 0 0 5px 0; color: #333; font-weight: 300; font-size: 22px; }
         .pub-text { color: #666; font-size: 13px; margin-bottom: 10px; }
-        .asset-links { margin: 10px 0; padding: 8px 0; border-top: 1px solid #EEE; }
-        .asset-links a { color: var(--win-blue); text-decoration: none; margin-right: 15px; font-size: 12px; font-weight: 600; }
 
-        .controls { margin-top: 15px; display: flex; gap: 10px; align-items: center; }
+        .controls { margin-top: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
         button { padding: 6px 20px; border: none; cursor: pointer; font-size: 13px; }
         .btn-approve { background: var(--win-green); color: white; }
         .btn-decline { background: #CCC; color: black; }
         .btn-unpublish { background: #444; color: white; }
-        .btn-unpublish:hover { background: var(--win-red); }
+        .btn-edit { background: var(--win-blue); color: white; }
 
         .stats-box { background: white; border: 1px solid #CCC; padding: 15px; margin-top: 20px; font-size: 14px; }
     </style>
@@ -90,10 +110,21 @@
 <div id="login-overlay">
     <div class="login-box">
         <div class="user-avatar">👤</div>
-        <h2 style="font-weight:300;">Administrator</h2>
+        <h2 style="font-weight:300;">10Store Admin</h2>
         <input type="password" id="pass-input" placeholder="Password" autofocus>
-        <button onclick="checkPass()">Sign in</button>
-        <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Incorrect password.</p>
+        <button onclick="checkPass()">Log on</button>
+        <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Error</p>
+    </div>
+</div>
+
+<div id="edit-modal">
+    <div class="modal-box">
+        <h3 style="margin-top:0;">Edit App XML</h3>
+        <textarea id="xml-edit-area"></textarea>
+        <div style="text-align:right;">
+            <button onclick="closeEdit()">Cancel</button>
+            <button class="btn-approve" onclick="saveXmlEdit()">Save Changes</button>
+        </div>
     </div>
 </div>
 
@@ -124,6 +155,8 @@
 <script src="config.js"></script>
 <script src="pasw.js"></script>
 <script>
+let currentEditingId = null;
+
 function checkPass() {
     const val = document.getElementById('pass-input').value;
     if (val === PASSW) {
@@ -145,10 +178,8 @@ async function initDashboard() {
     const status = document.getElementById('status');
     const liveCountEl = document.getElementById('live-count');
 
-    // If still undefined, show a clear error instead of crashing the URL
     if (!token || !owner || !repo) {
-        console.error("Config missing!", { token, owner, repo });
-        status.innerHTML = `<b style="color:red">Config Error:</b> Variables are undefined. Check config.js`;
+        status.innerHTML = `<b style="color:red">Config Error:</b> Variables are undefined.`;
         return;
     }
 
@@ -158,9 +189,7 @@ async function initDashboard() {
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         try {
-            const res = await fetch(url, { 
-                headers: { "Authorization": `token ${token}` } 
-            });
+            const res = await fetch(url, { headers: { "Authorization": `token ${token}` } });
             if (!res.ok) return null;
             const data = await res.json();
             return { sha: data.sha, content: decodeURIComponent(escape(atob(data.content))) };
@@ -170,8 +199,8 @@ async function initDashboard() {
     const finalData = await getFile(FINAL_FILE);
     const pendingData = await getFile(PENDING_FILE);
 
-    // Render Logic
     function render(xmlContent, container, isLive) {
+        container.innerHTML = "";
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlContent, "text/xml");
         const apps = xmlDoc.getElementsByTagName("app");
@@ -191,7 +220,8 @@ async function initDashboard() {
                     <div class="pub-text">ID: ${id}</div>
                     <div class="controls">
                         ${isLive ? 
-                            `<button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>` :
+                            `<button class="btn-edit" onclick="openEdit('${id}')">Edit XML</button>
+                             <button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>` :
                             `<input type="checkbox" id="feat-${id}"> Featured
                              <button class="btn-decline" onclick="processApp('${id}', false)">Decline</button>
                              <button class="btn-approve" onclick="processApp('${id}', true)">Approve</button>`
@@ -206,7 +236,30 @@ async function initDashboard() {
     if(pendingData) render(pendingData.content, listContainer, false);
     if(finalData) render(finalData.content, liveContainer, true);
 
-    // Approve/Decline Logic
+    // XML Editor Functions
+    window.openEdit = function(appId) {
+        currentEditingId = appId;
+        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`);
+        const match = finalData.content.match(appRegex);
+        if (match) {
+            document.getElementById('xml-edit-area').value = match[0].trim();
+            document.getElementById('edit-modal').style.display = 'flex';
+        }
+    };
+
+    window.closeEdit = function() {
+        document.getElementById('edit-modal').style.display = 'none';
+    };
+
+    window.saveXmlEdit = async function() {
+        const newXml = document.getElementById('xml-edit-area').value;
+        const appRegex = new RegExp(`<app id="${currentEditingId}">[\\s\\S]*?<\\/app>`);
+        const newFinal = finalData.content.replace(appRegex, newXml);
+        status.innerText = "Updating...";
+        await commit(null, null, newFinal, finalData.sha);
+    };
+
+    // Other Actions
     window.processApp = async function(appId, isApproved) {
         status.innerText = "Syncing...";
         const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
@@ -224,11 +277,9 @@ async function initDashboard() {
             const existingRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`);
             newFinal = finalData.content.replace(existingRegex, "").replace('</apps>', `    ${appXml}\n</apps>`);
         }
-
         await commit(newPending, pendingData.sha, newFinal, finalData.sha);
     };
 
-    // Unpublish Logic
     window.removeLive = async function(appId) {
         if(!confirm("Remove app?")) return;
         status.innerText = "Removing...";
@@ -257,6 +308,3 @@ async function initDashboard() {
 </script>
 </body>
 </html>
-
-
-
