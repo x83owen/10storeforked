@@ -9,7 +9,7 @@
       <appIds>fresh-paint,paint-3d</appIds>
     </category>
       <category title="Dependencies" type="picks">
-      <appIds>winjs-1-0,winjs-2-0</appIds>
+      <appIds>winjs-1-0,winjs-2-0,microsoft-vclibs-140-00-14-0-33519-0-x64</appIds>
     </category>
       <category title="Games" type="picks">
       <appIds>browserquest,minecraft-for-windows,minecraft-for-windows-mobile,hill-climb-racing,transport-empire,rrDcTRXV,VnpOXSdk,8WvwEEYk,LhEiIzol,suVzYAz7,zLL7sl3w,tk0RL62i,wUQYvaL6,ejwJaoRi,where-s-my-water,el-chavo-juego,we-become-what-we-behold</appIds>
