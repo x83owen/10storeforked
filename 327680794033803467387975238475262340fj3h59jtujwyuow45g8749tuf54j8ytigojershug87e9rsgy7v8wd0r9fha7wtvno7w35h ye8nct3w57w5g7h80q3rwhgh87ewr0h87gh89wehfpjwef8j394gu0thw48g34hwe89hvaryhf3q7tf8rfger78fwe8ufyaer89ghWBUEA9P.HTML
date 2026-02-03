@@ -21,63 +21,20 @@
             overflow: hidden;
         }
 
-        /* Login Overlay */
         #login-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(20px);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(20px);
+            z-index: 9999; display: flex; align-items: center; justify-content: center; color: white;
         }
 
         .login-box { text-align: center; width: 300px; }
-        .user-avatar {
-            width: 120px; height: 120px;
-            background: #888; border-radius: 50%;
-            margin: 0 auto 20px; display: flex;
-            align-items: center; justify-content: center;
-            font-size: 50px;
-        }
+        .user-avatar { width: 120px; height: 120px; background: #888; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 50px; }
+        .login-box input { width: 100%; padding: 8px; border: 2px solid rgba(255,255,255,0.5); background: rgba(0,0,0,0.2); color: white; box-sizing: border-box; outline: none; margin-bottom: 10px; }
+        .login-box button { background: rgba(255,255,255,0.2); border: 2px solid white; color: white; width: 100%; padding: 8px; cursor: pointer; }
 
-        .login-box input {
-            width: 100%; padding: 8px;
-            border: 2px solid rgba(255,255,255,0.5);
-            background: rgba(0,0,0,0.2);
-            color: white; box-sizing: border-box;
-            outline: none; margin-bottom: 10px;
-        }
-
-        .login-box button {
-            background: rgba(255,255,255,0.2);
-            border: 2px solid white; color: white;
-            width: 100%; padding: 8px; cursor: pointer;
-        }
-
-        /* XML Editor Modal */
-        #edit-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-box {
-            background: white; width: 80%; max-width: 700px;
-            padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .modal-box textarea {
-            width: 100%; height: 300px; font-family: 'Consolas', monospace;
-            font-size: 13px; margin: 15px 0; padding: 10px; box-sizing: border-box;
-            border: 1px solid #ccc;
-        }
+        #edit-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center; }
+        .modal-box { background: white; width: 80%; max-width: 700px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .modal-box textarea { width: 100%; height: 300px; font-family: 'Consolas', monospace; font-size: 13px; margin: 15px 0; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; }
 
         header { background: var(--win-blue); color: white; padding: 10px 25px; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
         header h1 { margin: 0; font-size: 18px; font-weight: 400; }
@@ -89,10 +46,11 @@
 
         .section-title { font-size: 20px; font-weight: 300; margin: 30px 0 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; color: #333; }
 
-        /* Uploader Form */
         .upload-form input, .upload-form textarea { width: 100%; padding: 5px; margin-bottom: 8px; border: 1px solid #ccc; font-size: 12px; box-sizing: border-box; }
-        .upload-form textarea { resize: none; } /* Disabled Resizing */
+        .upload-form textarea { resize: none; }
         .upload-form h4 { margin: 10px 0 5px; font-size: 13px; color: var(--win-blue); }
+        .check-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+        .check-row label { font-size: 11px; display: flex; align-items: center; gap: 4px; }
 
         .app-card { background: white; border: 1px solid #DDD; padding: 20px; margin-bottom: 25px; display: flex; gap: 25px; position: relative; }
         .app-icon { width: 100px; height: 100px; object-fit: contain; background: #F0F0F0; border: 1px solid #EEE; }
@@ -100,10 +58,9 @@
         .app-info h2 { margin: 0 0 5px 0; color: #333; font-weight: 300; font-size: 22px; }
         .pub-text { color: #666; font-size: 13px; margin-bottom: 10px; }
 
-        .controls { margin-top: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .controls { margin-top: 15px; display: flex; gap: 10px; align-items: center; }
         button { padding: 6px 20px; border: none; cursor: pointer; font-size: 13px; }
         .btn-approve { background: var(--win-green); color: white; }
-        .btn-decline { background: #CCC; color: black; }
         .btn-unpublish { background: #444; color: white; }
         .btn-edit { background: var(--win-blue); color: white; }
 
@@ -149,8 +106,14 @@
             <input type="text" id="up-icon" placeholder="Icon URL">
             <input type="text" id="up-pkg" placeholder="Package URL">
             <textarea id="up-desc" placeholder="Description" style="height:60px;"></textarea>
-            <label style="font-size:11px;"><input type="checkbox" id="up-feat"> Featured</label>
-            <button class="btn-approve" style="width:100%; margin-top:5px;" onclick="directUpload()">Publish Now</button>
+            
+            <div class="check-row">
+                <label><input type="checkbox" id="up-feat"> Featured</label>
+                <label><input type="checkbox" id="up-pc" checked> PC Capable</label>
+                <label><input type="checkbox" id="up-mob"> Mobile Capable</label>
+            </div>
+            
+            <button class="btn-approve" style="width:100%;" onclick="directUpload()">Publish Now</button>
         </div>
 
         <div class="stats-box">
@@ -177,31 +140,16 @@ let cachedFinalData = null;
 let cachedPendingData = null;
 
 function checkPass() {
-    const val = document.getElementById('pass-input').value;
-    if (val === PASSW) {
+    if (document.getElementById('pass-input').value === PASSW) {
         document.getElementById('login-overlay').style.display = 'none';
         setTimeout(initDashboard, 100);
-    } else {
-        document.getElementById('fail-msg').style.display = 'block';
-    }
+    } else { document.getElementById('fail-msg').style.display = 'block'; }
 }
 
 async function initDashboard() {
     const token = window.GITHUB_TOKEN || GITHUB_TOKEN;
     const owner = window.GITHUB_OWNER || GITHUB_OWNER;
     const repo = window.GITHUB_REPO || GITHUB_REPO;
-    document.getElementById('status').innerText = "Connected";
-
-    const listContainer = document.getElementById('app-list');
-    const liveContainer = document.getElementById('live-list');
-    const status = document.getElementById('status');
-    const liveCountEl = document.getElementById('live-count');
-
-    if (!token || !owner || !repo) {
-        status.innerHTML = `<b style="color:red">Config Error!</b>`;
-        return;
-    }
-
     const PENDING_FILE = "apppending.xml";
     const FINAL_FILE = "apps.xml";
 
@@ -227,9 +175,8 @@ async function initDashboard() {
 
         Array.from(apps).forEach(app => {
             const id = app.getAttribute("id");
-            const name = app.getElementsByTagName("name")[0].textContent;
-            const icon = app.getElementsByTagName("icon")[0].textContent;
-            
+            const name = app.getElementsByTagName("name")[0]?.textContent || "Unnamed";
+            const icon = app.getElementsByTagName("icon")[0]?.textContent || "";
             const card = document.createElement('div');
             card.className = 'app-card';
             card.innerHTML = `
@@ -238,121 +185,76 @@ async function initDashboard() {
                     <h2>${name}</h2>
                     <div class="pub-text">ID: ${id}</div>
                     <div class="controls">
-                        ${isLive ? 
-                            `<button class="btn-edit" onclick="openEdit('${id}')">Edit XML</button>
-                             <button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>` :
-                            `<input type="checkbox" id="feat-${id}"> Featured
-                             <button class="btn-decline" onclick="processApp('${id}', false)">Decline</button>
-                             <button class="btn-approve" onclick="processApp('${id}', true)">Approve</button>`
-                        }
+                        ${isLive ? `<button class="btn-edit" onclick="openEdit('${id}')">Edit XML</button><button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>` :
+                        `<input type="checkbox" id="feat-${id}"> Featured <button class="btn-approve" onclick="processApp('${id}', true)">Approve</button>`}
                     </div>
                 </div>`;
             container.appendChild(card);
         });
-        if(isLive) liveCountEl.innerText = apps.length;
+        if(isLive) document.getElementById('live-count').innerText = apps.length;
     }
 
-    if(cachedPendingData) render(cachedPendingData.content, listContainer, false);
-    if(cachedFinalData) render(cachedFinalData.content, liveContainer, true);
+    if(cachedPendingData) render(cachedPendingData.content, document.getElementById('app-list'), false);
+    if(cachedFinalData) render(cachedFinalData.content, document.getElementById('live-list'), true);
 
-// Direct Upload Action
     window.directUpload = async function() {
-        const originalName = document.getElementById('up-name').value; // Store original name
-        
-        // Generate ID from Name for internal use ONLY
-        const generatedId = originalName.toLowerCase()
-                       .replace(/[^a-z0-9]/g, '-')
-                       .replace(/-+/g, '-')
-                       .replace(/^-|-$/g, '');
-
+        const nameVal = document.getElementById('up-name').value;
+        const idVal = nameVal.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
         const pub = document.getElementById('up-pub').value;
         const ver = document.getElementById('up-ver').value;
         const icon = document.getElementById('up-icon').value;
         const pkg = document.getElementById('up-pkg').value;
         const desc = document.getElementById('up-desc').value;
         const feat = document.getElementById('up-feat').checked;
+        const pc = document.getElementById('up-pc').checked;
+        const mob = document.getElementById('up-mob').checked;
 
-        if(!originalName || !pkg) return alert("Fill Name and Package URL!");
+        if(!nameVal || !pkg) return alert("Name and Package URL are required!");
 
-        // Use generatedId for the attribute, but originalName for the tag
         const appXml = `
-    <app id="${generatedId}">
-        <name>${originalName}</name>
-        <icon>${icon}</icon>
+    <app id="${idVal}">
+        <name>${nameVal}</name>
         <version>${ver}</version>
+        <icon>${icon}</icon>
         <publisher>${pub}</publisher>
+        <featured>${feat}</featured>
         <description>${desc}</description>
         <package>${pkg}</package>
-        <featured>${feat}</featured>
+        <pcCapable>${pc}</pcCapable>
+        <mobileCapable>${mob}</mobileCapable>
     </app>`;
 
-        status.innerText = "Uploading...";
+        document.getElementById('status').innerText = "Uploading...";
         const newFinal = cachedFinalData.content.replace('</apps>', `${appXml}\n</apps>`);
         await commit(null, null, newFinal, cachedFinalData.sha);
-    }
+    };
 
-    // Modal Actions
-    window.openEdit = function(appId) {
+    window.openEdit = (appId) => {
         currentEditingId = appId;
-        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`);
-        const match = cachedFinalData.content.match(appRegex);
-        if (match) {
-            document.getElementById('xml-edit-area').value = match[0].trim();
-            document.getElementById('edit-modal').style.display = 'flex';
-        }
+        const match = cachedFinalData.content.match(new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`));
+        if (match) { document.getElementById('xml-edit-area').value = match[0].trim(); document.getElementById('edit-modal').style.display = 'flex'; }
     };
 
     window.closeEdit = () => document.getElementById('edit-modal').style.display = 'none';
 
-    window.saveXmlEdit = async function() {
+    window.saveXmlEdit = async () => {
         const newXml = document.getElementById('xml-edit-area').value;
-        const appRegex = new RegExp(`<app id="${currentEditingId}">[\\s\\S]*?<\\/app>`);
-        const newFinal = cachedFinalData.content.replace(appRegex, newXml);
-        status.innerText = "Saving...";
+        const newFinal = cachedFinalData.content.replace(new RegExp(`<app id="${currentEditingId}">[\\s\\S]*?<\\/app>`), newXml);
         await commit(null, null, newFinal, cachedFinalData.sha);
     };
 
-    window.processApp = async function(appId, isApproved) {
-        status.innerText = "Processing...";
-        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
-        const match = cachedPendingData.content.match(appRegex);
-        if (!match) return;
-
-        let appXml = match[0];
-        const isFeatured = document.getElementById(`feat-${appId}`)?.checked;
-        appXml = appXml.replace(/<featured>.*?<\/featured>/, `<featured>${isFeatured}</featured>`);
-
-        const newPending = cachedPendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
-        let newFinal = isApproved ? cachedFinalData.content.replace('</apps>', `    ${appXml}\n</apps>`) : null;
-        await commit(newPending, cachedPendingData.sha, newFinal, cachedFinalData.sha);
-    };
-
-    window.removeLive = async function(appId) {
+    window.removeLive = async (appId) => {
         if(!confirm("Remove app?")) return;
-        status.innerText = "Removing...";
-        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
-        const newFinal = cachedFinalData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
+        const newFinal = cachedFinalData.content.replace(new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g'), "").replace(/\n\s*\n/g, '\n');
         await commit(null, null, newFinal, cachedFinalData.sha);
     };
 
     async function commit(pContent, pSha, fContent, fSha) {
         const headers = { "Authorization": `token ${token}`, "Content-Type": "application/json" };
-        if (pContent !== null) {
-            await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
-                method: "PUT", headers,
-                body: JSON.stringify({ message: "Update Pending", content: btoa(unescape(encodeURIComponent(pContent))), sha: pSha })
-            });
-        }
-        if (fContent !== null) {
-            await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
-                method: "PUT", headers,
-                body: JSON.stringify({ message: "Update Live", content: btoa(unescape(encodeURIComponent(fContent))), sha: fSha })
-            });
-        }
+        if (fContent) await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, { method: "PUT", headers, body: JSON.stringify({ message: "Store Update", content: btoa(unescape(encodeURIComponent(fContent))), sha: fSha }) });
         location.reload();
     }
 }
 </script>
 </body>
 </html>
-
