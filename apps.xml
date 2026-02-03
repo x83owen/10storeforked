@@ -362,6 +362,18 @@ More info at https://files.catbox.moe/rokw5h.txt (please note you got to copy it
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="HNJhbHf7">
+      <name>Dominoes</name>
+      <version>4.3.29.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/HNJhbHf7-Logo.scale-200.png</icon>
+      <publisher>Random Salad Games LLC</publisher>
+      <featured>false</featured>
+      <description>Play the BEST dominoes game for Windows today!
+Enjoy the simple pleasures of this classic game on your computer, laptop, or tablet. Play 3 classic game modes (Muggins, Block, and Draw) against a clever computer opponent. Custom themes and backgrounds round out this spectacular game.</description>
+      <package>https://dl.dankassassin368.com/Dominoes.UWP_4.3.29.0_x64.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
