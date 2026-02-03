@@ -429,6 +429,17 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="zLL7sl3w">
+      <name>Kinectimals Unleashed</name>
+      <version>1.14.12.16</version>
+      <icon>https://i.ibb.co/v4WXbLn2/341847502d.jpg</icon>
+      <publisher>Microsoft Corporation (?)</publisher>
+      <featured>false</featured>
+      <description>A special version of the family game from the Xbox 360 console, designed for users of tablets and computers with Windows 8. The game allows us to take care of one of several dozen virtual animals with which we can play, following the growth and development of our pet. We must also ensure that the ba</description>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/Kinectimals/Microsoft.KinectimalsUnleashed_1.14.12.16_x86__8wekyb3d8bbwe.Appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
