@@ -21,67 +21,114 @@
             overflow: hidden;
         }
 
-        /* UI Overlays */
-        #login-overlay, #edit-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(10px);
-            z-index: 9999; display: flex; align-items: center; justify-content: center;
+        /* Login Overlay */
+        #login-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
-        #edit-modal { display: none; background: rgba(0,0,0,0.8); z-index: 10000; }
 
-        .modal-box, .login-box { background: white; padding: 25px; color: black; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .login-box { text-align: center; width: 300px; background: none; color: white; box-shadow: none; }
-        
-        .modal-box textarea { width: 100%; height: 300px; font-family: monospace; margin: 10px 0; }
+        .login-box { text-align: center; width: 300px; }
+        .user-avatar {
+            width: 120px; height: 120px;
+            background: #888; border-radius: 50%;
+            margin: 0 auto 20px; display: flex;
+            align-items: center; justify-content: center;
+            font-size: 50px;
+        }
 
-        header { background: var(--win-blue); color: white; padding: 10px 25px; display: flex; align-items: center; }
+        .login-box input {
+            width: 100%; padding: 8px;
+            border: 2px solid rgba(255,255,255,0.5);
+            background: rgba(0,0,0,0.2);
+            color: white; box-sizing: border-box;
+            outline: none; margin-bottom: 10px;
+        }
+
+        .login-box button {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white; color: white;
+            width: 100%; padding: 8px; cursor: pointer;
+        }
+
+        /* XML Editor Modal */
+        #edit-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-box {
+            background: white; width: 80%; max-width: 700px;
+            padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-box textarea {
+            width: 100%; height: 300px; font-family: 'Consolas', monospace;
+            font-size: 13px; margin: 15px 0; padding: 10px; box-sizing: border-box;
+            border: 1px solid #ccc;
+        }
+
+        header { background: var(--win-blue); color: white; padding: 10px 25px; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
         header h1 { margin: 0; font-size: 18px; font-weight: 400; }
 
         .main-layout { display: flex; flex: 1; overflow: hidden; }
-        
-        /* Sidebar Form Styling */
-        .sidebar { width: 280px; background: #E6E6E6; padding: 20px; border-right: 1px solid #CCC; overflow-y: auto; }
-        .sidebar input, .sidebar textarea { 
-            width: 100%; padding: 6px; margin-bottom: 8px; 
-            border: 1px solid #ccc; box-sizing: border-box; font-size: 12px;
-        }
-        .sidebar h4 { margin: 15px 0 5px 0; font-size: 14px; color: var(--win-blue); }
-
+        .sidebar { width: 260px; background: #E6E6E6; padding: 20px; border-right: 1px solid #CCC; overflow-y: auto; }
         .content { flex: 1; padding: 30px; overflow-y: auto; }
         .dashboard-container { max-width: 900px; margin: 0 auto; }
 
-        .section-title { font-size: 20px; font-weight: 300; margin: 30px 0 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .section-title { font-size: 20px; font-weight: 300; margin: 30px 0 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; color: #333; }
 
-        .app-card { background: white; border: 1px solid #DDD; padding: 20px; margin-bottom: 25px; display: flex; gap: 20px; }
-        .app-icon { width: 80px; height: 80px; object-fit: contain; background: #f9f9f9; }
-        
-        .controls { margin-top: 15px; display: flex; gap: 10px; }
-        button { padding: 6px 15px; border: none; cursor: pointer; font-size: 13px; }
-        .btn-approve, .btn-upload { background: var(--win-green); color: white; }
-        .btn-edit { background: var(--win-blue); color: white; }
+        /* Uploader Form */
+        .upload-form input, .upload-form textarea { width: 100%; padding: 5px; margin-bottom: 8px; border: 1px solid #ccc; font-size: 12px; box-sizing: border-box; }
+        .upload-form h4 { margin: 10px 0 5px; font-size: 13px; color: var(--win-blue); }
+
+        .app-card { background: white; border: 1px solid #DDD; padding: 20px; margin-bottom: 25px; display: flex; gap: 25px; position: relative; }
+        .app-icon { width: 100px; height: 100px; object-fit: contain; background: #F0F0F0; border: 1px solid #EEE; }
+        .app-info { flex-grow: 1; }
+        .app-info h2 { margin: 0 0 5px 0; color: #333; font-weight: 300; font-size: 22px; }
+        .pub-text { color: #666; font-size: 13px; margin-bottom: 10px; }
+
+        .controls { margin-top: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        button { padding: 6px 20px; border: none; cursor: pointer; font-size: 13px; }
+        .btn-approve { background: var(--win-green); color: white; }
+        .btn-decline { background: #CCC; color: black; }
         .btn-unpublish { background: #444; color: white; }
-        
-        #login-overlay input { width: 100%; padding: 10px; margin-bottom: 10px; background: rgba(0,0,0,0.2); border: 2px solid white; color: white; outline: none;}
+        .btn-edit { background: var(--win-blue); color: white; }
+
+        .stats-box { background: white; border: 1px solid #CCC; padding: 15px; margin-top: 20px; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <div id="login-overlay">
     <div class="login-box">
-        <div style="font-size:50px; margin-bottom:15px;">👤</div>
+        <div class="user-avatar">👤</div>
         <h2 style="font-weight:300;">10Store Admin</h2>
         <input type="password" id="pass-input" placeholder="Password" autofocus>
-        <button style="width:100%; background:white; color:black;" onclick="checkPass()">Log on</button>
-        <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Access Denied</p>
+        <button onclick="checkPass()">Log on</button>
+        <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Error</p>
     </div>
 </div>
 
 <div id="edit-modal">
-    <div class="modal-box" style="width: 80%; max-width: 600px;">
-        <h3>Edit XML Source</h3>
+    <div class="modal-box">
+        <h3 style="margin-top:0;">Edit App XML</h3>
         <textarea id="xml-edit-area"></textarea>
-        <button onclick="closeEdit()">Cancel</button>
-        <button class="btn-approve" onclick="saveXmlEdit()">Save Changes</button>
+        <div style="text-align:right;">
+            <button onclick="closeEdit()">Cancel</button>
+            <button class="btn-approve" onclick="saveXmlEdit()">Save Changes</button>
+        </div>
     </div>
 </div>
 
@@ -89,37 +136,34 @@
 
 <div class="main-layout">
     <div class="sidebar">
-        <h3>Direct Uploader</h3>
-        <p style="font-size:11px; color:#666;">Push an app directly to the live store.</p>
+        <h3>Dashboard</h3>
+        <div id="status" style="font-size:13px; color:#666; margin-bottom: 10px;">Waiting</div>
+        <hr>
         
-        <h4>App Details</h4>
-        <input type="text" id="up-name" placeholder="App Name">
-        <input type="text" id="up-id" placeholder="App ID (e.g. my.app.name)">
-        <input type="text" id="up-pub" placeholder="Publisher">
-        <input type="text" id="up-ver" placeholder="Version (e.g. 1.0.0)">
-        <textarea id="up-desc" placeholder="Description" style="height:60px;"></textarea>
-        
-        <h4>Assets</h4>
-        <input type="text" id="up-icon" placeholder="Icon Link (.png/.jpg)">
-        <input type="text" id="up-pkg" placeholder="Package Link (.zip/.exe)">
-        
-        <label style="font-size:12px;"><input type="checkbox" id="up-feat"> Featured App</label>
-        
-        <button class="btn-upload" style="width:100%; margin-top:15px;" onclick="directUpload()">Upload to Store</button>
-        
-        <hr style="margin:20px 0;">
-        <div id="status" style="font-size:12px; font-weight:bold;">Waiting...</div>
-        <div class="stats-box" style="margin-top:10px; font-size:12px;">
-            Live Apps: <strong id="live-count">0</strong>
+        <div class="upload-form">
+            <h4 style="margin-top:0;">Quick Upload</h4>
+            <input type="text" id="up-name" placeholder="App Name">
+            <input type="text" id="up-id" placeholder="App ID (e.g. com.app)">
+            <input type="text" id="up-pub" placeholder="Publisher">
+            <input type="text" id="up-ver" placeholder="Version">
+            <input type="text" id="up-icon" placeholder="Icon URL">
+            <input type="text" id="up-pkg" placeholder="Package URL">
+            <textarea id="up-desc" placeholder="Description" style="height:50px;"></textarea>
+            <label style="font-size:11px;"><input type="checkbox" id="up-feat"> Featured</label>
+            <button class="btn-approve" style="width:100%; margin-top:5px;" onclick="directUpload()">Publish Now</button>
+        </div>
+
+        <div class="stats-box">
+            Live Apps: <strong id="live-count">...</strong>
         </div>
     </div>
 
     <div class="content">
         <div class="dashboard-container">
-            <h2 class="section-title">Pending Submissions</h2>
+            <h2 class="section-title">Pending</h2>
             <div id="app-list"></div>
             
-            <h2 class="section-title">Live Inventory</h2>
+            <h2 class="section-title">Published</h2>
             <div id="live-list"></div>
         </div>
     </div>
@@ -133,7 +177,8 @@ let cachedFinalData = null;
 let cachedPendingData = null;
 
 function checkPass() {
-    if (document.getElementById('pass-input').value === PASSW) {
+    const val = document.getElementById('pass-input').value;
+    if (val === PASSW) {
         document.getElementById('login-overlay').style.display = 'none';
         setTimeout(initDashboard, 100);
     } else {
@@ -142,13 +187,23 @@ function checkPass() {
 }
 
 async function initDashboard() {
-    const token = window.GITHUB_TOKEN;
-    const owner = window.GITHUB_OWNER;
-    const repo = window.GITHUB_REPO;
+    const token = window.GITHUB_TOKEN || GITHUB_TOKEN;
+    const owner = window.GITHUB_OWNER || GITHUB_OWNER;
+    const repo = window.GITHUB_REPO || GITHUB_REPO;
+    document.getElementById('status').innerText = "Connected";
+
+    const listContainer = document.getElementById('app-list');
+    const liveContainer = document.getElementById('live-list');
+    const status = document.getElementById('status');
+    const liveCountEl = document.getElementById('live-count');
+
+    if (!token || !owner || !repo) {
+        status.innerHTML = `<b style="color:red">Config Error!</b>`;
+        return;
+    }
+
     const PENDING_FILE = "apppending.xml";
     const FINAL_FILE = "apps.xml";
-
-    document.getElementById('status').innerText = "Connected";
 
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -168,20 +223,20 @@ async function initDashboard() {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlContent, "text/xml");
         const apps = xmlDoc.getElementsByTagName("app");
-        if(apps.length === 0) { container.innerHTML = "<p style='color:#999;'>No apps found.</p>"; return; }
+        if(apps.length === 0) { container.innerHTML = "<p>Empty.</p>"; return; }
 
         Array.from(apps).forEach(app => {
             const id = app.getAttribute("id");
-            const name = app.getElementsByTagName("name")[0]?.textContent || "Unnamed";
-            const icon = app.getElementsByTagName("icon")[0]?.textContent || "";
+            const name = app.getElementsByTagName("name")[0].textContent;
+            const icon = app.getElementsByTagName("icon")[0].textContent;
             
             const card = document.createElement('div');
             card.className = 'app-card';
             card.innerHTML = `
-                <img src="${icon}" class="app-icon" onerror="this.src='https://via.placeholder.com/80?text=App'">
-                <div style="flex:1;">
-                    <h2 style="margin:0; font-weight:400; font-size:18px;">${name}</h2>
-                    <code style="font-size:11px; color:#666;">${id}</code>
+                <img src="${icon}" class="app-icon" onerror="this.src='https://via.placeholder.com/100'">
+                <div class="app-info">
+                    <h2>${name}</h2>
+                    <div class="pub-text">ID: ${id}</div>
                     <div class="controls">
                         ${isLive ? 
                             `<button class="btn-edit" onclick="openEdit('${id}')">Edit XML</button>
@@ -194,26 +249,26 @@ async function initDashboard() {
                 </div>`;
             container.appendChild(card);
         });
-        if(isLive) document.getElementById('live-count').innerText = apps.length;
+        if(isLive) liveCountEl.innerText = apps.length;
     }
 
-    if(cachedPendingData) render(cachedPendingData.content, document.getElementById('app-list'), false);
-    if(cachedFinalData) render(cachedFinalData.content, document.getElementById('live-list'), true);
+    if(cachedPendingData) render(cachedPendingData.content, listContainer, false);
+    if(cachedFinalData) render(cachedFinalData.content, liveContainer, true);
 
-    // Direct Uploader Logic
+    // Direct Upload Action
     window.directUpload = async function() {
         const name = document.getElementById('up-name').value;
         const id = document.getElementById('up-id').value;
         const pub = document.getElementById('up-pub').value;
         const ver = document.getElementById('up-ver').value;
-        const desc = document.getElementById('up-desc').value;
         const icon = document.getElementById('up-icon').value;
         const pkg = document.getElementById('up-pkg').value;
+        const desc = document.getElementById('up-desc').value;
         const feat = document.getElementById('up-feat').checked;
 
-        if(!name || !id || !pkg) { alert("Name, ID, and Package are required!"); return; }
+        if(!name || !id || !pkg) return alert("Fill Name, ID and Package!");
 
-        const newAppXml = `
+        const appXml = `
     <app id="${id}">
         <name>${name}</name>
         <icon>${icon}</icon>
@@ -224,11 +279,12 @@ async function initDashboard() {
         <featured>${feat}</featured>
     </app>`;
 
-        document.getElementById('status').innerText = "Uploading...";
-        const newFinal = cachedFinalData.content.replace('</apps>', `${newAppXml}\n</apps>`);
+        status.innerText = "Uploading...";
+        const newFinal = cachedFinalData.content.replace('</apps>', `${appXml}\n</apps>`);
         await commit(null, null, newFinal, cachedFinalData.sha);
-    };
+    }
 
+    // Modal Actions
     window.openEdit = function(appId) {
         currentEditingId = appId;
         const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`);
@@ -239,16 +295,18 @@ async function initDashboard() {
         }
     };
 
+    window.closeEdit = () => document.getElementById('edit-modal').style.display = 'none';
+
     window.saveXmlEdit = async function() {
         const newXml = document.getElementById('xml-edit-area').value;
         const appRegex = new RegExp(`<app id="${currentEditingId}">[\\s\\S]*?<\\/app>`);
         const newFinal = cachedFinalData.content.replace(appRegex, newXml);
-        document.getElementById('status').innerText = "Saving...";
+        status.innerText = "Saving...";
         await commit(null, null, newFinal, cachedFinalData.sha);
     };
 
     window.processApp = async function(appId, isApproved) {
-        document.getElementById('status').innerText = "Processing...";
+        status.innerText = "Processing...";
         const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
         const match = cachedPendingData.content.match(appRegex);
         if (!match) return;
@@ -259,13 +317,12 @@ async function initDashboard() {
 
         const newPending = cachedPendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
         let newFinal = isApproved ? cachedFinalData.content.replace('</apps>', `    ${appXml}\n</apps>`) : null;
-
         await commit(newPending, cachedPendingData.sha, newFinal, cachedFinalData.sha);
     };
 
     window.removeLive = async function(appId) {
-        if(!confirm("Remove from store?")) return;
-        document.getElementById('status').innerText = "Removing...";
+        if(!confirm("Remove app?")) return;
+        status.innerText = "Removing...";
         const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
         const newFinal = cachedFinalData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
         await commit(null, null, newFinal, cachedFinalData.sha);
@@ -276,20 +333,18 @@ async function initDashboard() {
         if (pContent !== null) {
             await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
                 method: "PUT", headers,
-                body: JSON.stringify({ message: "Admin: Queue Update", content: btoa(unescape(encodeURIComponent(pContent))), sha: pSha })
+                body: JSON.stringify({ message: "Update Pending", content: btoa(unescape(encodeURIComponent(pContent))), sha: pSha })
             });
         }
         if (fContent !== null) {
             await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
                 method: "PUT", headers,
-                body: JSON.stringify({ message: "Admin: Store Update", content: btoa(unescape(encodeURIComponent(fContent))), sha: fSha })
+                body: JSON.stringify({ message: "Update Live", content: btoa(unescape(encodeURIComponent(fContent))), sha: fSha })
             });
         }
         location.reload();
     }
 }
-
-window.closeEdit = () => document.getElementById('edit-modal').style.display = 'none';
 </script>
 </body>
 </html>
