@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8" />
     <title>10-Store | Admin Review</title>
@@ -18,14 +18,14 @@
             display: flex; 
             flex-direction: column;
             height: 100vh;
-            overflow: hidden; /* Prevent scrolling until login */
+            overflow: hidden; 
         }
 
-        /* Login Overlay - Highest Z-Index */
+        /* Login Overlay */
         #login-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.6);
             backdrop-filter: blur(20px);
             z-index: 9999;
             display: flex;
@@ -52,8 +52,6 @@
             outline: none; margin-bottom: 15px;
         }
 
-        .login-box input:focus { border-color: white; }
-
         .login-box button {
             background: rgba(255,255,255,0.2);
             border: 2px solid white; color: white;
@@ -61,24 +59,30 @@
             font-weight: bold;
         }
 
-        .login-box button:hover { background: rgba(255,255,255,0.4); }
+        /* Dashboard UI (Hidden by default) */
+        #main-ui { display: none; flex-direction: column; height: 100%; }
 
-        /* Dashboard UI - Hidden by default using display: none */
-        #main-ui { 
-            display: none; 
-            flex-direction: column; 
-            height: 100%; 
-        }
-
-        header { background: var(--win-blue); color: white; padding: 10px 25px; display: flex; align-items: center; }
+        header { background: var(--win-blue); color: white; padding: 10px 25px; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
+        header h1 { margin: 0; font-size: 18px; font-weight: 400; }
         .main-layout { display: flex; flex: 1; overflow: hidden; }
         .sidebar { width: 250px; background: #E6E6E6; padding: 20px; border-right: 1px solid #CCC; }
         .content { flex: 1; padding: 30px; overflow-y: auto; }
-        .app-card { background: white; border: 1px solid #DDD; padding: 20px; margin-bottom: 25px; display: flex; gap: 25px; }
-        .app-icon { width: 120px; height: 120px; object-fit: contain; background: #F0F0F0; }
+        .dashboard-container { max-width: 900px; margin: 0 auto; }
+        .app-card { background: white; border: 1px solid #DDD; padding: 20px; margin-bottom: 25px; display: flex; gap: 25px; position: relative; }
+        .app-icon { width: 120px; height: 120px; object-fit: contain; background: #F0F0F0; border: 1px solid #EEE; }
+        .app-info { flex-grow: 1; }
+        .app-info h2 { margin: 0 0 5px 0; color: #333; font-weight: 300; font-size: 24px; }
+        .pub-text { color: #666; font-size: 14px; margin-bottom: 15px; }
+        .asset-links { margin: 15px 0; padding: 10px 0; border-top: 1px solid #EEE; border-bottom: 1px solid #EEE; }
+        .asset-links a { color: var(--win-blue); text-decoration: none; margin-right: 20px; font-size: 13px; font-weight: 600; }
         .controls { margin-top: 20px; display: flex; gap: 12px; align-items: center; }
-        .btn-approve { background: var(--win-green); color: white; padding: 8px 24px; border: none; cursor: pointer; }
-        .btn-decline { background: #CCC; color: black; padding: 8px 24px; border: none; cursor: pointer; }
+        .feat-container { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-right: auto; }
+        
+        button.action-btn { padding: 8px 24px; border: none; cursor: pointer; font-family: inherit; font-size: 14px; }
+        .btn-approve { background: var(--win-green); color: white; }
+        .btn-decline { background: #CCC; color: black; }
+        .btn-decline:hover { background: var(--win-red); color: white; }
+        .status-msg { font-size: 14px; color: #666; margin-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -87,7 +91,7 @@
     <div class="login-box">
         <div class="user-avatar">👤</div>
         <h2 style="font-weight:300;">Administrator</h2>
-        <input type="password" id="pass-input" placeholder="Password" autofocus autocomplete="off">
+        <input type="password" id="pass-input" placeholder="Password" autofocus>
         <button onclick="checkPass()">Sign in</button>
         <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Access Denied.</p>
     </div>
@@ -101,10 +105,12 @@
             <p style="font-size: 13px; color: #555;">Review submissions.</p>
             <hr>
             <div id="status" class="status-msg">Authenticated</div>
-            <button onclick="location.reload()" style="margin-top: 20px; background: none; border: 1px solid #999; cursor: pointer; padding: 5px 10px; font-size: 11px;">Lock Session</button>
         </div>
         <div class="content">
-            <div id="app-list"></div>
+            <div class="dashboard-container">
+                <div id="no-apps" style="display:none; text-align: center; padding: 50px; color: #888;">The review queue is currently empty.</div>
+                <div id="app-list"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -116,27 +122,20 @@ const CORRECT_PASS = "wuirfhuiesrhuigseuihfdghuiserghuiewrhuisgehuiwrsguhiersguh
 function checkPass() {
     const val = document.getElementById('pass-input').value;
     if (val === CORRECT_PASS) {
-        // Hide the lock screen
         document.getElementById('login-overlay').style.display = 'none';
-        // Show the Dashboard
         document.getElementById('main-ui').style.display = 'flex';
-        // Allow scrolling
         document.body.style.overflow = 'auto';
-        // Fetch data
         initDashboard(); 
     } else {
         document.getElementById('fail-msg').style.display = 'block';
-        document.getElementById('pass-input').value = ""; // Clear input on fail
     }
 }
 
-// Enter key support
-document.getElementById('pass-input').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') checkPass();
-});
+document.getElementById('pass-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') checkPass(); });
 
 async function initDashboard() {
     const PENDING_FILE = "apppending.xml";
+    const FINAL_FILE = "apps.xml";
     const token = window.GITHUB_TOKEN || (typeof GITHUB_TOKEN !== 'undefined' ? GITHUB_TOKEN : null);
     const owner = window.GITHUB_OWNER || (typeof GITHUB_OWNER !== 'undefined' ? GITHUB_OWNER : null);
     const repo = window.GITHUB_REPO || (typeof GITHUB_REPO !== 'undefined' ? GITHUB_REPO : null);
@@ -148,6 +147,8 @@ async function initDashboard() {
         status.innerHTML = `<span style="color:red">Missing Config!</span>`;
         return;
     }
+
+    status.innerText = "Loading queue...";
 
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -162,29 +163,93 @@ async function initDashboard() {
         } catch (e) { return null; }
     }
 
+    async function updateFiles(pendingContent, pendingSha, finalContent = null, finalSha = null) {
+        await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
+            method: "PUT",
+            headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+                message: "Admin: Processed review queue",
+                content: btoa(unescape(encodeURIComponent(pendingContent))),
+                sha: pendingSha
+            })
+        });
+
+        if (finalContent && finalSha) {
+            await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
+                method: "PUT",
+                headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    message: "Admin: Approved app",
+                    content: btoa(unescape(encodeURIComponent(finalContent))),
+                    sha: finalSha
+                })
+            });
+        }
+        location.reload();
+    }
+
     const pendingData = await getFile(PENDING_FILE);
-    if (!pendingData) { status.innerText = "Queue empty or file error."; return; }
+    if (!pendingData) { status.innerText = "Error loading queue."; return; }
 
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(pendingData.content, "text/xml");
     const apps = xmlDoc.getElementsByTagName("app");
 
-    listContainer.innerHTML = ""; // Clear loader
+    if (apps.length === 0) {
+        status.innerText = "Queue clear.";
+        document.getElementById('no-apps').style.display = "block";
+        return;
+    }
+
+    status.innerText = `${apps.length} app(s) pending.`;
+
     Array.from(apps).forEach(app => {
         const id = app.getAttribute("id");
         const name = app.getElementsByTagName("name")[0].textContent;
+        const icon = app.getElementsByTagName("icon")[0].textContent;
+        const publisher = app.getElementsByTagName("publisher")[0].textContent;
+        const pkg = app.getElementsByTagName("package")[0].textContent;
+
         const card = document.createElement('div');
         card.className = 'app-card';
         card.innerHTML = `
+            <img src="${icon}" class="app-icon">
             <div class="app-info">
                 <h2>${name}</h2>
+                <div class="pub-text">By: ${publisher}</div>
+                <div class="asset-links">
+                    <a href="${icon}" target="_blank">View Icon</a>
+                    <a href="${pkg}" target="_blank">Download Pkg</a>
+                </div>
                 <div class="controls">
-                    <button class="btn-approve" onclick="alert('Reviewing ${id}')">Approve</button>
-                    <button class="btn-decline">Decline</button>
+                    <div class="feat-container"><input type="checkbox" id="feat-${id}"><label for="feat-${id}">Featured</label></div>
+                    <button class="action-btn btn-decline" onclick="processApp('${id}', false)">Decline</button>
+                    <button class="action-btn btn-approve" onclick="processApp('${id}', true)">Approve</button>
                 </div>
             </div>`;
         listContainer.appendChild(card);
     });
+
+    window.processApp = async function(appId, isApproved) {
+        status.innerText = "Processing...";
+        const isFeatured = document.getElementById(`feat-${appId}`).checked;
+        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
+        const appMatches = pendingData.content.match(appRegex);
+        if (!appMatches) return;
+        
+        let appXml = appMatches[0];
+        appXml = appXml.replace(/<featured>.*?<\/featured>/, `<featured>${isFeatured}</featured>`);
+        const newPendingContent = pendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
+
+        if (isApproved) {
+            const finalData = await getFile(FINAL_FILE);
+            if (!finalData) return;
+            const newFinalContent = finalData.content.replace('</apps>', `    ${appXml}\n</apps>`);
+            await updateFiles(newPendingContent, pendingData.sha, newFinalContent, finalData.sha);
+        } else {
+            await updateFiles(newPendingContent, pendingData.sha);
+        }
+    };
 }
 </script>
 </body>
