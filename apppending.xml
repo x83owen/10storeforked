@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-    <app id="taM6Wrqd">
-      <name>Paint 3D</name>
-      <version>6.1907.29027.0</version>
-      <icon>https://i.ibb.co/DDDJvRX0/Paint-Large-Tile-scale-400.png</icon>
-      <publisher>Microsoft Corporation</publisher>
-      <featured>true</featured>
-      <description>Whether you’re an artist or just want to try out some doodles–Paint 3D makes it easy to unleash your creativity and bring your ideas to life. Classic Paint has been reimagined, with an updated look and feel and a ton of new brushes and tools. And now, create in every dimension. Make 2D masterpieces</description>
-      <package>https://dl.dankassassin368.com/Microsoft.MSPaint_6.1907.29027.0_x64__8wekyb3d8bbwe.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
     <app id="NR8KNi94">
       <name>Minecraft for Windows</name>
       <version>1.14.6005.0</version>
