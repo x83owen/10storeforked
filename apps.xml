@@ -6,7 +6,7 @@
       <appIds>posxp,G8I0kPFQ</appIds>
     </category>
       <category title="Art" type="picks">
-      <appIds>fresh-paint</appIds>
+      <appIds>fresh-paint,paint-3d</appIds>
     </category>
       <category title="Dependencies" type="picks">
       <appIds>winjs-1-0,winjs-2-0</appIds>
