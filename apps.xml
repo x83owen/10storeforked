@@ -116,6 +116,17 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="DecV6P0t">
+      <name>Microsoft Edge Unofficial</name>
+      <version>1.0.2.5</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/DecV6P0t-SmallLogo.png</icon>
+      <publisher>Maycon Devloper</publisher>
+      <featured>false</featured>
+      <description>Microsoft Edge for Windows Phone</description>
+      <package>https://dl.dankassassin368.com/Microsoft%20Edge%20Unofficial.appx</package>
+      <pcCapable>false</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
 </apps>
 
 </data>
