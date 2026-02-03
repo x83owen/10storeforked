@@ -60,6 +60,18 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>true</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
+    <app id="p0t7BOUq">
+      <name>VLC UWP</name>
+      <version>3.2.1.0</version>
+      <icon>https://i.ibb.co/HTP7L94r/Square44x44-Logo-targetsize-256-altform-unplated.png</icon>
+      <publisher>VideoLAN</publisher>
+      <featured>false</featured>
+      <description>VLC is the ultimate media player, ported to the Windows Universal Platform.
+⚠ ⚠ Beware! This VLC does not feature all the features of the classic VLC! It does not support DVD or Blurays! Use the desktop version instead! ⚠⚠</description>
+      <package>https://dl.dankassassin368.com/VideoLAN.VLC_3.2.1.0_neutral_~_paz6r1rewnh0a.AppxBundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
 </apps>
 
 </data>
