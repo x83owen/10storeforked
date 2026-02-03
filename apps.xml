@@ -418,6 +418,17 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
+    <app id="IzTuV2zi">
+      <name>ClassiCube</name>
+      <version>1.0.0.0</version>
+      <icon>https://10storedraydenyt.netlify.app/icons/IzTuV2zi-1000154589.png</icon>
+      <publisher>ClassiCube (idk)</publisher>
+      <featured>false</featured>
+      <description/>
+      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Games/ClassiCube/ClassiCube.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
