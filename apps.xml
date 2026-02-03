@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<data>
+<?xml version="1.0" encoding="UTF-8"?><data>
   <categories>
     <category title="Featured" type="featured"/>
       <category title="Utilities" type="picks">
-      <appIds>PosXP</appIds>
+      <appIds>posxp</appIds>
     </category>
   </categories>
   <apps>
