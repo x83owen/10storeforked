@@ -665,5 +665,17 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
+
+    <app id="youtube-music-metro">
+        <name>YouTube Music Metro</name>
+        <version>1.0.0.0</version>
+        <icon>https://images.seeklogo.com/logo-png/32/1/youtube-music-logo-png_seeklogo-327636.png</icon>
+        <publisher>DraydenYT</publisher>
+        <featured>false</featured>
+        <description></description>
+        <package>https://dl.dankassassin368.com/App13_1.0.0.0_AnyCPU.appxbundle</package>
+        <pcCapable>true</pcCapable>
+        <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
