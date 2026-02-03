@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8" />
     <title>10-Store | Admin Review</title>
@@ -18,14 +18,14 @@
             display: flex; 
             flex-direction: column;
             height: 100vh;
-            overflow: hidden; /* Prevent scrolling until login */
+            overflow: hidden; /* Lock scroll until login */
         }
 
-        /* Login Overlay - Highest Z-Index */
+        /* Login Overlay - Forces full screen coverage */
         #login-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.6);
             backdrop-filter: blur(20px);
             z-index: 9999;
             display: flex;
@@ -63,12 +63,8 @@
 
         .login-box button:hover { background: rgba(255,255,255,0.4); }
 
-        /* Dashboard UI - Hidden by default using display: none */
-        #main-ui { 
-            display: none; 
-            flex-direction: column; 
-            height: 100%; 
-        }
+        /* Dashboard UI (Hidden until login) */
+        #main-ui { display: none; flex-direction: column; height: 100%; }
 
         header { background: var(--win-blue); color: white; padding: 10px 25px; display: flex; align-items: center; }
         .main-layout { display: flex; flex: 1; overflow: hidden; }
@@ -87,7 +83,7 @@
     <div class="login-box">
         <div class="user-avatar">👤</div>
         <h2 style="font-weight:300;">Administrator</h2>
-        <input type="password" id="pass-input" placeholder="Password" autofocus autocomplete="off">
+        <input type="password" id="pass-input" placeholder="Password" autofocus>
         <button onclick="checkPass()">Sign in</button>
         <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Access Denied.</p>
     </div>
@@ -101,7 +97,6 @@
             <p style="font-size: 13px; color: #555;">Review submissions.</p>
             <hr>
             <div id="status" class="status-msg">Authenticated</div>
-            <button onclick="location.reload()" style="margin-top: 20px; background: none; border: 1px solid #999; cursor: pointer; padding: 5px 10px; font-size: 11px;">Lock Session</button>
         </div>
         <div class="content">
             <div id="app-list"></div>
@@ -111,22 +106,18 @@
 
 <script src="config.js"></script>
 <script>
+// The long password string you provided
 const CORRECT_PASS = "wuirfhuiesrhuigseuihfdghuiserghuiewrhuisgehuiwrsguhiersguhieruihgeruihghuiersghuiersuhigerhuigehuirghuierghuierghuiehiughuierghuieruihsgerhuighiuerghuierhuigehuirguiherghuierihugeuirhsghuierihugeruihghuierghuierghuirdhuigsdilhgresnfjroogvseviesrjvmsoeinvsioevlbnersbnrviusenrvusdnviusrdvnrnirdlintv745684375645873694648395673495689748346975436385764476543085734673757347853759375903793075930576395768390576493085769375639756937";
 
 function checkPass() {
     const val = document.getElementById('pass-input').value;
     if (val === CORRECT_PASS) {
-        // Hide the lock screen
         document.getElementById('login-overlay').style.display = 'none';
-        // Show the Dashboard
         document.getElementById('main-ui').style.display = 'flex';
-        // Allow scrolling
         document.body.style.overflow = 'auto';
-        // Fetch data
-        initDashboard(); 
+        initDashboard(); // Only load GitHub data after successful login
     } else {
         document.getElementById('fail-msg').style.display = 'block';
-        document.getElementById('pass-input').value = ""; // Clear input on fail
     }
 }
 
@@ -137,6 +128,7 @@ document.getElementById('pass-input').addEventListener('keypress', (e) => {
 
 async function initDashboard() {
     const PENDING_FILE = "apppending.xml";
+    const FINAL_FILE = "apps.xml";
     const token = window.GITHUB_TOKEN || (typeof GITHUB_TOKEN !== 'undefined' ? GITHUB_TOKEN : null);
     const owner = window.GITHUB_OWNER || (typeof GITHUB_OWNER !== 'undefined' ? GITHUB_OWNER : null);
     const repo = window.GITHUB_REPO || (typeof GITHUB_REPO !== 'undefined' ? GITHUB_REPO : null);
@@ -162,6 +154,7 @@ async function initDashboard() {
         } catch (e) { return null; }
     }
 
+    // Load and render apps here...
     const pendingData = await getFile(PENDING_FILE);
     if (!pendingData) { status.innerText = "Queue empty or file error."; return; }
 
@@ -169,7 +162,6 @@ async function initDashboard() {
     const xmlDoc = parser.parseFromString(pendingData.content, "text/xml");
     const apps = xmlDoc.getElementsByTagName("app");
 
-    listContainer.innerHTML = ""; // Clear loader
     Array.from(apps).forEach(app => {
         const id = app.getAttribute("id");
         const name = app.getElementsByTagName("name")[0].textContent;
@@ -179,7 +171,7 @@ async function initDashboard() {
             <div class="app-info">
                 <h2>${name}</h2>
                 <div class="controls">
-                    <button class="btn-approve" onclick="alert('Reviewing ${id}')">Approve</button>
+                    <button class="btn-approve" onclick="alert('Logic for ${id} goes here')">Approve</button>
                     <button class="btn-decline">Decline</button>
                 </div>
             </div>`;
