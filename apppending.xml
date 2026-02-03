@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-      <app id="DecV6P0t">
-      <name>Microsoft Edge Unofficial</name>
-      <version>1.0.2.5</version>
-      <icon>https://10storedraydenyt.netlify.app/icons/DecV6P0t-SmallLogo.png</icon>
-      <publisher>Maycon Devloper</publisher>
-      <featured>true</featured>
-      <description>Microsoft Edge for Windows Phone</description>
-      <package>https://dl.dankassassin368.com/Microsoft%20Edge%20Unofficial.appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
       <app id="YznXfqXB">
       <name>Transport Empire</name>
       <version>3.0.38.0</version>
