@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-    <app id="NR8KNi94">
-      <name>Minecraft for Windows</name>
-      <version>1.14.6005.0</version>
-      <icon>https://i.ibb.co/pjcjHftR/MCSquare71x71-Logo-scale-400.png</icon>
-      <publisher>Microsoft Studios</publisher>
-      <featured>true</featured>
-      <description>Explore randomly generated worlds and build amazing things from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep into the world in survival mode, crafting weapons and armor to fend off the dangerous mobs.</description>
-      <package>https://dl.dankassassin368.com/Microsoft.MinecraftUWP_1.14.6005.0_arm__8wekyb3d8bbwe.Appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
     <app id="4jvHHTQI">
       <name>Minecraft for Windows</name>
       <version>1.14.6005.0</version>
