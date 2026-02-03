@@ -18,14 +18,14 @@
             display: flex; 
             flex-direction: column;
             height: 100vh;
-            overflow: hidden;
+            overflow: hidden; /* Hide scrollbars until logged in */
         }
 
         /* Login Overlay */
         #login-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.5);
             backdrop-filter: blur(20px);
             z-index: 9999;
             display: flex;
@@ -34,54 +34,179 @@
             color: white;
         }
 
-        .login-box { text-align: center; width: 300px; }
+        .login-box {
+            text-align: center;
+            width: 300px;
+        }
+
         .user-avatar {
-            width: 120px; height: 120px;
-            background: #888; border-radius: 50%;
-            margin: 0 auto 20px; display: flex;
-            align-items: center; justify-content: center;
-            font-size: 50px; border: 2px solid white;
+            width: 120px;
+            height: 120px;
+            background: #888;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
         }
 
         .login-box input {
-            width: 100%; padding: 10px;
+            width: 100%;
+            padding: 8px;
             border: 2px solid rgba(255,255,255,0.5);
-            background: rgba(0,0,0,0.3);
-            color: white; box-sizing: border-box;
-            outline: none; margin-bottom: 15px;
+            background: rgba(0,0,0,0.2);
+            color: white;
+            box-sizing: border-box;
+            outline: none;
+            margin-bottom: 10px;
         }
+
+        .login-box input:focus { border-color: white; }
 
         .login-box button {
             background: rgba(255,255,255,0.2);
-            border: 2px solid white; color: white;
-            width: 100%; padding: 10px; cursor: pointer;
-            font-weight: bold;
+            border: 2px solid white;
+            color: white;
+            width: 100%;
+            padding: 8px;
+            cursor: pointer;
         }
 
-        /* Dashboard UI */
-        #main-ui { display: none; flex-direction: column; height: 100%; }
-        header { background: var(--win-blue); color: white; padding: 10px 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .main-layout { display: flex; flex: 1; overflow: hidden; }
-        .sidebar { width: 250px; background: #E6E6E6; padding: 20px; border-right: 1px solid #CCC; }
-        .content { flex: 1; padding: 30px; overflow-y: auto; }
+        .login-box button:hover { background: rgba(255,255,255,0.4); }
 
-        /* App Cards */
-        .section-header { font-size: 24px; font-weight: 300; margin: 20px 0; color: #333; border-bottom: 1px solid #CCC; padding-bottom: 10px; }
-        .app-card { background: white; border: 1px solid #DDD; padding: 20px; margin-bottom: 20px; display: flex; gap: 20px; align-items: flex-start; }
-        .app-icon { width: 80px; height: 80px; object-fit: contain; background: #F9F9F9; border: 1px solid #EEE; }
-        .app-info { flex: 1; }
-        .app-info h2 { margin: 0; font-size: 20px; font-weight: 400; }
-        .details { font-size: 13px; color: #666; margin: 5px 0 15px 0; }
+        /* Header Bar */
+        header {
+            background: var(--win-blue);
+            color: white;
+            padding: 10px 25px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        header h1 { margin: 0; font-size: 18px; font-weight: 400; }
+
+        .main-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar info */
+        .sidebar {
+            width: 250px;
+            background: #E6E6E6;
+            padding: 20px;
+            border-right: 1px solid #CCC;
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .dashboard-container { max-width: 900px; margin: 0 auto; }
+
+        /* App Card Styling */
+        .app-card { 
+            background: white;
+            border: 1px solid #DDD; 
+            padding: 20px; 
+            margin-bottom: 25px; 
+            display: flex; 
+            gap: 25px; 
+            position: relative;
+            transition: transform 0.1s;
+        }
+
+        .app-card:hover { border-color: var(--win-blue); }
+
+        .app-icon { 
+            width: 120px; 
+            height: 120px; 
+            object-fit: contain; 
+            background: #F0F0F0; 
+            border: 1px solid #EEE;
+        }
+
+        .app-info { flex-grow: 1; }
+        .app-info h2 { margin: 0 0 5px 0; color: #333; font-weight: 300; font-size: 24px; }
         
-        /* Buttons */
-        .controls { display: flex; gap: 10px; align-items: center; }
-        button.action-btn { padding: 8px 16px; border: none; cursor: pointer; font-size: 13px; font-weight: 600; }
+        .pub-text { color: #666; font-size: 14px; margin-bottom: 15px; }
+
+        .details { font-size: 14px; line-height: 1.5; color: #444; }
+        
+        /* Links Section */
+        .asset-links {
+            margin: 15px 0;
+            padding: 10px 0;
+            border-top: 1px solid #EEE;
+            border-bottom: 1px solid #EEE;
+        }
+
+        .asset-links a {
+            color: var(--win-blue);
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .asset-links a:hover { text-decoration: underline; }
+
+        /* Controls */
+        .controls { 
+            margin-top: 20px; 
+            display: flex; 
+            gap: 12px; 
+            align-items: center; 
+        }
+
+        button { 
+            padding: 8px 24px; 
+            border: none; 
+            cursor: pointer; 
+            font-family: inherit;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+
+        button:hover { opacity: 0.85; }
+
         .btn-approve { background: var(--win-green); color: white; }
         .btn-decline { background: #CCC; color: black; }
-        .btn-unpublish { background: #444; color: white; }
-        .btn-unpublish:hover { background: var(--win-red); }
-        
-        .status-msg { font-size: 13px; margin-top: 10px; }
+        .btn-decline:hover { background: var(--win-red); color: white; }
+
+        /* Featured Checkbox Styling */
+        .feat-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-right: auto;
+        }
+
+        .status-msg { 
+            font-size: 14px; 
+            color: #666; 
+            margin-bottom: 20px;
+        }
+
+        /* New Stats Box Style */
+        .stats-box {
+            background: white;
+            border: 1px solid #CCC;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .stats-box h4 { margin: 0 0 10px 0; font-weight: 600; color: var(--win-blue); }
+
+        #no-apps { text-align: center; padding: 50px; color: #888; font-style: italic; }
     </style>
 </head>
 <body>
@@ -89,65 +214,76 @@
 <div id="login-overlay">
     <div class="login-box">
         <div class="user-avatar">👤</div>
-        <h2>Administrator</h2>
-        <input type="password" id="pass-input" placeholder="Password" autofocus autocomplete="off">
+        <h2 style="font-weight:300;">Administrator</h2>
+        <input type="password" id="pass-input" placeholder="Password" autofocus>
         <button onclick="checkPass()">Sign in</button>
-        <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Access Denied.</p>
+        <p id="fail-msg" style="color:#ffb3b3; display:none; margin-top:10px;">Incorrect password.</p>
     </div>
 </div>
 
-<div id="main-ui">
-    <header><h1>10-Store App Management</h1></header>
-    <div class="main-layout">
-        <div class="sidebar">
-            <h3>Dashboard</h3>
-            <p style="font-size: 12px;">Manage store submissions and live inventory.</p>
-            <hr>
-            <div id="status" class="status-msg">Awaiting Action...</div>
+<header>
+    <h1>10-Store App Management</h1>
+</header>
+
+<div class="main-layout">
+    <div class="sidebar">
+        <h3>Dashboard</h3>
+        <p style="font-size: 13px; color: #555;">Review incoming submissions to the store. Check assets before approving.</p>
+        <hr>
+        <div id="status" class="status-msg">Waiting for login...</div>
+        
+        <div class="stats-box">
+            <h4>Store Stats</h4>
+            Live Apps: <strong id="live-count">...</strong>
         </div>
-        <div class="content">
-            <h2 class="section-header">Pending Submissions</h2>
+    </div>
+
+    <div class="content">
+        <div class="dashboard-container">
+            <div id="no-apps" style="display:none;">The review queue is currently empty.</div>
             <div id="app-list"></div>
-            
-            <h2 class="section-header" style="margin-top: 50px;">Live Store Inventory</h2>
-            <div id="live-list"></div>
         </div>
     </div>
 </div>
 
 <script src="config.js"></script>
 <script>
-const CORRECT_PASS = "wuirfhuiesrhuigseuihfdghuiserghuiewrhuisgehuiwrsguhiersguhieruihgeruihghuiersghuiersuhigerhuigehuirghuierghuierghuiehiughuierghuieruihsgerhuighiuerghuierhuigehuirguiherghuierihugeuirhsghuierihugeruihghuierghuierghuirdhuigsdilhgresnfjroogvseviesrjvmsoeinvsioevlbnersbnrviusenrvusdnviusrdvnrnirdlintv745684375645873694648395673495689748346975436385764476543085734673757347853759375903793075930576395768390576493085769375639756937";
+// --- PASSWORD CONFIG ---
+const CORRECT_PASS = "f578dsf67hsdf578h967g86s6f5875g69s7f8h5sd5g8sd9f67gds678fb7sv6dct6gensr7tc6w5et6cwfy9wr58hy84578wr578t4fw45ht8o";
 
 function checkPass() {
-    if (document.getElementById('pass-input').value === CORRECT_PASS) {
+    const input = document.getElementById('pass-input').value;
+    if (input === CORRECT_PASS) {
         document.getElementById('login-overlay').style.display = 'none';
-        document.getElementById('main-ui').style.display = 'flex';
         document.body.style.overflow = 'auto';
-        initDashboard(); 
+        initDashboard();
     } else {
         document.getElementById('fail-msg').style.display = 'block';
-        document.getElementById('pass-input').value = "";
     }
 }
 
-document.getElementById('pass-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') checkPass(); });
+document.getElementById('pass-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') checkPass();
+});
 
 async function initDashboard() {
     const PENDING_FILE = "apppending.xml";
     const FINAL_FILE = "apps.xml";
-    const token = window.GITHUB_TOKEN;
-    const owner = window.GITHUB_OWNER;
-    const repo = window.GITHUB_REPO;
     
+    const token = window.GITHUB_TOKEN || (typeof GITHUB_TOKEN !== 'undefined' ? GITHUB_TOKEN : null);
+    const owner = window.GITHUB_OWNER || (typeof GITHUB_OWNER !== 'undefined' ? GITHUB_OWNER : null);
+    const repo = window.GITHUB_REPO || (typeof GITHUB_REPO !== 'undefined' ? GITHUB_REPO : null);
+
     const listContainer = document.getElementById('app-list');
-    const liveContainer = document.getElementById('live-list');
     const status = document.getElementById('status');
+    const liveCountEl = document.getElementById('live-count');
 
     if (!token || !owner || !repo) {
-        status.innerHTML = `<span style="color:red">Config Error! Check config.js</span>`;
+        status.innerHTML = `<span style="color:red">Missing Config!</span>`;
         return;
     }
+
+    status.innerText = "Loading data...";
 
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -155,94 +291,148 @@ async function initDashboard() {
             const res = await fetch(url, { headers: { "Authorization": `token ${token}` } });
             if (!res.ok) return null;
             const data = await res.json();
-            return { sha: data.sha, content: decodeURIComponent(escape(atob(data.content))) };
+            return {
+                sha: data.sha,
+                content: decodeURIComponent(escape(atob(data.content)))
+            };
         } catch (e) { return null; }
     }
 
-    const pendingData = await getFile(PENDING_FILE);
+    // 1. Fetch apps.xml first to get Stats
     const finalData = await getFile(FINAL_FILE);
-
-    function renderApps(xmlString, container, isLive) {
+    if (finalData) {
         const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-        const apps = xmlDoc.getElementsByTagName("app");
-        
-        if (apps.length === 0) {
-            container.innerHTML = `<p style="color:#888; font-style:italic;">No apps found.</p>`;
-            return;
-        }
-
-        Array.from(apps).forEach(app => {
-            const id = app.getAttribute("id");
-            const name = app.getElementsByTagName("name")[0]?.textContent || "Unknown";
-            const icon = app.getElementsByTagName("icon")[0]?.textContent || "";
-            const pub = app.getElementsByTagName("publisher")[0]?.textContent || "Unknown";
-            
-            const card = document.createElement('div');
-            card.className = 'app-card';
-            card.innerHTML = `
-                <img src="${icon}" class="app-icon" onerror="this.src='https://via.placeholder.com/80'">
-                <div class="app-info">
-                    <h2>${name}</h2>
-                    <div class="details">ID: ${id} | Publisher: ${pub}</div>
-                    <div class="controls">
-                        ${isLive ? 
-                            `<button class="action-btn btn-unpublish" onclick="unpublishApp('${id}')">Unpublish</button>` :
-                            `<button class="action-btn btn-approve" onclick="processApp('${id}', true)">Approve</button>
-                             <button class="action-btn btn-decline" onclick="processApp('${id}', false)">Decline</button>`
-                        }
-                    </div>
-                </div>`;
-            container.appendChild(card);
-        });
+        const xmlDoc = parser.parseFromString(finalData.content, "text/xml");
+        const count = xmlDoc.getElementsByTagName("app").length;
+        liveCountEl.innerText = count;
+    } else {
+        liveCountEl.innerText = "Err";
     }
 
-    if (pendingData) renderApps(pendingData.content, listContainer, false);
-    if (finalData) renderApps(finalData.content, liveContainer, true);
+    // 2. Fetch Pending Queue
+    const pendingData = await getFile(PENDING_FILE);
+    if (!pendingData) {
+        status.innerText = "Error loading pending queue.";
+        return;
+    }
 
-    // ACTION: Approve or Decline
-    window.processApp = async function(appId, isApproved) {
-        status.innerText = "Processing...";
-        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
-        const match = pendingData.content.match(appRegex);
-        if (!match) return;
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(pendingData.content, "text/xml");
+    const apps = xmlDoc.getElementsByTagName("app");
 
-        const newPending = pendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
-        let newFinal = null;
+    if (apps.length === 0) {
+        status.innerText = "Queue clear.";
+        document.getElementById('no-apps').style.display = "block";
+        return;
+    }
 
-        if (isApproved) {
-            newFinal = finalData.content.replace('</apps>', `    ${match[0]}\n</apps>`);
-        }
+    status.innerText = `${apps.length} app(s) pending.`;
 
-        await commit(newPending, pendingData.sha, newFinal, finalData.sha);
-    };
+    // 3. Render Cards
+    Array.from(apps).forEach(app => {
+        const id = app.getAttribute("id");
+        const name = app.getElementsByTagName("name")[0].textContent;
+        const icon = app.getElementsByTagName("icon")[0].textContent;
+        const version = app.getElementsByTagName("version")[0].textContent;
+        const publisher = app.getElementsByTagName("publisher")[0].textContent;
+        const desc = app.getElementsByTagName("description")[0].textContent;
+        const pkg = app.getElementsByTagName("package")[0].textContent;
 
-    // ACTION: Unpublish
-    window.unpublishApp = async function(appId) {
-        if (!confirm("Remove this app from the live store?")) return;
-        status.innerText = "Removing...";
-        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
-        const newFinal = finalData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
-        await commit(null, null, newFinal, finalData.sha);
-    };
+        const card = document.createElement('div');
+        card.className = 'app-card';
+        card.innerHTML = `
+            <img src="${icon}" class="app-icon" onerror="this.src='https://via.placeholder.com/120?text=No+Icon'">
+            <div class="app-info">
+                <h2>${name}</h2>
+                <div class="pub-text">Published by: <strong>${publisher}</strong></div>
+                <div class="details">
+                    <strong>Version:</strong> ${version} | <strong>ID:</strong> ${id}<br>
+                    <p>${desc || "No description provided."}</p>
+                </div>
 
-    async function commit(pContent, pSha, fContent, fSha) {
-        const headers = { "Authorization": `token ${token}`, "Content-Type": "application/json" };
-        
-        if (pContent !== null) {
-            await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
-                method: "PUT", headers,
-                body: JSON.stringify({ message: "Admin update", content: btoa(unescape(encodeURIComponent(pContent))), sha: pSha })
-            });
-        }
-        if (fContent !== null) {
+                <div class="asset-links">
+                    <a href="${icon}" target="_blank">🔍 Verify Icon</a>
+                    <a href="${pkg}" target="_blank">📦 Download Package</a>
+                </div>
+
+                <div class="controls">
+                    <div class="feat-container">
+                        <input type="checkbox" id="feat-${id}"> 
+                        <label for="feat-${id}">Mark as Featured</label>
+                    </div>
+                    <button class="btn-decline" onclick="processApp('${id}', false)">Decline</button>
+                    <button class="btn-approve" onclick="processApp('${id}', true)">Approve App</button>
+                </div>
+            </div>
+        `;
+        listContainer.appendChild(card);
+    });
+
+    async function updateFiles(pendingContent, pendingSha, finalContent = null, finalSha = null) {
+        // Update Pending File
+        await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${PENDING_FILE}`, {
+            method: "PUT",
+            headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+                message: "Admin: Processed review queue",
+                content: btoa(unescape(encodeURIComponent(pendingContent))),
+                sha: pendingSha
+            })
+        });
+
+        // Update Final File (if approving)
+        if (finalContent && finalSha) {
             await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
-                method: "PUT", headers,
-                body: JSON.stringify({ message: "Store update", content: btoa(unescape(encodeURIComponent(fContent))), sha: fSha })
+                method: "PUT",
+                headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    message: "Admin: Approved app",
+                    content: btoa(unescape(encodeURIComponent(finalContent))),
+                    sha: finalSha
+                })
             });
         }
         location.reload();
     }
+
+    // 4. Process Logic (Updated for Replacement)
+    window.processApp = async function(appId, isApproved) {
+        status.innerText = "Working...";
+        const isFeatured = document.getElementById(`feat-${appId}`).checked;
+        
+        // Find app in pending data
+        const appRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`, 'g');
+        const appMatches = pendingData.content.match(appRegex);
+        if (!appMatches) return;
+        
+        let appXml = appMatches[0];
+        appXml = appXml.replace(/<featured>.*?<\/featured>/, `<featured>${isFeatured}</featured>`);
+
+        // Remove from Pending
+        const newPendingContent = pendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
+
+        if (isApproved) {
+            // Get fresh apps.xml
+            const currentFinalData = await getFile(FINAL_FILE);
+            if (!currentFinalData) { alert("apps.xml missing!"); return; }
+
+            // CHECK: Does App ID exist in apps.xml?
+            const existingAppRegex = new RegExp(`<app id="${appId}">[\\s\\S]*?<\\/app>`);
+            let newFinalContent;
+
+            if (existingAppRegex.test(currentFinalData.content)) {
+                // REPLACE existing app
+                newFinalContent = currentFinalData.content.replace(existingAppRegex, appXml);
+            } else {
+                // APPEND new app
+                newFinalContent = currentFinalData.content.replace('</apps>', `    ${appXml}\n</apps>`);
+            }
+
+            await updateFiles(newPendingContent, pendingData.sha, newFinalContent, currentFinalData.sha);
+        } else {
+            await updateFiles(newPendingContent, pendingData.sha);
+        }
+    };
 }
 </script>
 </body>
