@@ -66,11 +66,10 @@
         .btn-unpublish { background: #444; color: white; }
         .btn-edit { background: var(--win-blue); color: white; }
 
-        /* New Category UI Styles */
         .cat-manager { margin-top: 20px; padding: 10px; background: #ddd; border: 1px solid #ccc; }
-        .cat-item { display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-bottom: 5px; background: #eee; padding: 4px; }
-        .cat-item div { display: flex; gap: 4px; }
-        .btn-tiny { padding: 2px 5px; font-size: 10px; }
+        .cat-item { display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-bottom: 5px; background: #eee; padding: 5px; }
+        .cat-item div { display: flex; gap: 2px; }
+        .btn-tiny { padding: 1px 4px; font-size: 10px; min-width: 18px; }
 
         .stats-box { background: white; border: 1px solid #CCC; padding: 15px; margin-top: 20px; font-size: 14px; }
     </style>
@@ -89,7 +88,7 @@
 
 <div id="edit-modal">
     <div class="modal-box">
-        <h3 style="margin-top:0;">Edit XML</h3>
+        <h3 id="modal-label">Edit XML</h3>
         <textarea id="xml-edit-area"></textarea>
         <div style="text-align:right;">
             <button onclick="closeEdit()">Cancel</button>
@@ -128,7 +127,7 @@
             <h4 style="margin:0 0 10px 0; font-size:13px;">Categories</h4>
             <div id="cat-list"></div>
             <div style="display:flex; gap:5px; margin-top:10px;">
-                <input type="text" id="new-cat-input" placeholder="New..." style="width:70%; font-size:11px;">
+                <input type="text" id="new-cat-input" placeholder="New Cat..." style="width:70%; font-size:11px;">
                 <button onclick="addCategory()" style="padding:2px 8px;">Add</button>
             </div>
         </div>
@@ -153,13 +152,12 @@
 <script src="pasw.js"></script>
 <script>
 let currentEditingId = null;
-let currentEditingType = 'app'; // 'app' or 'cat'
+let currentEditingType = 'app';
 let cachedFinalData = null;
 let cachedPendingData = null;
 
 function checkPass() {
-    const val = document.getElementById('pass-input').value;
-    if (val === PASSW) {
+    if (document.getElementById('pass-input').value === PASSW) {
         document.getElementById('login-overlay').style.display = 'none';
         initDashboard();
     } else {
@@ -172,8 +170,8 @@ async function initDashboard() {
     const owner = window.GITHUB_OWNER || GITHUB_OWNER;
     const repo = window.GITHUB_REPO || GITHUB_REPO;
     const status = document.getElementById('status');
-    const PENDING_FILE = "apppending.xml";
     const FINAL_FILE = "apps.xml";
+    const PENDING_FILE = "apppending.xml";
 
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -188,11 +186,11 @@ async function initDashboard() {
     cachedFinalData = await getFile(FINAL_FILE);
     cachedPendingData = await getFile(PENDING_FILE);
 
-    if (cachedFinalData || cachedPendingData) {
+    if (cachedFinalData) {
         status.innerText = "Connected";
         renderCategories();
-    } else {
-        status.innerText = "Error Loading Files";
+        renderApps(cachedFinalData.content, document.getElementById('live-list'), true);
+        if(cachedPendingData) renderApps(cachedPendingData.content, document.getElementById('app-list'), false);
     }
 
     function renderCategories() {
@@ -200,18 +198,20 @@ async function initDashboard() {
         container.innerHTML = "";
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(cachedFinalData.content, "text/xml");
-        const cats = xmlDoc.getElementsByTagName("category");
+        const cats = Array.from(xmlDoc.getElementsByTagName("category"));
 
-        Array.from(cats).forEach(cat => {
+        cats.forEach((cat, index) => {
             const title = cat.getAttribute("title");
-            const type = cat.getAttribute("type");
-            if (type === "featured") return;
+            if (cat.getAttribute("type") === "featured") return;
 
             const item = document.createElement('div');
             item.className = 'cat-item';
             item.innerHTML = `
-                <span>${title}</span>
+                <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100px;">${title}</span>
                 <div>
+                    <button class="btn-tiny" onclick="moveCat(${index}, -1)">▲</button>
+                    <button class="btn-tiny" onclick="moveCat(${index}, 1)">▼</button>
+                    <button class="btn-tiny" onclick="editCatApps('${title}')" title="Edit App IDs">☰</button>
                     <button class="btn-tiny" onclick="renameCat('${title}')">✎</button>
                     <button class="btn-tiny" style="background:#ffb3b3" onclick="deleteCat('${title}')">✕</button>
                 </div>
@@ -220,7 +220,7 @@ async function initDashboard() {
         });
     }
 
-    function render(xmlContent, container, isLive) {
+    function renderApps(xmlContent, container, isLive) {
         container.innerHTML = "";
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlContent, "text/xml");
@@ -231,7 +231,6 @@ async function initDashboard() {
             const id = app.getAttribute("id");
             const name = app.getElementsByTagName("name")[0].textContent;
             const icon = app.getElementsByTagName("icon")[0].textContent;
-            
             const card = document.createElement('div');
             card.className = 'app-card';
             card.innerHTML = `
@@ -240,11 +239,8 @@ async function initDashboard() {
                     <h2>${name}</h2>
                     <div class="pub-text">ID: ${id}</div>
                     <div class="controls">
-                        ${isLive ? 
-                            `<button class="btn-edit" onclick="openEdit('${id}')">Edit</button>
-                             <button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>` :
-                            `<button class="btn-approve" onclick="alert('Logic for approve not set')">Approve</button>`
-                        }
+                        ${isLive ? `<button class="btn-edit" onclick="openEdit('${id}')">Edit</button>
+                        <button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>` : ''}
                     </div>
                 </div>`;
             container.appendChild(card);
@@ -252,36 +248,104 @@ async function initDashboard() {
         if(isLive) document.getElementById('live-count').innerText = apps.length;
     }
 
-    if(cachedPendingData) render(cachedPendingData.content, document.getElementById('app-list'), false);
-    if(cachedFinalData) render(cachedFinalData.content, document.getElementById('live-list'), true);
+    window.moveCat = async function(index, direction) {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(cachedFinalData.content, "text/xml");
+        const catsNode = xmlDoc.getElementsByTagName("categories")[0];
+        const cats = Array.from(catsNode.getElementsByTagName("category"));
+        
+        const newIndex = index + direction;
+        if(newIndex < 0 || newIndex >= cats.length) return;
+
+        const nodeToMove = cats[index];
+        const targetNode = cats[newIndex];
+
+        if (direction === 1) catsNode.insertBefore(nodeToMove, targetNode.nextSibling);
+        else catsNode.insertBefore(nodeToMove, targetNode);
+
+        await commit(new XMLSerializer().serializeToString(xmlDoc));
+    };
+
+    window.editCatApps = function(title) {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(cachedFinalData.content, "text/xml");
+        const cat = Array.from(xmlDoc.getElementsByTagName("category")).find(c => c.getAttribute("title") === title);
+        const appIdsNode = cat.getElementsByTagName("appIds")[0];
+        
+        currentEditingId = title;
+        currentEditingType = 'cat';
+        document.getElementById('modal-label').innerText = "Edit Apps in " + title;
+        document.getElementById('xml-edit-area').value = appIdsNode ? appIdsNode.textContent : "";
+        document.getElementById('edit-modal').style.display = 'flex';
+    };
 
     window.addCategory = async function() {
         const name = document.getElementById('new-cat-input').value;
         if(!name) return;
         const newXml = `    <category title="${name}" type="picks">\n      <appIds></appIds>\n    </category>`;
         const updated = cachedFinalData.content.replace('</categories>', `${newXml}\n  </categories>`);
-        await commit(null, null, updated, cachedFinalData.sha);
+        await commit(updated);
     };
 
     window.renameCat = async function(oldName) {
-        const newName = prompt("New name for " + oldName, oldName);
+        const newName = prompt("New name:", oldName);
         if(!newName || newName === oldName) return;
         const updated = cachedFinalData.content.replace(`title="${oldName}"`, `title="${newName}"`);
-        await commit(null, null, updated, cachedFinalData.sha);
+        await commit(updated);
     };
 
     window.deleteCat = async function(name) {
         if(!confirm("Delete " + name + "?")) return;
         const regex = new RegExp(`\\s*<category title="${name}"[\\s\\S]*?<\\/category>`, 'g');
-        const updated = cachedFinalData.content.replace(regex, "");
-        await commit(null, null, updated, cachedFinalData.sha);
+        await commit(cachedFinalData.content.replace(regex, ""));
     };
+
+    window.openEdit = (id) => {
+        currentEditingId = id;
+        currentEditingType = 'app';
+        document.getElementById('modal-label').innerText = "Edit App XML";
+        const match = cachedFinalData.content.match(new RegExp(`<app id="${id}">[\\s\\S]*?<\\/app>`));
+        if (match) {
+            document.getElementById('xml-edit-area').value = match[0].trim();
+            document.getElementById('edit-modal').style.display = 'flex';
+        }
+    };
+
+    window.saveXmlEdit = async () => {
+        let updated;
+        if(currentEditingType === 'app') {
+            updated = cachedFinalData.content.replace(new RegExp(`<app id="${currentEditingId}">[\\s\\S]*?<\\/app>`), document.getElementById('xml-edit-area').value);
+        } else {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(cachedFinalData.content, "text/xml");
+            const cat = Array.from(xmlDoc.getElementsByTagName("category")).find(c => c.getAttribute("title") === currentEditingId);
+            let appIdsNode = cat.getElementsByTagName("appIds")[0];
+            if(!appIdsNode) {
+                appIdsNode = xmlDoc.createElement("appIds");
+                cat.appendChild(appIdsNode);
+            }
+            appIdsNode.textContent = document.getElementById('xml-edit-area').value.replace(/\s/g, '');
+            updated = new XMLSerializer().serializeToString(xmlDoc);
+        }
+        await commit(updated);
+    };
+
+    window.closeEdit = () => document.getElementById('edit-modal').style.display = 'none';
+
+    async function commit(fContent) {
+        status.innerText = "Saving...";
+        const headers = { "Authorization": `token ${token}`, "Content-Type": "application/json" };
+        await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
+            method: "PUT", headers,
+            body: JSON.stringify({ message: "Admin Update", content: btoa(unescape(encodeURIComponent(fContent))), sha: cachedFinalData.sha })
+        });
+        location.reload();
+    }
 
     window.directUpload = async function() {
         const nameVal = document.getElementById('up-name').value;
         const idVal = nameVal.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-        const appXml = `
-    <app id="${idVal}">
+        const appXml = `\n    <app id="${idVal}">
         <name>${nameVal}</name>
         <version>${document.getElementById('up-ver').value}</version>
         <icon>${document.getElementById('up-icon').value}</icon>
@@ -292,42 +356,14 @@ async function initDashboard() {
         <pcCapable>${document.getElementById('up-pc').checked}</pcCapable>
         <mobileCapable>${document.getElementById('up-mob').checked}</mobileCapable>
     </app>`;
-        const newFinal = cachedFinalData.content.replace('</apps>', `${appXml}\n</apps>`);
-        await commit(null, null, newFinal, cachedFinalData.sha);
-    }
-
-    window.openEdit = (id) => {
-        currentEditingId = id;
-        const match = cachedFinalData.content.match(new RegExp(`<app id="${id}">[\\s\\S]*?<\\/app>`));
-        if (match) {
-            document.getElementById('xml-edit-area').value = match[0].trim();
-            document.getElementById('edit-modal').style.display = 'flex';
-        }
+        await commit(cachedFinalData.content.replace('</apps>', `${appXml}\n</apps>`));
     };
-
-    window.closeEdit = () => document.getElementById('edit-modal').style.display = 'none';
-
-    window.saveXmlEdit = async () => {
-        const newXml = document.getElementById('xml-edit-area').value;
-        const newFinal = cachedFinalData.content.replace(new RegExp(`<app id="${currentEditingId}">[\\s\\S]*?<\\/app>`), newXml);
-        await commit(null, null, newFinal, cachedFinalData.sha);
-    };
-
+    
     window.removeLive = async (id) => {
         if(!confirm("Remove?")) return;
         const newFinal = cachedFinalData.content.replace(new RegExp(`<app id="${id}">[\\s\\S]*?<\\/app>`, 'g'), "").replace(/\n\s*\n/g, '\n');
-        await commit(null, null, newFinal, cachedFinalData.sha);
+        await commit(newFinal);
     };
-
-    async function commit(pContent, pSha, fContent, fSha) {
-        status.innerText = "Saving...";
-        const headers = { "Authorization": `token ${token}`, "Content-Type": "application/json" };
-        await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
-            method: "PUT", headers,
-            body: JSON.stringify({ message: "Admin Update", content: btoa(unescape(encodeURIComponent(fContent))), sha: fSha })
-        });
-        location.reload();
-    }
 }
 </script>
 </body>
