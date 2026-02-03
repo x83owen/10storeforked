@@ -21,7 +21,6 @@
       <appIds>MGCOWfUB,NR8KNi94,4jvHHTQI,I6LbwAai,YznXfqXB,8WvwEEYk,LhEiIzol</appIds>
     </category>
   </categories>
-
   <apps>
     <app id="uW8BXX9k">
       <name>Fresh Paint</name>
@@ -30,9 +29,7 @@
       <publisher>Microsoft Corporation</publisher>
       <featured>true</featured>
       <description>Unleash your inner creative with Fresh Paint – the ultimate canvas for your big ideas. 
-
 Fresh Paint is a fun and easy to use painting app with the right tools for artists of all ages. 
-
 We believe that brilliant, creative ideas can come from anyone, anytime.  It’s time to set your creativity free.</description>
       <package>https://dl.dankassassin368.com/Microsoft.FreshPaint_3.1.10383.1000_x86__8wekyb3d8bbwe.Appx</package>
       <pcCapable>true</pcCapable>
@@ -67,7 +64,6 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <publisher>VideoLAN</publisher>
       <featured>false</featured>
       <description>VLC is the ultimate media player, ported to the Windows Universal Platform.
-
 ⚠ ⚠ Beware! This VLC does not feature all the features of the classic VLC! It does not support DVD or Blurays! Use the desktop version instead! ⚠⚠</description>
       <package>https://dl.dankassassin368.com/VideoLAN.VLC_3.2.1.0_neutral_~_paz6r1rewnh0a.AppxBundle</package>
       <pcCapable>true</pcCapable>
@@ -146,7 +142,6 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <publisher>Game Insight</publisher>
       <featured>false</featured>
       <description>Transport Empire is a real-time strategy management game where players have to build a transport empire, constructing commercial networks, mines, factories, and much more.
-
 Your aim in Transport Empire is to build the biggest commercial network in the world with a steampunk aesthetic. To achieve tha</description>
       <package>https://dankassassin368.com/Stuff/APPX/Windows%2010%20APPX%20Files/Games/Transport%20Empire/0EB8BD08.TransportEmpire_3.0.38.0_neutral_~_erk4rrwmt7jyt.appxbundle</package>
       <pcCapable>true</pcCapable>
@@ -269,9 +264,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <publisher>sensboston</publisher>
       <featured>false</featured>
       <description>A adblocker app for W10M.
-
 YOUR PHONE MUST BE INTEROP UNLOCKED!
-
 More info at https://files.catbox.moe/rokw5h.txt (please note you got to copy it to the browser)</description>
       <package>https://dl.dankassassin368.com/AdBlocker_1.1.0.0_ARM.appx</package>
       <pcCapable>false</pcCapable>
@@ -306,7 +299,6 @@ More info at https://files.catbox.moe/rokw5h.txt (please note you got to copy it
       <publisher>Random Salad Games LLC</publisher>
       <featured>false</featured>
       <description>Play the BEST dominoes game for Windows today!
-
 Enjoy the simple pleasures of this classic game on your computer, laptop, or tablet. Play 3 classic game modes (Muggins, Block, and Draw) against a clever computer opponent. Custom themes and backgrounds round out this spectacular game.</description>
       <package>https://dl.dankassassin368.com/Dominoes.UWP_4.3.29.0_x64.appx</package>
       <pcCapable>true</pcCapable>
@@ -512,17 +504,6 @@ dont delete it please, it need</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-    <app id="accuweather-64-bit">
-      <name>AccuWeather (64 bit)</name>
-      <version>2.1.7.2</version>
-      <icon>https://i.ibb.co/1JZvRLW5/App-Icon-WMW.png</icon>
-      <publisher>AccuWeather for Windows</publisher>
-      <featured>false</featured>
-      <description></description>
-      <package>https://dankassassin368.com/Stuff/APPX/Windows%208.1%20APPX%20Files/Apps/AccuWeather/AccuWeather.AccuWeatherforWindows8_2.1.7.2_x64__8zz2pj9h1h1d8.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
     <app id="el-chavo-juego">
       <name>El Chavo Juego</name>
       <version>2014.603.2039.2034</version>
@@ -541,7 +522,6 @@ dont delete it please, it need</description>
       <publisher>SquareDude</publisher>
       <featured>false</featured>
       <description>This is a unofficial port of We Become What we Behold. Please ask me on Discord if you need help or feedback or ask another person.
-
 Original Game: https://ncase.itch.io/wbwwb</description>
       <package>https://dl.dankassassin368.com/WBWWB_1.0.0.0_x86__xygddxjqvswne.appx</package>
       <pcCapable>true</pcCapable>
@@ -581,5 +561,4 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <mobileCapable>false</mobileCapable>
     </app>
 </apps>
-
 </data>
