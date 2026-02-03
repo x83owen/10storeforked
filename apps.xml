@@ -473,6 +473,17 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+    <app id="g9QQPJD0">
+      <name>MetroTube</name>
+      <version>0.10.1.0</version>
+      <icon>https://i.ibb.co/mVb2rwkb/Metrotube-01.jpg</icon>
+      <publisher>LazyWorm Applications Ltd.</publisher>
+      <featured>false</featured>
+      <description/>
+      <package>https://dl.dankassassin368.com/Ametrotube.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 
 </data>
