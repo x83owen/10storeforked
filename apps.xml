@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<data>
+<?xml version="1.0" encoding="UTF-8"?><data>
   <categories>
     <category title="Featured" type="featured"/>
       <category title="Utilities" type="picks">
@@ -9,7 +8,7 @@
       <appIds>fresh-paint,paint-3d</appIds>
     </category>
       <category title="Dependencies" type="picks">
-      <appIds>winjs-2-0,winjs-1-0,microsoft-vclibs-140-00-14-0-33519-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-x86,microsoft-net-native-runtime-2-2-2-2-28604-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-arm,microsoft-net-native-runtime-2-2-2-2-28604-0-arm64,microsoft-net-native-framework-2-2-2-2-29512-0-x86,microsoft-net-native-framework-2-2-2-2-29512-0-x64,microsoft-net-native-framework-2-2-2-2-29512-0-arm,microsoft-net-native-framework-2-2-2-2-29512-0-arm64</appIds>
+      <appIds>winjs-2-0,winjs-1-0,microsoft-vclibs-140-00-14-0-33519-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-x86,microsoft-net-native-runtime-2-2-2-2-28604-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-arm,microsoft-net-native-runtime-2-2-2-2-28604-0-arm64,microsoft-net-native-framework-2-2-2-2-29512-0-x86,microsoft-net-native-framework-2-2-2-2-29512-0-x64,microsoft-net-native-framework-2-2-2-2-29512-0-arm,microsoft-net-native-framework-2-2-2-2-29512-0-arm64,microsoft-net-native-runtime-1-1-1-1-23406-0-x86,microsoft-net-native-runtime-1-1-1-1-23406-0-x64,microsoft-net-native-runtime-1-1-1-1-23406-0-arm,microsoft-net-native-framework-1-2-1-2-23231-0-x86,microsoft-net-native-framework-1-2-1-2-23231-0-x64,microsoft-net-native-framework-1-2-1-2-23231-0-arm</appIds>
     </category>
       <category title="Games" type="picks">
       <appIds>browserquest,minecraft-for-windows,minecraft-for-windows-mobile,hill-climb-racing,transport-empire,rrDcTRXV,VnpOXSdk,8WvwEEYk,LhEiIzol,suVzYAz7,zLL7sl3w,tk0RL62i,wUQYvaL6,ejwJaoRi,where-s-my-water,el-chavo-juego,we-become-what-we-behold</appIds>
@@ -687,7 +686,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
-        <description></description>
+        <description/>
         <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_x86__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>true</mobileCapable>
@@ -699,7 +698,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
-        <description></description>
+        <description/>
         <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_x64__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>true</mobileCapable>
@@ -711,7 +710,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
-        <description></description>
+        <description/>
         <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_arm__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>true</mobileCapable>
@@ -723,7 +722,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
-        <description></description>
+        <description/>
         <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x86__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>true</mobileCapable>
@@ -735,7 +734,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
-        <description></description>
+        <description/>
         <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x64__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>true</mobileCapable>
@@ -747,7 +746,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
-        <description></description>
+        <description/>
         <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_arm__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>true</mobileCapable>
