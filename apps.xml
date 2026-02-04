@@ -725,7 +725,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <description/>
         <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x86__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
-        <mobileCapable>true</mobileCapable>
+        <mobileCapable>false</mobileCapable>
     </app>
 
     <app id="microsoft-net-native-framework-1-2-1-2-23231-0-x64">
