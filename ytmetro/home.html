@@ -7,93 +7,122 @@
     <script src="ms-appx-web:///winjs/base.js"></script>
     <script src="ms-appx-web:///winjs/ui.js"></script>
 
-<style>
-    html, body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-    }
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
 
-    #homeRoot {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
+        /* Windows 8.1 panoramic layout */
+        #homeRoot {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
 
-    #homeHeader {
-        padding: 12px 16px;
-        flex-shrink: 0;
-    }
+        #homeHeader {
+            padding: 30px 40px 10px 40px;
+        }
 
-    #contentSection {
-        flex: 1;
-        overflow: hidden;
-    }
+        #contentSection {
+            flex: 1;
+            overflow: hidden;
+            padding: 0 40px 40px 40px;
+            box-sizing: border-box;
+        }
 
-    #videoList {
-        width: 100%;
-        height: 100%;
-    }
+        #videoList {
+            width: 100%;
+            height: 100%;
+        }
 
-    /* --- FIXED TEMPLATE STYLES --- */
+        /* WinJS ListView item container – Metro tile sizing */
+        .win-container {
+            margin: 0 40px 40px 0 !important;
+            width: 360px !important;
+            background: transparent !important;
+            border: none !important;
+        }
 
-    .video-card-content {
-        background: transparent;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-    }
+        @media (max-width: 1400px) {
+            .win-container {
+                width: 300px !important;
+            }
+        }
 
-    .thumb-wrapper {
-        position: relative; /* REQUIRED for duration badge */
-        width: 100%;
-        height: 180px;
-        overflow: hidden;
-    }
+        @media (max-width: 1000px) {
+            .win-container {
+                width: 260px !important;
+            }
+        }
 
-    .thumb {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
+        @media (max-width: 700px) {
+            .win-container {
+                width: 100% !important;
+                margin-right: 0 !important;
+            }
+        }
 
-    .duration {
-        position: absolute;
-        right: 6px;
-        bottom: 6px;
-        padding: 3px 6px;
-        background: rgba(0,0,0,0.6);
-        border-radius: 2px;
-    }
+        /* Tile content – uses WinJS typography classes for look */
+        .video-card-content {
+            width: 100%;
+        }
 
-    .info {
-        display: flex;
-        padding: 8px 0;
-    }
+        /* 16:9 thumbnail using padding trick */
+        .thumb-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            overflow: hidden;
+        }
 
-    .avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 10px;
-    }
+        .thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-    .text {
-        flex: 1;
-        min-width: 0;
-    }
+        .duration {
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            padding: 4px 8px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 2px;
+        }
 
-    .title {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-</style>
+        .info {
+            display: flex;
+            padding-top: 12px;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+        }
+
+        .text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
 </head>
 
 <body class="win-type-body">
@@ -111,10 +140,10 @@
              }">
         </div>
 
-        <!-- FIXED TEMPLATE -->
+        <!-- Windows 8.1-style tile template -->
         <div id="videoTemplate" data-win-control="WinJS.Binding.Template" style="display:none">
             <div class="video-card-content">
-                
+
                 <div class="thumb-wrapper">
                     <img class="thumb" data-win-bind="src: thumbnailUrl" />
                     <div class="duration win-type-caption"
@@ -172,45 +201,49 @@
     }
 
     function parseDuration(iso) {
-        var h=0,m=0,s=0;
-        var match = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+        var h = 0, m = 0, s = 0;
+        var match = iso && iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
         if (match) {
-            h = parseInt(match[1]||"0",10);
-            m = parseInt(match[2]||"0",10);
-            s = parseInt(match[3]||"0",10);
+            h = parseInt(match[1] || "0", 10);
+            m = parseInt(match[2] || "0", 10);
+            s = parseInt(match[3] || "0", 10);
         }
-        var parts=[];
-        if (h>0) {
+        var parts = [];
+        if (h > 0) {
             parts.push(h);
-            parts.push(("0"+m).slice(-2));
+            parts.push(("0" + m).slice(-2));
         } else {
             parts.push(m);
         }
-        parts.push(("0"+s).slice(-2));
+        parts.push(("0" + s).slice(-2));
         return parts.join(":");
     }
 
     function buildItems(search, videos, channels) {
-        var videoMap={}, channelMap={}, items=[];
+        var videoMap = {}, channelMap = {}, items = [];
         var i;
 
         if (videos.items) {
-            for (i=0;i<videos.items.length;i++) {
+            for (i = 0; i < videos.items.length; i++) {
                 videoMap[videos.items[i].id] = videos.items[i];
             }
         }
 
         if (channels.items) {
-            for (i=0;i<channels.items.length;i++) {
+            for (i = 0; i < channels.items.length; i++) {
                 channelMap[channels.items[i].id] = channels.items[i];
             }
         }
 
-        if (!search.items) return items;
+        if (!search.items) {
+            return items;
+        }
 
-        for (i=0;i<search.items.length;i++) {
+        for (i = 0; i < search.items.length; i++) {
             var it = search.items[i];
-            if (!it.id || it.id.kind !== "youtube#video") continue;
+            if (!it.id || it.id.kind !== "youtube#video") {
+                continue;
+            }
 
             var vid = it.id.videoId;
             var sn = it.snippet || {};
@@ -222,8 +255,8 @@
             var chInfo = channelMap[chId] || {};
             var chSn = chInfo.snippet || {};
 
-            var thumb = sn.thumbnails && (sn.thumbnails.medium || sn.thumbnails.default);
-            var chThumb = chSn.thumbnails && (chSn.thumbnails.default || chSn.thumbnails.medium);
+            var thumb = sn.thumbnails && (sn.thumbnails.high || sn.thumbnails.medium || sn.thumbnails.default);
+            var chThumb = chSn.thumbnails && (chSn.thumbnails.default || chSn.thumbnails.medium || chSn.thumbnails.high);
 
             items.push({
                 videoId: vid,
@@ -247,18 +280,26 @@
             "&key=" + API_KEY;
 
         return httpGetJson(searchUrl).then(function (searchJson) {
-            var vids=[], chs={}, i;
+            var vids = [], chs = {}, i;
 
             if (searchJson.items) {
-                for (i=0;i<searchJson.items.length;i++) {
+                for (i = 0; i < searchJson.items.length; i++) {
                     var it = searchJson.items[i];
-                    if (it.id && it.id.videoId) vids.push(it.id.videoId);
-                    if (it.snippet && it.snippet.channelId) chs[it.snippet.channelId] = true;
+                    if (it.id && it.id.videoId) {
+                        vids.push(it.id.videoId);
+                    }
+                    if (it.snippet && it.snippet.channelId) {
+                        chs[it.snippet.channelId] = true;
+                    }
                 }
             }
 
-            var chList=[];
-            for (var c in chs) if (chs.hasOwnProperty(c)) chList.push(c);
+            var chList = [];
+            for (var c in chs) {
+                if (chs.hasOwnProperty(c)) {
+                    chList.push(c);
+                }
+            }
 
             var videosUrl =
                 "https://www.googleapis.com/youtube/v3/videos" +
@@ -284,7 +325,9 @@
 
     function onItemInvoked(e) {
         var item = bindingList.getAt(e.detail.itemIndex);
-        if (!item) return;
+        if (!item) {
+            return;
+        }
 
         window.parent.postMessage({
             type: "openVideo",
