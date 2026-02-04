@@ -751,5 +751,17 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
+
+    <app id="4shared-x86">
+        <name>4shared (x86)</name>
+        <version>2.0.6.0</version>
+        <icon>https://i.ibb.co/Kx9RpTmf/Square310x310-Logo-scale-200.png</icon>
+        <publisher>New IT Limited</publisher>
+        <featured>false</featured>
+        <description>4shared is like a large virtual folder for your data. You can access your files anytime you need, being sure that they are always kept safe in your 4shared account. In addition, 4shared enables you to share links to your content with others.</description>
+        <package>https://dl.dankassassin368.com/4shared.Application_2.0.6.0_x86.appx</package>
+        <pcCapable>true</pcCapable>
+        <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
