@@ -740,5 +740,17 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
+
+    <app id="microsoft-net-native-framework-1-2-1-2-23231-0-arm">
+        <name>Microsoft.NET.Native.Framework.1.2_1.2.23231.0_arm</name>
+        <version>1.2_1.2.23231.0</version>
+        <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
+        <publisher>Microsoft Corporation</publisher>
+        <featured>false</featured>
+        <description></description>
+        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_arm__8wekyb3d8bbwe.Appx</package>
+        <pcCapable>true</pcCapable>
+        <mobileCapable>true</mobileCapable>
+    </app>
 </apps>
 </data>
