@@ -8,106 +8,51 @@
     <script src="ms-appx-web:///winjs/ui.js"></script>
   
 <style>
-    html, body {
-        width: 100%; height: 100%;
-        margin: 0; padding: 0;
-        overflow: hidden;
-        background-color: #111;
-    }
-
-    #homeRoot {
-        width: 100%; height: 100%;
-        display: -ms-flexbox; display: flex;
-        -ms-flex-direction: column; flex-direction: column;
-    }
-
-    #homeHeader {
-        -ms-flex: 0 0 auto; flex: 0 0 auto;
-        padding: 16px;
-        background-color: rgba(32,32,32,0.85);
-    }
-
-    #contentSection {
-        -ms-flex: 1 1 auto; flex: 1 1 auto;
-        padding: 12px;
-        box-sizing: border-box;
-    }
-
-    #videoList {
-        width: 100%; height: 100%;
-    }
-
-    /* --- CLEAN METRO CARD --- */
-
-    .video-card {
-        width: 320px;
-        background: transparent !important;
+    .video-card-content {
+        background: transparent;
         padding: 0;
         margin: 0;
-        border: none !important;
+        width: 100%;
     }
 
-    .thumb-wrapper {
-        position: relative;
+    .thumb {
         width: 100%;
         height: 180px;
-        overflow: hidden;
-        background: transparent;
-    }
-
-    .thumb-image {
-        width: 100%;
-        height: 100%;
         object-fit: cover;
-        border: none;
+        display: block;
     }
 
-    .thumb-duration {
+    .duration {
         position: absolute;
         right: 6px;
         bottom: 6px;
         padding: 3px 6px;
-        background-color: rgba(0,0,0,0.65);
+        background: rgba(0,0,0,0.6);
         border-radius: 2px;
-        font-size: 12px;
     }
 
-    .video-meta {
-        display: -ms-flexbox; display: flex;
-        padding: 10px 0;
-        background: transparent;
+    .info {
+        display: flex;
+        padding: 8px 0;
     }
 
-    .channel-avatar {
-        width: 40px; height: 40px;
+    .avatar {
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
-        margin-right: 10px;
         object-fit: cover;
-        background: transparent;
+        margin-right: 10px;
     }
 
-    .meta-text {
-        -ms-flex: 1 1 auto; flex: 1 1 auto;
+    .text {
+        flex: 1;
         min-width: 0;
     }
 
-    .video-title {
+    .title {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        margin-bottom: 4px;
-    }
-
-    .video-channel,
-    .video-views {
-        font-size: 12px;
-        opacity: 0.75;
-    }
-
-    /* Remove WinJS default item chrome */
-    .win-container {
-        background: transparent !important;
-        border: none !important;
     }
 </style>
 </head>
@@ -128,28 +73,23 @@
         </div>
 
         <!-- Template -->
-        <div id="videoTemplate" data-win-control="WinJS.Binding.Template" style="display:none">
-            <div class="video-card win-item">
-                <div class="thumb-wrapper">
-                    <img class="thumb-image" data-win-bind="src: thumbnailUrl" />
-                    <div class="thumb-duration win-type-caption">
-                        <span data-win-bind="textContent: durationFormatted"></span>
-                    </div>
-                </div>
+<div id="videoTemplate" data-win-control="WinJS.Binding.Template" style="display:none">
+    <div class="win-item">
+        <div class="video-card-content">
+            <img class="thumb" data-win-bind="src: thumbnailUrl" />
+            <div class="duration win-type-caption" data-win-bind="textContent: durationFormatted"></div>
 
-                <div class="video-meta">
-                    <img class="channel-avatar" data-win-bind="src: channelThumbUrl" />
-                    <div class="meta-text">
-                        <div class="video-title win-type-subtitle"
-                             data-win-bind="textContent: title"></div>
-                        <div class="video-channel win-type-caption"
-                             data-win-bind="textContent: channelTitle"></div>
-                        <div class="video-views win-type-caption"
-                             data-win-bind="textContent: viewCountFormatted"></div>
-                    </div>
+            <div class="info">
+                <img class="avatar" data-win-bind="src: channelThumbUrl" />
+                <div class="text">
+                    <div class="title win-type-subtitle" data-win-bind="textContent: title"></div>
+                    <div class="channel win-type-caption" data-win-bind="textContent: channelTitle"></div>
+                    <div class="views win-type-caption" data-win-bind="textContent: viewCountFormatted"></div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
     </section>
 </div>
 
