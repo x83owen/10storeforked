@@ -712,7 +712,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description></description>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_arm__8wekyb3d8bbwe.appx</package>
+        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_arm__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
