@@ -876,7 +876,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <version>5.3.0.0</version>
         <icon>https://dankassassin368.com/random/icons/749ed953b0e93f2023bcb16ac5a51748.png</icon>
         <publisher>OpenNetDude</publisher>
-        <featured>false</featured>
+        <featured>true</featured>
         <description>8Store Revival, a huge project which needs YOUR help to be better.
 We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the first day's release! that is impressive and not gonna lie.</description>
         <package>https://dl.dankassassin368.com/Win81StoreRevival_5.3.0.0_AnyCPU_Debug.appx</package>
