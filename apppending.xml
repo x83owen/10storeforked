@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-      <app id="luma-shorts">
-      <name>Luma Shorts</name>
-      <version>1.0.0.0</version>
-      <icon>https://owentechv.github.io/shorts/apps/shorts.png</icon>
-      <publisher>Luma</publisher>
-      <featured>false</featured>
-      <description>a short form content app developed by Owen. this is the pc only build it uses edge webview. Have any issues with the app? DM bingweather on Discord</description>
-      <package>https://owentechv.github.io/shorts/apps/pc/Luma%20Shorts%20v1.0%20(PC%20Webview).appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
   </apps>
 </data>
