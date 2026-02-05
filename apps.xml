@@ -870,5 +870,18 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="8store">
+        <name>8Store</name>
+        <version>5.3.0.0</version>
+        <icon>https://dankassassin368.com/random/icons/8StoreLogo.png</icon>
+        <publisher>DraydenYT</publisher>
+        <featured>false</featured>
+        <description>8Store Revival, a huge project which needs YOUR help to be better.
+We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the first day's release! that is impressive and not gonna lie.</description>
+        <package>https://dl.dankassassin368.com/Win81StoreRevival_5.3.0.0_AnyCPU_Debug.appx</package>
+        <pcCapable>true</pcCapable>
+        <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
