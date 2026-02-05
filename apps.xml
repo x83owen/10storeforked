@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><data>
   <categories>
     <category title="Featured" type="featured"/>
-      <category title="Art" type="picks">
-      <appIds>fresh-paint,paint-3d</appIds>
-    </category>
+      
       
       
       <category title="Games" type="picks">
       <appIds>browserquest,minecraft-for-windows,minecraft-for-windows-mobile,hill-climb-racing,transport-empire,rrDcTRXV,VnpOXSdk,8WvwEEYk,LhEiIzol,suVzYAz7,zLL7sl3w,tk0RL62i,wUQYvaL6,ejwJaoRi,where-s-my-water,el-chavo-juego,we-become-what-we-behold</appIds>
+    </category><category title="Art" type="picks">
+      <appIds>fresh-paint,paint-3d</appIds>
     </category><category title="Utilities" type="picks">
       <appIds>posxp,G8I0kPFQ</appIds>
     </category>
