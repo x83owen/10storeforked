@@ -8,12 +8,12 @@
       <appIds>browserquest,minecraft-for-windows,minecraft-for-windows-mobile,hill-climb-racing,transport-empire,rrDcTRXV,VnpOXSdk,8WvwEEYk,LhEiIzol,suVzYAz7,zLL7sl3w,tk0RL62i,wUQYvaL6,ejwJaoRi,where-s-my-water,el-chavo-juego,we-become-what-we-behold</appIds>
     </category><category title="Art" type="picks">
       <appIds>fresh-paint,paint-3d</appIds>
+    </category><category title="Video" type="picks">
+      <appIds>vlc-uwp,GrJoGJjh,dY265Bi3,XW2VB89E,Y0wouMtZ,g9QQPJD0</appIds>
     </category><category title="Utilities" type="picks">
       <appIds>posxp,G8I0kPFQ</appIds>
     </category>
-      <category title="Video" type="picks">
-      <appIds>vlc-uwp,GrJoGJjh,dY265Bi3,XW2VB89E,Y0wouMtZ,g9QQPJD0</appIds>
-    </category><category title="Social" type="picks">
+      <category title="Social" type="picks">
       <appIds>kRSswZ9K,9XrDWeBp</appIds>
     </category>
       <category title="Dependencies" type="picks">
