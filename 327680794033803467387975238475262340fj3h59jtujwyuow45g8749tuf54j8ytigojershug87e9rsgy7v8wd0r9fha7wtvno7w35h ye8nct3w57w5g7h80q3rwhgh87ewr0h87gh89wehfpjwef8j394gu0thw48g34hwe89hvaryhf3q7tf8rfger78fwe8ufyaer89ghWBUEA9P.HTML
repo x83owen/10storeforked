@@ -36,11 +36,10 @@
         .modal-box { background: white; width: 80%; max-width: 700px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
         .modal-box textarea { width: 100%; height: 300px; font-family: 'Consolas', monospace; font-size: 13px; margin: 15px 0; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; }
 
-        /* New Suggestion Box Styles */
         #suggestions-box {
             display: none;
             position: absolute;
-            bottom: 60px; /* Positioned above buttons, inside modal */
+            bottom: 60px;
             left: 20px;
             width: 300px;
             max-height: 180px;
@@ -87,9 +86,10 @@
         .controls { margin-top: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
         button { padding: 6px 20px; border: none; cursor: pointer; font-size: 13px; }
         .btn-approve { background: var(--win-green); color: white; }
-        .btn-decline { background: #CCC; color: black; }
+        .btn-decline { background: var(--win-red); color: white; }
         .btn-unpublish { background: #444; color: white; }
         .btn-edit { background: var(--win-blue); color: white; }
+        .btn-test { background: #666; color: white; } /* Style for Test buttons */
 
         .cat-manager { margin-top: 20px; padding: 10px; background: #ddd; border: 1px solid #ccc; }
         .cat-item { display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-bottom: 5px; background: #eee; padding: 5px; }
@@ -114,11 +114,8 @@
 <div id="edit-modal">
     <div class="modal-box">
         <h3 id="modal-label">Edit XML</h3>
-        
         <textarea id="xml-edit-area" placeholder="Enter content..."></textarea>
-        
         <div id="suggestions-box"></div>
-
         <div style="text-align:right;">
             <button onclick="closeEdit()">Cancel</button>
             <button class="btn-approve" onclick="saveXmlEdit()">Save Changes</button>
@@ -184,7 +181,10 @@ let currentEditingId = null;
 let currentEditingType = 'app';
 let cachedFinalData = null;
 let cachedPendingData = null;
-let allAppsCache = []; // Stores {name, id} for autocomplete
+let allAppsCache = [];
+
+const FINAL_FILE = "apps.xml";
+const PENDING_FILE = "apppending.xml";
 
 function checkPass() {
     if (document.getElementById('pass-input').value === PASSW) {
@@ -200,8 +200,6 @@ async function initDashboard() {
     const owner = window.GITHUB_OWNER || GITHUB_OWNER;
     const repo = window.GITHUB_REPO || GITHUB_REPO;
     const status = document.getElementById('status');
-    const FINAL_FILE = "apps.xml";
-    const PENDING_FILE = "apppending.xml";
 
     async function getFile(path) {
         const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -223,7 +221,6 @@ async function initDashboard() {
         if(cachedPendingData) renderApps(cachedPendingData.content, document.getElementById('app-list'), false);
     }
 
-    // Extract all apps for autocomplete
     function updateAppCache(xmlContent) {
         allAppsCache = [];
         const parser = new DOMParser();
@@ -268,7 +265,7 @@ async function initDashboard() {
         const xmlDoc = parser.parseFromString(xmlContent, "text/xml");
         const apps = xmlDoc.getElementsByTagName("app");
         
-        if(isLive) updateAppCache(xmlContent); // Update cache when rendering live apps
+        if(isLive) updateAppCache(xmlContent);
 
         container.innerHTML = "";
         if(apps.length === 0) { container.innerHTML = "<p>Empty</p>"; return; }
@@ -277,16 +274,37 @@ async function initDashboard() {
             const id = app.getAttribute("id");
             const name = app.getElementsByTagName("name")[0].textContent;
             const icon = app.getElementsByTagName("icon")[0].textContent;
+            // Get package for testing (optional logic to handle missing tag)
+            const pkgTag = app.getElementsByTagName("package")[0];
+            const pkg = pkgTag ? pkgTag.textContent : "#";
+
             const card = document.createElement('div');
             card.className = 'app-card';
+            
+            // Build Controls based on isLive status
+            let controlButtons = '';
+            if (isLive) {
+                controlButtons = `
+                    <button class="btn-edit" onclick="openEdit('${id}')">Edit</button>
+                    <button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>
+                `;
+            } else {
+                // PENDING BUTTONS
+                controlButtons = `
+                    <button class="btn-approve" onclick="approveApp('${id}')">Approve</button>
+                    <button class="btn-decline" onclick="declineApp('${id}')">Decline</button>
+                    <button class="btn-test" onclick="window.open('${pkg}', '_blank')">Test Pkg</button>
+                    <button class="btn-test" onclick="window.open('${icon}', '_blank')">View Logo</button>
+                `;
+            }
+
             card.innerHTML = `
                 <img src="${icon}" class="app-icon" onerror="this.src='https://via.placeholder.com/100'">
                 <div class="app-info">
                     <h2>${name}</h2>
                     <div class="pub-text">ID: ${id}</div>
                     <div class="controls">
-                        ${isLive ? `<button class="btn-edit" onclick="openEdit('${id}')">Edit</button>
-                        <button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>` : ''}
+                        ${controlButtons}
                     </div>
                 </div>`;
             container.appendChild(card);
@@ -308,8 +326,6 @@ async function initDashboard() {
 
         const cursor = this.selectionStart;
         const val = this.value;
-        
-        // Find the word currently being typed (after last comma)
         const leftSide = val.slice(0, cursor);
         const lastCommaIndex = leftSide.lastIndexOf(',');
         const currentTerm = leftSide.slice(lastCommaIndex + 1).trim();
@@ -319,7 +335,6 @@ async function initDashboard() {
             return;
         }
 
-        // Filter apps
         const matches = allAppsCache.filter(app => 
             app.name.toLowerCase().includes(currentTerm.toLowerCase()) || 
             app.id.toLowerCase().includes(currentTerm.toLowerCase())
@@ -327,18 +342,15 @@ async function initDashboard() {
 
         if(matches.length > 0) {
             suggestBox.innerHTML = '';
-            matches.slice(0, 10).forEach(app => { // Limit to 10 suggestions
+            matches.slice(0, 10).forEach(app => {
                 const div = document.createElement('div');
                 div.className = 'suggestion-item';
                 div.innerHTML = `<span class="sug-name">${app.name}</span><span class="sug-id">${app.id}</span>`;
                 
                 div.onclick = () => {
-                    const before = val.slice(0, lastCommaIndex + 1); // Content before current term
-                    const after = val.slice(cursor); // Content after cursor
-                    
-                    // Add space after comma if it exists, insert ID, add comma for next entry
+                    const before = val.slice(0, lastCommaIndex + 1);
+                    const after = val.slice(cursor);
                     const prefix = (before.length > 0 && !before.endsWith(' ')) ? ' ' : ''; 
-                    
                     this.value = before + prefix + app.id + after;
                     suggestBox.style.display = 'none';
                     this.focus();
@@ -351,7 +363,6 @@ async function initDashboard() {
         }
     });
 
-    // Close suggestions if clicking elsewhere
     document.addEventListener('click', function(e) {
         if (e.target !== textArea && e.target.parentNode !== suggestBox) {
             suggestBox.style.display = 'none';
@@ -359,7 +370,65 @@ async function initDashboard() {
     });
 
     // ------------------------------------------
-    //  EXISTING LOGIC
+    //  DATA MANAGEMENT
+    // ------------------------------------------
+
+    window.saveFile = async function(fileName, content, sha) {
+        const headers = { "Authorization": `token ${token}`, "Content-Type": "application/json" };
+        const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${fileName}`, {
+            method: "PUT", headers,
+            body: JSON.stringify({ message: "Admin Update", content: btoa(unescape(encodeURIComponent(content))), sha: sha })
+        });
+        return res.ok;
+    }
+
+    // Renamed 'commit' to a wrapper for the main file to keep old functions working
+    async function commit(fContent) {
+        status.innerText = "Saving...";
+        await saveFile(FINAL_FILE, fContent, cachedFinalData.sha);
+        location.reload();
+    }
+
+    // APPROVE LOGIC
+    window.approveApp = async function(id) {
+        if(!confirm("Approve " + id + "?")) return;
+        status.innerText = "Approving...";
+
+        // 1. Find App XML in Pending
+        const appRegex = new RegExp(`<app id="${id}">[\\s\\S]*?<\\/app>`);
+        const match = cachedPendingData.content.match(appRegex);
+        
+        if(!match) { alert("Error: App not found in pending data."); return; }
+        const appXml = match[0];
+
+        // 2. Remove from Pending
+        const newPending = cachedPendingData.content.replace(appXml, "").replace(/\n\s*\n/g, '\n');
+        
+        // 3. Add to Live
+        const newFinal = cachedFinalData.content.replace('</apps>', `${appXml}\n</apps>`);
+
+        // 4. Save Both
+        await saveFile(PENDING_FILE, newPending, cachedPendingData.sha);
+        await saveFile(FINAL_FILE, newFinal, cachedFinalData.sha);
+        
+        location.reload();
+    };
+
+    // DECLINE LOGIC
+    window.declineApp = async function(id) {
+        if(!confirm("Decline (Delete) " + id + "?")) return;
+        status.innerText = "Declining...";
+
+        // Remove from Pending
+        const appRegex = new RegExp(`<app id="${id}">[\\s\\S]*?<\\/app>`);
+        const newPending = cachedPendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
+
+        await saveFile(PENDING_FILE, newPending, cachedPendingData.sha);
+        location.reload();
+    };
+
+    // ------------------------------------------
+    //  EXISTING UI FUNCTIONS
     // ------------------------------------------
 
     window.moveCat = async function(index, direction) {
@@ -391,7 +460,7 @@ async function initDashboard() {
         document.getElementById('modal-label').innerText = "Edit Apps in " + title;
         document.getElementById('xml-edit-area').value = appIdsNode ? appIdsNode.textContent : "";
         document.getElementById('edit-modal').style.display = 'flex';
-        document.getElementById('suggestions-box').style.display = 'none'; // Ensure closed on open
+        document.getElementById('suggestions-box').style.display = 'none'; 
     };
 
     window.addCategory = async function() {
@@ -450,16 +519,6 @@ async function initDashboard() {
         document.getElementById('edit-modal').style.display = 'none';
         document.getElementById('suggestions-box').style.display = 'none';
     };
-
-    async function commit(fContent) {
-        status.innerText = "Saving...";
-        const headers = { "Authorization": `token ${token}`, "Content-Type": "application/json" };
-        await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${FINAL_FILE}`, {
-            method: "PUT", headers,
-            body: JSON.stringify({ message: "Admin Update", content: btoa(unescape(encodeURIComponent(fContent))), sha: cachedFinalData.sha })
-        });
-        location.reload();
-    }
 
     window.directUpload = async function() {
         const nameVal = document.getElementById('up-name').value;
