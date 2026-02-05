@@ -11,12 +11,12 @@
       <category title="Games" type="picks">
       <appIds>browserquest,minecraft-for-windows,minecraft-for-windows-mobile,hill-climb-racing,transport-empire,rrDcTRXV,VnpOXSdk,8WvwEEYk,LhEiIzol,suVzYAz7,zLL7sl3w,tk0RL62i,wUQYvaL6,ejwJaoRi,where-s-my-water,el-chavo-juego,we-become-what-we-behold</appIds>
     </category>
-      <category title="Social" type="picks">
-      <appIds>kRSswZ9K,9XrDWeBp</appIds>
-    </category>
       <category title="Video" type="picks">
       <appIds>vlc-uwp,GrJoGJjh,dY265Bi3,XW2VB89E,Y0wouMtZ,g9QQPJD0</appIds>
-    </category><category title="Dependencies" type="picks">
+    </category><category title="Social" type="picks">
+      <appIds>kRSswZ9K,9XrDWeBp</appIds>
+    </category>
+      <category title="Dependencies" type="picks">
       <appIds>winjs-2-0,winjs-1-0,microsoft-vclibs-140-00-14-0-33519-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-x86,microsoft-net-native-runtime-2-2-2-2-28604-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-arm,microsoft-net-native-runtime-2-2-2-2-28604-0-arm64,microsoft-net-native-framework-2-2-2-2-29512-0-x86,microsoft-net-native-framework-2-2-2-2-29512-0-x64,microsoft-net-native-framework-2-2-2-2-29512-0-arm,microsoft-net-native-framework-2-2-2-2-29512-0-arm64,microsoft-net-native-runtime-1-1-1-1-23406-0-x86,microsoft-net-native-runtime-1-1-1-1-23406-0-x64,microsoft-net-native-runtime-1-1-1-1-23406-0-arm,microsoft-net-native-framework-1-2-1-2-23231-0-x86,microsoft-net-native-framework-1-2-1-2-23231-0-x64,microsoft-net-native-framework-1-2-1-2-23231-0-arm,microsoft-media-playreadyclient-2-2-11-2154-0-x86,microsoft-media-playreadyclient-2-2-11-2154-0-x64,microsoft-media-playreadyclient-2-2-11-2154-0-arm,microsoft-media-playreadyclient-2-3-1678-0-arm,microsoft-media-playreadyclient-2-3-1678-0-x86,microsoft-media-playreadyclient-2-3-1678-0-x64</appIds>
     </category>
   </categories>
