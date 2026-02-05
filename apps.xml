@@ -101,8 +101,8 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
-    <app id="minecraft-for-windows-mobile">
-      <name>Minecraft for Windows Mobile</name>
+    <app id="minecraft-for-windows">
+      <name>Minecraft for Windows</name>
       <version>1.14.6005.0</version>
       <icon>https://i.ibb.co/pjcjHftR/MCSquare71x71-Logo-scale-400.png</icon>
       <publisher>Microsoft Studios</publisher>
