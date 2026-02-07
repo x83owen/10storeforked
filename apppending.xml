@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
+      <app id="3d-builder">
+      <name>3D Builder</name>
+      <version>16.0.2611.0</version>
+      <icon>https://i.ibb.co/Z6bc7yny/images.png</icon>
+      <publisher>Microsoft</publisher>
+      <featured>false</featured>
+      <description>the version may be incorrect</description>
+      <package>https://archive.org/download/windows10-inbox-apps/Windows%2010/SW_DVD5_NTRL_Win_10_1607_32_64_MultiLang_App_Update_X21-12056.ISO/amd64fre%2FMicrosoft.3DBuilder_8wekyb3d8bbwe.appxbundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
   </apps>
 </data>
