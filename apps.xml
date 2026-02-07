@@ -883,5 +883,16 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
+<app id="browser">
+      <name>Browser</name>
+      <version>1.0.0.0</version>
+      <icon>https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Project_Spartan_logo.svg/960px-Project_Spartan_logo.svg.png</icon>
+      <publisher>DraydenYT</publisher>
+      <featured>false</featured>
+      <description>Used for testing apps on Webview1</description>
+      <package>https://dl.dankassassin368.com/Browser_1.0.0.0_AnyCPU.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
 </apps>
 </data>
