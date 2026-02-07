@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-      <app id="casual-games-store">
-      <name>Casual Games Store</name>
-      <version>2.10.187.0</version>
-      <icon>https://i.ibb.co/Gg5rgCv/Copilot-20260207-143816.png</icon>
-      <publisher>Daily Game Store</publisher>
-      <featured>false</featured>
-      <description></description>
-      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%2010%20APPX%20Files/Games/Casual%20Games%20Store/2.10.187.0/x86/62901DailyGameStore.DailyGameStore_2.10.187.0_x86__fqpmejkndya3j.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
       <app id="color-square">
       <name>Color Square</name>
       <version>1.1.0.1</version>
