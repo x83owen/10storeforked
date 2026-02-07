@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-      <app id="my-app">
-      <name>My app!</name>
-      <version>0.0.0.0</version>
-      <icon>https:// .png</icon>
-      <publisher>hjfvnaowrv</publisher>
-      <featured>false</featured>
-      <description>fr</description>
-      <package>https://.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
       <app id="browser">
       <name>Browser</name>
       <version>1.0.0.0</version>
