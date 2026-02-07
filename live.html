@@ -9,109 +9,69 @@
         :root {
             --win-blue: #0078D7;
             --bg-color: #F2F2F2;
-            --text-color: #333;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: var(--bg-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text-color);
+            margin: 0; display: flex; justify-content: center; align-items: center;
+            height: 100vh; background-color: var(--bg-color);
+            font-family: 'Segoe UI', sans-serif; overflow: hidden;
         }
 
-        .container {
-            text-align: center;
-        }
+        .container { text-align: center; }
 
-        h1 {
-            font-weight: 300;
-            margin-bottom: 0;
-            color: #666;
-            font-size: 1.5rem;
-        }
+        h1 { font-weight: 300; color: #666; font-size: 1.5rem; margin-bottom: -10px; }
 
         #app-count {
-            display: block;
-            font-size: 12rem;
-            font-weight: 800;
-            color: var(--win-blue);
-            line-height: 1;
+            display: block; font-size: 12rem; font-weight: 800;
+            color: var(--win-blue); line-height: 1;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* The "Pop" Animation */
-        .bump {
-            transform: scale(1.2);
-        }
+        .bump { transform: scale(1.1); }
 
-        .status {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .dot {
-            height: 10px;
-            width: 10px;
-            background-color: #4CAF50;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
+        .status-box { margin-top: 20px; font-size: 0.8rem; color: #999; }
+        #error-log { color: #E81123; font-size: 0.7rem; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>LIVE APP COUNT</h1>
-        <span id="app-count">0</span>
-        <div class="status">
-            <span class="dot"></span> Live Monitoring
+        <h1>LIVE APPS</h1>
+        <span id="app-count">...</span>
+        <div class="status-box">
+            <span id="update-timer">Connecting to GitHub...</span>
         </div>
+        <div id="error-log"></div>
     </div>
 
     <script src="config.js"></script>
+
     <script>
         const countDisplay = document.getElementById('app-count');
+        const errorLog = document.getElementById('error-log');
         let currentCount = -1;
 
-        // Milestones for confetti
-        const milestones = [100, 150, 200, 250, 300];
-
         async function fetchAppCount() {
-            const token = window.GITHUB_TOKEN;
-            const owner = window.GITHUB_OWNER;
-            const repo = window.GITHUB_REPO;
-            const path = "apps.xml";
+            // Check if config loaded
+            if (typeof GITHUB_TOKEN === 'undefined') {
+                showError("Config Error: GITHUB_TOKEN is missing. Check config.js.");
+                return;
+            }
 
-            const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+            const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/apps.xml`;
 
             try {
                 const response = await fetch(url, {
-                    headers: { "Authorization": `token ${token}` }
+                    headers: { "Authorization": `token ${GITHUB_TOKEN}` }
                 });
 
-                if (!response.ok) throw new Error("Fetch failed");
+                if (response.status === 401) throw new Error("401: Invalid GitHub Token");
+                if (response.status === 404) throw new Error("404: apps.xml not found");
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
                 const data = await response.json();
-                // Decode Base64 content from GitHub
                 const xmlString = decodeURIComponent(escape(atob(data.content)));
                 
-                // Parse XML and count <app> tags
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(xmlString, "text/xml");
                 const apps = xmlDoc.getElementsByTagName("app");
@@ -120,60 +80,40 @@
                 if (newCount !== currentCount) {
                     updateDisplay(newCount);
                 }
+                
+                errorLog.style.display = 'none';
+                document.getElementById('update-timer').innerText = "Live Monitoring Active";
 
             } catch (error) {
-                console.error("Error fetching data:", error);
+                showError(error.message);
             }
         }
 
         function updateDisplay(count) {
-            // Trigger Milestone Confetti
-            if (currentCount !== -1 && milestones.includes(count)) {
+            // Milestone Confetti (100, 150, 200, 250, 300)
+            if (currentCount !== -1 && count > currentCount && count % 50 === 0) {
                 triggerConfetti();
             }
 
-            // Update Text
             countDisplay.innerText = count;
-
-            // Trigger Animation
             countDisplay.classList.add('bump');
-            setTimeout(() => {
-                countDisplay.classList.remove('bump');
-            }, 300);
-
+            setTimeout(() => countDisplay.classList.remove('bump'), 300);
             currentCount = count;
         }
 
-        function triggerConfetti() {
-            const duration = 3 * 1000;
-            const end = Date.now() + duration;
-
-            (function frame() {
-                confetti({
-                    particleCount: 3,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0 },
-                    colors: ['#0078D7', '#107C10', '#E81123']
-                });
-                confetti({
-                    particleCount: 3,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1 },
-                    colors: ['#0078D7', '#107C10', '#E81123']
-                });
-
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
-            }());
+        function showError(msg) {
+            console.error(msg);
+            errorLog.innerText = msg;
+            errorLog.style.display = 'block';
+            countDisplay.innerText = "!";
         }
 
-        // Check every 30 seconds
-        setInterval(fetchAppCount, 30000);
+        function triggerConfetti() {
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#0078D7', '#107C10'] });
+        }
 
-        // Initial fetch
+        // Refresh every 10 seconds for more "live" feel
+        setInterval(fetchAppCount, 10000);
         fetchAppCount();
     </script>
 </body>
