@@ -905,5 +905,16 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+<app id="color-square">
+      <name>Color Square</name>
+      <version>1.1.0.1</version>
+      <icon>https://i.ibb.co/TB02pV7S/48-20260207183826.png</icon>
+      <publisher>Blue Code Games</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%2010%20APPX%20Files/Games/Color%20Square/7551BlueCodeGames.ColorSquare_1.1.0.1_x86__t78z9q5gjqwja.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
