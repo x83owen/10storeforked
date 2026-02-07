@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DrayAI</title>
+    <link href="ms-appx-web:///winjs/ui-dark.css" rel="stylesheet" />
+    <script src="ms-appx-web:///winjs/base.js"></script>
+    <script src="ms-appx-web:///winjs/ui.js"></script>
+</head>
+<body class="win-type-body" >
+    <div id="topBar">
+        <h2>DrayAI</h2>
+        <div style="flex-grow: 1;"></div> <button id="bgBtn" class="win-button">
+            <span class="win-icon">&#xE1A5;</span>
+        </button>
+    </div>
+
+    <div id="chatContainer">
+        <div id="chatList"></div>
+    </div>
+
+    <div id="bottomBar">
+        <input type="text" id="msgInput" class="win-textbox" placeholder="Type Here" />
+
+        <button id="sendBtn" class="win-button">
+            <span class="win-icon">&#xE111;</span>
+        </button>
+
+        <button id="muteBtn" class="win-button">
+            <span id="muteIcon" class="win-icon">&#xE15D;</span>
+        </button>
+    </div>
+
+    <iframe id="musicPlayer" style="display:none;" src="about:blank"></iframe>
+    <audio id="pingSound" src="ping.mp3" preload="auto"></audio>
+</body>
+</html>
