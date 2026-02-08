@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
+      <app id="ink-ball">
+      <name>Ink Ball</name>
+      <version>0.5.4.0</version>
+      <icon>https://dankassassin368.com/random/icons/087b3e1c904e5289d0c3f25b5616b7e9.png</icon>
+      <publisher>Shompinice</publisher>
+      <featured>false</featured>
+      <description>Redesign classic Ink Ball Game in Windows Vista</description>
+      <package>https://dl.dankassassin368.com/49014Shompinice.1928B3FAEB1B_0.5.4.0_x86__a5kpqdt79c0r2.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 </data>
