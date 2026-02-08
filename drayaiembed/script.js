@@ -27,6 +27,48 @@
         var muteBtn = document.getElementById("muteBtn");
         var bgBtn = document.getElementById("bgBtn");
         var msgInput = document.getElementById("msgInput");
+        var autoSuggestElement = document.getElementById("msgInput");
+    var autoSuggestControl = autoSuggestElement.winControl;
+
+    // Handle the suggestions as the user types
+    autoSuggestControl.addEventListener("suggestionsrequested", function (e) {
+        var queryText = e.detail.queryText;
+        var suggestionCollection = e.detail.searchSuggestionCollection;
+        var deferral = e.detail.linguisticDetails.getDeferral(); // Prevents the UI from closing while waiting for the API
+
+        if (queryText.length > 0) {
+            // Bing Suggestion API URL (JSON format)
+            var url = "https://api.bing.com/osjson.aspx?query=" + encodeURIComponent(queryText);
+
+            WinJS.xhr({ url: url }).then(function (request) {
+                var response = JSON.parse(request.responseText);
+                var suggestions = response[1]; // The second item in the Bing response array contains the strings
+
+                // Add up to 5 suggestions to the list
+                for (var i = 0; i < Math.min(suggestions.length, 5); i++) {
+                    suggestionCollection.appendQuerySuggestion(suggestions[i]);
+                }
+                
+                deferral.complete(); // Tell WinJS the async operation is done
+            }, function (error) {
+                console.error("Bing suggestions failed", error);
+                deferral.complete();
+            });
+        } else {
+            deferral.complete();
+        }
+    });
+
+    // Handle when a suggestion is clicked or Enter is pressed
+    autoSuggestControl.addEventListener("querysubmitted", function (e) {
+        var finalQuery = e.detail.queryText;
+        if (finalQuery) {
+            // Manually set value for your handleSend logic if it expects an input element
+            autoSuggestElement.value = finalQuery; 
+            handleSend();
+            autoSuggestControl.queryText = ""; 
+        }
+    });
 
         if(sendBtn) sendBtn.addEventListener("click", handleSend);
         if(muteBtn) muteBtn.addEventListener("click", toggleMute);
