@@ -1,0 +1,395 @@
+(function () {
+    "use strict";
+
+    var app = WinJS.Application;
+    var activation = Windows.ApplicationModel.Activation;
+    var Lang = "EN_GB";
+    var blockedWords = ["6-7", "six seven", "six-seven", "6 7", "6&7", "6 + 7", "6+7", "6 and 7", "6 & 7", "67"];
+    var isMuted = false;
+    var synthesizer = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
+    var mediaElement = document.createElement("audio");
+    var chatHistory = [];
+
+    app.onactivated = function (args) {
+        if (args.detail.kind === activation.ActivationKind.launch) {
+            args.setPromise(WinJS.UI.processAll().then(function () {
+                initializeUI();
+                loadHistory();
+                loadBackground();
+            }));
+        }
+    };
+
+    function initializeUI() {
+        document.getElementById("sendBtn").addEventListener("click", handleSend);
+        document.getElementById("muteBtn").addEventListener("click", toggleMute);
+        document.getElementById("bgBtn").addEventListener("click", pickBackground);
+
+        document.getElementById("msgInput").addEventListener("keydown", function (e) {
+            // Updated from deprecated keyCode to e.key
+            if (e.key === "Enter") {
+                handleSend();
+            }
+        });
+    }
+
+    // --- TEXT PROCESSING ---
+
+    function censorText(text) {
+        var censored = text;
+        for (var i = 0; i < blockedWords.length; i++) {
+            var regex = new RegExp("\\b" + blockedWords[i] + "\\b", "gi");
+            censored = censored.replace(regex, "****");
+        }
+        return censored;
+    }
+
+    // --- REMINDER LOGIC ---
+
+    function handleReminderCommand(text) {
+        var now = new Date();
+        var notifyTime = new Date();
+        var lowerText = text.toLowerCase();
+        var task = "";
+        var timeFound = false;
+
+        var relativeMatch = lowerText.match(/in (\d+)\s*(hour|minute|min|second|sec|day)/);
+        var absoluteMatch = lowerText.match(/(\d{1,2}):(\d{2})/);
+
+        if (relativeMatch) {
+            var amount = parseInt(relativeMatch[1]);
+            var unit = relativeMatch[2];
+
+            if (unit.indexOf("hour") !== -1) notifyTime.setHours(now.getHours() + amount);
+            else if (unit.indexOf("min") !== -1) notifyTime.setMinutes(now.getMinutes() + amount);
+            else if (unit.indexOf("sec") !== -1) notifyTime.setSeconds(now.getSeconds() + amount);
+            else if (unit.indexOf("day") !== -1) notifyTime.setDate(now.getDate() + amount);
+
+            timeFound = true;
+            task = text.replace(relativeMatch[0], "").replace(/remind me to|set a reminder to|set a reminder|reminder/gi, "").trim();
+
+        } else if (absoluteMatch) {
+            var hours = parseInt(absoluteMatch[1]);
+            var mins = parseInt(absoluteMatch[2]);
+            notifyTime.setHours(hours, mins, 0, 0);
+
+            // If time has passed today, assume tomorrow
+            if (notifyTime < now) {
+                notifyTime.setDate(now.getDate() + 1);
+            }
+
+            timeFound = true;
+            task = text.replace(absoluteMatch[0], "").replace(/remind me to|set a reminder to|set a reminder|reminder/gi, "").trim();
+        }
+
+        if (timeFound) {
+            if (!task) task = "Scheduled Reminder";
+            scheduleReminder(task, notifyTime);
+
+            var timeString = notifyTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            addMessage("Got it! I've set the reminder '" + task + "' at " + timeString + ".", "bot");
+            speak("Got it. I'll remind you at " + timeString);
+        } else {
+            addMessage("I need to know when! Try saying 'in 1 hour' or 'at 15:30'.", "bot");
+        }
+    }
+
+    function scheduleReminder(text, dueTime) {
+        var notifications = Windows.UI.Notifications;
+        var template = notifications.ToastTemplateType.toastText02;
+        var toastXml = notifications.ToastNotificationManager.getTemplateContent(template);
+
+        var textNodes = toastXml.getElementsByTagName("text");
+        textNodes[0].appendChild(toastXml.createTextNode("Reminder"));
+        textNodes[1].appendChild(toastXml.createTextNode(text));
+
+        var scheduledToast = new notifications.ScheduledToastNotification(toastXml, dueTime);
+        scheduledToast.id = "R" + Date.now().toString().slice(-5);
+
+        notifications.ToastNotificationManager.createToastNotifier().addToSchedule(scheduledToast);
+    }
+
+    // --- BACKGROUND & STORAGE ---
+
+    function pickBackground() {
+        var picker = new Windows.Storage.Pickers.FileOpenPicker();
+        picker.viewMode = Windows.Storage.Pickers.PickerViewMode.thumbnail;
+        picker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.picturesLibrary;
+
+        // FIXED: Replaced .replaceAll (crash) with .append (correct UWP syntax)
+        picker.fileTypeFilter.append(".jpg");
+        picker.fileTypeFilter.append(".jpeg");
+        picker.fileTypeFilter.append(".png");
+
+        picker.pickSingleFileAsync().then(function (file) {
+            if (file) {
+                var bgUrl = URL.createObjectURL(file, { oneTimeOnly: false });
+                applyBackground(bgUrl);
+                var token = Windows.Storage.AccessCache.StorageApplicationPermissions.futureAccessList.add(file);
+                localStorage.setItem("drayAiBgToken", token);
+            }
+        });
+    }
+
+    function loadBackground() {
+        var token = localStorage.getItem("drayAiBgToken");
+        if (token) {
+            Windows.Storage.AccessCache.StorageApplicationPermissions.futureAccessList.getFileAsync(token).then(function (file) {
+                var bgUrl = URL.createObjectURL(file, { oneTimeOnly: false });
+                applyBackground(bgUrl);
+            }, function () {
+                localStorage.removeItem("drayAiBgToken");
+            });
+        }
+    }
+
+    function applyBackground(url) {
+        var container = document.getElementById("chatContainer");
+        container.style.backgroundImage = "url('" + url + "')";
+        container.style.backgroundSize = "cover";
+        container.style.backgroundPosition = "center";
+        container.style.backgroundAttachment = "fixed";
+    }
+
+    // --- CHAT LOGIC ---
+
+    function handleSend() {
+        var input = document.getElementById("msgInput");
+        var rawText = input.value.trim();
+        if (!rawText) return;
+
+        var text = censorText(rawText);
+        var lowerText = text.toLowerCase();
+
+        if (text.indexOf("****") !== -1) {
+            addMessage("That was rude, Don't say that", "bot");
+            addMessage(text, "user");
+            input.value = "";
+            return;
+        }
+
+        if (["clear", "refresh", "reset", "reload"].indexOf(lowerText) !== -1) {
+            clearChat();
+            input.value = "";
+            return;
+        }
+
+        if (lowerText.indexOf("remind") !== -1 || lowerText.indexOf("reminder") !== -1) {
+            addMessage(text, "user");
+            handleReminderCommand(text);
+            input.value = "";
+            return;
+        }
+
+        addMessage(text, "user");
+        input.value = "";
+
+        if (lowerText.indexOf("play ") === 0) {
+            var songQuery = text.substring(5);
+            playMusic(songQuery);
+        } else if (lowerText === "stop") {
+            stopMusic();
+            addMessage("Music stopped.", "bot");
+            speak("Music stopped.");
+        } else {
+            callAI(text);
+        }
+    }
+
+    function clearChat() {
+        localStorage.removeItem("drayAiHistory");
+        chatHistory = [];
+        document.getElementById("chatList").innerHTML = "";
+
+        localStorage.removeItem("drayAiBgToken");
+        var container = document.getElementById("chatContainer");
+        container.style.backgroundImage = "none";
+
+        stopMusic();
+        mediaElement.pause();
+    }
+
+    function toggleMute() {
+        isMuted = !isMuted;
+        var icon = document.getElementById("muteIcon");
+        icon.innerText = isMuted ? "\uE198" : "\uE15D";
+        if (isMuted) mediaElement.pause();
+    }
+
+    function addMessage(text, sender, isLoading) {
+        var list = document.getElementById("chatList");
+        var row = document.createElement("div");
+        row.className = "message-row " + (sender === "user" ? "msg-user-row" : "msg-bot-row");
+
+        var bubble = document.createElement("div");
+        bubble.className = "message-bubble " + (sender === "user" ? "msg-user" : "msg-bot");
+        bubble.innerText = text;
+
+        row.appendChild(bubble);
+        list.appendChild(row);
+
+        chatHistory.push({
+            role: sender === "user" ? "user" : "model",
+            parts: [{ text: text }]
+        });
+
+        if (!isLoading) saveHistory();
+
+        var container = document.getElementById("chatContainer");
+        container.scrollTop = container.scrollHeight;
+
+        if (sender === "bot" && !isLoading) {
+            playPing();
+            if (!isMuted) speak(text);
+        }
+    }
+
+    function saveHistory() {
+        // Limit saved history to last 50 items to prevent storage bloat
+        var historyToSave = chatHistory.slice(-50);
+        localStorage.setItem("drayAiHistory", JSON.stringify(historyToSave));
+    }
+
+    function loadHistory() {
+        var saved = localStorage.getItem("drayAiHistory");
+        if (saved) {
+            var items = JSON.parse(saved);
+            document.getElementById("chatList").innerHTML = "";
+            chatHistory = [];
+            items.forEach(function (msg) {
+                // Determine sender based on role mapping
+                var sender = (msg.role === "user") ? "user" : "bot";
+                addMessage(msg.parts[0].text, sender, true);
+            });
+        }
+    }
+
+    // --- AI INTEGRATION ---
+
+    function callAI(prompt) {
+        var geminiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=AIzaSyAEZaUjOLvCKN9sDJk58YvmTKamBSMQeBk"
+
+        // FIXED: Slice history to last 20 messages to prevent 400 Bad Request (Context Window Limit)
+        var recentHistory = chatHistory.slice(-20);
+
+        var payload = JSON.stringify({
+            contents: recentHistory,
+            system_instruction: {
+                parts: [{ text: "Respond in the language: " + Lang }]
+            }
+        });
+
+        WinJS.xhr({
+            type: "POST",
+            url: geminiUrl,
+            headers: { "Content-Type": "application/json" },
+            data: payload
+        }).then(function (req) {
+            var response = JSON.parse(req.responseText);
+            if (response.candidates && response.candidates.length > 0) {
+                var reply = response.candidates[0].content.parts[0].text;
+                var filteredReply = filterResponseText(reply);
+                addMessage(filteredReply, "bot");
+            } else {
+                addMessage("I couldn't generate a response.", "bot");
+            }
+        }, function (err) {
+            // Fallback to ChatGPT if Gemini fails
+            callChatGPT(prompt);
+        });
+    }
+
+    function callChatGPT(prompt) {
+        var openaiUrl = "https://api.openai.com/v1/chat/completions";
+
+        // Map history to OpenAI format and limit to last 20
+        var recentMsgs = chatHistory.slice(-20).map(function (m) {
+            return { role: m.role === "model" ? "assistant" : "user", content: m.parts[0].text };
+        });
+
+        recentMsgs.unshift({
+            role: "system",
+            content: "Respond only in this language: " + Lang
+        });
+
+        var payload = JSON.stringify({
+            model: "gpt-4o-mini",
+            messages: recentMsgs
+        });
+
+        WinJS.xhr({
+            type: "POST",
+            url: openaiUrl,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer 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"
+            },
+            data: payload
+        }).then(function (req) {
+            var response = JSON.parse(req.responseText);
+            var reply = response.choices[0].message.content;
+            var filteredReply = filterResponseText(reply);
+            addMessage(filteredReply, "bot");
+        }, function (err) {
+            addMessage("Error: Both AI services failed to respond.", "bot");
+        });
+    }
+
+    function filterResponseText(text) {
+        if (!text) return "";
+        return text
+            .replace(/OpenAI/gi, "DraydenYT")
+            .replace(/Google/gi, "DraydenYT")
+            .replace(/Gemini/gi, "DrayAI")
+            .replace(/ChatGPT/gi, "DrayAI");
+    }
+
+    // --- MEDIA ---
+
+    function playPing() {
+        var ping = document.getElementById("pingSound");
+        if (ping) {
+            ping.currentTime = 0;
+            ping.play();
+        }
+    }
+
+    function speak(text) {
+        if (isMuted) return;
+        var cleanText = text.replace(/\*.*?\*/g, "").trim();
+        if (!cleanText) return;
+
+        mediaElement.pause();
+        synthesizer.synthesizeTextToStreamAsync(cleanText).then(function (stream) {
+            var blob = MSApp.createBlobFromRandomAccessStream(stream.ContentType, stream);
+            mediaElement.src = URL.createObjectURL(blob);
+            mediaElement.play();
+        });
+    }
+
+    function playMusic(query) {
+        var searchUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + encodeURIComponent(query) + "&type=video&key=AIzaSyD9-Zah-rzZvWvLMNAMCrNwRN-u3kAB2N0";
+
+        WinJS.xhr({ url: searchUrl }).then(function (req) {
+            var data = JSON.parse(req.responseText);
+            if (data.items.length > 0) {
+                var videoId = data.items[0].id.videoId;
+                var rawTitle = data.items[0].snippet.title;
+                var cleanTitle = rawTitle.replace(/(\(|\[)?(Official|Music Video|Lyrics|HD|4K)(\)|\])?/gi, "").trim();
+
+                document.getElementById("musicPlayer").src = "https://drayaimusichost.netlify.app/?id=" + videoId;
+                addMessage("Now playing: " + cleanTitle, "bot");
+            } else {
+                addMessage("I couldn't find that song.", "bot");
+            }
+        }, function (err) {
+            addMessage("Error searching for music.", "bot");
+        });
+    }
+
+    function stopMusic() {
+        document.getElementById("musicPlayer").src = "about:blank";
+    }
+
+    app.start();
+})();
