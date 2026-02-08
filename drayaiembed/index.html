@@ -21,7 +21,13 @@
     </div>
 
     <div id="bottomBar">
-        <div id="msgInput" data-win-control="WinJS.UI.AutoSuggestBox" data-win-options="{ placeholderText: 'Type Here' }"></div>
+        <div id="msgInput" 
+             data-win-control="WinJS.UI.AutoSuggestBox" 
+             data-win-options="{ 
+                placeholderText: 'Type Here', 
+                searchHistoryDisabled: true 
+             }">
+        </div>
 
         <button id="sendBtn" class="win-button">
             <span class="win-icon">&#xE111;</span>
