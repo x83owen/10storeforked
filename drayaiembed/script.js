@@ -10,9 +10,10 @@
     var mediaElement = document.createElement("audio"); // Kept for music, not needed for speech anymore
     var chatHistory = [];
 
-    // Initialize when the DOM is ready (replaces app.onactivated)
-    document.addEventListener("DOMContentLoaded", function() {
-        // Request notification permission immediately for reminders
+// Initialize when the DOM is ready
+document.addEventListener("DOMContentLoaded", function() {
+    // This is the missing piece that "wakes up" the AutoSuggestBox
+    WinJS.UI.processAll().then(function () {
         if ("Notification" in window) {
             Notification.requestPermission();
         }
@@ -21,6 +22,7 @@
         loadHistory();
         loadBackground();
     });
+});
 
     function initializeUI() {
         var sendBtn = document.getElementById("sendBtn");
