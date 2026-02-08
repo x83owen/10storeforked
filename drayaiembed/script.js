@@ -1,36 +1,44 @@
 (function () {
     "use strict";
 
-    var app = WinJS.Application;
-    var activation = Windows.ApplicationModel.Activation;
+    // Removed WinJS and Windows specific variables
     var Lang = "EN_GB";
     var blockedWords = ["6-7", "six seven", "six-seven", "6 7", "6&7", "6 + 7", "6+7", "6 and 7", "6 & 7", "67"];
     var isMuted = false;
-    var synthesizer = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
-    var mediaElement = document.createElement("audio");
+    // Replaced Windows SpeechSynthesizer with Web Speech API
+    var synth = window.speechSynthesis;
+    var mediaElement = document.createElement("audio"); // Kept for music, not needed for speech anymore
     var chatHistory = [];
 
-    app.onactivated = function (args) {
-        if (args.detail.kind === activation.ActivationKind.launch) {
-            args.setPromise(WinJS.UI.processAll().then(function () {
-                initializeUI();
-                loadHistory();
-                loadBackground();
-            }));
+    // Initialize when the DOM is ready (replaces app.onactivated)
+    document.addEventListener("DOMContentLoaded", function() {
+        // Request notification permission immediately for reminders
+        if ("Notification" in window) {
+            Notification.requestPermission();
         }
-    };
+        
+        initializeUI();
+        loadHistory();
+        loadBackground();
+    });
 
     function initializeUI() {
-        document.getElementById("sendBtn").addEventListener("click", handleSend);
-        document.getElementById("muteBtn").addEventListener("click", toggleMute);
-        document.getElementById("bgBtn").addEventListener("click", pickBackground);
+        var sendBtn = document.getElementById("sendBtn");
+        var muteBtn = document.getElementById("muteBtn");
+        var bgBtn = document.getElementById("bgBtn");
+        var msgInput = document.getElementById("msgInput");
 
-        document.getElementById("msgInput").addEventListener("keydown", function (e) {
-            // Updated from deprecated keyCode to e.key
-            if (e.key === "Enter") {
-                handleSend();
-            }
-        });
+        if(sendBtn) sendBtn.addEventListener("click", handleSend);
+        if(muteBtn) muteBtn.addEventListener("click", toggleMute);
+        if(bgBtn) bgBtn.addEventListener("click", pickBackground);
+
+        if(msgInput) {
+            msgInput.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    handleSend();
+                }
+            });
+        }
     }
 
     // --- TEXT PROCESSING ---
@@ -84,6 +92,8 @@
 
         if (timeFound) {
             if (!task) task = "Scheduled Reminder";
+            
+            // Web implementation using setTimeout
             scheduleReminder(task, notifyTime);
 
             var timeString = notifyTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -95,60 +105,71 @@
     }
 
     function scheduleReminder(text, dueTime) {
-        var notifications = Windows.UI.Notifications;
-        var template = notifications.ToastTemplateType.toastText02;
-        var toastXml = notifications.ToastNotificationManager.getTemplateContent(template);
+        var now = new Date();
+        var timeUntil = dueTime - now;
 
-        var textNodes = toastXml.getElementsByTagName("text");
-        textNodes[0].appendChild(toastXml.createTextNode("Reminder"));
-        textNodes[1].appendChild(toastXml.createTextNode(text));
-
-        var scheduledToast = new notifications.ScheduledToastNotification(toastXml, dueTime);
-        scheduledToast.id = "R" + Date.now().toString().slice(-5);
-
-        notifications.ToastNotificationManager.createToastNotifier().addToSchedule(scheduledToast);
+        if (timeUntil > 0) {
+            setTimeout(function() {
+                if (Notification.permission === "granted") {
+                    new Notification("Reminder", {
+                        body: text,
+                        icon: "" // Optional: Add icon URL here
+                    });
+                    playPing();
+                } else {
+                    // Fallback if notifications aren't allowed
+                    alert("REMINDER: " + text);
+                    playPing();
+                }
+            }, timeUntil);
+        }
     }
 
     // --- BACKGROUND & STORAGE ---
 
     function pickBackground() {
-        var picker = new Windows.Storage.Pickers.FileOpenPicker();
-        picker.viewMode = Windows.Storage.Pickers.PickerViewMode.thumbnail;
-        picker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.picturesLibrary;
+        // Create a hidden file input dynamically
+        var input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/png, image/jpeg, image/jpg";
 
-        // FIXED: Replaced .replaceAll (crash) with .append (correct UWP syntax)
-        picker.fileTypeFilter.append(".jpg");
-        picker.fileTypeFilter.append(".jpeg");
-        picker.fileTypeFilter.append(".png");
-
-        picker.pickSingleFileAsync().then(function (file) {
+        input.onchange = function(e) {
+            var file = e.target.files[0];
             if (file) {
-                var bgUrl = URL.createObjectURL(file, { oneTimeOnly: false });
-                applyBackground(bgUrl);
-                var token = Windows.Storage.AccessCache.StorageApplicationPermissions.futureAccessList.add(file);
-                localStorage.setItem("drayAiBgToken", token);
+                var reader = new FileReader();
+                reader.onload = function(evt) {
+                    var bgUrl = evt.target.result; // Data URL
+                    applyBackground(bgUrl);
+                    
+                    // Save to localStorage instead of Windows Storage
+                    // Note: LocalStorage has size limits (usually 5MB). Large images may fail.
+                    try {
+                        localStorage.setItem("drayAiBgData", bgUrl);
+                    } catch(err) {
+                        console.error("Image too large to save to localStorage");
+                    }
+                };
+                reader.readAsDataURL(file);
             }
-        });
+        };
+        input.click();
     }
 
     function loadBackground() {
-        var token = localStorage.getItem("drayAiBgToken");
-        if (token) {
-            Windows.Storage.AccessCache.StorageApplicationPermissions.futureAccessList.getFileAsync(token).then(function (file) {
-                var bgUrl = URL.createObjectURL(file, { oneTimeOnly: false });
-                applyBackground(bgUrl);
-            }, function () {
-                localStorage.removeItem("drayAiBgToken");
-            });
+        var bgData = localStorage.getItem("drayAiBgData");
+        if (bgData) {
+            applyBackground(bgData);
         }
     }
 
     function applyBackground(url) {
         var container = document.getElementById("chatContainer");
-        container.style.backgroundImage = "url('" + url + "')";
-        container.style.backgroundSize = "cover";
-        container.style.backgroundPosition = "center";
-        container.style.backgroundAttachment = "fixed";
+        if(container) {
+            container.style.backgroundImage = "url('" + url + "')";
+            container.style.backgroundSize = "cover";
+            container.style.backgroundPosition = "center";
+            container.style.backgroundAttachment = "fixed";
+        }
     }
 
     // --- CHAT LOGIC ---
@@ -199,25 +220,34 @@
     function clearChat() {
         localStorage.removeItem("drayAiHistory");
         chatHistory = [];
-        document.getElementById("chatList").innerHTML = "";
+        var list = document.getElementById("chatList");
+        if(list) list.innerHTML = "";
 
-        localStorage.removeItem("drayAiBgToken");
+        localStorage.removeItem("drayAiBgData");
         var container = document.getElementById("chatContainer");
-        container.style.backgroundImage = "none";
+        if(container) container.style.backgroundImage = "none";
 
         stopMusic();
-        mediaElement.pause();
+        if(synth) synth.cancel();
     }
 
     function toggleMute() {
         isMuted = !isMuted;
         var icon = document.getElementById("muteIcon");
-        icon.innerText = isMuted ? "\uE198" : "\uE15D";
-        if (isMuted) mediaElement.pause();
+        // Replaced custom font icon with standard emoji/text for web compatibility if needed
+        // Assuming your CSS/HTML handles the font family for these codes
+        if(icon) icon.innerText = isMuted ? "\uE198" : "\uE15D"; 
+        
+        if (isMuted) {
+            if(synth) synth.cancel();
+            mediaElement.pause();
+        }
     }
 
     function addMessage(text, sender, isLoading) {
         var list = document.getElementById("chatList");
+        if(!list) return;
+
         var row = document.createElement("div");
         row.className = "message-row " + (sender === "user" ? "msg-user-row" : "msg-bot-row");
 
@@ -236,7 +266,7 @@
         if (!isLoading) saveHistory();
 
         var container = document.getElementById("chatContainer");
-        container.scrollTop = container.scrollHeight;
+        if(container) container.scrollTop = container.scrollHeight;
 
         if (sender === "bot" && !isLoading) {
             playPing();
@@ -254,7 +284,8 @@
         var saved = localStorage.getItem("drayAiHistory");
         if (saved) {
             var items = JSON.parse(saved);
-            document.getElementById("chatList").innerHTML = "";
+            var list = document.getElementById("chatList");
+            if(list) list.innerHTML = "";
             chatHistory = [];
             items.forEach(function (msg) {
                 // Determine sender based on role mapping
@@ -267,33 +298,36 @@
     // --- AI INTEGRATION ---
 
     function callAI(prompt) {
-        var geminiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=AIzaSyAEZaUjOLvCKN9sDJk58YvmTKamBSMQeBk"
+        var geminiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=AIzaSyAEZaUjOLvCKN9sDJk58YvmTKamBSMQeBk";
 
-        // FIXED: Slice history to last 20 messages to prevent 400 Bad Request (Context Window Limit)
         var recentHistory = chatHistory.slice(-20);
 
-        var payload = JSON.stringify({
+        var payload = {
             contents: recentHistory,
             system_instruction: {
                 parts: [{ text: "Respond in the language: " + Lang }]
             }
-        });
+        };
 
-        WinJS.xhr({
-            type: "POST",
-            url: geminiUrl,
+        // Replaced WinJS.xhr with fetch
+        fetch(geminiUrl, {
+            method: "POST",
             headers: { "Content-Type": "application/json" },
-            data: payload
-        }).then(function (req) {
-            var response = JSON.parse(req.responseText);
-            if (response.candidates && response.candidates.length > 0) {
-                var reply = response.candidates[0].content.parts[0].text;
+            body: JSON.stringify(payload)
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function (data) {
+            if (data.candidates && data.candidates.length > 0) {
+                var reply = data.candidates[0].content.parts[0].text;
                 var filteredReply = filterResponseText(reply);
                 addMessage(filteredReply, "bot");
             } else {
                 addMessage("I couldn't generate a response.", "bot");
             }
-        }, function (err) {
+        })
+        .catch(function (err) {
             // Fallback to ChatGPT if Gemini fails
             callChatGPT(prompt);
         });
@@ -302,7 +336,6 @@
     function callChatGPT(prompt) {
         var openaiUrl = "https://api.openai.com/v1/chat/completions";
 
-        // Map history to OpenAI format and limit to last 20
         var recentMsgs = chatHistory.slice(-20).map(function (m) {
             return { role: m.role === "model" ? "assistant" : "user", content: m.parts[0].text };
         });
@@ -312,25 +345,28 @@
             content: "Respond only in this language: " + Lang
         });
 
-        var payload = JSON.stringify({
+        var payload = {
             model: "gpt-4o-mini",
             messages: recentMsgs
-        });
+        };
 
-        WinJS.xhr({
-            type: "POST",
-            url: openaiUrl,
+        fetch(openaiUrl, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer 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"
             },
-            data: payload
-        }).then(function (req) {
-            var response = JSON.parse(req.responseText);
-            var reply = response.choices[0].message.content;
+            body: JSON.stringify(payload)
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function (data) {
+            var reply = data.choices[0].message.content;
             var filteredReply = filterResponseText(reply);
             addMessage(filteredReply, "bot");
-        }, function (err) {
+        })
+        .catch(function (err) {
             addMessage("Error: Both AI services failed to respond.", "bot");
         });
     }
@@ -350,7 +386,7 @@
         var ping = document.getElementById("pingSound");
         if (ping) {
             ping.currentTime = 0;
-            ping.play();
+            ping.play().catch(e => console.log("Audio play failed (interaction required)"));
         }
     }
 
@@ -359,37 +395,43 @@
         var cleanText = text.replace(/\*.*?\*/g, "").trim();
         if (!cleanText) return;
 
-        mediaElement.pause();
-        synthesizer.synthesizeTextToStreamAsync(cleanText).then(function (stream) {
-            var blob = MSApp.createBlobFromRandomAccessStream(stream.ContentType, stream);
-            mediaElement.src = URL.createObjectURL(blob);
-            mediaElement.play();
-        });
+        // Web Speech API implementation
+        synth.cancel(); // Stop previous speech
+        var utterance = new SpeechSynthesisUtterance(cleanText);
+        // Optional: Select a voice if needed, otherwise it uses default
+        synth.speak(utterance);
     }
 
     function playMusic(query) {
         var searchUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + encodeURIComponent(query) + "&type=video&key=AIzaSyD9-Zah-rzZvWvLMNAMCrNwRN-u3kAB2N0";
 
-        WinJS.xhr({ url: searchUrl }).then(function (req) {
-            var data = JSON.parse(req.responseText);
-            if (data.items.length > 0) {
+        fetch(searchUrl)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function (data) {
+            if (data.items && data.items.length > 0) {
                 var videoId = data.items[0].id.videoId;
                 var rawTitle = data.items[0].snippet.title;
                 var cleanTitle = rawTitle.replace(/(\(|\[)?(Official|Music Video|Lyrics|HD|4K)(\)|\])?/gi, "").trim();
 
-                document.getElementById("musicPlayer").src = "https://drayaimusichost.netlify.app/?id=" + videoId;
+                var player = document.getElementById("musicPlayer");
+                if(player) {
+                    player.src = "https://drayaimusichost.netlify.app/?id=" + videoId;
+                }
                 addMessage("Now playing: " + cleanTitle, "bot");
             } else {
                 addMessage("I couldn't find that song.", "bot");
             }
-        }, function (err) {
+        })
+        .catch(function (err) {
             addMessage("Error searching for music.", "bot");
         });
     }
 
     function stopMusic() {
-        document.getElementById("musicPlayer").src = "about:blank";
+        var player = document.getElementById("musicPlayer");
+        if(player) player.src = "about:blank";
     }
 
-    app.start();
 })();
