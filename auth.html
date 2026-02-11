@@ -173,160 +173,172 @@
         </div>
     </div>
 
-    <script src="config.js"></script>
+<script src="config.js"></script>
 
-    <script>
-        (function() {
-            "use strict";
+<script>
+    (function() {
+        "use strict";
 
-            var ACCOUNTS_FILE = "accounts.xml";
-            var isRegistering = false;
+        var ACCOUNTS_FILE = "accounts.xml";
+        var isRegistering = false;
+        
+        // --- NEW: Capture the callback URL sent by the App ---
+        var urlParams = new URLSearchParams(window.location.search);
+        var callbackUri = urlParams.get('redirect_uri');
+
+        var emailInput = document.getElementById('email');
+        var passInput = document.getElementById('password');
+        var userInput = document.getElementById('username');
+        var photoInput = document.getElementById('photo');
+        var submitBtn = document.getElementById('btn-submit');
+        var errorBox = document.getElementById('error-box');
+        var regFields = document.getElementById('reg-fields');
+        var headerText = document.getElementById('header-text');
+        var toggleBtn = document.getElementById('toggle-btn');
+        var switchText = document.getElementById('switch-text');
+        var pfpDisplay = document.getElementById('pfp-display');
+
+        toggleBtn.onclick = function() {
+            isRegistering = !isRegistering;
+            if (isRegistering) {
+                headerText.innerText = "Create account";
+                switchText.innerText = "Has account? ";
+                toggleBtn.innerText = "Sign in";
+                submitBtn.innerText = "Register";
+                regFields.style.display = "block";
+            } else {
+                headerText.innerText = "Sign in";
+                switchText.innerText = "No account? ";
+                toggleBtn.innerText = "Create one!";
+                submitBtn.innerText = "Next";
+                regFields.style.display = "none";
+                pfpDisplay.style.display = "none";
+            }
+            errorBox.style.display = "none";
+        };
+
+        photoInput.onchange = function() {
+            if (this.value) {
+                pfpDisplay.style.backgroundImage = "url('" + this.value + "')";
+                pfpDisplay.style.display = "block";
+            }
+        };
+
+        document.getElementById('auth-form').onsubmit = function(e) {
+            e.preventDefault();
+            setLoading(true);
             
-            var emailInput = document.getElementById('email');
-            var passInput = document.getElementById('password');
-            var userInput = document.getElementById('username');
-            var photoInput = document.getElementById('photo');
-            var submitBtn = document.getElementById('btn-submit');
-            var errorBox = document.getElementById('error-box');
-            var regFields = document.getElementById('reg-fields');
-            var headerText = document.getElementById('header-text');
-            var toggleBtn = document.getElementById('toggle-btn');
-            var switchText = document.getElementById('switch-text');
-            var pfpDisplay = document.getElementById('pfp-display');
+            var emailVal = emailInput.value;
+            var passVal = passInput.value;
+            var timestamp = new Date().getTime();
 
-            // Toggle logic for Registration/Login
-            toggleBtn.onclick = function() {
-                isRegistering = !isRegistering;
-                if (isRegistering) {
-                    headerText.innerText = "Create account";
-                    switchText.innerText = "Has account? ";
-                    toggleBtn.innerText = "Sign in";
-                    submitBtn.innerText = "Register";
-                    regFields.style.display = "block";
+            xhrRequest("GET", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE + "?t=" + timestamp, null, function(status, response) {
+                if (status === 404 && isRegistering) {
+                    handleAuth("<accounts></accounts>", null, emailVal, passVal);
+                } else if (status === 200) {
+                    var data = JSON.parse(response);
+                    var content = decodeURIComponent(escape(window.atob(data.content)));
+                    handleAuth(content, data.sha, emailVal, passVal);
                 } else {
-                    headerText.innerText = "Sign in";
-                    switchText.innerText = "No account? ";
-                    toggleBtn.innerText = "Create one!";
-                    submitBtn.innerText = "Next";
-                    regFields.style.display = "none";
-                    pfpDisplay.style.display = "none";
+                    showError("Could not connect to service.");
+                    setLoading(false);
                 }
-                errorBox.style.display = "none";
-            };
+            });
+        };
 
-            // Profile picture preview
-            photoInput.onchange = function() {
-                if (this.value) {
-                    pfpDisplay.style.backgroundImage = "url('" + this.value + "')";
-                    pfpDisplay.style.display = "block";
+        function handleAuth(xmlString, sha, email, password) {
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+            var users = xmlDoc.getElementsByTagName("user");
+            var foundUser = null;
+
+            for (var i = 0; i < users.length; i++) {
+                if (users[i].getElementsByTagName("email")[0].textContent === email) {
+                    foundUser = users[i];
+                    break;
                 }
-            };
+            }
 
-            // Main Submission Logic
-            document.getElementById('auth-form').onsubmit = function(e) {
-                e.preventDefault();
-                setLoading(true);
-                
-                var emailVal = emailInput.value;
-                var passVal = passInput.value;
-                var timestamp = new Date().getTime();
-
-                xhrRequest("GET", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE + "?t=" + timestamp, null, function(status, response) {
-                    if (status === 404 && isRegistering) {
-                        handleAuth("<accounts></accounts>", null, emailVal, passVal);
-                    } else if (status === 200) {
-                        var data = JSON.parse(response);
-                        var content = decodeURIComponent(escape(window.atob(data.content)));
-                        handleAuth(content, data.sha, emailVal, passVal);
-                    } else {
-                        showError("Could not connect to service.");
-                        setLoading(false);
-                    }
-                });
-            };
-
-            function handleAuth(xmlString, sha, email, password) {
-                var parser = new DOMParser();
-                var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-                var users = xmlDoc.getElementsByTagName("user");
-                var foundUser = null;
-
-                for (var i = 0; i < users.length; i++) {
-                    if (users[i].getElementsByTagName("email")[0].textContent === email) {
-                        foundUser = users[i];
-                        break;
-                    }
-                }
-
-                if (isRegistering) {
-                    if (foundUser) {
-                        showError("Account already exists.");
-                        setLoading(false);
-                    } else {
-                        var newUser = xmlDoc.createElement("user");
-                        var eNode = xmlDoc.createElement("email"); eNode.textContent = email;
-                        var pNode = xmlDoc.createElement("password"); pNode.textContent = password;
-                        var nNode = xmlDoc.createElement("name"); nNode.textContent = userInput.value || "User";
-                        var phNode = xmlDoc.createElement("photo"); phNode.textContent = photoInput.value || "";
-                        
-                        newUser.appendChild(eNode);
-                        newUser.appendChild(pNode);
-                        newUser.appendChild(nNode);
-                        newUser.appendChild(phNode);
-                        
-                        var root = xmlDoc.getElementsByTagName("accounts")[0] || xmlDoc.appendChild(xmlDoc.createElement("accounts"));
-                        root.appendChild(newUser);
-                        
-                        saveToGitHub(xmlDoc, sha, function(ok) {
-                            if (ok) performRedirect(email, userInput.value, photoInput.value);
-                            else showError("Save failed.");
-                        });
-                    }
+            if (isRegistering) {
+                if (foundUser) {
+                    showError("Account already exists.");
+                    setLoading(false);
                 } else {
-                    if (foundUser && foundUser.getElementsByTagName("password")[0].textContent === password) {
-                        performRedirect(email, foundUser.getElementsByTagName("name")[0].textContent, foundUser.getElementsByTagName("photo")[0].textContent);
-                    } else {
-                        showError("Invalid email or password.");
-                        setLoading(false);
-                    }
+                    var newUser = xmlDoc.createElement("user");
+                    var eNode = xmlDoc.createElement("email"); eNode.textContent = email;
+                    var pNode = xmlDoc.createElement("password"); pNode.textContent = password;
+                    var nNode = xmlDoc.createElement("name"); nNode.textContent = userInput.value || "User";
+                    var phNode = xmlDoc.createElement("photo"); phNode.textContent = photoInput.value || "";
+                    
+                    newUser.appendChild(eNode);
+                    newUser.appendChild(pNode);
+                    newUser.appendChild(nNode);
+                    newUser.appendChild(phNode);
+                    
+                    var root = xmlDoc.getElementsByTagName("accounts")[0] || xmlDoc.appendChild(xmlDoc.createElement("accounts"));
+                    root.appendChild(newUser);
+                    
+                    saveToGitHub(xmlDoc, sha, function(ok) {
+                        if (ok) performRedirect(email, userInput.value, photoInput.value);
+                        else showError("Save failed.");
+                    });
+                }
+            } else {
+                if (foundUser && foundUser.getElementsByTagName("password")[0].textContent === password) {
+                    performRedirect(email, foundUser.getElementsByTagName("name")[0].textContent, foundUser.getElementsByTagName("photo")[0].textContent);
+                } else {
+                    showError("Invalid email or password.");
+                    setLoading(false);
                 }
             }
+        }
 
-            function saveToGitHub(xmlDoc, sha, callback) {
-                var serializer = new XMLSerializer();
-                var b64 = window.btoa(unescape(encodeURIComponent(serializer.serializeToString(xmlDoc))));
-                var body = { message: "Update", content: b64, sha: sha };
-                xhrRequest("PUT", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE, body, function(s) {
-                    callback(s === 200 || s === 201);
-                });
-            }
+        function saveToGitHub(xmlDoc, sha, callback) {
+            var serializer = new XMLSerializer();
+            var b64 = window.btoa(unescape(encodeURIComponent(serializer.serializeToString(xmlDoc))));
+            var body = { message: "Update", content: b64, sha: sha };
+            xhrRequest("PUT", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE, body, function(s) {
+                callback(s === 200 || s === 201);
+            });
+        }
 
-            function xhrRequest(method, url, data, callback) {
-                var xhr = new XMLHttpRequest();
-                xhr.open(method, url, true);
-                xhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN);
-                if (data) xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4) callback(xhr.status, xhr.responseText);
-                };
-                xhr.send(data ? JSON.stringify(data) : null);
-            }
+        function xhrRequest(method, url, data, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open(method, url, true);
+            xhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN);
+            if (data) xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) callback(xhr.status, xhr.responseText);
+            };
+            xhr.send(data ? JSON.stringify(data) : null);
+        }
 
-            function performRedirect(e, n, p) {
-                var url = "index.html?email=" + encodeURIComponent(e) + "&name=" + encodeURIComponent(n) + "&photo=" + encodeURIComponent(p);
-                window.location.href = url;
+        // --- UPDATED: Talk back to the Windows App ---
+        function performRedirect(e, n, p) {
+            var finalParams = "email=" + encodeURIComponent(e) + "&name=" + encodeURIComponent(n) + "&photo=" + encodeURIComponent(p);
+            
+            if (callbackUri) {
+                // If the app provided a redirect_uri, go there. 
+                // This triggers 'success' in the App's WebAuthenticationBroker.
+                var separator = callbackUri.indexOf('?') > -1 ? '&' : '?';
+                window.location.href = callbackUri + separator + finalParams;
+            } else {
+                // Fallback for testing in a normal browser
+                window.location.href = "index.html?" + finalParams;
             }
+        }
 
-            function showError(m) {
-                errorBox.innerText = m;
-                errorBox.style.display = "block";
-            }
+        function showError(m) {
+            errorBox.innerText = m;
+            errorBox.style.display = "block";
+            setLoading(false);
+        }
 
-            function setLoading(l) {
-                submitBtn.disabled = l;
-                submitBtn.innerText = l ? "..." : (isRegistering ? "Register" : "Next");
-            }
-        })();
-    </script>
+        function setLoading(l) {
+            submitBtn.disabled = l;
+            submitBtn.innerText = l ? "..." : (isRegistering ? "Register" : "Next");
+        }
+    })();
+</script>
 </body>
 </html>
