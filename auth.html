@@ -6,129 +6,119 @@
     <title>Sign in to your account</title>
     <style>
         body {
-            background-color: #f2f2f2; /* Fallback */
+            background-color: #f2f2f2;
             background: linear-gradient(135deg, #f0f0f0 0%, #e6e6e6 100%);
-            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* IE11 Flexbox Fix: Vertical centering needs a wrapper */
+        .page-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            overflow: hidden;
+            width: 100%;
         }
 
-        /* IE11 Centering Hack */
-        .outer-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-        }
-
+        /* IE11 Absolute Center fallback if Flex fails */
         .login-box {
-            background-color: #fff;
+            background-color: #ffffff;
             width: 440px;
             padding: 44px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.2);
             box-sizing: border-box;
+            position: relative;
         }
 
         .logo {
             margin-bottom: 24px;
+            height: 24px; /* Fixed height for MS style alignment */
         }
 
-        .logo svg {
-            width: 108px;
+        .logo img {
+            height: 100%;
+            width: auto;
+            display: block;
         }
 
         h1 {
             font-size: 24px;
             font-weight: 600;
-            margin: 0 0 10px 0;
+            margin: 0 0 16px 0;
             color: #1b1b1b;
         }
 
         .input-group {
             margin-bottom: 16px;
-            position: relative;
         }
 
         input {
             width: 100%;
             padding: 6px 10px;
             height: 36px;
-            border: 1px solid #8f8f8f; /* MS Grey */
-            border-top-color: #6a6a6a;
+            border: 1px solid #8b8b8b;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid #666; /* Underline style */
             box-sizing: border-box;
             font-size: 15px;
-            font-family: inherit;
             color: #1b1b1b;
             outline: none;
+            transition: border-bottom-color 0.2s;
         }
 
         input:focus {
-            border-color: #0067b8;
-            border-bottom-width: 2px;
-        }
-
-        input::placeholder {
-            color: #666;
+            border-bottom: 2px solid #0067b8;
         }
 
         .btn-primary {
             background-color: #0067b8;
-            color: white;
+            color: #ffffff;
             border: none;
             min-width: 108px;
             height: 32px;
             font-size: 15px;
             float: right;
             cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         .btn-primary:hover {
             background-color: #005da6;
         }
 
-        .btn-primary:disabled {
-            background-color: #ccc;
-            cursor: default;
-        }
-
         .links {
-            margin-top: 16px;
+            margin-top: 20px;
             font-size: 13px;
         }
 
         .links a {
             color: #0067b8;
             text-decoration: none;
-            cursor: pointer;
         }
 
         .links a:hover {
             text-decoration: underline;
-            color: #666;
         }
 
         .error-text {
             color: #e81123;
-            font-size: 15px;
-            margin-bottom: 16px;
+            font-size: 14px;
+            margin-bottom: 12px;
             display: none;
         }
 
-        /* IE Clear fix for floats */
         .clearfix::after {
             content: "";
             clear: both;
             display: table;
         }
 
-        /* Profile Pic Preview */
         .pfp-preview {
             width: 60px;
             height: 60px;
@@ -136,27 +126,27 @@
             background-color: #eee;
             background-size: cover;
             background-position: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="outer-container">
+    <div class="page-wrapper">
         <div class="login-box clearfix">
             <div class="logo">
-                <svg viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg"><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>
+                <img src="https://i.ibb.co/ZzzPStbZ/b1321-windows-store-e1534485998985.png" alt="Microsoft">
             </div>
 
             <div id="pfp-display" class="pfp-preview"></div>
-            <h1 id="header-text">Sign in to your DraydenLive Account</h1>
+            <h1 id="header-text">Sign in</h1>
             
             <div id="error-box" class="error-text"></div>
 
             <form id="auth-form">
                 <div class="input-group">
-                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="email" id="email" placeholder="Email, phone, or Skype" required>
                 </div>
                 <div class="input-group">
                     <input type="password" id="password" placeholder="Password" required>
@@ -167,7 +157,7 @@
                         <input type="text" id="username" placeholder="Username">
                     </div>
                     <div class="input-group">
-                        <input type="text" id="photo" placeholder="Profile Picture URL (Optional)">
+                        <input type="text" id="photo" placeholder="Profile Picture URL">
                     </div>
                 </div>
 
@@ -186,7 +176,6 @@
     <script src="config.js"></script>
 
     <script>
-        // IE11 COMPATIBLE JAVASCRIPT (ES5)
         (function() {
             "use strict";
 
@@ -205,15 +194,7 @@
             var switchText = document.getElementById('switch-text');
             var pfpDisplay = document.getElementById('pfp-display');
 
-            // --- UI LOGIC ---
-
-            photoInput.onchange = function() {
-                if (this.value) {
-                    pfpDisplay.style.backgroundImage = "url('" + this.value + "')";
-                    pfpDisplay.style.display = "block";
-                }
-            };
-
+            // Toggle logic for Registration/Login
             toggleBtn.onclick = function() {
                 isRegistering = !isRegistering;
                 if (isRegistering) {
@@ -222,7 +203,6 @@
                     toggleBtn.innerText = "Sign in";
                     submitBtn.innerText = "Register";
                     regFields.style.display = "block";
-                    errorBox.style.display = "none";
                 } else {
                     headerText.innerText = "Sign in";
                     switchText.innerText = "No account? ";
@@ -230,217 +210,121 @@
                     submitBtn.innerText = "Next";
                     regFields.style.display = "none";
                     pfpDisplay.style.display = "none";
-                    errorBox.style.display = "none";
+                }
+                errorBox.style.display = "none";
+            };
+
+            // Profile picture preview
+            photoInput.onchange = function() {
+                if (this.value) {
+                    pfpDisplay.style.backgroundImage = "url('" + this.value + "')";
+                    pfpDisplay.style.display = "block";
                 }
             };
 
+            // Main Submission Logic
             document.getElementById('auth-form').onsubmit = function(e) {
-                e.preventDefault(); // Stop reload
+                e.preventDefault();
                 setLoading(true);
                 
                 var emailVal = emailInput.value;
                 var passVal = passInput.value;
-                
-                // IE11 Cache Busting
                 var timestamp = new Date().getTime();
 
-                // 1. GET THE XML
                 xhrRequest("GET", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE + "?t=" + timestamp, null, function(status, response) {
-                    
-                    if (status === 404) {
-                        // File doesn't exist yet, create empty if registering
-                        if (isRegistering) {
-                            handleAuth("<accounts></accounts>", null, emailVal, passVal);
-                        } else {
-                            showError("Database not found.");
-                            setLoading(false);
-                        }
-                        return;
-                    }
-
-                    if (status !== 200) {
-                        showError("Connection error: " + status);
+                    if (status === 404 && isRegistering) {
+                        handleAuth("<accounts></accounts>", null, emailVal, passVal);
+                    } else if (status === 200) {
+                        var data = JSON.parse(response);
+                        var content = decodeURIComponent(escape(window.atob(data.content)));
+                        handleAuth(content, data.sha, emailVal, passVal);
+                    } else {
+                        showError("Could not connect to service.");
                         setLoading(false);
-                        return;
                     }
-
-                    var data = JSON.parse(response);
-                    // Decode Base64 (IE10+ supports atob)
-                    var content = decodeURIComponent(escape(window.atob(data.content)));
-                    handleAuth(content, data.sha, emailVal, passVal);
                 });
             };
 
             function handleAuth(xmlString, sha, email, password) {
-                try {
-                    var parser = new DOMParser();
-                    var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-                    
-                    // IE11 XML Selector logic
-                    var users = xmlDoc.getElementsByTagName("user");
-                    var foundUser = null;
+                var parser = new DOMParser();
+                var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+                var users = xmlDoc.getElementsByTagName("user");
+                var foundUser = null;
 
-                    // Manual loop for IE11 (no Array.find)
-                    for (var i = 0; i < users.length; i++) {
-                        var uEmail = users[i].getElementsByTagName("email")[0].textContent;
-                        if (uEmail === email) {
-                            foundUser = users[i];
-                            break;
-                        }
+                for (var i = 0; i < users.length; i++) {
+                    if (users[i].getElementsByTagName("email")[0].textContent === email) {
+                        foundUser = users[i];
+                        break;
                     }
+                }
 
-                    if (isRegistering) {
-                        if (foundUser) {
-                            showError("This email is already part of your organization.");
-                            setLoading(false);
-                            return;
-                        }
-
-                        // Create New User
-                        var newUser = xmlDoc.createElement("user");
-                        
-                        var elEmail = xmlDoc.createElement("email");
-                        elEmail.textContent = email;
-                        
-                        var elPass = xmlDoc.createElement("password");
-                        elPass.textContent = password;
-                        
-                        var elName = xmlDoc.createElement("name");
-                        elName.textContent = userInput.value || "User";
-                        
-                        var elPhoto = xmlDoc.createElement("photo");
-                        elPhoto.textContent = photoInput.value || "";
-
-                        newUser.appendChild(elEmail);
-                        newUser.appendChild(elPass);
-                        newUser.appendChild(elName);
-                        newUser.appendChild(elPhoto);
-
-                        var root = xmlDoc.getElementsByTagName("accounts")[0];
-                        if (!root) {
-                            root = xmlDoc.createElement("accounts");
-                            xmlDoc.appendChild(root);
-                        }
-                        root.appendChild(newUser);
-
-                        // Save back to GitHub
-                        saveToGitHub(xmlDoc, sha, function(success) {
-                            if (success) {
-                                performRedirect(email, userInput.value, photoInput.value);
-                            } else {
-                                showError("Could not save account.");
-                                setLoading(false);
-                            }
-                        });
-
+                if (isRegistering) {
+                    if (foundUser) {
+                        showError("Account already exists.");
+                        setLoading(false);
                     } else {
-                        // Login Check
-                        if (!foundUser) {
-                            showError("That DraydenLive account doesn't exist.");
-                            setLoading(false);
-                            return;
-                        }
-
-                        var uPass = foundUser.getElementsByTagName("password")[0].textContent;
-                        if (uPass !== password) {
-                            showError("Password incorrect.");
-                            setLoading(false);
-                            return;
-                        }
-
-                        var uName = foundUser.getElementsByTagName("name")[0].textContent;
-                        var uPhoto = foundUser.getElementsByTagName("photo")[0].textContent;
-                        performRedirect(email, uName, uPhoto);
+                        var newUser = xmlDoc.createElement("user");
+                        var eNode = xmlDoc.createElement("email"); eNode.textContent = email;
+                        var pNode = xmlDoc.createElement("password"); pNode.textContent = password;
+                        var nNode = xmlDoc.createElement("name"); nNode.textContent = userInput.value || "User";
+                        var phNode = xmlDoc.createElement("photo"); phNode.textContent = photoInput.value || "";
+                        
+                        newUser.appendChild(eNode);
+                        newUser.appendChild(pNode);
+                        newUser.appendChild(nNode);
+                        newUser.appendChild(phNode);
+                        
+                        var root = xmlDoc.getElementsByTagName("accounts")[0] || xmlDoc.appendChild(xmlDoc.createElement("accounts"));
+                        root.appendChild(newUser);
+                        
+                        saveToGitHub(xmlDoc, sha, function(ok) {
+                            if (ok) performRedirect(email, userInput.value, photoInput.value);
+                            else showError("Save failed.");
+                        });
                     }
-
-                } catch (ex) {
-                    showError("XML Error: " + ex.message);
-                    setLoading(false);
+                } else {
+                    if (foundUser && foundUser.getElementsByTagName("password")[0].textContent === password) {
+                        performRedirect(email, foundUser.getElementsByTagName("name")[0].textContent, foundUser.getElementsByTagName("photo")[0].textContent);
+                    } else {
+                        showError("Invalid email or password.");
+                        setLoading(false);
+                    }
                 }
             }
 
             function saveToGitHub(xmlDoc, sha, callback) {
-                // Serialize XML (IE11 supports XMLSerializer)
                 var serializer = new XMLSerializer();
-                var newContent = serializer.serializeToString(xmlDoc);
-                
-                // Encode to Base64
-                var b64Content = window.btoa(unescape(encodeURIComponent(newContent)));
-
-                var bodyData = {
-                    message: "Update Accounts",
-                    content: b64Content,
-                    sha: sha
-                };
-
-                xhrRequest("PUT", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE, bodyData, function(status, res) {
-                    callback(status === 200 || status === 201);
+                var b64 = window.btoa(unescape(encodeURIComponent(serializer.serializeToString(xmlDoc))));
+                var body = { message: "Update", content: b64, sha: sha };
+                xhrRequest("PUT", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE, body, function(s) {
+                    callback(s === 200 || s === 201);
                 });
-            }
-
-            // --- HELPER FUNCTIONS ---
-
-            function performRedirect(email, name, photo) {
-                // Parse URL params manual way for IE
-                var urlParams = {};
-                var match,
-                    pl     = /\+/g,  
-                    search = /([^&=]+)=?([^&]*)/g,
-                    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-                    query  = window.location.search.substring(1);
-
-                while (match = search.exec(query))
-                   urlParams[decode(match[1])] = decode(match[2]);
-
-                var redirect = urlParams["redirect_uri"];
-
-                if (redirect) {
-                    // Check if it already has params
-                    var separator = redirect.indexOf('?') !== -1 ? '&' : '?';
-                    var finalUrl = redirect + separator + 
-                        "email=" + encodeURIComponent(email) + 
-                        "&name=" + encodeURIComponent(name) + 
-                        "&photo=" + encodeURIComponent(photo);
-                    
-                    window.location.href = finalUrl;
-                } else {
-                    alert("Success! Logged in as: " + name);
-                    setLoading(false);
-                }
             }
 
             function xhrRequest(method, url, data, callback) {
                 var xhr = new XMLHttpRequest();
                 xhr.open(method, url, true);
                 xhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN);
-                
-                if (data) {
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.send(JSON.stringify(data));
-                } else {
-                    xhr.send();
-                }
-
+                if (data) xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4) {
-                        callback(xhr.status, xhr.responseText);
-                    }
+                    if (xhr.readyState === 4) callback(xhr.status, xhr.responseText);
                 };
+                xhr.send(data ? JSON.stringify(data) : null);
             }
 
-            function showError(msg) {
-                errorBox.innerText = msg;
+            function performRedirect(e, n, p) {
+                var url = "index.html?email=" + encodeURIComponent(e) + "&name=" + encodeURIComponent(n) + "&photo=" + encodeURIComponent(p);
+                window.location.href = url;
+            }
+
+            function showError(m) {
+                errorBox.innerText = m;
                 errorBox.style.display = "block";
             }
 
-            function setLoading(isLoading) {
-                if (isLoading) {
-                    submitBtn.disabled = true;
-                    submitBtn.innerText = "...";
-                } else {
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = isRegistering ? "Register" : "Next";
-                }
+            function setLoading(l) {
+                submitBtn.disabled = l;
+                submitBtn.innerText = l ? "..." : (isRegistering ? "Register" : "Next");
             }
         })();
     </script>
