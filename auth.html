@@ -182,9 +182,19 @@
         var ACCOUNTS_FILE = "accounts.xml";
         var isRegistering = false;
         
-        // --- NEW: Capture the callback URL sent by the App ---
-        var urlParams = new URLSearchParams(window.location.search);
-        var callbackUri = urlParams.get('redirect_uri');
+        // --- FIXED FOR IE: Manual URL Parameter Parsing ---
+        function getQueryParam(name) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (decodeURIComponent(pair[0]) == name) {
+                    return decodeURIComponent(pair[1]);
+                }
+            }
+            return null;
+        }
+        var callbackUri = getQueryParam('redirect_uri');
 
         var emailInput = document.getElementById('email');
         var passInput = document.getElementById('password');
@@ -198,6 +208,7 @@
         var switchText = document.getElementById('switch-text');
         var pfpDisplay = document.getElementById('pfp-display');
 
+        // Toggle logic
         toggleBtn.onclick = function() {
             isRegistering = !isRegistering;
             if (isRegistering) {
@@ -225,7 +236,7 @@
         };
 
         document.getElementById('auth-form').onsubmit = function(e) {
-            e.preventDefault();
+            if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
             setLoading(true);
             
             var emailVal = emailInput.value;
@@ -241,7 +252,6 @@
                     handleAuth(content, data.sha, emailVal, passVal);
                 } else {
                     showError("Could not connect to service.");
-                    setLoading(false);
                 }
             });
         };
@@ -249,11 +259,20 @@
         function handleAuth(xmlString, sha, email, password) {
             var parser = new DOMParser();
             var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-            var users = xmlDoc.getElementsByTagName("user");
+            
+            // FIXED: Ensure root exists without HierarchyRequestError
+            var root = xmlDoc.getElementsByTagName("accounts")[0];
+            if (!root) {
+                root = xmlDoc.createElement("accounts");
+                xmlDoc.appendChild(root);
+            }
+
+            var users = root.getElementsByTagName("user");
             var foundUser = null;
 
             for (var i = 0; i < users.length; i++) {
-                if (users[i].getElementsByTagName("email")[0].textContent === email) {
+                var emailNode = users[i].getElementsByTagName("email")[0];
+                if (emailNode && (emailNode.textContent || emailNode.text) === email) {
                     foundUser = users[i];
                     break;
                 }
@@ -262,20 +281,18 @@
             if (isRegistering) {
                 if (foundUser) {
                     showError("Account already exists.");
-                    setLoading(false);
                 } else {
                     var newUser = xmlDoc.createElement("user");
-                    var eNode = xmlDoc.createElement("email"); eNode.textContent = email;
-                    var pNode = xmlDoc.createElement("password"); pNode.textContent = password;
-                    var nNode = xmlDoc.createElement("name"); nNode.textContent = userInput.value || "User";
-                    var phNode = xmlDoc.createElement("photo"); phNode.textContent = photoInput.value || "";
+                    
+                    var eNode = xmlDoc.createElement("email"); eNode.appendChild(xmlDoc.createTextNode(email));
+                    var pNode = xmlDoc.createElement("password"); pNode.appendChild(xmlDoc.createTextNode(password));
+                    var nNode = xmlDoc.createElement("name"); nNode.appendChild(xmlDoc.createTextNode(userInput.value || "User"));
+                    var phNode = xmlDoc.createElement("photo"); phNode.appendChild(xmlDoc.createTextNode(photoInput.value || ""));
                     
                     newUser.appendChild(eNode);
                     newUser.appendChild(pNode);
                     newUser.appendChild(nNode);
                     newUser.appendChild(phNode);
-                    
-                    var root = xmlDoc.getElementsByTagName("accounts")[0] || xmlDoc.appendChild(xmlDoc.createElement("accounts"));
                     root.appendChild(newUser);
                     
                     saveToGitHub(xmlDoc, sha, function(ok) {
@@ -284,18 +301,26 @@
                     });
                 }
             } else {
-                if (foundUser && foundUser.getElementsByTagName("password")[0].textContent === password) {
-                    performRedirect(email, foundUser.getElementsByTagName("name")[0].textContent, foundUser.getElementsByTagName("photo")[0].textContent);
+                if (foundUser) {
+                    var passNode = foundUser.getElementsByTagName("password")[0];
+                    var savedPass = passNode.textContent || passNode.text;
+                    if (savedPass === password) {
+                        var nameNode = foundUser.getElementsByTagName("name")[0];
+                        var photoNode = foundUser.getElementsByTagName("photo")[0];
+                        performRedirect(email, nameNode.textContent || nameNode.text, photoNode.textContent || photoNode.text);
+                    } else {
+                        showError("Invalid password.");
+                    }
                 } else {
-                    showError("Invalid email or password.");
-                    setLoading(false);
+                    showError("Account not found.");
                 }
             }
         }
 
         function saveToGitHub(xmlDoc, sha, callback) {
             var serializer = new XMLSerializer();
-            var b64 = window.btoa(unescape(encodeURIComponent(serializer.serializeToString(xmlDoc))));
+            var xmlStr = serializer.serializeToString(xmlDoc);
+            var b64 = window.btoa(unescape(encodeURIComponent(xmlStr)));
             var body = { message: "Update", content: b64, sha: sha };
             xhrRequest("PUT", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE, body, function(s) {
                 callback(s === 200 || s === 201);
@@ -313,17 +338,12 @@
             xhr.send(data ? JSON.stringify(data) : null);
         }
 
-        // --- UPDATED: Talk back to the Windows App ---
         function performRedirect(e, n, p) {
             var finalParams = "email=" + encodeURIComponent(e) + "&name=" + encodeURIComponent(n) + "&photo=" + encodeURIComponent(p);
-            
             if (callbackUri) {
-                // If the app provided a redirect_uri, go there. 
-                // This triggers 'success' in the App's WebAuthenticationBroker.
                 var separator = callbackUri.indexOf('?') > -1 ? '&' : '?';
                 window.location.href = callbackUri + separator + finalParams;
             } else {
-                // Fallback for testing in a normal browser
                 window.location.href = "index.html?" + finalParams;
             }
         }
