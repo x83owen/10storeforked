@@ -182,15 +182,13 @@
         var ACCOUNTS_FILE = "accounts.xml";
         var isRegistering = false;
         
-        // --- FIXED FOR IE: Manual URL Parameter Parsing ---
+        // IE-Safe URL Parsing
         function getQueryParam(name) {
             var query = window.location.search.substring(1);
             var vars = query.split("&");
             for (var i = 0; i < vars.length; i++) {
                 var pair = vars[i].split("=");
-                if (decodeURIComponent(pair[0]) == name) {
-                    return decodeURIComponent(pair[1]);
-                }
+                if (decodeURIComponent(pair[0]) == name) return decodeURIComponent(pair[1]);
             }
             return null;
         }
@@ -208,31 +206,15 @@
         var switchText = document.getElementById('switch-text');
         var pfpDisplay = document.getElementById('pfp-display');
 
-        // Toggle logic
         toggleBtn.onclick = function() {
             isRegistering = !isRegistering;
-            if (isRegistering) {
-                headerText.innerText = "Create account";
-                switchText.innerText = "Has account? ";
-                toggleBtn.innerText = "Sign in";
-                submitBtn.innerText = "Register";
-                regFields.style.display = "block";
-            } else {
-                headerText.innerText = "Sign in";
-                switchText.innerText = "No account? ";
-                toggleBtn.innerText = "Create one!";
-                submitBtn.innerText = "Next";
-                regFields.style.display = "none";
-                pfpDisplay.style.display = "none";
-            }
+            headerText.innerText = isRegistering ? "Create account" : "Sign in";
+            switchText.innerText = isRegistering ? "Has account? " : "No account? ";
+            toggleBtn.innerText = isRegistering ? "Sign in" : "Create one!";
+            submitBtn.innerText = isRegistering ? "Register" : "Next";
+            regFields.style.display = isRegistering ? "block" : "none";
+            if (!isRegistering) pfpDisplay.style.display = "none";
             errorBox.style.display = "none";
-        };
-
-        photoInput.onchange = function() {
-            if (this.value) {
-                pfpDisplay.style.backgroundImage = "url('" + this.value + "')";
-                pfpDisplay.style.display = "block";
-            }
         };
 
         document.getElementById('auth-form').onsubmit = function(e) {
@@ -248,10 +230,11 @@
                     handleAuth("<accounts></accounts>", null, emailVal, passVal);
                 } else if (status === 200) {
                     var data = JSON.parse(response);
-                    var content = decodeURIComponent(escape(window.atob(data.content)));
+                    // IE-Safe Base64 Decode
+                    var content = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
                     handleAuth(content, data.sha, emailVal, passVal);
                 } else {
-                    showError("Could not connect to service.");
+                    showError("Connection failed (" + status + ")");
                 }
             });
         };
@@ -259,9 +242,8 @@
         function handleAuth(xmlString, sha, email, password) {
             var parser = new DOMParser();
             var xmlDoc = parser.parseFromString(xmlString, "text/xml");
-            
-            // FIXED: Ensure root exists without HierarchyRequestError
             var root = xmlDoc.getElementsByTagName("accounts")[0];
+            
             if (!root) {
                 root = xmlDoc.createElement("accounts");
                 xmlDoc.appendChild(root);
@@ -272,7 +254,8 @@
 
             for (var i = 0; i < users.length; i++) {
                 var emailNode = users[i].getElementsByTagName("email")[0];
-                if (emailNode && (emailNode.textContent || emailNode.text) === email) {
+                var nodeText = emailNode ? (emailNode.textContent || emailNode.text) : "";
+                if (nodeText === email) {
                     foundUser = users[i];
                     break;
                 }
@@ -284,30 +267,35 @@
                 } else {
                     var newUser = xmlDoc.createElement("user");
                     
-                    var eNode = xmlDoc.createElement("email"); eNode.appendChild(xmlDoc.createTextNode(email));
-                    var pNode = xmlDoc.createElement("password"); pNode.appendChild(xmlDoc.createTextNode(password));
-                    var nNode = xmlDoc.createElement("name"); nNode.appendChild(xmlDoc.createTextNode(userInput.value || "User"));
-                    var phNode = xmlDoc.createElement("photo"); phNode.appendChild(xmlDoc.createTextNode(photoInput.value || ""));
+                    // IE FIX: Always use createTextNode for XML stability
+                    function addNode(name, val) {
+                        var node = xmlDoc.createElement(name);
+                        node.appendChild(xmlDoc.createTextNode(val || ""));
+                        newUser.appendChild(node);
+                    }
+
+                    addNode("email", email);
+                    addNode("password", password);
+                    addNode("name", userInput.value || "User");
+                    addNode("photo", photoInput.value || "");
                     
-                    newUser.appendChild(eNode);
-                    newUser.appendChild(pNode);
-                    newUser.appendChild(nNode);
-                    newUser.appendChild(phNode);
                     root.appendChild(newUser);
                     
                     saveToGitHub(xmlDoc, sha, function(ok) {
                         if (ok) performRedirect(email, userInput.value, photoInput.value);
-                        else showError("Save failed.");
+                        else showError("GitHub save failed.");
                     });
                 }
             } else {
+                // Login Logic
                 if (foundUser) {
-                    var passNode = foundUser.getElementsByTagName("password")[0];
-                    var savedPass = passNode.textContent || passNode.text;
-                    if (savedPass === password) {
+                    var savedPass = foundUser.getElementsByTagName("password")[0];
+                    var passVal = savedPass ? (savedPass.textContent || savedPass.text) : "";
+                    
+                    if (passVal === password) {
                         var nameNode = foundUser.getElementsByTagName("name")[0];
                         var photoNode = foundUser.getElementsByTagName("photo")[0];
-                        performRedirect(email, nameNode.textContent || nameNode.text, photoNode.textContent || photoNode.text);
+                        performRedirect(email, (nameNode.textContent || nameNode.text), (photoNode.textContent || photoNode.text));
                     } else {
                         showError("Invalid password.");
                     }
@@ -319,9 +307,11 @@
 
         function saveToGitHub(xmlDoc, sha, callback) {
             var serializer = new XMLSerializer();
-            var xmlStr = serializer.serializeToString(xmlDoc);
+            var xmlStr = '<?xml version="1.0" encoding="UTF-8"?>\n' + serializer.serializeToString(xmlDoc);
+            // IE-Safe Base64 Encode
             var b64 = window.btoa(unescape(encodeURIComponent(xmlStr)));
-            var body = { message: "Update", content: b64, sha: sha };
+            
+            var body = { message: "Update accounts", content: b64, sha: sha };
             xhrRequest("PUT", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE, body, function(s) {
                 callback(s === 200 || s === 201);
             });
@@ -340,12 +330,8 @@
 
         function performRedirect(e, n, p) {
             var finalParams = "email=" + encodeURIComponent(e) + "&name=" + encodeURIComponent(n) + "&photo=" + encodeURIComponent(p);
-            if (callbackUri) {
-                var separator = callbackUri.indexOf('?') > -1 ? '&' : '?';
-                window.location.href = callbackUri + separator + finalParams;
-            } else {
-                window.location.href = "index.html?" + finalParams;
-            }
+            var dest = callbackUri ? callbackUri + (callbackUri.indexOf('?') > -1 ? '&' : '?') + finalParams : "index.html?" + finalParams;
+            window.location.href = dest;
         }
 
         function showError(m) {
