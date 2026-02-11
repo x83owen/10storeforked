@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10-Store | Account</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Sign in to your account</title>
     <style>
-        :root {
-            --win-blue: #0078D7;
-            --win-gray: #F2F2F2;
-            --text-color: #333;
-        }
-
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--win-gray);
+            background-color: #f2f2f2; /* Fallback */
+            background: linear-gradient(135deg, #f0f0f0 0%, #e6e6e6 100%);
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,280 +17,432 @@
             overflow: hidden;
         }
 
-        .auth-container {
-            background: white;
-            width: 340px;
-            padding: 40px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            border: 1px solid #e5e5e5;
-            text-align: center;
+        /* IE11 Centering Hack */
+        .outer-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .login-box {
+            background-color: #fff;
+            width: 440px;
+            padding: 44px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            box-sizing: border-box;
+        }
+
+        .logo {
+            margin-bottom: 24px;
+        }
+
+        .logo svg {
+            width: 108px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            color: #1b1b1b;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
             position: relative;
         }
 
-        h2 { font-weight: 300; margin-bottom: 20px; color: #333; }
-
-        .input-group { margin-bottom: 15px; text-align: left; }
-        
         input {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 2px solid #ccc;
+            padding: 6px 10px;
+            height: 36px;
+            border: 1px solid #8f8f8f; /* MS Grey */
+            border-top-color: #6a6a6a;
             box-sizing: border-box;
-            font-family: 'Segoe UI';
+            font-size: 15px;
+            font-family: inherit;
+            color: #1b1b1b;
+            outline: none;
         }
 
-        input:focus { border-color: var(--win-blue); outline: none; }
+        input:focus {
+            border-color: #0067b8;
+            border-bottom-width: 2px;
+        }
 
-        button {
-            background: var(--win-blue);
+        input::placeholder {
+            color: #666;
+        }
+
+        .btn-primary {
+            background-color: #0067b8;
             color: white;
             border: none;
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
+            min-width: 108px;
+            height: 32px;
+            font-size: 15px;
+            float: right;
             cursor: pointer;
-            margin-top: 10px;
-            transition: opacity 0.2s;
+            transition: background-color 0.2s;
+            margin-top: 25px;
         }
 
-        button:hover { opacity: 0.9; }
-        button:disabled { background: #ccc; cursor: default; }
+        .btn-primary:hover {
+            background-color: #005da6;
+        }
 
-        .toggle-btn {
-            background: none;
-            color: var(--win-blue);
-            margin-top: 15px;
+        .btn-primary:disabled {
+            background-color: #ccc;
+            cursor: default;
+        }
+
+        .links {
+            margin-top: 16px;
             font-size: 13px;
+        }
+
+        .links a {
+            color: #0067b8;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .links a:hover {
             text-decoration: underline;
+            color: #666;
         }
 
-        .toggle-btn:hover { opacity: 0.8; }
-
-        #error-msg {
-            color: #E81123;
-            font-size: 13px;
-            margin-top: 15px;
+        .error-text {
+            color: #e81123;
+            font-size: 15px;
+            margin-bottom: 16px;
             display: none;
         }
 
-        /* Loading Spinner */
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--win-blue);
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 10px;
-            display: none;
+        /* IE Clear fix for floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
         }
-
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* Profile Pic Preview */
         .pfp-preview {
-            width: 80px; height: 80px; border-radius: 50%;
-            background: #ddd; margin: 0 auto 15px;
-            background-size: cover; background-position: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 15px;
             display: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="auth-container">
-        <div id="pfp-display" class="pfp-preview"></div>
-        <h2 id="page-title">Sign in</h2>
-
-        <form id="auth-form">
-            <div class="input-group">
-                <input type="email" id="email" placeholder="Email address" required>
+    <div class="outer-container">
+        <div class="login-box clearfix">
+            <div class="logo">
+                <svg viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg"><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>
             </div>
+
+            <div id="pfp-display" class="pfp-preview"></div>
+            <h1 id="header-text">Sign in</h1>
             
-            <div class="input-group">
-                <input type="password" id="password" placeholder="Password" required>
-            </div>
+            <div id="error-box" class="error-text"></div>
 
-            <div id="register-fields" style="display:none;">
+            <form id="auth-form">
                 <div class="input-group">
-                    <input type="text" id="username" placeholder="Display Name">
+                    <input type="email" id="email" placeholder="Email, phone, or Skype" required>
                 </div>
                 <div class="input-group">
-                    <input type="url" id="photo-url" placeholder="Profile Picture URL (Optional)" onchange="updatePreview()">
+                    <input type="password" id="password" placeholder="Password" required>
                 </div>
-            </div>
 
-            <button type="submit" id="submit-btn">
-                <div class="loader" id="loader"></div> <span id="btn-text">Sign in</span>
-            </button>
-        </form>
+                <div id="reg-fields" style="display:none;">
+                    <div class="input-group">
+                        <input type="text" id="username" placeholder="Display Name">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="photo" placeholder="Profile Picture URL (Optional)">
+                    </div>
+                </div>
 
-        <p id="error-msg"></p>
-        <button type="button" class="toggle-btn" id="toggle-mode">No account? Create one!</button>
+                <div class="links">
+                    <span id="switch-text">No account? </span>
+                    <a id="toggle-btn">Create one!</a>
+                </div>
+
+                <div class="clearfix">
+                    <button type="submit" id="btn-submit" class="btn-primary">Next</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script src="config.js"></script>
 
     <script>
-        const ACCOUNTS_FILE = "accounts.xml";
-        let isRegistering = false;
-        
-        const dom = {
-            form: document.getElementById('auth-form'),
-            title: document.getElementById('page-title'),
-            btn: document.getElementById('submit-btn'),
-            btnText: document.getElementById('btn-text'),
-            toggle: document.getElementById('toggle-mode'),
-            regFields: document.getElementById('register-fields'),
-            error: document.getElementById('error-msg'),
-            loader: document.getElementById('loader'),
-            pfp: document.getElementById('pfp-display')
-        };
+        // IE11 COMPATIBLE JAVASCRIPT (ES5)
+        (function() {
+            "use strict";
 
-        // --- TOGGLE MODE ---
-        dom.toggle.onclick = () => {
-            isRegistering = !isRegistering;
-            dom.title.innerText = isRegistering ? "Create Account" : "Sign in";
-            dom.btnText.innerText = isRegistering ? "Register" : "Sign in";
-            dom.toggle.innerText = isRegistering ? "Already have an account? Sign in" : "No account? Create one!";
-            dom.regFields.style.display = isRegistering ? "block" : "none";
-            dom.pfp.style.display = isRegistering ? "block" : "none";
-            dom.error.style.display = 'none';
-        };
+            var ACCOUNTS_FILE = "accounts.xml";
+            var isRegistering = false;
+            
+            var emailInput = document.getElementById('email');
+            var passInput = document.getElementById('password');
+            var userInput = document.getElementById('username');
+            var photoInput = document.getElementById('photo');
+            var submitBtn = document.getElementById('btn-submit');
+            var errorBox = document.getElementById('error-box');
+            var regFields = document.getElementById('reg-fields');
+            var headerText = document.getElementById('header-text');
+            var toggleBtn = document.getElementById('toggle-btn');
+            var switchText = document.getElementById('switch-text');
+            var pfpDisplay = document.getElementById('pfp-display');
 
-        function updatePreview() {
-            const url = document.getElementById('photo-url').value;
-            if(url) dom.pfp.style.backgroundImage = `url('${url}')`;
-        }
+            // --- UI LOGIC ---
 
-        // --- GITHUB HELPERS ---
-        async function getGitHubFile(path) {
-            const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`;
-            const res = await fetch(url, { headers: { "Authorization": `token ${GITHUB_TOKEN}` } });
-            if (res.status === 404) return { content: "<accounts></accounts>", sha: null }; // New file
-            if (!res.ok) throw new Error("Connection failed");
-            const data = await res.json();
-            return {
-                sha: data.sha,
-                content: decodeURIComponent(escape(atob(data.content)))
+            photoInput.onchange = function() {
+                if (this.value) {
+                    pfpDisplay.style.backgroundImage = "url('" + this.value + "')";
+                    pfpDisplay.style.display = "block";
+                }
             };
-        }
 
-        async function saveGitHubFile(path, content, sha) {
-            const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`;
-            const body = {
-                message: "User Registration",
-                content: btoa(unescape(encodeURIComponent(content))),
-                sha: sha
-            };
-            const res = await fetch(url, {
-                method: "PUT",
-                headers: { 
-                    "Authorization": `token ${GITHUB_TOKEN}`,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(body)
-            });
-            if (!res.ok) throw new Error("Failed to save data");
-        }
-
-        // --- MAIN LOGIC ---
-        dom.form.onsubmit = async (e) => {
-            e.preventDefault();
-            setLoading(true);
-            dom.error.style.display = 'none';
-
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
-
-            try {
-                // 1. Fetch Accounts
-                const fileData = await getGitHubFile(ACCOUNTS_FILE);
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(fileData.content, "text/xml");
-                const accounts = Array.from(xmlDoc.getElementsByTagName("user"));
-
+            toggleBtn.onclick = function() {
+                isRegistering = !isRegistering;
                 if (isRegistering) {
-                    // --- REGISTRATION ---
-                    const exists = accounts.find(u => u.getElementsByTagName("email")[0].textContent === email);
-                    if (exists) throw new Error("Email already registered");
-
-                    const username = document.getElementById('username').value.trim();
-                    const photo = document.getElementById('photo-url').value.trim() || "https://via.placeholder.com/150";
-
-                    // Create new user node
-                    const newUser = xmlDoc.createElement("user");
-                    newUser.innerHTML = `
-                        <email>${email}</email>
-                        <password>${password}</password>
-                        <name>${username}</name>
-                        <photo>${photo}</photo>
-                    `;
-
-                    // Handle empty file case
-                    let root = xmlDoc.getElementsByTagName("accounts")[0];
-                    if (!root) {
-                        root = xmlDoc.createElement("accounts");
-                        xmlDoc.appendChild(root);
-                    }
-                    root.appendChild(newUser);
-
-                    // Save to GitHub
-                    const serializer = new XMLSerializer();
-                    await saveGitHubFile(ACCOUNTS_FILE, serializer.serializeToString(xmlDoc), fileData.sha);
-                    
-                    finishAuth(email, username, photo);
-
+                    headerText.innerText = "Create account";
+                    switchText.innerText = "Has account? ";
+                    toggleBtn.innerText = "Sign in";
+                    submitBtn.innerText = "Register";
+                    regFields.style.display = "block";
+                    errorBox.style.display = "none";
                 } else {
-                    // --- LOGIN ---
-                    const user = accounts.find(u => 
-                        u.getElementsByTagName("email")[0].textContent === email && 
-                        u.getElementsByTagName("password")[0].textContent === password
-                    );
+                    headerText.innerText = "Sign in";
+                    switchText.innerText = "No account? ";
+                    toggleBtn.innerText = "Create one!";
+                    submitBtn.innerText = "Next";
+                    regFields.style.display = "none";
+                    pfpDisplay.style.display = "none";
+                    errorBox.style.display = "none";
+                }
+            };
 
-                    if (!user) throw new Error("Invalid email or password");
+            document.getElementById('auth-form').onsubmit = function(e) {
+                e.preventDefault(); // Stop reload
+                setLoading(true);
+                
+                var emailVal = emailInput.value;
+                var passVal = passInput.value;
+                
+                // IE11 Cache Busting
+                var timestamp = new Date().getTime();
 
-                    const name = user.getElementsByTagName("name")[0].textContent;
-                    const photo = user.getElementsByTagName("photo")[0].textContent;
+                // 1. GET THE XML
+                xhrRequest("GET", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE + "?t=" + timestamp, null, function(status, response) {
                     
-                    finishAuth(email, name, photo);
+                    if (status === 404) {
+                        // File doesn't exist yet, create empty if registering
+                        if (isRegistering) {
+                            handleAuth("<accounts></accounts>", null, emailVal, passVal);
+                        } else {
+                            showError("Database not found.");
+                            setLoading(false);
+                        }
+                        return;
+                    }
+
+                    if (status !== 200) {
+                        showError("Connection error: " + status);
+                        setLoading(false);
+                        return;
+                    }
+
+                    var data = JSON.parse(response);
+                    // Decode Base64 (IE10+ supports atob)
+                    var content = decodeURIComponent(escape(window.atob(data.content)));
+                    handleAuth(content, data.sha, emailVal, passVal);
+                });
+            };
+
+            function handleAuth(xmlString, sha, email, password) {
+                try {
+                    var parser = new DOMParser();
+                    var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+                    
+                    // IE11 XML Selector logic
+                    var users = xmlDoc.getElementsByTagName("user");
+                    var foundUser = null;
+
+                    // Manual loop for IE11 (no Array.find)
+                    for (var i = 0; i < users.length; i++) {
+                        var uEmail = users[i].getElementsByTagName("email")[0].textContent;
+                        if (uEmail === email) {
+                            foundUser = users[i];
+                            break;
+                        }
+                    }
+
+                    if (isRegistering) {
+                        if (foundUser) {
+                            showError("This email is already part of your organization.");
+                            setLoading(false);
+                            return;
+                        }
+
+                        // Create New User
+                        var newUser = xmlDoc.createElement("user");
+                        
+                        var elEmail = xmlDoc.createElement("email");
+                        elEmail.textContent = email;
+                        
+                        var elPass = xmlDoc.createElement("password");
+                        elPass.textContent = password;
+                        
+                        var elName = xmlDoc.createElement("name");
+                        elName.textContent = userInput.value || "User";
+                        
+                        var elPhoto = xmlDoc.createElement("photo");
+                        elPhoto.textContent = photoInput.value || "";
+
+                        newUser.appendChild(elEmail);
+                        newUser.appendChild(elPass);
+                        newUser.appendChild(elName);
+                        newUser.appendChild(elPhoto);
+
+                        var root = xmlDoc.getElementsByTagName("accounts")[0];
+                        if (!root) {
+                            root = xmlDoc.createElement("accounts");
+                            xmlDoc.appendChild(root);
+                        }
+                        root.appendChild(newUser);
+
+                        // Save back to GitHub
+                        saveToGitHub(xmlDoc, sha, function(success) {
+                            if (success) {
+                                performRedirect(email, userInput.value, photoInput.value);
+                            } else {
+                                showError("Could not save account.");
+                                setLoading(false);
+                            }
+                        });
+
+                    } else {
+                        // Login Check
+                        if (!foundUser) {
+                            showError("That Microsoft account doesn't exist.");
+                            setLoading(false);
+                            return;
+                        }
+
+                        var uPass = foundUser.getElementsByTagName("password")[0].textContent;
+                        if (uPass !== password) {
+                            showError("Password incorrect.");
+                            setLoading(false);
+                            return;
+                        }
+
+                        var uName = foundUser.getElementsByTagName("name")[0].textContent;
+                        var uPhoto = foundUser.getElementsByTagName("photo")[0].textContent;
+                        performRedirect(email, uName, uPhoto);
+                    }
+
+                } catch (ex) {
+                    showError("XML Error: " + ex.message);
+                    setLoading(false);
+                }
+            }
+
+            function saveToGitHub(xmlDoc, sha, callback) {
+                // Serialize XML (IE11 supports XMLSerializer)
+                var serializer = new XMLSerializer();
+                var newContent = serializer.serializeToString(xmlDoc);
+                
+                // Encode to Base64
+                var b64Content = window.btoa(unescape(encodeURIComponent(newContent)));
+
+                var bodyData = {
+                    message: "Update Accounts",
+                    content: b64Content,
+                    sha: sha
+                };
+
+                xhrRequest("PUT", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/" + ACCOUNTS_FILE, bodyData, function(status, res) {
+                    callback(status === 200 || status === 201);
+                });
+            }
+
+            // --- HELPER FUNCTIONS ---
+
+            function performRedirect(email, name, photo) {
+                // Parse URL params manual way for IE
+                var urlParams = {};
+                var match,
+                    pl     = /\+/g,  
+                    search = /([^&=]+)=?([^&]*)/g,
+                    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+                    query  = window.location.search.substring(1);
+
+                while (match = search.exec(query))
+                   urlParams[decode(match[1])] = decode(match[2]);
+
+                var redirect = urlParams["redirect_uri"];
+
+                if (redirect) {
+                    // Check if it already has params
+                    var separator = redirect.indexOf('?') !== -1 ? '&' : '?';
+                    var finalUrl = redirect + separator + 
+                        "email=" + encodeURIComponent(email) + 
+                        "&name=" + encodeURIComponent(name) + 
+                        "&photo=" + encodeURIComponent(photo);
+                    
+                    window.location.href = finalUrl;
+                } else {
+                    alert("Success! Logged in as: " + name);
+                    setLoading(false);
+                }
+            }
+
+            function xhrRequest(method, url, data, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.open(method, url, true);
+                xhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN);
+                
+                if (data) {
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.send(JSON.stringify(data));
+                } else {
+                    xhr.send();
                 }
 
-            } catch (err) {
-                dom.error.innerText = err.message;
-                dom.error.style.display = 'block';
-                setLoading(false);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        callback(xhr.status, xhr.responseText);
+                    }
+                };
             }
-        };
 
-        function finishAuth(email, name, photo) {
-            // Get redirect URI from URL params (from your WinJS app)
-            const params = new URLSearchParams(window.location.search);
-            let redirect = params.get("redirect_uri");
-
-            if (redirect) {
-                // Build the success URL with params
-                const target = new URL(redirect);
-                target.searchParams.set("email", email);
-                target.searchParams.set("name", name);
-                target.searchParams.set("photo", photo);
-                target.searchParams.set("status", "success");
-                
-                window.location.href = target.toString();
-            } else {
-                // Fallback if testing in browser
-                alert("Login Successful!\nWelcome " + name);
-                setLoading(false);
+            function showError(msg) {
+                errorBox.innerText = msg;
+                errorBox.style.display = "block";
             }
-        }
 
-        function setLoading(loading) {
-            dom.btn.disabled = loading;
-            dom.loader.style.display = loading ? 'inline-block' : 'none';
-        }
+            function setLoading(isLoading) {
+                if (isLoading) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerText = "...";
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = isRegistering ? "Register" : "Next";
+                }
+            }
+        })();
     </script>
 </body>
 </html>
