@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Delete Account</title>
+    <style>
+        body { background: #f2f2f2; font-family: 'Segoe UI', Tahoma, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: white; width: 400px; padding: 40px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        h1 { font-size: 24px; font-weight: 600; color: #1b1b1b; margin-top: 0; }
+        p { font-size: 15px; color: #1b1b1b; line-height: 1.4; }
+        .btn-container { margin-top: 30px; text-align: right; }
+        button { min-width: 100px; height: 32px; font-size: 15px; cursor: pointer; border: none; margin-left: 8px; }
+        .btn-danger { background-color: #e81123; color: white; }
+        .btn-secondary { background-color: #ccc; color: black; }
+        #status { color: #e81123; font-size: 14px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Delete account?</h1>
+        <p>This will permanently remove your data from 10Store. This action cannot be undone.</p>
+        <div id="status"></div>
+        <div class="btn-container">
+            <button class="btn-secondary" onclick="cancel()">Cancel</button>
+            <button id="btn-confirm" class="btn-danger" onclick="deleteAccount()">Delete</button>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script>
+        // IE-Safe URL Parser
+        function getParam(name) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (decodeURIComponent(pair[0]) == name) return decodeURIComponent(pair[1]);
+            }
+            return null;
+        }
+
+        var emailToDelete = getParam('email');
+        var callbackUri = getParam('redirect_uri');
+
+        function cancel() {
+            window.location.href = callbackUri; 
+        }
+
+        function deleteAccount() {
+            if (!emailToDelete) {
+                document.getElementById('status').innerText = "Error: No email provided.";
+                return;
+            }
+
+            var btn = document.getElementById('btn-confirm');
+            btn.disabled = true;
+            btn.innerText = "...";
+
+            // 1. Fetch the XML
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/accounts.xml?t=" + new Date().getTime());
+            xhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    var xmlString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
+                    processDeletion(xmlString, data.sha);
+                }
+            };
+            xhr.send();
+        }
+
+        function processDeletion(xmlString, sha) {
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(xmlString, "text/xml");
+            var users = xmlDoc.getElementsByTagName("user");
+            var found = false;
+
+            for (var i = 0; i < users.length; i++) {
+                var emailNode = users[i].getElementsByTagName("email")[0];
+                var nodeText = emailNode ? (emailNode.textContent || emailNode.text) : "";
+                
+                if (nodeText.toLowerCase() === emailToDelete.toLowerCase()) {
+                    users[i].parentNode.removeChild(users[i]);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                document.getElementById('status').innerText = "Account not found.";
+                return;
+            }
+
+            // 2. Save Updated XML back to GitHub
+            var serializer = new XMLSerializer();
+            var updatedXml = serializer.serializeToString(xmlDoc);
+            var b64 = window.btoa(unescape(encodeURIComponent(updatedXml)));
+
+            var putXhr = new XMLHttpRequest();
+            putXhr.open("PUT", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/accounts.xml");
+            putXhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN);
+            putXhr.setRequestHeader("Content-Type", "application/json");
+            putXhr.onreadystatechange = function() {
+                if (putXhr.readyState === 4) {
+                    if (putXhr.status === 200 || putXhr.status === 201) {
+                        // Success! Send user back to app with "deleted" status
+                        window.location.href = callbackUri + (callbackUri.indexOf('?') > -1 ? '&' : '?') + "status=deleted";
+                    } else {
+                        document.getElementById('status').innerText = "Delete failed on server.";
+                    }
+                }
+            };
+            putXhr.send(JSON.stringify({ message: "Delete account " + emailToDelete, content: b64, sha: sha }));
+        }
+    </script>
+</body>
+</html>
