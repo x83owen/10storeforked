@@ -27,6 +27,34 @@
             z-index: 9999; display: flex; align-items: center; justify-content: center; color: white;
         }
 
+        /* Account Section Styles */
+        .account-card { 
+            background: white; 
+            border: 1px solid #DDD; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+        }
+        .acc-pic { 
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            background: #0078D7; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 24px; 
+            font-weight: bold;
+            object-fit: cover;
+            overflow: hidden;
+        }
+        .acc-info { flex-grow: 1; }
+        .acc-info h3 { margin: 0; font-size: 16px; color: #333; }
+        .acc-info p { margin: 2px 0 0; font-size: 13px; color: #666; }
+
         .login-box { text-align: center; width: 300px; }
         .user-avatar { width: 120px; height: 120px; background: #888; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 50px; }
         .login-box input { width: 100%; padding: 8px; border: 2px solid rgba(255,255,255,0.5); background: rgba(0,0,0,0.2); color: white; box-sizing: border-box; outline: none; margin-bottom: 10px; }
@@ -89,7 +117,7 @@
         .btn-decline { background: var(--win-red); color: white; }
         .btn-unpublish { background: #444; color: white; }
         .btn-edit { background: var(--win-blue); color: white; }
-        .btn-test { background: #666; color: white; } /* Style for Test buttons */
+        .btn-test { background: #666; color: white; }
 
         .cat-manager { margin-top: 20px; padding: 10px; background: #ddd; border: 1px solid #ccc; }
         .cat-item { display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-bottom: 5px; background: #eee; padding: 5px; }
@@ -170,6 +198,9 @@
             
             <h2 class="section-title">Published</h2>
             <div id="live-list"></div>
+
+            <h2 class="section-title">User Accounts</h2>
+            <div id="account-list"></div>
         </div>
     </div>
 </div>
@@ -181,10 +212,12 @@ let currentEditingId = null;
 let currentEditingType = 'app';
 let cachedFinalData = null;
 let cachedPendingData = null;
+let cachedAccountsData = null;
 let allAppsCache = [];
 
 const FINAL_FILE = "apps.xml";
 const PENDING_FILE = "apppending.xml";
+const ACCOUNTS_FILE = "accounts.xml";
 
 function checkPass() {
     if (document.getElementById('pass-input').value === PASSW) {
@@ -213,12 +246,14 @@ async function initDashboard() {
 
     cachedFinalData = await getFile(FINAL_FILE);
     cachedPendingData = await getFile(PENDING_FILE);
+    cachedAccountsData = await getFile(ACCOUNTS_FILE);
 
     if (cachedFinalData) {
         status.innerText = "Connected";
         renderCategories();
         renderApps(cachedFinalData.content, document.getElementById('live-list'), true);
         if(cachedPendingData) renderApps(cachedPendingData.content, document.getElementById('app-list'), false);
+        if(cachedAccountsData) renderAccounts(cachedAccountsData.content);
     }
 
     function updateAppCache(xmlContent) {
@@ -274,14 +309,12 @@ async function initDashboard() {
             const id = app.getAttribute("id");
             const name = app.getElementsByTagName("name")[0].textContent;
             const icon = app.getElementsByTagName("icon")[0].textContent;
-            // Get package for testing (optional logic to handle missing tag)
             const pkgTag = app.getElementsByTagName("package")[0];
             const pkg = pkgTag ? pkgTag.textContent : "#";
 
             const card = document.createElement('div');
             card.className = 'app-card';
             
-            // Build Controls based on isLive status
             let controlButtons = '';
             if (isLive) {
                 controlButtons = `
@@ -289,7 +322,6 @@ async function initDashboard() {
                     <button class="btn-unpublish" onclick="removeLive('${id}')">Unpublish</button>
                 `;
             } else {
-                // PENDING BUTTONS
                 controlButtons = `
                     <button class="btn-approve" onclick="approveApp('${id}')">Approve</button>
                     <button class="btn-decline" onclick="declineApp('${id}')">Decline</button>
@@ -311,6 +343,55 @@ async function initDashboard() {
         });
         if(isLive) document.getElementById('live-count').innerText = apps.length;
     }
+
+    // ------------------------------------------
+    //  ACCOUNTS LOGIC
+    // ------------------------------------------
+    function renderAccounts(xmlContent) {
+        const container = document.getElementById('account-list');
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlContent, "text/xml");
+        const users = xmlDoc.getElementsByTagName("user");
+        
+        container.innerHTML = "";
+        if(users.length === 0) { container.innerHTML = "<p>No registered users.</p>"; return; }
+
+        Array.from(users).forEach(user => {
+            const name = user.getElementsByTagName("name")[0]?.textContent || "Unknown";
+            const email = user.getElementsByTagName("email")[0]?.textContent || "No Email";
+            const photo = user.getElementsByTagName("photo")[0]?.textContent || "";
+            
+            const card = document.createElement('div');
+            card.className = 'account-card';
+            
+            const initial = name.charAt(0).toUpperCase();
+            const photoHtml = (photo && photo !== "null" && photo !== "") 
+                ? `<img src="${photo}" class="acc-pic" onerror="this.outerHTML='<div class=\'acc-pic\'>${initial}</div>'">`
+                : `<div class="acc-pic">${initial}</div>`;
+
+            card.innerHTML = `
+                ${photoHtml}
+                <div class="acc-info">
+                    <h3>${name}</h3>
+                    <p>${email}</p>
+                </div>
+                <button class="btn-decline" onclick="deleteAccount('${email}')">Delete Account</button>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    window.deleteAccount = async function(email) {
+        if(!confirm("Delete account for " + email + "?")) return;
+        status.innerText = "Deleting account...";
+        
+        const userRegex = new RegExp(`<user>\\s*<name>[\\s\\S]*?<email>${email}<\\/email>[\\s\\S]*?<\\/user>`, 'g');
+        const newContent = cachedAccountsData.content.replace(userRegex, "").replace(/\n\s*\n/g, '\n');
+
+        const ok = await saveFile(ACCOUNTS_FILE, newContent, cachedAccountsData.sha);
+        if(ok) location.reload();
+        else alert("Failed to delete account.");
+    };
 
     // ------------------------------------------
     //  AUTOCOMPLETE LOGIC
@@ -372,7 +453,6 @@ async function initDashboard() {
     // ------------------------------------------
     //  DATA MANAGEMENT
     // ------------------------------------------
-
     window.saveFile = async function(fileName, content, sha) {
         const headers = { "Authorization": `token ${token}`, "Content-Type": "application/json" };
         const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${fileName}`, {
@@ -382,70 +462,46 @@ async function initDashboard() {
         return res.ok;
     }
 
-    // Renamed 'commit' to a wrapper for the main file to keep old functions working
     async function commit(fContent) {
         status.innerText = "Saving...";
         await saveFile(FINAL_FILE, fContent, cachedFinalData.sha);
         location.reload();
     }
 
-    // APPROVE LOGIC
     window.approveApp = async function(id) {
         if(!confirm("Approve " + id + "?")) return;
         status.innerText = "Approving...";
-
-        // 1. Find App XML in Pending
         const appRegex = new RegExp(`<app id="${id}">[\\s\\S]*?<\\/app>`);
         const match = cachedPendingData.content.match(appRegex);
-        
-        if(!match) { alert("Error: App not found in pending data."); return; }
+        if(!match) { alert("Error: App not found."); return; }
         const appXml = match[0];
-
-        // 2. Remove from Pending
         const newPending = cachedPendingData.content.replace(appXml, "").replace(/\n\s*\n/g, '\n');
-        
-        // 3. Add to Live
         const newFinal = cachedFinalData.content.replace('</apps>', `${appXml}\n</apps>`);
-
-        // 4. Save Both
         await saveFile(PENDING_FILE, newPending, cachedPendingData.sha);
         await saveFile(FINAL_FILE, newFinal, cachedFinalData.sha);
-        
         location.reload();
     };
 
-    // DECLINE LOGIC
     window.declineApp = async function(id) {
-        if(!confirm("Decline (Delete) " + id + "?")) return;
+        if(!confirm("Decline " + id + "?")) return;
         status.innerText = "Declining...";
-
-        // Remove from Pending
         const appRegex = new RegExp(`<app id="${id}">[\\s\\S]*?<\\/app>`);
         const newPending = cachedPendingData.content.replace(appRegex, "").replace(/\n\s*\n/g, '\n');
-
         await saveFile(PENDING_FILE, newPending, cachedPendingData.sha);
         location.reload();
     };
-
-    // ------------------------------------------
-    //  EXISTING UI FUNCTIONS
-    // ------------------------------------------
 
     window.moveCat = async function(index, direction) {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(cachedFinalData.content, "text/xml");
         const catsNode = xmlDoc.getElementsByTagName("categories")[0];
         const cats = Array.from(catsNode.getElementsByTagName("category"));
-        
         const newIndex = index + direction;
         if(newIndex < 0 || newIndex >= cats.length) return;
-
         const nodeToMove = cats[index];
         const targetNode = cats[newIndex];
-
         if (direction === 1) catsNode.insertBefore(nodeToMove, targetNode.nextSibling);
         else catsNode.insertBefore(nodeToMove, targetNode);
-
         await commit(new XMLSerializer().serializeToString(xmlDoc));
     };
 
@@ -454,13 +510,11 @@ async function initDashboard() {
         const xmlDoc = parser.parseFromString(cachedFinalData.content, "text/xml");
         const cat = Array.from(xmlDoc.getElementsByTagName("category")).find(c => c.getAttribute("title") === title);
         const appIdsNode = cat.getElementsByTagName("appIds")[0];
-        
         currentEditingId = title;
         currentEditingType = 'cat';
         document.getElementById('modal-label').innerText = "Edit Apps in " + title;
         document.getElementById('xml-edit-area').value = appIdsNode ? appIdsNode.textContent : "";
         document.getElementById('edit-modal').style.display = 'flex';
-        document.getElementById('suggestions-box').style.display = 'none'; 
     };
 
     window.addCategory = async function() {
@@ -492,7 +546,6 @@ async function initDashboard() {
         if (match) {
             document.getElementById('xml-edit-area').value = match[0].trim();
             document.getElementById('edit-modal').style.display = 'flex';
-            document.getElementById('suggestions-box').style.display = 'none';
         }
     };
 
@@ -515,10 +568,7 @@ async function initDashboard() {
         await commit(updated);
     };
 
-    window.closeEdit = () => {
-        document.getElementById('edit-modal').style.display = 'none';
-        document.getElementById('suggestions-box').style.display = 'none';
-    };
+    window.closeEdit = () => { document.getElementById('edit-modal').style.display = 'none'; };
 
     window.directUpload = async function() {
         const nameVal = document.getElementById('up-name').value;
@@ -546,4 +596,3 @@ async function initDashboard() {
 </script>
 </body>
 </html>
-
