@@ -381,17 +381,48 @@ async function initDashboard() {
         });
     }
 
-    window.deleteAccount = async function(email) {
-        if(!confirm("Delete account for " + email + "?")) return;
-        status.innerText = "Deleting account...";
-        
-        const userRegex = new RegExp(`<user>\\s*<name>[\\s\\S]*?<email>${email}<\\/email>[\\s\\S]*?<\\/user>`, 'g');
-        const newContent = cachedAccountsData.content.replace(userRegex, "").replace(/\n\s*\n/g, '\n');
+window.deleteAccount = async function(email) {
+    if(!confirm("Delete account for " + email + "?")) return;
+    status.innerText = "Deleting account...";
 
+    try {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(cachedAccountsData.content, "text/xml");
+        const users = xmlDoc.getElementsByTagName("user");
+        let found = false;
+
+        // Loop through users to find the one with the matching email
+        for (let i = 0; i < users.length; i++) {
+            const userEmail = users[i].getElementsByTagName("email")[0]?.textContent;
+            if (userEmail === email) {
+                users[i].parentNode.removeChild(users[i]);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            alert("Could not find a user with that email in the XML.");
+            status.innerText = "Connected";
+            return;
+        }
+
+        // Serialize back to string
+        const newContent = new XMLSerializer().serializeToString(xmlDoc);
+
+        // Save to GitHub
         const ok = await saveFile(ACCOUNTS_FILE, newContent, cachedAccountsData.sha);
-        if(ok) location.reload();
-        else alert("Failed to delete account.");
-    };
+        if (ok) {
+            location.reload();
+        } else {
+            alert("Failed to update GitHub. Check your token permissions.");
+            status.innerText = "Error";
+        }
+    } catch (err) {
+        console.error(err);
+        alert("An error occurred while processing the XML.");
+    }
+};
 
     // ------------------------------------------
     //  AUTOCOMPLETE LOGIC
@@ -596,3 +627,4 @@ async function initDashboard() {
 </script>
 </body>
 </html>
+
