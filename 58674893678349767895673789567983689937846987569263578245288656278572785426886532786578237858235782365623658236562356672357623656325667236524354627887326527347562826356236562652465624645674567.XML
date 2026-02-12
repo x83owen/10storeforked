@@ -1,1 +1,2 @@
-<accounts />
+<?xml version="1.0" encoding="UTF-8"?>
+<accounts><user><email>lumadev@luma.com</email><password>password!</password><name>LumaDev</name><photo>https://lumaprojects.github.io/store/icons/store.png</photo></user></accounts>
