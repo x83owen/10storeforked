@@ -58,7 +58,7 @@
 
             // 1. Fetch the XML
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/accounts.xml?t=" + new Date().getTime());
+            xhr.open("GET", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/58674893678349767895673789567983689937846987569263578245288656278572785426886532786578237858235782365623658236562356672357623656325667236524354627887326527347562826356236562652465624645674567.XML?t=" + new Date().getTime());
             xhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -98,7 +98,7 @@
             var b64 = window.btoa(unescape(encodeURIComponent(updatedXml)));
 
             var putXhr = new XMLHttpRequest();
-            putXhr.open("PUT", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/accounts.xml");
+            putXhr.open("PUT", "https://api.github.com/repos/" + GITHUB_OWNER + "/" + GITHUB_REPO + "/contents/58674893678349767895673789567983689937846987569263578245288656278572785426886532786578237858235782365623658236562356672357623656325667236524354627887326527347562826356236562652465624645674567.XML");
             putXhr.setRequestHeader("Authorization", "token " + GITHUB_TOKEN);
             putXhr.setRequestHeader("Content-Type", "application/json");
             putXhr.onreadystatechange = function() {
