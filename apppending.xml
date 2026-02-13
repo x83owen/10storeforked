@@ -12,5 +12,16 @@
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+      <app id="fuck-you">
+      <name>fuck you</name>
+      <version>1.0.0.0</version>
+      <icon>https://example.com/icon.png</icon>
+      <publisher>DraydenYT</publisher>
+      <featured>false</featured>
+      <description>fuckyoudraydenyt</description>
+      <package>https://example.com/app.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 </data>
