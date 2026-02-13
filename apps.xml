@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><data>
   <categories>
     <category title="Featured" type="featured"/>
-      
-      
-      
       <category title="Games" type="picks">
       <appIds>browserquest,minecraft-for-windows,minecraft-for-windows-10-mobile,hill-climb-racing,transport-empire,rrDcTRXV,VnpOXSdk,8WvwEEYk,LhEiIzol,suVzYAz7,zLL7sl3w,tk0RL62i,wUQYvaL6,ejwJaoRi,where-s-my-water,el-chavo-juego,we-become-what-we-behold</appIds>
     </category><category title="Art" type="picks">
@@ -15,7 +12,6 @@
     </category><category title="Utilities" type="picks">
       <appIds>posxp,G8I0kPFQ,8store,browser</appIds>
     </category>
-      
       <category title="Dependencies" type="picks">
       <appIds>winjs-2-0,winjs-1-0,microsoft-vclibs-140-00-14-0-33519-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-x86,microsoft-net-native-runtime-2-2-2-2-28604-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-arm,microsoft-net-native-runtime-2-2-2-2-28604-0-arm64,microsoft-net-native-framework-2-2-2-2-29512-0-x86,microsoft-net-native-framework-2-2-2-2-29512-0-x64,microsoft-net-native-framework-2-2-2-2-29512-0-arm,microsoft-net-native-framework-2-2-2-2-29512-0-arm64,microsoft-net-native-runtime-1-1-1-1-23406-0-x86,microsoft-net-native-runtime-1-1-1-1-23406-0-x64,microsoft-net-native-runtime-1-1-1-1-23406-0-arm,microsoft-net-native-framework-1-2-1-2-23231-0-x86,microsoft-net-native-framework-1-2-1-2-23231-0-x64,microsoft-net-native-framework-1-2-1-2-23231-0-arm,microsoft-media-playreadyclient-2-2-11-2154-0-x86,microsoft-media-playreadyclient-2-2-11-2154-0-x64,microsoft-media-playreadyclient-2-2-11-2154-0-arm,microsoft-media-playreadyclient-2-3-1678-0-arm,microsoft-media-playreadyclient-2-3-1678-0-x86,microsoft-media-playreadyclient-2-3-1678-0-x64</appIds>
     </category>
@@ -559,7 +555,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-vclibs-140-00-14-0-33519-0-x64">
         <name>Microsoft.VCLibs.140.00_14.0.33519.0_x64</name>
         <version>14.0.33519.0</version>
@@ -571,7 +566,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-runtime-2-2-2-2-28604-0-x86">
         <name>Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x86</name>
         <version>2.2_2.2.28604.0</version>
@@ -583,7 +577,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-runtime-2-2-2-2-28604-0-x64">
         <name>Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x64</name>
         <version>2.2_2.2.28604.0</version>
@@ -595,7 +588,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-runtime-2-2-2-2-28604-0-arm">
         <name>Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_arm</name>
         <version>2.2_2.2.28604.0</version>
@@ -607,7 +599,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-runtime-2-2-2-2-28604-0-arm64">
         <name>Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_arm64</name>
         <version>2.2_2.2.28604.0</version>
@@ -619,7 +610,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-framework-2-2-2-2-29512-0-x86">
         <name>Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x86</name>
         <version>2.2_2.2.29512.0</version>
@@ -631,7 +621,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-framework-2-2-2-2-29512-0-x64">
         <name>Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x64</name>
         <version>2.2_2.2.29512.0</version>
@@ -643,7 +632,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-framework-2-2-2-2-29512-0-arm">
         <name>Microsoft.NET.Native.Framework.2.2_2.2.29512.0_arm</name>
         <version>2.2_2.2.29512.0</version>
@@ -655,7 +643,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-framework-2-2-2-2-29512-0-arm64">
         <name>Microsoft.NET.Native.Framework.2.2_2.2.29512.0_arm64</name>
         <version>2.2_2.2.29512.0</version>
@@ -667,7 +654,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
-
     <app id="youtube-music-metro">
         <name>YouTube Music Metro</name>
         <version>1.0.0.0</version>
@@ -679,7 +665,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-runtime-1-1-1-1-23406-0-x86">
         <name>Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_x86</name>
         <version>1.1_1.1.23406.0</version>
@@ -691,7 +676,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-runtime-1-1-1-1-23406-0-x64">
         <name>Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_x64</name>
         <version>1.1_1.1.23406.0</version>
@@ -703,7 +687,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-runtime-1-1-1-1-23406-0-arm">
         <name>Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_arm</name>
         <version>1.1_1.1.23406.0</version>
@@ -715,7 +698,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-framework-1-2-1-2-23231-0-x86">
         <name>Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x86</name>
         <version>1.2_1.2.23231.0</version>
@@ -727,7 +709,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-framework-1-2-1-2-23231-0-x64">
         <name>Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x64</name>
         <version>1.2_1.2.23231.0</version>
@@ -739,7 +720,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-framework-1-2-1-2-23231-0-arm">
         <name>Microsoft.NET.Native.Framework.1.2_1.2.23231.0_arm</name>
         <version>1.2_1.2.23231.0</version>
@@ -751,7 +731,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
-
     <app id="4shared-x86">
         <name>4shared (x86)</name>
         <version>2.0.6.0</version>
@@ -763,7 +742,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="4shared-x64">
         <name>4shared (x64)</name>
         <version>2.0.6.0</version>
@@ -775,7 +753,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="4shared-arm">
         <name>4shared (ARM)</name>
         <version>2.0.6.0</version>
@@ -787,7 +764,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
-
     <app id="microsoft-media-playreadyclient-2-2-11-2154-0-x86">
         <name>Microsoft.Media.PlayReadyClient.2_2.11.2154.0_x86</name>
         <version>2_2.11.2154.0</version>
@@ -799,7 +775,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-media-playreadyclient-2-2-11-2154-0-x64">
         <name>Microsoft.Media.PlayReadyClient.2_2.11.2154.0_x64</name>
         <version>2_2.11.2154.0</version>
@@ -811,7 +786,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-media-playreadyclient-2-2-11-2154-0-arm">
         <name>Microsoft.Media.PlayReadyClient.2_2.11.2154.0_arm</name>
         <version>2_2.11.2154.0</version>
@@ -823,7 +797,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
-
     <app id="microsoft-media-playreadyclient-2-3-1678-0-arm">
         <name>Microsoft.Media.PlayReadyClient_2.3.1678.0_arm</name>
         <version>2.3.1678.0</version>
@@ -835,7 +808,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
-
     <app id="microsoft-media-playreadyclient-2-3-1678-0-x86">
         <name>Microsoft.Media.PlayReadyClient_2.3.1678.0_x86</name>
         <version>2.3.1678.0</version>
@@ -847,7 +819,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-media-playreadyclient-2-3-1678-0-x64">
         <name>Microsoft.Media.PlayReadyClient_2.3.1678.0_x64</name>
         <version>2.3.1678.0</version>
@@ -859,18 +830,6 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
-<app id="luma-shorts">
-      <name>Luma Shorts</name>
-      <version>1.0.0.0</version>
-      <icon>https://owentechv.github.io/shorts/apps/shorts.png</icon>
-      <publisher>Luma</publisher>
-      <featured>false</featured>
-      <description>a short form content app developed by Owen. this is the pc only build it uses edge webview. Have any issues with the app? DM bingweather on Discord</description>
-      <package>https://owentechv.github.io/shorts/apps/pc/Luma%20Shorts%20v1.0%20(PC%20Webview).appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
-
     <app id="8store">
         <name>8Store</name>
         <version>5.3.0.0</version>
