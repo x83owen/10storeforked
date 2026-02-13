@@ -14,12 +14,12 @@
     </app>
       <app id="fuck-you">
       <name>fuck you</name>
-      <version>1.0.0.0</version>
+      <version>6.7.6.7</version>
       <icon>https://example.com/icon.png</icon>
       <publisher>DraydenYT</publisher>
       <featured>false</featured>
       <description>fuckyoudraydenyt</description>
-      <package>https://example.com/app.appx</package>
+      <package>https://10storedraydenyt.netlify.app/accounts.xml.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
