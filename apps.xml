@@ -395,7 +395,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <version>1.10.0.58</version>
       <icon>https://i.ibb.co/NdR8FGqk/channels4-profile.jpg</icon>
       <publisher>Netflix, Inc</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description/>
       <package>https://dl.dankassassin368.com/4DF9E0F8.Netflix_1.10.0.58_x64__mcm4njqhnhss8.appx</package>
       <pcCapable>true</pcCapable>
