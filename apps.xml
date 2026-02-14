@@ -329,7 +329,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <version>4.0.21.0</version>
       <icon>https://10storedraydenyt.netlify.app/icons/XW2VB89E-App%20Icon.altform-unplated_targetsize-256.png</icon>
       <publisher>Ryken Studio</publisher>
-      <featured>false</featured>
+      <featured>true</featured>
       <description>Watch YouTube videos on your Lumia device.</description>
       <package>https://dl.dankassassin368.com/myTubeBeta_4.0.21.0_arm.Appx</package>
       <pcCapable>false</pcCapable>
