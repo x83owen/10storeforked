@@ -23,16 +23,5 @@
       <pcCapable>true</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
-      <app id="test">
-      <name>test</name>
-      <version>0.0.0.0</version>
-      <icon>https://test.png</icon>
-      <publisher>test</publisher>
-      <featured>false</featured>
-      <description></description>
-      <package>https://test.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>true</mobileCapable>
-    </app>
   </apps>
 </data>
