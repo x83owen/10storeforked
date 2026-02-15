@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-      <app id="smilling-bag-clicker">
-      <name>Smilling Bag Clicker</name>
-      <version>1.0.0.0</version>
-      <icon>https://i.ibb.co/4ZfhZsHg/53-20260214110142.png</icon>
-      <publisher>Smilling Bag</publisher>
-      <featured>false</featured>
-      <description></description>
-      <package>https://www.mediafire.com/file/q1w299lx7kds2i8/SmileBagClick_1.0.0.0_AnyCPU.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
   </apps>
 </data>
