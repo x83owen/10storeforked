@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
+      <app id="bing-news-newrreiled">
+      <name>Bing News (newrReiled)</name>
+      <version>4.3.193.0</version>
+      <icon>https://i.ibb.co/f31VVzM/News-ico.png</icon>
+      <publisher>Microsoft</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Retiled%20Project/newRetiled%20-%20UWP/1507/News/Microsoft.BingNews_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
   </apps>
 </data>
