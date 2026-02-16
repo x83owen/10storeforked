@@ -8,7 +8,7 @@
     </category><category title="Video" type="picks">
       <appIds>vlc-uwp,GrJoGJjh,dY265Bi3,XW2VB89E,Y0wouMtZ,g9QQPJD0</appIds>
     </category><category title="Social" type="picks">
-      <appIds>kRSswZ9K,9XrDWeBp</appIds>
+      <appIds>kRSswZ9K,9XrDWeBp,bing-news-newrreiled</appIds>
     </category><category title="Utilities" type="picks">
       <appIds>posxp,G8I0kPFQ,8store,browser</appIds>
     </category>
@@ -22,7 +22,7 @@
       <appIds>vlc-uwp,Y0wouMtZ,g9QQPJD0</appIds>
     </category>
       <category title="Food and Dining" type="picks">
-      <appIds></appIds>
+      <appIds/>
     </category>
   </categories>
   <apps>
@@ -912,7 +912,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <icon>https://i.ibb.co/f31VVzM/News-ico.png</icon>
       <publisher>Microsoft</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://appxboxdl.dankassassin368.com/APPX/Retiled%20Project/newRetiled%20-%20UWP/1507/News/Microsoft.BingNews_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
