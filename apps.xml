@@ -19,7 +19,7 @@
     </category>
       
       <category title="Movies/TV" type="picks">
-      <appIds></appIds>
+      <appIds>vlc-uwp,Y0wouMtZ</appIds>
     </category>
   </categories>
   <apps>
@@ -898,7 +898,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <icon>https://i.ibb.co/4ZfhZsHg/53-20260214110142.png</icon>
       <publisher>Smilling Bag</publisher>
       <featured>true</featured>
-      <description></description>
+      <description/>
       <package>https://www.mediafire.com/file/q1w299lx7kds2i8/SmileBagClick_1.0.0.0_AnyCPU.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
