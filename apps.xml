@@ -21,6 +21,9 @@
       <category title="Movies/TV" type="picks">
       <appIds>vlc-uwp,Y0wouMtZ,g9QQPJD0</appIds>
     </category>
+      <category title="Food & Dining" type="picks">
+      <appIds></appIds>
+    </category>
   </categories>
   <apps>
     <app id="fresh-paint">
