@@ -18,6 +18,9 @@
       <appIds>drayai,0Mm2fpUA,youtube-music-metro</appIds>
     </category>
       
+      <category title="Movies/TV" type="picks">
+      <appIds></appIds>
+    </category>
   </categories>
   <apps>
     <app id="fresh-paint">
