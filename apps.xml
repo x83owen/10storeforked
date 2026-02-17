@@ -12,10 +12,10 @@
     </category><category title="Utilities" type="picks">
       <appIds>posxp,G8I0kPFQ,8store,browser</appIds>
     </category>
-      <category title="Dependencies" type="picks">
-      <appIds>winjs-2-0,winjs-1-0,microsoft-vclibs-140-00-14-0-33519-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-x86,microsoft-net-native-runtime-2-2-2-2-28604-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-arm,microsoft-net-native-runtime-2-2-2-2-28604-0-arm64,microsoft-net-native-framework-2-2-2-2-29512-0-x86,microsoft-net-native-framework-2-2-2-2-29512-0-x64,microsoft-net-native-framework-2-2-2-2-29512-0-arm,microsoft-net-native-framework-2-2-2-2-29512-0-arm64,microsoft-net-native-runtime-1-1-1-1-23406-0-x86,microsoft-net-native-runtime-1-1-1-1-23406-0-x64,microsoft-net-native-runtime-1-1-1-1-23406-0-arm,microsoft-net-native-framework-1-2-1-2-23231-0-x86,microsoft-net-native-framework-1-2-1-2-23231-0-x64,microsoft-net-native-framework-1-2-1-2-23231-0-arm,microsoft-media-playreadyclient-2-2-11-2154-0-x86,microsoft-media-playreadyclient-2-2-11-2154-0-x64,microsoft-media-playreadyclient-2-2-11-2154-0-arm,microsoft-media-playreadyclient-2-3-1678-0-arm,microsoft-media-playreadyclient-2-3-1678-0-x86,microsoft-media-playreadyclient-2-3-1678-0-x64</appIds>
-    </category><category title="Movies/TV" type="picks">
+      <category title="Movies/TV" type="picks">
       <appIds>vlc-uwp,Y0wouMtZ,g9QQPJD0</appIds>
+    </category><category title="Dependencies" type="picks">
+      <appIds>winjs-2-0,winjs-1-0,microsoft-vclibs-140-00-14-0-33519-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-x86,microsoft-net-native-runtime-2-2-2-2-28604-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-arm,microsoft-net-native-runtime-2-2-2-2-28604-0-arm64,microsoft-net-native-framework-2-2-2-2-29512-0-x86,microsoft-net-native-framework-2-2-2-2-29512-0-x64,microsoft-net-native-framework-2-2-2-2-29512-0-arm,microsoft-net-native-framework-2-2-2-2-29512-0-arm64,microsoft-net-native-runtime-1-1-1-1-23406-0-x86,microsoft-net-native-runtime-1-1-1-1-23406-0-x64,microsoft-net-native-runtime-1-1-1-1-23406-0-arm,microsoft-net-native-framework-1-2-1-2-23231-0-x86,microsoft-net-native-framework-1-2-1-2-23231-0-x64,microsoft-net-native-framework-1-2-1-2-23231-0-arm,microsoft-media-playreadyclient-2-2-11-2154-0-x86,microsoft-media-playreadyclient-2-2-11-2154-0-x64,microsoft-media-playreadyclient-2-2-11-2154-0-arm,microsoft-media-playreadyclient-2-3-1678-0-arm,microsoft-media-playreadyclient-2-3-1678-0-x86,microsoft-media-playreadyclient-2-3-1678-0-x64</appIds>
     </category><category title="10Store Exclusive" type="picks">
       <appIds>drayai,0Mm2fpUA,youtube-music-metro</appIds>
     </category>
