@@ -917,5 +917,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="microsoft-net-native-framework-1-7">
+        <name>Microsoft.NET.Native.Framework.1.7</name>
+        <version>1.7.0.0</version>
+        <icon>https://i.imgur.com/VbllZ5i.jpeg</icon>
+        <publisher>Microslop</publisher>
+        <featured>false</featured>
+        <description></description>
+        <package>https://github.com/j00sean/SimpleWebView/blob/6073dcdfe41f277ffb6d7aa60d7702634791c4fb/SimpleWebView/AppPackages/SimpleWebView_1.0.0.0_Test/Dependencies/x64/Microsoft.NET.Native.Framework.1.7.appx</package>
+        <pcCapable>true</pcCapable>
+        <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
