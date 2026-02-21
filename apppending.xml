@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
+      <app id="appscreenshotuploadtest">
+      <name>AppScreenshotUploadTest</name>
+      <version>0.0.0.0</version>
+      <icon>https://logodix.com/logo/452234.png</icon>
+      <publisher>AppScreenshotUploadTest</publisher>
+      <featured>false</featured>
+      <description>https://logodix.com/logo/452234.png</description>
+      <package>https://logodix.com/logo/452234.appx</package>
+      <screenshot1>https://bsmedia.business-standard.com/_media/bs/img/article/2023-04/17/full/1681709083-9538.jpg</screenshot1>
+      <screenshot2>https://512pixels.net/wp-content/uploads/2023/01/R013-1-scaled.jpg</screenshot2>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 </data>
