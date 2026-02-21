@@ -1028,5 +1028,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="tunein-radio-newretiled">
+      <name>TuneIn Radio (newRetiled)</name>
+      <version>1.1.0.0</version>
+      <icon>https://store-images.s-microsoft.com/image/apps.54317.9007199266246398.13ae1982-0ddc-4697-89ae-c145a3ee8bf8.dd516714-0f7d-4ddf-9ef2-a987741a8ad6?w=191&amp;h=191</icon>
+      <publisher>Unknown</publisher>
+      <featured>false</featured>
+      <description>TuneIn Radio is a new way to listen to music, sports, and news from every corner of the earth, with over 60,000 radio stations and 2 million on-demand programs.</description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Retiled%20Project/Apptravaganza%21/Tunedin/Tuneinv1.1.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
