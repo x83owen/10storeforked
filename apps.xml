@@ -974,5 +974,20 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="collection-of-windows-startup-sounds">
+      <name>Collection of Windows Startup Sounds</name>
+      <version>1.1.0.8</version>
+      <icon>https://store-images.s-microsoft.com/image/apps.43902.9007199266630246.00c95c64-dd8a-44e1-85ff-35f403176981.4bccd42a-b67d-473d-9156-5cd8a0eb2987</icon>
+      <publisher>NazumsLabs</publisher>
+      <featured>false</featured>
+      <description>Explore the collection of startup and shutdown sounds used in various versions of Windows operating systems. This application also has startup and shutdown sounds from unreleased versions of Windows, including Windows NT 5.0 beta and Windows Longhorn! Get great insight and fun facts on various sounds from the \"Did you Know\" boxes. Enjoy beautiful pictures, many of which show the packaging of the retail release of a particular Windows version. Note: Windows is a Trademark of Microsoft Corporation. The logos and sounds used in this application are own by Microsoft Corporation and are used for educational purposes only.</description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/Collection%20of%20Windows%20Startup%20Sounds/37308NazmusLabs.CollectionofWindowsStartupSounds_1.1.0.8_neutral__rgt1746k2d010.appx</package>
+      <screenshot1>https://store-images.s-microsoft.com/image/apps.23521.9007199266630246.f45c9e7e-0077-4b9e-80ae-b6c99978e8db.40e96d47-881f-4695-bfd8-a8b1529ad8de</screenshot1>
+      <screenshot2>https://store-images.s-microsoft.com/image/apps.20128.9007199266630246.dc2255b4-60b4-4420-9525-8c9f013a8cf6.74080dd2-0af5-4c2e-9849-a2e4a4320770</screenshot2>
+      <screenshot3>https://store-images.s-microsoft.com/image/apps.1561.9007199266630246.cff274cd-956c-4ab8-b4f7-4c58a676cca5.bc1d2b23-1e0c-4342-b6a1-13c2f2ec3c62</screenshot3>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
