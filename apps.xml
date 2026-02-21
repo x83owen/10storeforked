@@ -1040,5 +1040,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="00-s-radio">
+      <name>00's Radio</name>
+      <version>1.1.0.0</version>
+      <icon>https://i.ibb.co/5WH1VBgX/logo-scale-100.png</icon>
+      <publisher>Futuristic</publisher>
+      <featured>false</featured>
+      <description>radio station live</description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Retiled%20Project/Apptravaganza%21/00%27s%20Radio/9656Futuristic.00sRadio_1.1.0.0_neutral__qn8ee0v676waw.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
