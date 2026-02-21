@@ -116,6 +116,15 @@
         return name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
     }
 
+    // Helper function to escape special XML characters
+    function escapeXml(unsafe) {
+        return unsafe.replace(/&/g, '&amp;')
+                     .replace(/</g, '&lt;')
+                     .replace(/>/g, '&gt;')
+                     .replace(/"/g, '&quot;')
+                     .replace(/'/g, '&apos;');
+    }
+
     function validateForm() {
         const isNameValid = nameInput.value.trim().length > 0;
         const isPubValid = pubInput.value.trim().length > 0;
@@ -198,14 +207,15 @@
         status.innerText = "Connecting...";
         status.style.color = "black";
         
+        // Escape all user inputs before adding them to the XML
         const xmlSnippet = `<app id="${appId}">
-      <name>${nameValue}</name>
-      <version>${verInput.value.trim()}</version>
-      <icon>${iconInput.value.trim()}</icon>
-      <publisher>${pubInput.value.trim()}</publisher>
+      <name>${escapeXml(nameValue)}</name>
+      <version>${escapeXml(verInput.value.trim())}</version>
+      <icon>${escapeXml(iconInput.value.trim())}</icon>
+      <publisher>${escapeXml(pubInput.value.trim())}</publisher>
       <featured>false</featured>
-      <description>${descInput.value.trim()}</description>
-      <package>${pkgInput.value.trim()}</package>
+      <description>${escapeXml(descInput.value.trim())}</description>
+      <package>${escapeXml(pkgInput.value.trim())}</package>
       <pcCapable>${pcCheck.checked}</pcCapable>
       <mobileCapable>${mobileCheck.checked}</mobileCapable>
     </app>`;
@@ -216,11 +226,31 @@
             status.innerText = `Success! "${nameValue}" is now pending.`;
             status.style.color = "#107c10";
             
+            // Send webhook
             fetch(webhookNotify, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ content: `🚀 **App Submitted:** ${nameValue} (ID: ${appId})` })
             });
+
+            // Clear the form fields
+            nameInput.value = "";
+            pubInput.value = "";
+            verInput.value = "";
+            iconInput.value = "";
+            pkgInput.value = "";
+            descInput.value = "";
+            pcCheck.checked = true;
+            mobileCheck.checked = true;
+
+            // Reset character counters
+            document.getElementById("nameCount").innerText = "0 / 30";
+            document.getElementById("pubCount").innerText = "0 / 30";
+            document.getElementById("descCount").innerText = "0 / 300";
+
+            // Keep submit disabled until the form is filled out again
+            submitBtn.disabled = true;
+
         } else {
             status.innerText = "Upload failed. Check console (F12) for details.";
             status.style.color = "#e81123";
@@ -231,5 +261,6 @@
     </script>
 </body>
 </html>
+
 
 
