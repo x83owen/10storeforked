@@ -1016,5 +1016,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="lenovo-support">
+      <name>Lenovo Support</name>
+      <version>1.2.5.0</version>
+      <icon>https://i.ibb.co/nsn3nMsY/id-P5a8-Cd-GX.jpg</icon>
+      <publisher>LenovoCorp</publisher>
+      <featured>false</featured>
+      <description>Lenovo PC Support</description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/Lenovo%20Support/E046963F.LenovoSupport_1.2.5.0_x86__k1h2ywk1493x8.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
