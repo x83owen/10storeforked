@@ -21,9 +21,6 @@
     </category><category title="10Store Exclusive" type="picks">
       <appIds>drayai,0Mm2fpUA,youtube-music-metro</appIds>
     </category>
-      
-      
-      
   </categories>
   <apps>
     <app id="fresh-paint">
@@ -922,7 +919,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="microsoft-net-native-framework-1-7">
         <name>Microsoft.NET.Native.Framework.1.7</name>
         <version>1.7.0.0</version>
@@ -933,19 +929,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
         <package>https://github.com/j00sean/SimpleWebView/blob/6073dcdfe41f277ffb6d7aa60d7702634791c4fb/SimpleWebView/AppPackages/SimpleWebView_1.0.0.0_Test/Dependencies/x64/Microsoft.NET.Native.Framework.1.7.appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
-    </app>
-<app id="appscreenshotuploadtest">
-      <name>AppScreenshotUploadTest</name>
-      <version>0.0.0.0</version>
-      <icon>https://logodix.com/logo/452234.png</icon>
-      <publisher>AppScreenshotUploadTest</publisher>
-      <featured>false</featured>
-      <description>https://logodix.com/logo/452234.png</description>
-      <package>https://logodix.com/logo/452234.appx</package>
-      <screenshot1>https://bsmedia.business-standard.com/_media/bs/img/article/2023-04/17/full/1681709083-9538.jpg</screenshot1>
-      <screenshot2>https://512pixels.net/wp-content/uploads/2023/01/R013-1-scaled.jpg</screenshot2>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>true</mobileCapable>
     </app>
 </apps>
 </data>
