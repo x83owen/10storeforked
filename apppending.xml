@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-      <app id="msn-weather-newretiled">
-      <name>MSN Weather (newRetiled)</name>
-      <version>3.0.4.214</version>
-      <icon>https://i.ibb.co/jkMQjNNy/weather.png</icon>
-      <publisher>Microsoft Corporation</publisher>
-      <featured>false</featured>
-      <description>MSN Weather: The best way to plan your day. Get the latest weather conditions, whether you're hitting the slopes, or the beach, or checking the forecast for your commute. See accurate 10-day and hourly forecasts for whatever you do. Patched with newRetiled, credit to migbrunluz.</description>
-      <package>https://appxboxdl.dankassassin368.com/APPX/Retiled%20Project/newRetiled/x64/MSN/Win8.1%20%282014u%29/Weather/Microsoft.BingWeather_3.0.4.214_x64__8wekyb3d8bbwe.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
       <app id="adobe-photoshop-express">
       <name>Adobe Photoshop Express</name>
       <version>1.2.1.17</version>
