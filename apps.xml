@@ -989,5 +989,20 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="comix">
+      <name>Comix</name>
+      <version>16.0.6.113</version>
+      <icon>https://www.logotypes101.com/logos/368/089733C0D182606DE1C052D4CCB078F7/Comix.png</icon>
+      <publisher>ObjectSpaces</publisher>
+      <featured>false</featured>
+      <description>Comix is a comic reader supporting CBZ, CBR, CB7, ZIP, RAR, and 7z formats. For everyone who have a small or large collection, a library mode allows you to browse your books by cover, just select the folder / folders where you store your collections. It supports unlimited subfolders and switch the view between Books and Folders (sub collections) The reader allows pages to be maximised, fit to screen, rotated, joined and browse in thumbnail mode. You can also share individual pages using the Share Charm. Full support for landscape and portrait mode, when in landscape you can read in double page mode. You can switch the reading, and gestures. Left to Right - Right to Left You can mark your books as read in your local library and filter them in your collections. Please see the features below for help on usage. Thanks to everyone for your comments, requests and support. Please continue sending your emails at support.comix@objectspaces.info or in our facebook page http://www.facebook.com/comixwindows. In the unlikely event there is a bug please report them at the same email. NOTE: We cannot respond to reviews so please contact us directly for any request or issue.</description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/Comix/17923ObjectSpaces.ComicReader_16.0.6.113_x64__xbmd8rqpt9rw4.appx</package>
+      <screenshot1>https://store-images.microsoft.com/image/apps.11129.9007199266251779.fafa4aef-76ea-4566-a7d5-297cbfc49e10.4a4293cd-d4ea-4329-b4f4-d824b08c6ef9</screenshot1>
+      <screenshot2>https://store-images.microsoft.com/image/apps.25810.9007199266251779.d3dd4ca7-4c89-499c-b406-0e2214022780.6bb42b85-cd99-4c1e-8727-62d73b0aeb62</screenshot2>
+      <screenshot3>https://store-images.microsoft.com/image/apps.58538.9007199266251779.7ccba4d2-b233-4c85-a459-eb008696afef.ea4c6853-5e37-476c-ad92-1fc425a3f096</screenshot3>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
