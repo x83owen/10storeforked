@@ -23,5 +23,19 @@
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+      <app id="msn-health-fitness">
+      <name>MSN Health & Fitness</name>
+      <version>3.0.4.212</version>
+      <icon>https://i0.wp.com/www.nokiapoweruser.com/wp-content/uploads/2014/02/9d115c03-4c5f-4d0d-8da5-40639fc300a8.png</icon>
+      <publisher>Microsoft Corporation</publisher>
+      <featured>false</featured>
+      <description>MSN Health & Fitness helps you keep track of your health, check activities, workouts, nutrition and others. Patched with newRetiled, credit to migbrunluz.</description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Retiled%20Project/newRetiled/x64/MSN/Win8.1%20%282014u%29/Health%20&%20Fitness/Microsoft.BingHealthAndFitness_3.0.4.212_x64__8wekyb3d8bbwe.appx</package>
+      <screenshot1>https://dankassassin368.com/random/icons/95e4cf447d5714e67ec0b76d4fd944a4.png</screenshot1>
+      <screenshot2>https://dankassassin368.com/random/icons/8e4288d2e5a30b0a464dff8912e95694.png</screenshot2>
+      <screenshot3>https://dankassassin368.com/random/icons/82215fb84069413e9d858c48655bf23a.png</screenshot3>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
   </apps>
 </data>
