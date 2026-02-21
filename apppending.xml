@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
+      <app id="test">
+      <name>test</name>
+      <version>0.0.0.0</version>
+      <icon>https://logodix.com/logo/452234.png</icon>
+      <publisher>test</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://logodix.com/logo/452234.appx</package>
+      <screenshot1>https://www.youtube.com/watch?v=XkoG4KHu-aY</screenshot1>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
   </apps>
 </data>
