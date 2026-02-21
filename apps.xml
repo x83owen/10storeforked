@@ -1004,5 +1004,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="news-live-tiles">
+      <name>News Live Tiles</name>
+      <version>15.0.4.0</version>
+      <icon>https://store-images.microsoft.com/image/apps.22228.9007199266683549.8b6068d8-7b19-4735-bdbe-ddd5d92a00a8.20b66e9b-b4ac-431c-a8b7-ad52dfd9ce07?h=310</icon>
+      <publisher>Koode</publisher>
+      <featured>false</featured>
+      <description>Are you also missing a live tile for your favorite news site? With News Live Tiles you can easily create them yourselves within seconds! The live tiles will update automatically with the latest news from the site.    - Notifications and live tile updates for new news items  - Support for almost all news sites  - Find the settings of your favorite site via the search function  - Pin sites from in the sample collection for free; for other sites an in-app purchase is required  - Universal app (Windows and Windows Phone versions): the in-app purchase is valid for both, and your collection is synced between both    Copyright on the news from the feeds remains at its owners. If you would like to have your feed removed from the in-app collection, please contact newslivetiles@outlook.com.</description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Retiled%20Project/Apptravaganza%21/News%20Live%20Tiles/52487Koode.56414CB813359_1.5.0.4_neutral__m1bqtb7san9p0.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
