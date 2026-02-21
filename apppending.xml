@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
-      <app id="adobe-photoshop-express">
-      <name>Adobe Photoshop Express</name>
-      <version>1.2.1.17</version>
-      <icon>https://i.ibb.co/Ps7jfttp/Large-Logo-scale-80.png</icon>
-      <publisher>Adobe</publisher>
-      <featured>false</featured>
-      <description>Download Photoshop Express and start exploring. Edit photos and videos, add creative effects, and more with Photoshop Express.</description>
-      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/Adobe%20Photoshop%20Express/AdobeSystemsIncorporated.AdobePhotoshopExpressOEM_1.2.1.17_x64__ynb6jyjzte8ga.appx</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>false</mobileCapable>
-    </app>
       <app id="msn-health-fitness">
       <name>MSN Health &amp; Fitness (newRetiled)</name>
       <version>3.0.4.212</version>
