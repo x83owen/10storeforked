@@ -18,7 +18,7 @@
     </category>
       <category title="Dependencies" type="picks">
       <appIds>winjs-2-0,winjs-1-0,microsoft-vclibs-140-00-14-0-33519-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-x86,microsoft-net-native-runtime-2-2-2-2-28604-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-arm,microsoft-net-native-runtime-2-2-2-2-28604-0-arm64,microsoft-net-native-framework-2-2-2-2-29512-0-x86,microsoft-net-native-framework-2-2-2-2-29512-0-x64,microsoft-net-native-framework-2-2-2-2-29512-0-arm,microsoft-net-native-framework-2-2-2-2-29512-0-arm64,microsoft-net-native-runtime-1-1-1-1-23406-0-x86,microsoft-net-native-runtime-1-1-1-1-23406-0-x64,microsoft-net-native-runtime-1-1-1-1-23406-0-arm,microsoft-net-native-framework-1-2-1-2-23231-0-x86,microsoft-net-native-framework-1-2-1-2-23231-0-x64,microsoft-net-native-framework-1-2-1-2-23231-0-arm,microsoft-media-playreadyclient-2-2-11-2154-0-x86,microsoft-media-playreadyclient-2-2-11-2154-0-x64,microsoft-media-playreadyclient-2-2-11-2154-0-arm,microsoft-media-playreadyclient-2-3-1678-0-arm,microsoft-media-playreadyclient-2-3-1678-0-x86,microsoft-media-playreadyclient-2-3-1678-0-x64</appIds>
-    </category><category title="10Store Exclusive" type="picks">
+    </category><category title="not 10Store Exclusive" type="picks">
       <appIds>drayai,0Mm2fpUA,youtube-music-metro</appIds>
     </category>
   </categories>
@@ -933,7 +933,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
         <icon>https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small_2x/window-10-logo-window-10-icon-transparent-free-png.png</icon>
         <publisher>Microslop</publisher>
         <featured>false</featured>
-        <description></description>
+        <description/>
         <package>https://github.com/j00sean/SimpleWebView/blob/6073dcdfe41f277ffb6d7aa60d7702634791c4fb/SimpleWebView/AppPackages/SimpleWebView_1.0.0.0_Test/Dependencies/x64/Microsoft.NET.Native.Framework.1.7.appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
@@ -1151,7 +1151,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <icon>https://i.ibb.co/Lzg092vC/microsoft-jigsaw-1622463766-0.png</icon>
       <publisher>Microsoft Studios</publisher>
       <featured>false</featured>
-      <description></description>
+      <description/>
       <package>https://appxboxdl.dankassassin368.com/APPX/Windows%2010%20APPX%20Files/Games/Microsoft%20Jigsaw/Microsoft.MicrosoftJigsaw_1.7.1808.2102_x86__8wekyb3d8bbwe.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
