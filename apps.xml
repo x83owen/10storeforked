@@ -1148,5 +1148,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="surface-hub">
+      <name>Surface Hub</name>
+      <version>2015.529.1905.5634</version>
+      <icon>https://i.ibb.co/YF3j5pJW/surface.png</icon>
+      <publisher>Microsoft Corporation</publisher>
+      <featured>false</featured>
+      <description>Learn more about your Microsoft Surface RT/Pro/Go within this</description>
+      <package>https://dl.dankassassin368.com/Microsoft.SurfaceHub_2015.529.1905.5634_neutral_~_8wekyb3d8bbwe.AppxBundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
