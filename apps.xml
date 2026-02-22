@@ -1100,5 +1100,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="windows-camera">
+      <name>Windows Camera</name>
+      <version>6.2.8514.0</version>
+      <icon>https://i.ibb.co/cShSbLrx/logo-contrast-black-scale-80.png</icon>
+      <publisher>Microsoft Corporation</publisher>
+      <featured>false</featured>
+      <description>Use Windows Camera application to take photos and record videos using your laptop's webcam or external webcam. App is x64.</description>
+      <package>https://dl.dankassassin368.com/Microsoft.Camera_6.2.8514.0_x64__8wekyb3d8bbwe.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
