@@ -1112,5 +1112,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="windows-photos">
+      <name>Windows Photos</name>
+      <version>16.4.4204.712</version>
+      <icon>https://i.ibb.co/vxWSkZmP/Win8-Photos.png</icon>
+      <publisher>Microsoft Corporation</publisher>
+      <featured>false</featured>
+      <description>Use Windows Photos application to organize your photos, make albums. You can use this app in pair with Windows Camera to import the photos from your external device. You can also connect to SkyDrive or Flickr to get photos from your friends and your cloud. This app is 8.0 compatible and also x64.</description>
+      <package>https://dl.dankassassin368.com/microsoft.windowsphotos_16.4.4204.712_x64__8wekyb3d8bbwe.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
