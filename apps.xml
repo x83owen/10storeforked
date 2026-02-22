@@ -780,7 +780,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <featured>false</featured>
         <description>4shared is like a large virtual folder for your data. You can access your files anytime you need, being sure that they are always kept safe in your 4shared account. In addition, 4shared enables you to share links to your content with others.</description>
         <package>https://dl.dankassassin368.com/4shared.Application_2.0.6.0_ARM.appx</package>
-        <pcCapable>true</pcCapable>
+        <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
     <app id="microsoft-media-playreadyclient-2-2-11-2154-0-x86">
