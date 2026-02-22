@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <data>
   <apps>
+      <app id="microsoft-jigsaw">
+      <name>Microsoft Jigsaw</name>
+      <version>1.7.1808.2102</version>
+      <icon>https://i.ibb.co/Lzg092vC/microsoft-jigsaw-1622463766-0.png</icon>
+      <publisher>Microsoft Studios</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%2010%20APPX%20Files/Games/Microsoft%20Jigsaw/Microsoft.MicrosoftJigsaw_1.7.1808.2102_x86__8wekyb3d8bbwe.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
   </apps>
 </data>
