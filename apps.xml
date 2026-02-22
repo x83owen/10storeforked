@@ -1171,5 +1171,16 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+  <app id="alarm-clock-hd">
+      <name>Alarm Clock HD</name>
+      <version>7.0.1.0</version>
+      <icon>https://lumaprojects.github.io/cdn/store/images/alarmclockinhd.png</icon>
+      <publisher>ANTARA SOFTWARE and CONSULTING PRIVATE LIMITED</publisher>
+      <featured>false</featured>
+      <description></description>
+      <package>https://github.com/lumaprojects/cdn/releases/download/appx/AntaraSoftware.AlarmClockHD_6.1.2.0_neutral_._7jhd16s0b93qm.AppxBundle</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>true</mobileCapable>
+    </app>
 </apps>
 </data>
