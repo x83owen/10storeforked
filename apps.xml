@@ -1136,5 +1136,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="chrisrlillo-music">
+      <name>ChrisRLillo Music</name>
+      <version>1.2.0.0</version>
+      <icon>https://i.ibb.co/Y7xW0ZP7/Chris-RLillo-1280x820-1.png</icon>
+      <publisher>DraydenYT, ChrisRLillo, Dank, Migbrunluz</publisher>
+      <featured>false</featured>
+      <description>Discover the world of Chrisrlillo in a sleek, modern Metro interface designed for Windows 8. This app brings the full experience of Chrisrlillo\u2019s music directly to your Start screen, offering fast, touch-friendly navigation and a clean design that feels right at home.</description>
+      <package>https://dl.dankassassin368.com/Chrisrlillomusicv1.2.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
