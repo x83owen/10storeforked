@@ -1076,5 +1076,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="sonic-dash">
+      <name>Sonic Dash</name>
+      <version>3.6.4.0</version>
+      <icon>https://upload.wikimedia.org/wikipedia/en/3/39/Sonic_Dash.jpg</icon>
+      <publisher>Sega Networks Inc.</publisher>
+      <featured>false</featured>
+      <description>Endless runner action has never been faster with Sonic Dash! Feel the speed in this mobile adventure game as you navigate fun 3D runner race courses with Sonic the Hedgehog, Knuckles, Tails, Shadow, and more. Collect rings, race past challenging obstacles, and battle epic bosses in this fast running game by SEGA! Sonic Dash is a fun run game for kids and adults alike.</description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Games/Sonic%20Dash/SegaNetworksInc.56538047DFC80_3.6.4.0_x86__as33fap47kd3c.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
