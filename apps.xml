@@ -1204,5 +1204,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="hive-fm">
+      <name>Hive FM</name>
+      <version>1.1.0.0</version>
+      <icon>https://dankassassin368.com/random/icons/a66b65a6c5281b92902656c3e6e49d22.png</icon>
+      <publisher>DraydenYT</publisher>
+      <featured>false</featured>
+      <description>Hive FM app</description>
+      <package>https://dl.dankassassin368.com/All%20DrayApps%20patched%20to%20remove%20update%20check/Hive%20FM/HiveFM1.1.0.0.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
