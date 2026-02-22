@@ -1052,5 +1052,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="vclibs-110-x86">
+      <name>VCLibs 110 (x86)</name>
+      <version>11.0.51106.1</version>
+      <icon>https://icons.iconarchive.com/icons/dakirby309/windows-8-metro/256/Folders-OS-Windows-8-Metro-icon.png</icon>
+      <publisher>Microsoft Corporation</publisher>
+      <featured>false</featured>
+      <description>Dependency made for Windows 8.0 applications.</description>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Dependencies/Windows%208.0%20APPX%20Dependencies/VCLibs/11.0.51106.1/Microsoft.VCLibs.110.00_11.0.51106.1_x86__8wekyb3d8bbwe.Appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
