@@ -974,7 +974,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="collection-of-windows-startup-sounds">
       <name>Collection of Windows Startup Sounds</name>
       <version>1.1.0.8</version>
@@ -989,7 +988,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="comix">
       <name>Comix</name>
       <version>16.0.6.113</version>
@@ -1004,7 +1002,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="news-live-tiles">
       <name>News Live Tiles</name>
       <version>15.0.4.0</version>
@@ -1016,7 +1013,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="lenovo-support">
       <name>Lenovo Support</name>
       <version>1.2.5.0</version>
@@ -1028,7 +1024,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="tunein-radio-newretiled">
       <name>TuneIn Radio (newRetiled)</name>
       <version>1.1.0.0</version>
@@ -1040,7 +1035,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="00-s-radio">
       <name>00's Radio</name>
       <version>1.1.0.0</version>
@@ -1052,7 +1046,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="vclibs-110-x86">
       <name>VCLibs 110 (x86)</name>
       <version>11.0.51106.1</version>
@@ -1064,7 +1057,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="vclibs-120-x64">
       <name>VCLibs 120 (x64)</name>
       <version>12.0.21005.1</version>
@@ -1076,7 +1068,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="sonic-dash">
       <name>Sonic Dash</name>
       <version>3.6.4.0</version>
@@ -1088,7 +1079,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="media-playready-2-x64">
       <name>Media PlayReady 2 x64</name>
       <version>2.11.2154.0</version>
@@ -1100,7 +1090,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="windows-camera">
       <name>Windows Camera</name>
       <version>6.2.8514.0</version>
@@ -1112,7 +1101,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="windows-photos">
       <name>Windows Photos</name>
       <version>16.4.4204.712</version>
@@ -1124,7 +1112,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="flappy-bird">
       <name>Flappy Bird</name>
       <version>2.1.0.0</version>
@@ -1136,7 +1123,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="chrisrlillo-music">
       <name>ChrisRLillo Music</name>
       <version>1.2.0.0</version>
@@ -1148,7 +1134,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-
     <app id="surface-hub">
       <name>Surface Hub</name>
       <version>2015.529.1905.5634</version>
@@ -1170,17 +1155,6 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <package>https://appxboxdl.dankassassin368.com/APPX/Windows%2010%20APPX%20Files/Games/Microsoft%20Jigsaw/Microsoft.MicrosoftJigsaw_1.7.1808.2102_x86__8wekyb3d8bbwe.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
-    </app>
-  <app id="alarm-clock-hd">
-      <name>Alarm Clock HD</name>
-      <version>7.0.1.0</version>
-      <icon>https://lumaprojects.github.io/cdn/store/images/alarmclockinhd.png</icon>
-      <publisher>ANTARA SOFTWARE and CONSULTING PRIVATE LIMITED</publisher>
-      <featured>false</featured>
-      <description></description>
-      <package>https://github.com/lumaprojects/cdn/releases/download/appx/AntaraSoftware.AlarmClockHD_6.1.2.0_neutral_._7jhd16s0b93qm.AppxBundle</package>
-      <pcCapable>true</pcCapable>
-      <mobileCapable>true</mobileCapable>
     </app>
 </apps>
 </data>
