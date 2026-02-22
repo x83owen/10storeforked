@@ -1180,5 +1180,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="drayai-spanish">
+      <name>DrayAI Spanish</name>
+      <version>1.1.0.0</version>
+      <icon>https://dankassassin368.com/random/icons/56cde008670b395f7057e53a8ea65102.png</icon>
+      <publisher>DraydenYT</publisher>
+      <featured>false</featured>
+      <description>Use this app to talk with AI, play music and set reminders.</description>
+      <package>https://dl.dankassassin368.com/All%20DrayApps%20patched%20to%20remove%20update%20check/Dray%20AI%20en%20Espanol/DrayAISpanish.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
