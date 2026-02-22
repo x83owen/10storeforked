@@ -1156,5 +1156,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="mail-calendar-and-people-8-1">
+      <name>Mail, Calendar and People (8.1)</name>
+      <version>17.5.9600.20689</version>
+      <icon>https://i.ibb.co/h1Dy0MBz/windowscommunicationsapps.png</icon>
+      <publisher>Microsoft Corporation</publisher>
+      <featured>false</featured>
+      <description>Productivity apps: Mail, Calendar and People. Mail for checking emails, Calendar for managing calendar events, People for social media. We bundle the 3 apps into 1 so it's way easier to install. NOTE: We have ended support for these apps on 31.12.2024., but you can continue using them.</description>
+      <package>https://dl.dankassassin368.com/microsoft.windowscommunicationsapps_17.5.9600.20689_x64__8wekyb3d8bbwe.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
