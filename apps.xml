@@ -141,7 +141,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <featured>true</featured>
       <description>Microsoft Edge for Windows Phone</description>
       <package>https://dl.dankassassin368.com/Microsoft%20Edge%20Unofficial.appx</package>
-      <pcCapable>false</pcCapable>
+      <pcCapable>true</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
       <app id="transport-empire">
