@@ -1168,5 +1168,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="survivalcraft-2">
+      <name>Survivalcraft 2</name>
+      <version>2.4.40.8</version>
+      <icon>https://i.ibb.co/9mMf7MFv/Logo-scale-100.png</icon>
+      <publisher>Candy Rufus Games</publisher>
+      <featured>false</featured>
+      <description>Infinite, destructible block world with seasons  Design your own furniture  Pistons  Over 30 types of animals  Ride horses, camels and donkeys  Living world with day/night cycle, dynamic water and physics  Electric circuits and logic gates, make your own video game  Fire, explosives, dynamic water and magma  Realistic survival simulation  Download furniture, maps, skins created by community  Over 300 items of clothing affecting your looks and survival  Deserts, jungles, plains, snow, ocean, lakes, swamps, islands  Crafting and smelting  Split screen</description>
+      <package>https://dl.dankassassin368.com/20961CandyRufusGames.Survivalcraft2_2.4.40.8_neutral__c7jxg4av36ap6.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
