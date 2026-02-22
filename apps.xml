@@ -115,8 +115,8 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <featured>true</featured>
       <description>Explore randomly generated worlds and build amazing things from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep into the world in survival mode, crafting weapons and armor to fend off the dangerous mobs.</description>
       <package>https://dl.dankassassin368.com/Microsoft.MinecraftUWP_1.14.6005.0_x86__8wekyb3d8bbwe.Appx</package>
-      <pcCapable>false</pcCapable>
-      <mobileCapable>true</mobileCapable>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
     <review><user>Anonymous</user><rating>1</rating><comment>test</comment></review></app>
       <app id="hill-climb-racing">
       <name>Hill Climb Racing</name>
