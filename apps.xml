@@ -1192,5 +1192,17 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
+
+    <app id="trainspotting-metro">
+      <name>Trainspotting Metro</name>
+      <version>1.0.0.0</version>
+      <icon>https://dankassassin368.com/random/icons/91e574098e27469787338095f8a67031.png</icon>
+      <publisher>DraydenYT</publisher>
+      <featured>false</featured>
+      <description>Use this app to watch live UK train streams.</description>
+      <package>https://dl.dankassassin368.com/All%20DrayApps%20patched%20to%20remove%20update%20check/Trainspotting%20Metro/TrainspottingMetro1.0.0.0.appx</package>
+      <pcCapable>true</pcCapable>
+      <mobileCapable>false</mobileCapable>
+    </app>
 </apps>
 </data>
