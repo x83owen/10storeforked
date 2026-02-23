@@ -916,10 +916,10 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-<app id="microsoft-news-newrreiled">
-      <name>Microsoft News (newRetiled)</name>
+<app id="bing-news-newrreiled">
+      <name>Bing News (newRetiled)</name>
       <version>4.3.193.0</version>
-      <icon>https://static.wikia.nocookie.net/logopedia/images/f/fa/News-win82.svg/</icon>
+      <icon>https://i.ibb.co/f31VVzM/News-ico.png</icon>
       <publisher>Microsoft</publisher>
       <featured>false</featured>
       <description/>
