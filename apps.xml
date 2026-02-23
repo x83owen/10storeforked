@@ -916,11 +916,11 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
-<app id="bing-news-newrreiled">
-      <name>Bing News (newRetiled)</name>
+<app id="msn-news-newrreiled">
+      <name>MSN News (newRetiled)</name>
       <version>4.3.193.0</version>
       <icon>https://i.ibb.co/f31VVzM/News-ico.png</icon>
-      <publisher>Microsoft</publisher>
+      <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
       <description/>
       <package>https://appxboxdl.dankassassin368.com/APPX/Retiled%20Project/newRetiled%20-%20UWP/1507/News/Microsoft.BingNews_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
