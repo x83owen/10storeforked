@@ -34,7 +34,7 @@
       <description>Unleash your inner creative with Fresh Paint – the ultimate canvas for your big ideas. 
 Fresh Paint is a fun and easy to use painting app with the right tools for artists of all ages. 
 We believe that brilliant, creative ideas can come from anyone, anytime.  It’s time to set your creativity free.</description>
-      <package>https://dl.dankassassin368.com/Microsoft.FreshPaint_3.1.10383.1000_x86__8wekyb3d8bbwe.Appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/FreshPaint/Microsoft.FreshPaint_3.1.10383.1000_x86__8wekyb3d8bbwe.Appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -46,7 +46,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <publisher>Mads and Peter Sandberg Brun</publisher>
       <featured>true</featured>
       <description>BrowserQuest is a small multiplayer game inviting you to explore a world of adventure from your Windows device.</description>
-      <package>https://dl.dankassassin368.com/18476MPBrun.BrowserQuest_2.6.2.0_x86__5j38zygvezh8g.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/18476MPBrun.BrowserQuest_2.6.2.0_x86__5j38zygvezh8g.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -58,7 +58,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <featured>false</featured>
       <description>VLC is the ultimate media player, ported to the Windows Universal Platform.
 ⚠ ⚠ Beware! This VLC does not feature all the features of the classic VLC! It does not support DVD or Blurays! Use the desktop version instead! ⚠⚠</description>
-      <package>https://dl.dankassassin368.com/VideoLAN.VLC_3.2.1.0_neutral_~_paz6r1rewnh0a.AppxBundle</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/VideoLAN.VLC_3.2.1.0_neutral_~_paz6r1rewnh0a.AppxBundle</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -80,7 +80,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <publisher>Microsoft Corporation</publisher>
       <featured>true</featured>
       <description>Whether you’re an artist or just want to try out some doodles–Paint 3D makes it easy to unleash your creativity and bring your ideas to life. Classic Paint has been reimagined, with an updated look and feel and a ton of new brushes and tools. And now, create in every dimension. Make 2D masterpieces</description>
-      <package>https://dl.dankassassin368.com/Microsoft.MSPaint_6.1907.29027.0_x64__8wekyb3d8bbwe.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.MSPaint_6.1907.29027.0_x64__8wekyb3d8bbwe.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -92,7 +92,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <publisher>Microsoft Studios</publisher>
       <featured>true</featured>
       <description>Explore randomly generated worlds and build amazing things from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep into the world in survival mode, crafting weapons and armor to fend off the dangerous mobs.</description>
-      <package>https://dl.dankassassin368.com/Microsoft.MinecraftUWP_1.14.6005.0_arm__8wekyb3d8bbwe.Appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.MinecraftUWP_1.14.6005.0_arm__8wekyb3d8bbwe.Appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -104,7 +104,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <publisher>Microsoft Studios</publisher>
       <featured>true</featured>
       <description>Explore randomly generated worlds and build amazing things from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep into the world in survival mode, crafting weapons and armor to fend off the dangerous mobs.</description>
-      <package>https://dl.dankassassin368.com/Microsoft.MinecraftUWP_1.14.6005.0_x86__8wekyb3d8bbwe.Appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.MinecraftUWP_1.14.6005.0_x86__8wekyb3d8bbwe.Appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     <review><user>Anonymous</user><rating>1</rating><comment>test</comment></review></app>
@@ -130,7 +130,7 @@ We believe that brilliant, creative ideas can come from anyone, anytime.  It’s
       <publisher>Maycon Devloper</publisher>
       <featured>true</featured>
       <description>Microsoft Edge for Windows Phone</description>
-      <package>https://dl.dankassassin368.com/Microsoft%20Edge%20Unofficial.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft%20Edge%20Unofficial.appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -164,7 +164,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <publisher>Samsung Electronics Co. Ltd.</publisher>
       <featured>false</featured>
       <description>Samsung Gallery for Windows Phone</description>
-      <package>https://dl.dankassassin368.com/Samsung%20GalleryApp_2.3.25.0_ARM.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Samsung%20GalleryApp_2.3.25.0_ARM.appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -175,7 +175,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <publisher>Microsoft Corporation</publisher>
       <featured>true</featured>
       <description>Microsoft App Installer for Windows Phone</description>
-      <package>https://dl.dankassassin368.com/App%20Installer.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/App%20Installer.appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -197,7 +197,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <publisher>Fake Google LLC</publisher>
       <featured>true</featured>
       <description>A YouTube for TV port to Windows Phone.</description>
-      <package>https://dl.dankassassin368.com/YouTube%20TV_9.2.0.0_x86_x64_arm.appxbundle</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/YouTube%20TV_9.2.0.0_x86_x64_arm.appxbundle</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -265,7 +265,7 @@ Your aim in Transport Empire is to build the biggest commercial network in the w
       <description>A adblocker app for W10M.
 YOUR PHONE MUST BE INTEROP UNLOCKED!
 More info at https://files.catbox.moe/rokw5h.txt (please note you got to copy it to the browser)</description>
-      <package>https://dl.dankassassin368.com/AdBlocker_1.1.0.0_ARM.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/AdBlocker_1.1.0.0_ARM.appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -276,7 +276,7 @@ More info at https://files.catbox.moe/rokw5h.txt (please note you got to copy it
       <publisher>Ryken Studio</publisher>
       <featured>true</featured>
       <description>A YouTube client. You need the API Keys for it to work</description>
-      <package>https://dl.dankassassin368.com/myTube%21_4.0.19.0_arm.Appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/myTube%21_4.0.19.0_arm.Appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -287,7 +287,7 @@ More info at https://files.catbox.moe/rokw5h.txt (please note you got to copy it
       <publisher>abaculi</publisher>
       <featured>false</featured>
       <description>Unigram Mobile is a fork of the original Unigram UWP app aimed to keep supporting Windows 10 Mobile after the Unigram dropped support for Mobile.</description>
-      <package>https://dl.dankassassin368.com/Unigram%20Mobile%20Messenger_21.12.6009.0_ARM.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Unigram%20Mobile%20Messenger_21.12.6009.0_ARM.appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -299,7 +299,7 @@ More info at https://files.catbox.moe/rokw5h.txt (please note you got to copy it
       <featured>false</featured>
       <description>Play the BEST dominoes game for Windows today!
 Enjoy the simple pleasures of this classic game on your computer, laptop, or tablet. Play 3 classic game modes (Muggins, Block, and Draw) against a clever computer opponent. Custom themes and backgrounds round out this spectacular game.</description>
-      <package>https://dl.dankassassin368.com/Dominoes.UWP_4.3.29.0_x64.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Dominoes.UWP_4.3.29.0_x64.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -310,7 +310,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>Slytery</publisher>
       <featured>false</featured>
       <description>A 2048 game.</description>
-      <package>https://dl.dankassassin368.com/2048%21_1.9.3.0.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/2048%21_1.9.3.0.appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -321,7 +321,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>Scythra</publisher>
       <featured>true</featured>
       <description>A version of Radon Browser made for 10Store.</description>
-      <package>https://dl.dankassassin368.com/Project%2520Radon_1.14.17.0_x86.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Project%2520Radon_1.14.17.0_x86.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -332,7 +332,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>Ryken Studio</publisher>
       <featured>true</featured>
       <description>Watch YouTube videos on your Lumia device.</description>
-      <package>https://dl.dankassassin368.com/myTubeBeta_4.0.21.0_arm.Appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/myTubeBeta_4.0.21.0_arm.Appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -343,7 +343,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>Shazam</publisher>
       <featured>false</featured>
       <description>Find the music your currently listening to with Shazam!</description>
-      <package>https://dl.dankassassin368.com/Shazam%20v4.7.8.0.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Shazam%20v4.7.8.0.appx</package>
       <pcCapable>false</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -387,7 +387,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>Rovio</publisher>
       <featured>true</featured>
       <description/>
-      <package>https://dl.dankassassin368.com/1ED5AEA5.AngryBirdsSpace_1.3.1.0_x86__p2gbknwb5d8r2.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/1ED5AEA5.AngryBirdsSpace_1.3.1.0_x86__p2gbknwb5d8r2.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -398,7 +398,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>Netflix, Inc</publisher>
       <featured>true</featured>
       <description/>
-      <package>https://dl.dankassassin368.com/4DF9E0F8.Netflix_1.10.0.58_x64__mcm4njqhnhss8.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/4DF9E0F8.Netflix_1.10.0.58_x64__mcm4njqhnhss8.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -409,7 +409,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>Rakuten Viber</publisher>
       <featured>false</featured>
       <description/>
-      <package>https://dl.dankassassin368.com/2414FC7A.Viber-FreePhoneCallsText_4.1.3.0_x86__p61zvh252yqyr.Appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/2414FC7A.Viber-FreePhoneCallsText_4.1.3.0_x86__p61zvh252yqyr.Appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -420,7 +420,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>LazyWorm Applications Ltd.</publisher>
       <featured>false</featured>
       <description/>
-      <package>https://dl.dankassassin368.com/Ametrotube.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Ametrotube.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -431,7 +431,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>migbrunluz</publisher>
       <featured>false</featured>
       <description>X (formerly Twitter) is a major microblogging and social networking service where users post short, 280-character messages, known as "tweets," which can include text, images, videos, and links.</description>
-      <package>https://dl.dankassassin368.com/9E2F88E3.Twitter_1.1.13.8_x86__wgeqdkkx372wm.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/9E2F88E3.Twitter_1.1.13.8_x86__wgeqdkkx372wm.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -442,7 +442,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>VassilArabadjiev</publisher>
       <featured>false</featured>
       <description>The app displays the time, day of the week and the date in the tile on start screen. Please make sure you open the app first and allow it to lock screen for the tile update to work. Then, you can pin it to your start screen.</description>
-      <package>https://dl.dankassassin368.com/1476VassilArabadjiev.Globalclocktile_2014.1219.1624.2797_neutral_~_4epssmbyxfjw2.AppxBundle</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/1476VassilArabadjiev.Globalclocktile_2014.1219.1624.2797_neutral_~_4epssmbyxfjw2.AppxBundle</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -453,7 +453,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>HoYeonHan</publisher>
       <featured>false</featured>
       <description/>
-      <package>https://dl.dankassassin368.com/45849HoYeonHan.BatteryInfo_1.7.0.0_x64__h1jdabs0g06va.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/45849HoYeonHan.BatteryInfo_1.7.0.0_x64__h1jdabs0g06va.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -464,7 +464,7 @@ Enjoy the simple pleasures of this classic game on your computer, laptop, or tab
       <publisher>VK.com</publisher>
       <featured>false</featured>
       <description/>
-      <package>https://dl.dankassassin368.com/C6965DD5.VK_2.3.2.1_x64__v422avzh127ra.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/C6965DD5.VK_2.3.2.1_x64__v422avzh127ra.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -493,7 +493,7 @@ dont delete it please, it need</description>
       <publisher>SquareDude</publisher>
       <featured>false</featured>
       <description>This is Doodle Jump for Windows 10 not for Windows phone since they already have one.</description>
-      <package>https://dl.dankassassin368.com/DoodleJump_1.0.0.0_x86__xygddxjqvswne.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/DoodleJump_1.0.0.0_x86__xygddxjqvswne.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -527,7 +527,7 @@ dont delete it please, it need</description>
       <featured>false</featured>
       <description>This is a unofficial port of We Become What we Behold. Please ask me on Discord if you need help or feedback or ask another person.
 Original Game: https://ncase.itch.io/wbwwb</description>
-      <package>https://dl.dankassassin368.com/WBWWB_1.0.0.0_x86__xygddxjqvswne.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/WBWWB_1.0.0.0_x86__xygddxjqvswne.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -538,7 +538,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
       <description/>
-      <package>https://dl.dankassassin368.com/Microsoft.WindowsScan_2014.523.326.3026_neutral_~_8wekyb3d8bbwe.AppxBundle</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.WindowsScan_2014.523.326.3026_neutral_~_8wekyb3d8bbwe.AppxBundle</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -549,7 +549,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
       <description/>
-      <package>https://dl.dankassassin368.com/Microsoft.WinJS.2.0_1.0.9600.17018_neutral__8wekyb3d8bbwe.Appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.WinJS.2.0_1.0.9600.17018_neutral__8wekyb3d8bbwe.Appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -560,7 +560,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
       <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
       <description/>
-      <package>https://dl.dankassassin368.com/Microsoft.WinJS.1.0_1.0.9200.20789_neutral__8wekyb3d8bbwe.Appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.WinJS.1.0_1.0.9200.20789_neutral__8wekyb3d8bbwe.Appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -571,7 +571,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.VCLibs.140.00_14.0.33519.0_x64__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.VCLibs.140.00_14.0.33519.0_x64__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -582,7 +582,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x86__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x86__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -593,7 +593,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x64__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x64__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -604,7 +604,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_arm__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_arm__8wekyb3d8bbwe.Appx</package>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
@@ -615,7 +615,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_arm64__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_arm64__8wekyb3d8bbwe.Appx</package>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
@@ -626,7 +626,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x86__8wekyb3d8bbwe.appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x86__8wekyb3d8bbwe.appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -637,7 +637,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x64__8wekyb3d8bbwe.appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x64__8wekyb3d8bbwe.appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -648,7 +648,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.2.2_2.2.29512.0_arm__8wekyb3d8bbwe.appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Framework.2.2_2.2.29512.0_arm__8wekyb3d8bbwe.appx</package>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
@@ -659,7 +659,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.2.2_2.2.29512.0_arm64__8wekyb3d8bbwe.appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Framework.2.2_2.2.29512.0_arm64__8wekyb3d8bbwe.appx</package>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
@@ -670,7 +670,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>DraydenYT</publisher>
         <featured>true</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/App13_1.0.0.0_AnyCPU.appxbundle</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/App13_1.0.0.0_AnyCPU.appxbundle</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -681,7 +681,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_x86__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_x86__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -692,7 +692,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_x64__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_x64__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -703,7 +703,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_arm__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Runtime.1.1_1.1.23406.0_arm__8wekyb3d8bbwe.Appx</package>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
@@ -714,7 +714,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x86__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x86__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -725,7 +725,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x64__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x64__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -736,7 +736,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_arm__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_arm__8wekyb3d8bbwe.Appx</package>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
@@ -747,7 +747,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>New IT Limited</publisher>
         <featured>false</featured>
         <description>4shared is like a large virtual folder for your data. You can access your files anytime you need, being sure that they are always kept safe in your 4shared account. In addition, 4shared enables you to share links to your content with others.</description>
-        <package>https://dl.dankassassin368.com/4shared.Application_2.0.6.0_x86.appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/4shared.Application_2.0.6.0_x86.appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -758,7 +758,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>New IT Limited</publisher>
         <featured>false</featured>
         <description>4shared is like a large virtual folder for your data. You can access your files anytime you need, being sure that they are always kept safe in your 4shared account. In addition, 4shared enables you to share links to your content with others.</description>
-        <package>https://dl.dankassassin368.com/4shared.Application_2.0.6.0_x64.appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/4shared.Application_2.0.6.0_x64.appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -769,7 +769,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>New IT Limited</publisher>
         <featured>false</featured>
         <description>4shared is like a large virtual folder for your data. You can access your files anytime you need, being sure that they are always kept safe in your 4shared account. In addition, 4shared enables you to share links to your content with others.</description>
-        <package>https://dl.dankassassin368.com/4shared.Application_2.0.6.0_ARM.appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/4shared.Application_2.0.6.0_ARM.appx</package>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
@@ -780,7 +780,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.Media.PlayReadyClient.2_2.11.2154.0_x86__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.Media.PlayReadyClient.2_2.11.2154.0_x86__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -791,7 +791,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.Media.PlayReadyClient.2_2.11.2154.0_x64__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.Media.PlayReadyClient.2_2.11.2154.0_x64__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -802,7 +802,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.Media.PlayReadyClient.2_2.11.2154.0_arm__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.Media.PlayReadyClient.2_2.11.2154.0_arm__8wekyb3d8bbwe.Appx</package>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
@@ -813,7 +813,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.Media.PlayReadyClient_2.3.1678.0_arm__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.Media.PlayReadyClient_2.3.1678.0_arm__8wekyb3d8bbwe.Appx</package>
         <pcCapable>false</pcCapable>
         <mobileCapable>true</mobileCapable>
     </app>
@@ -824,7 +824,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.Media.PlayReadyClient_2.3.1678.0_x86__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.Media.PlayReadyClient_2.3.1678.0_x86__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -835,7 +835,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <publisher>Microsoft Corporation</publisher>
         <featured>false</featured>
         <description/>
-        <package>https://dl.dankassassin368.com/Microsoft.Media.PlayReadyClient_2.3.1678.0_x64__8wekyb3d8bbwe.Appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.Media.PlayReadyClient_2.3.1678.0_x64__8wekyb3d8bbwe.Appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -847,7 +847,7 @@ Original Game: https://ncase.itch.io/wbwwb</description>
         <featured>true</featured>
         <description>8Store Revival, a huge project which needs YOUR help to be better.
 We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the first day's release! that is impressive and not gonna lie.</description>
-        <package>https://dl.dankassassin368.com/Win81StoreRevival_5.3.0.0_AnyCPU_Debug.appx</package>
+        <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Win81StoreRevival_5.3.0.0_AnyCPU_Debug.appx</package>
         <pcCapable>true</pcCapable>
         <mobileCapable>false</mobileCapable>
     </app>
@@ -858,7 +858,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>DraydenYT</publisher>
       <featured>false</featured>
       <description>Used for testing apps on Webview1</description>
-      <package>https://dl.dankassassin368.com/Browser_1.0.0.0_AnyCPU.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Browser_1.0.0.0_AnyCPU.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>true</mobileCapable>
     </app>
@@ -1076,7 +1076,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
       <description>Dependency usually for multimedia apps</description>
-      <package>https://dl.dankassassin368.com/Microsoft.Media.PlayReadyClient.2_2.11.2154.0_x64__8wekyb3d8bbwe.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.Media.PlayReadyClient.2_2.11.2154.0_x64__8wekyb3d8bbwe.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -1087,7 +1087,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
       <description>Use Windows Camera application to take photos and record videos using your laptop's webcam or external webcam. App is x64.</description>
-      <package>https://dl.dankassassin368.com/Microsoft.Camera_6.2.8514.0_x64__8wekyb3d8bbwe.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.Camera_6.2.8514.0_x64__8wekyb3d8bbwe.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -1098,7 +1098,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
       <description>Use Windows Photos application to organize your photos, make albums. You can use this app in pair with Windows Camera to import the photos from your external device. You can also connect to SkyDrive or Flickr to get photos from your friends and your cloud. This app is 8.0 compatible and also x64.</description>
-      <package>https://dl.dankassassin368.com/microsoft.windowsphotos_16.4.4204.712_x64__8wekyb3d8bbwe.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/microsoft.windowsphotos_16.4.4204.712_x64__8wekyb3d8bbwe.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -1109,7 +1109,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>PhilinoTechnologies</publisher>
       <featured>false</featured>
       <description>Flappy Bird is a 2013 casual mobile game developed by Vietnamese video game artist and programmer Dong Nguyen (Vietnamese: Nguy\u1ec5n H\u00e0 \u0110\u00f4ng), under his game development company .Gears.[1] The game is a side-scroller where the player controls a bird, Faby, attempting to fly between columns of green pipes without hitting them. The player's score is determined by the number of pipes they pass. Nguyen created the game over a period of several days, using the bird from a cancelled game made in 2012.</description>
-      <package>https://dl.dankassassin368.com/flappybird.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/flappybird.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -1120,7 +1120,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>DraydenYT, ChrisRLillo, Dank, Migbrunluz</publisher>
       <featured>false</featured>
       <description>Discover the world of Chrisrlillo in a sleek, modern Metro interface designed for Windows 8. This app brings the full experience of Chrisrlillo\u2019s music directly to your Start screen, offering fast, touch-friendly navigation and a clean design that feels right at home.</description>
-      <package>https://dl.dankassassin368.com/Chrisrlillomusicv1.2.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Chrisrlillomusicv1.2.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -1131,7 +1131,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
       <description>Learn more about your Microsoft Surface RT/Pro/Go within this</description>
-      <package>https://dl.dankassassin368.com/Microsoft.SurfaceHub_2015.529.1905.5634_neutral_~_8wekyb3d8bbwe.AppxBundle</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/Microsoft.SurfaceHub_2015.529.1905.5634_neutral_~_8wekyb3d8bbwe.AppxBundle</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -1154,7 +1154,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>Microsoft Corporation</publisher>
       <featured>false</featured>
       <description>Productivity apps: Mail, Calendar and People. Mail for checking emails, Calendar for managing calendar events, People for social media. We bundle the 3 apps into 1 so it's way easier to install. NOTE: We have ended support for these apps on 31.12.2024., but you can continue using them.</description>
-      <package>https://dl.dankassassin368.com/microsoft.windowscommunicationsapps_17.5.9600.20689_x64__8wekyb3d8bbwe.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/microsoft.windowscommunicationsapps_17.5.9600.20689_x64__8wekyb3d8bbwe.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -1166,7 +1166,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>Candy Rufus Games</publisher>
       <featured>false</featured>
       <description>Infinite, destructible block world with seasons  Design your own furniture  Pistons  Over 30 types of animals  Ride horses, camels and donkeys  Living world with day/night cycle, dynamic water and physics  Electric circuits and logic gates, make your own video game  Fire, explosives, dynamic water and magma  Realistic survival simulation  Download furniture, maps, skins created by community  Over 300 items of clothing affecting your looks and survival  Deserts, jungles, plains, snow, ocean, lakes, swamps, islands  Crafting and smelting  Split screen</description>
-      <package>https://dl.dankassassin368.com/20961CandyRufusGames.Survivalcraft2_2.4.40.8_neutral__c7jxg4av36ap6.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/20961CandyRufusGames.Survivalcraft2_2.4.40.8_neutral__c7jxg4av36ap6.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -1177,7 +1177,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>DraydenYT</publisher>
       <featured>false</featured>
       <description>Use this app to watch live UK train streams.</description>
-      <package>https://dl.dankassassin368.com/All%20DrayApps%20patched%20to%20remove%20update%20check/Trainspotting%20Metro/TrainspottingMetro1.0.0.0.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/All%20DrayApps%20patched%20to%20remove%20update%20check/Trainspotting%20Metro/TrainspottingMetro1.0.0.0.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
@@ -1189,7 +1189,7 @@ We are now keep uploading apps to 8Store, and currently hitting 120+ apps in the
       <publisher>DraydenYT</publisher>
       <featured>false</featured>
       <description>Hive FM app</description>
-      <package>https://dl.dankassassin368.com/All%20DrayApps%20patched%20to%20remove%20update%20check/Hive%20FM/HiveFM1.1.0.0.appx</package>
+      <package>https://appxboxdl.dankassassin368.com/APPX/Windows%208.1%20APPX%20Files/Apps/*/All%20DrayApps%20patched%20to%20remove%20update%20check/Hive%20FM/HiveFM1.1.0.0.appx</package>
       <pcCapable>true</pcCapable>
       <mobileCapable>false</mobileCapable>
     </app>
