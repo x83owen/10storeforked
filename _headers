@@ -1,4 +1,0 @@
-/apps.xml
-  Access-Control-Allow-Origin: https://10storedraydenyt.netlify.app
-  Access-Control-Allow-Methods: GET, OPTIONS
-  Access-Control-Allow-Headers: *
