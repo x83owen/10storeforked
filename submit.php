@@ -1,12 +1,9 @@
 <?php
 
-// SECURE: Your GitHub token stays on the server only
 $token = "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";
 $owner = "draydenthemiiyt-maker";
-$repo  = "draymusic.github.io";
-$file  = "10store/appspending.xml";
-
-// --- RATE LIMIT: Max 3 requests per IP per hour ---
+$repo  = "10-Store";
+$file  = "appspending.xml";
 $ip = $_SERVER['REMOTE_ADDR'];
 $rateDir = __DIR__ . "/rate_limits";
 
@@ -16,7 +13,6 @@ if (!is_dir($rateDir)) {
 
 $ipFile = "$rateDir/" . md5($ip) . ".json";
 
-// If no file exists, create a new one
 if (!file_exists($ipFile)) {
     file_put_contents($ipFile, json_encode([
         "count" => 1,
@@ -25,7 +21,6 @@ if (!file_exists($ipFile)) {
 } else {
     $data = json_decode(file_get_contents($ipFile), true);
 
-    // Reset after 1 hour
     if (time() - $data["start"] > 3600) {
         $data = ["count" => 1, "start" => time()];
     } else {
@@ -38,8 +33,7 @@ if (!file_exists($ipFile)) {
 
     file_put_contents($ipFile, json_encode($data));
 }
-// --- END RATE LIMIT ---
-// Read JSON input
+
 $data = json_decode(file_get_contents("php://input"), true);
 
 if (!$data) {
@@ -47,15 +41,12 @@ if (!$data) {
     exit;
 }
 
-// Escape XML safely
 function escapeXml($str) {
     return htmlspecialchars($str, ENT_XML1 | ENT_QUOTES, 'UTF-8');
 }
 
-// Generate ID
 $appId = strtolower(preg_replace('/[^a-z0-9]+/', '-', $data["name"]));
 
-// Build screenshots XML
 $screenshots = "";
 $i = 1;
 foreach ($data["screenshots"] as $shot) {
@@ -63,7 +54,6 @@ foreach ($data["screenshots"] as $shot) {
     $i++;
 }
 
-// Build XML snippet
 $xmlSnippet = "    <app id=\"$appId\">
       <name>" . escapeXml($data["name"]) . "</name>
       <version>" . escapeXml($data["version"]) . "</version>
@@ -75,7 +65,6 @@ $screenshots      <pcCapable>" . ($data["pcCapable"] ? "true" : "false") . "</pc
       <mobileCapable>" . ($data["mobileCapable"] ? "true" : "false") . "</mobileCapable>
     </app>\n";
 
-// STEP 1: Fetch existing XML from GitHub
 $apiUrl = "https://api.github.com/repos/$owner/$repo/contents/$file";
 
 $opts = [
