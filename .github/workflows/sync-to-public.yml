@@ -18,6 +18,11 @@ jobs:
         run: |
           find . -name "*.php" -type f -delete
 
+      - name: Remove YAML files
+        run: |
+          find . -name "*.yml" -type f -delete
+          find . -name "*.yaml" -type f -delete
+
       - name: Copy files to public repo
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.0
         env:
