@@ -23,9 +23,21 @@ jobs:
           find . -name "*.yml" -type f -delete
           find . -name "*.yaml" -type f -delete
 
-      - name: Ensure folder exists in public repo
+      - name: Create folder placeholder
         run: |
           mkdir -p 10Store
+          touch 10Store/.gitkeep
+
+      - name: Push folder placeholder to public repo
+        uses: dmnemec/copy_file_to_another_repo_action@v1.1.0
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.WRITE_TOKEN }}
+        with:
+          source_file: "10Store/.gitkeep"
+          destination_repo: "draydenthemiiyt-maker/draymusic.github.io"
+          destination_folder: "10Store"
+          user_email: "draydenthemiiyt@gmail.com"
+          user_name: "draydenthemiiyt-maker"
 
       - name: Copy files to public repo
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.0
