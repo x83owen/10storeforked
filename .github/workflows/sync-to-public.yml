@@ -23,6 +23,10 @@ jobs:
           find . -name "*.yml" -type f -delete
           find . -name "*.yaml" -type f -delete
 
+      - name: Ensure folder exists in public repo
+        run: |
+          mkdir -p 10Store
+
       - name: Copy files to public repo
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.0
         env:
