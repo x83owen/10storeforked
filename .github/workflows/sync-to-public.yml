@@ -25,6 +25,6 @@ jobs:
         with:
           source_file: "./"
           destination_repo: "draydenthemiiyt-maker/draymusic.github.io"
-          destination_folder: "10store"
+          destination_folder: "10Store"
           user_email: "draydenthemiiyt@gmail.com"
           user_name: "draydenthemiiyt-maker"
