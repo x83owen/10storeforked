@@ -52,22 +52,11 @@
         let currentCount = -1;
 
         async function fetchAppCount() {
-            // Check if config loaded
-            if (typeof GITHUB_TOKEN === 'undefined') {
-                showError("Config Error: GITHUB_TOKEN is missing. Check config.js.");
-                return;
-            }
-
-            const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/apps.xml`;
+            const url = `https://drayai81isbacknotfor8storescripts.42web.io/apps.xml`;
 
             try {
                 const response = await fetch(url, {
-                    headers: { "Authorization": `token ${GITHUB_TOKEN}` }
                 });
-
-                if (response.status === 401) throw new Error("401: Invalid GitHub Token");
-                if (response.status === 404) throw new Error("404: apps.xml not found");
-                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
                 const data = await response.json();
                 const xmlString = decodeURIComponent(escape(atob(data.content)));
