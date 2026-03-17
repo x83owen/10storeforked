@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <style>
+        /* Disable scrolling on the main body */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #ffffff !important;
+            font-family: 'Segoe UI', sans-serif;
+            color: #000000;
+        }
+
+        /* Use Flexbox to separate the static top from the scrolling bottom */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: bold;
+            padding: 20px 20px 10px 20px;
+            background: #ffffff;
+            flex: 0 0 auto;
+            position: relative; /* Fixes stacking */
+            z-index: 100; /* Keep title above content */
+        }
+
+        #scroll-container {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            padding: 0 20px 100px 20px;
+            -ms-overflow-style: scrollbar;
+            position: relative;
+            z-index: 1; /* Keep content below title but above body background */
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 20px 0 10px 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        /* Horizontal rows for apps */
+        .app-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            margin-left: -2px;
+            margin-right: -2px;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .app-card {
+            background: #f3f3f3;
+            padding: 15px;
+            flex: 0 0 140px !important;
+            width: 140px !important;
+            text-align: center;
+            border: 1px solid #e5e5e5;
+            margin: 0 2px;
+            /* IE11 CLICK FIXES */
+            cursor: pointer;
+            position: relative;
+            z-index: 50;
+            pointer-events: auto !important;
+            display: inline-block; /* Helps older engines with hit-testing */
+            /* NEW: Animation initial state */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s;
+        }
+
+            /* NEW: Class to trigger the fade up */
+            .app-card.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Prevent the image from stealing the click from the parent div */
+            .app-card img, .app-card div {
+                pointer-events: none;
+            }
+
+            .app-card:hover {
+                background: #e5e5e5;
+            }
+
+            .app-card img {
+                width: 64px;
+                height: 64px;
+                border-radius: 3px;
+                margin-bottom: 10px;
+            }
+
+        .app-name {
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .app-pub {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-title">Home</div>
+
+    <div id="scroll-container">
+        <div style="padding: 20px; color: #666;">Loading content...</div>
+    </div>
+
+    <script src="../js/home.js"></script>
+</body>
+</html>

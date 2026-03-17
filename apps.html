@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-bar {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #scroll-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .all-apps-grid {
+            display: block;
+            width: 100%;
+        }
+
+        .app-card {
+            background: #f3f3f3;
+            padding: 15px;
+            width: 140px;
+            text-align: center;
+            border: 1px solid #e5e5e5;
+            cursor: pointer;
+            /* 4px gap logic: 2px margin on all sides */
+            margin: 2px;
+            display: inline-block;
+            vertical-align: top;
+            /* Animation Initial State */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s;
+        }
+
+            /* Triggered by JS */
+            .app-card.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .app-card:hover {
+                background: #e5e5e5;
+            }
+
+            .app-card img {
+                width: 64px;
+                height: 64px;
+                border-radius: 3px;
+                margin-bottom: 10px;
+                pointer-events: none;
+            }
+
+        .app-name {
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            pointer-events: none;
+        }
+
+        .app-pub {
+            font-size: 11px;
+            opacity: 0.6;
+            margin-top: 4px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bar">
+        <div class="page-title" id="display-title">All apps</div>
+    </div>
+    <div id="scroll-container">
+        <div id="apps-grid" class="all-apps-grid"></div>
+    </div>
+    <script src="../js/apps.js"></script>
+</body>
+</html>

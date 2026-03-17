@@ -1,0 +1,142 @@
+﻿@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Basic reset */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", "Segoe UI Semilight", "Segoe UI Symbol", Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header#app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #00A4EF;
+    color: #fff;
+    box-sizing: border-box;
+    height: 56px;
+}
+
+/* Left side */
+.header-left {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* --- Update Overlay --- */
+#update-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--acsent);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#update-modal {
+    background-color: white;
+    color: black;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    border: 1px solid #000;
+    animation: fadeUp 0.6s ease-out forwards;
+    -ms-animation: fadeUp 0.6s ease-out forwards;
+}
+
+/* Logo */
+#logo {
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 18px;
+    color: #fff;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* Nav */
+.nav {
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-btn {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 12px;
+    font-size: 14px;
+    opacity: 0.95;
+    cursor: pointer;
+}
+
+    .nav-btn:active, .nav-btn:focus {
+        outline: none;
+    }
+
+/* Right side - search */
+.header-right {
+    display: inline-flex;
+    align-items: center;
+}
+
+.search-wrap {
+    background: rgba(255,255,255,0.12);
+    padding: 4px;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+    .search-wrap input[type="search"] {
+        border: 0;
+        background: transparent;
+        color: #fff;
+        padding: 6px 8px;
+        width: 180px;
+        font-size: 13px;
+        outline: none;
+    }
+
+    .search-wrap input::placeholder {
+        color: #fff;
+        opacity: 1;
+    }
+
+/* Main area */
+#app-main {
+    flex: 1 1 auto;
+    position: relative;
+    min-height: 0;
+}
+
+/* Webview full size */
+iframe#app-webview {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+    background: transparent;
+}
