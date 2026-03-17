@@ -51,32 +51,34 @@
         const errorLog = document.getElementById('error-log');
         let currentCount = -1;
 
-        async function fetchAppCount() {
-            const url = `https://drayai81isbacknotfor8storescripts.42web.io/apps.xml`;
+async function fetchAppCount() {
+    const url = `https://drayai81isbacknotfor8storescripts.42web.io/apps.xml`;
 
-            try {
-                const response = await fetch(url, {
-                });
+    try {
+        const response = await fetch(url);
 
-                const data = await response.json();
-                const xmlString = decodeURIComponent(escape(atob(data.content)));
-                
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-                const apps = xmlDoc.getElementsByTagName("app");
-                const newCount = apps.length;
-
-                if (newCount !== currentCount) {
-                    updateDisplay(newCount);
-                }
-                
-                errorLog.style.display = 'none';
-                document.getElementById('update-timer').innerText = "Live Monitoring Active";
-
-            } catch (error) {
-                showError(error.message);
-            }
+        if (!response.ok) {
+            throw new Error("HTTP " + response.status);
         }
+
+        const xmlString = await response.text();
+
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+        const apps = xmlDoc.getElementsByTagName("app");
+        const newCount = apps.length;
+
+        if (newCount !== currentCount) {
+            updateDisplay(newCount);
+        }
+
+        errorLog.style.display = 'none';
+        document.getElementById('update-timer').innerText = "Live Monitoring Active";
+
+    } catch (error) {
+        showError(error.message);
+    }
+}
 
         function updateDisplay(count) {
             // Milestone Confetti (100, 150, 200, 250, 300)
