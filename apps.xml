@@ -1,17 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
   <categories>
+    <category title="Featured" type="featured"/>
+    <category title="Games" type="picks">
+      <appIds>browserquest,minecraft-for-windows,minecraft-for-windows-10-mobile,hill-climb-racing,transport-empire,rrDcTRXV,VnpOXSdk,8WvwEEYk,LhEiIzol,suVzYAz7,zLL7sl3w,tk0RL62i,wUQYvaL6,ejwJaoRi,where-s-my-water,el-chavo-juego</appIds>
+    </category>
+    <category title="Art" type="picks">
+      <appIds>fresh-paint,paint-3d</appIds>
+    </category>
+    <category title="Video" type="picks">
+      <appIds>vlc-uwp,GrJoGJjh,dY265Bi3,XW2VB89E,Y0wouMtZ,g9QQPJD0</appIds>
+    </category>
+    <category title="Social" type="picks">
+      <appIds>kRSswZ9K,9XrDWeBp,bing-news-newrreiled</appIds>
+    </category>
+    <category title="Movies/TV" type="picks">
+      <appIds>vlc-uwp,Y0wouMtZ,g9QQPJD0</appIds>
+    </category>
+    <category title="Food and Dining" type="picks">
+      <appIds/>
+    </category>
+    <category title="Utilities" type="picks">
+      <appIds>posxp,G8I0kPFQ,8store,browser</appIds>
+    </category>
+    <category title="Dependencies" type="picks">
+      <appIds>winjs-2-0,winjs-1-0,microsoft-vclibs-140-00-14-0-33519-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-x86,microsoft-net-native-runtime-2-2-2-2-28604-0-x64,microsoft-net-native-runtime-2-2-2-2-28604-0-arm,microsoft-net-native-runtime-2-2-2-2-28604-0-arm64,microsoft-net-native-framework-2-2-2-2-29512-0-x86,microsoft-net-native-framework-2-2-2-2-29512-0-x64,microsoft-net-native-framework-2-2-2-2-29512-0-arm,microsoft-net-native-framework-2-2-2-2-29512-0-arm64,microsoft-net-native-runtime-1-1-1-1-23406-0-x86,microsoft-net-native-runtime-1-1-1-1-23406-0-x64,microsoft-net-native-runtime-1-1-1-1-23406-0-arm,microsoft-net-native-framework-1-2-1-2-23231-0-x86,microsoft-net-native-framework-1-2-1-2-23231-0-x64,microsoft-net-native-framework-1-2-1-2-23231-0-arm,microsoft-media-playreadyclient-2-2-11-2154-0-x86,microsoft-media-playreadyclient-2-2-11-2154-0-x64,microsoft-media-playreadyclient-2-2-11-2154-0-arm,microsoft-media-playreadyclient-2-3-1678-0-arm,microsoft-media-playreadyclient-2-3-1678-0-x86,microsoft-media-playreadyclient-2-3-1678-0-x64</appIds>
+    </category>
+    <category title="10Store Exclusive" type="picks">
+      <appIds>drayai,0Mm2fpUA,youtube-music-metro</appIds>
+    </category>
   </categories>
   <apps/>
-  <app id="rayden-he-ii">
-    <name>Drayden The Mii</name>
-    <version>1.0.0.0</version>
-    <icon>http://10storedraydenyt.vercel.app/files/wave-sound-1774103089.png</icon>
-    <publisher>DraydenYT</publisher>
-    <featured>false</featured>
-    <description/>
-    <package>http://10storedraydenyt.vercel.app/files/drayai-1774103088.appx</package>
+  <app id="msn-weather-newretiled">
+    <name>MSN Weather (newRetiled)</name>
+    <version>4.3.193.0</version>
+    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773702852_msnweather.png</icon>
+    <publisher>Microsoft Corporation</publisher>
+    <featured>true</featured>
+    <description>MSN Weather: The best way to plan your day.
+
+Get the latest weather conditions, whether you're hitting the slopes, or the beach, or checking the forecast for your commute. See accurate 10-day and hourly forecasts for whatever you do.</description>
+    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773702852_Microsoft.BingWeather_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
     <pcCapable>true</pcCapable>
+    <mobileCapable>false</mobileCapable>
+  </app>
+  <app id="draymusic">
+    <name>DrayMusic</name>
+    <version>1.0.0.0</version>
+    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704616_wave-sound.png</icon>
+    <publisher>DraydenYT</publisher>
+    <featured>true</featured>
+    <description>DrayMusic For 8.1, get the best music streaming experience, Was originally made for 8Store, but screw them. rework was always better anyways. app may work on rt</description>
+    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704616_DrayMusic_1.0.0.0_AnyCPU.appx</package>
+    <screenshot1>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704616_image.png</screenshot1>
+    <screenshot2>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704616_image2.png</screenshot2>
+    <screenshot3>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704616_image3.png</screenshot3>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>false</mobileCapable>
+  </app>
+  <app id="lumia-camera">
+    <name>Lumia Camera</name>
+    <version>5.0.2.54</version>
+    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704804_StoreLogo.scale-240.png</icon>
+    <publisher>Microsoft Corporation</publisher>
+    <featured>true</featured>
+    <description/>
+    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704804_Lumia-Camera-5.0.2.54.appx</package>
+    <pcCapable>false</pcCapable>
     <mobileCapable>true</mobileCapable>
+  </app>
+  <app id="msn-news-newretiled">
+    <name>MSN News (newRetiled)</name>
+    <version>4.3.193.0</version>
+    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773744391_msnnews.png</icon>
+    <publisher>Microsoft Corporation</publisher>
+    <featured>true</featured>
+    <description>MSN News delivers breaking news and trusted, in-depth reporting from the world's best journalists.
+ 
+- Our editors curate the most trusted, important, interesting and trending news
+- You choose which topics matter most to you.
+- MSN News updates you with notifications of breaking news, quickly and accurately, 24/7
+- Sync your preferences across the app and the Web. 
+ 
+MSN News works in partnership with hundreds of publishers in dozens of countries globally. Select from editions</description>
+    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773744391_Microsoft.BingNews_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>false</mobileCapable>
+  </app>
+  <app id="msn-money-newretiled">
+    <name>MSN Money (newRetiled)</name>
+    <version>4.3.193.0</version>
+    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773747295_msnmoney.png</icon>
+    <publisher>Microsoft Corporation</publisher>
+    <featured>true</featured>
+    <description>MSN Money: Finance simplified. Know more about your money with the world’s best financial news and data. Grow your finances with handy tools and calculators, any time and anywhere.</description>
+    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773747295_Microsoft.BingFinance_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>false</mobileCapable>
+  </app>
+  <app id="asparion-flashlight">
+    <name>Asparion Flashlight+</name>
+    <version>1.2.5.0</version>
+    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773766721_flashlightplus.png</icon>
+    <publisher>Asparion</publisher>
+    <featured>false</featured>
+    <description>Turn your Windows device into a flashlight. Use the camera flash or your screen to light your way anytime anywhere. Adjust the brightness to get the most out of your device.</description>
+    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773766721_12199Asparion.Taschenlampe_1.2.5.0_x64__f89vgcf3qm37t.Appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>false</mobileCapable>
   </app>
 </data>
