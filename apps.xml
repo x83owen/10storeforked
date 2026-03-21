@@ -3,4 +3,15 @@
   <categories>
   </categories>
   <apps/>
+  <app id="rayden-he-ii">
+    <name>Drayden The Mii</name>
+    <version>1.0.0.0</version>
+    <icon>http://10storedraydenyt.vercel.app/files/wave-sound-1774103089.png</icon>
+    <publisher>DraydenYT</publisher>
+    <featured>false</featured>
+    <description/>
+    <package>http://10storedraydenyt.vercel.app/files/drayai-1774103088.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
