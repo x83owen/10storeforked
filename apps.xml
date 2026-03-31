@@ -111,7 +111,7 @@ MSN News works in partnership with hundreds of publishers in dozens of countries
     <version>1.0.0.0</version>
     <icon>https://10storedraydenyt.vercel.app/files/wave-sound-1774971068.png</icon>
     <publisher>DraydenYT</publisher>
-    <featured>false</featured>
+    <featured>true</featured>
     <description>DrayMusic for Windows 10 - Play Great Music on your Windows 10 Device - Online, Free.</description>
     <package>https://10storedraydenyt.vercel.app/files/DrayMusic_1.0.0.0_AnyCPU-1774971064.appx</package>
     <pcCapable>true</pcCapable>
