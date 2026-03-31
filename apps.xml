@@ -10,45 +10,45 @@
   <app id="msn-weather">
     <name>MSN Weather</name>
     <version>4.3.193.0</version>
-    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773702852_msnweather.png</icon>
+    <icon>https://10storedraydenyt.vercel.app/files/1773702852_msnweather.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>true</featured>
     <description>MSN Weather: The best way to plan your day.
 
 Get the latest weather conditions, whether you're hitting the slopes, or the beach, or checking the forecast for your commute. See accurate 10-day and hourly forecasts for whatever you do.</description>
-    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773702852_Microsoft.BingWeather_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
+    <package>https://10storedraydenyt.vercel.app/files/1773702852_Microsoft.BingWeather_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
   <app id="draymusic">
     <name>DrayMusic</name>
     <version>1.0.0.0</version>
-    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704616_wave-sound.png</icon>
+    <icon>https://10storedraydenyt.vercel.app/files/1773704616_wave-sound.png</icon>
     <publisher>DraydenYT</publisher>
     <featured>true</featured>
     <description>DrayMusic For 8.1, get the best music streaming experience, Was originally made for 8Store, but screw them. rework was always better anyways. app may work on rt</description>
-    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704616_DrayMusic_1.0.0.0_AnyCPU.appx</package>
-    <screenshot1>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704616_image.png</screenshot1>
-    <screenshot2>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704616_image2.png</screenshot2>
-    <screenshot3>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704616_image3.png</screenshot3>
+    <package>https://10storedraydenyt.vercel.app/files/1773704616_DrayMusic_1.0.0.0_AnyCPU.appx</package>
+    <screenshot1>https://10storedraydenyt.vercel.app/files/1773704616_image.png</screenshot1>
+    <screenshot2>https://10storedraydenyt.vercel.app/files/1773704616_image2.png</screenshot2>
+    <screenshot3>https://10storedraydenyt.vercel.app/files/1773704616_image3.png</screenshot3>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
   <app id="lumia-camera">
     <name>Lumia Camera</name>
     <version>5.0.2.54</version>
-    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704804_StoreLogo.scale-240.png</icon>
+    <icon>https://10storedraydenyt.vercel.app/files/1773704804_StoreLogo.scale-240.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>true</featured>
     <description/>
-    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773704804_Lumia-Camera-5.0.2.54.appx</package>
+    <package>https://10storedraydenyt.vercel.app/files/1773704804_Lumia-Camera-5.0.2.54.appx</package>
     <pcCapable>false</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="msn-news">
     <name>MSN News</name>
     <version>4.3.193.0</version>
-    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773744391_msnnews.png</icon>
+    <icon>https://10storedraydenyt.vercel.app/files/1773744391_msnnews.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>true</featured>
     <description>MSN News delivers breaking news and trusted, in-depth reporting from the world's best journalists.
@@ -59,29 +59,29 @@ Get the latest weather conditions, whether you're hitting the slopes, or the bea
 - Sync your preferences across the app and the Web. 
  
 MSN News works in partnership with hundreds of publishers in dozens of countries globally. Select from editions</description>
-    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773744391_Microsoft.BingNews_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
+    <package>https://10storedraydenyt.vercel.app/files/1773744391_Microsoft.BingNews_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
   <app id="msn-money">
     <name>MSN Money</name>
     <version>4.3.193.0</version>
-    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773747295_msnmoney.png</icon>
+    <icon>https://10storedraydenyt.vercel.app/files/1773747295_msnmoney.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>true</featured>
     <description>MSN Money: Finance simplified. Know more about your money with the world’s best financial news and data. Grow your finances with handy tools and calculators, any time and anywhere.</description>
-    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773747295_Microsoft.BingFinance_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
+    <package>https://10storedraydenyt.vercel.app/files/1773747295_Microsoft.BingFinance_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
   <app id="asparion-flashlight">
     <name>Asparion Flashlight+</name>
     <version>1.2.5.0</version>
-    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773766721_flashlightplus.png</icon>
+    <icon>https://10storedraydenyt.vercel.app/files/1773766721_flashlightplus.png</icon>
     <publisher>Asparion</publisher>
     <featured>false</featured>
     <description>Turn your Windows device into a flashlight. Use the camera flash or your screen to light your way anytime anywhere. Adjust the brightness to get the most out of your device.</description>
-    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773766721_12199Asparion.Taschenlampe_1.2.5.0_x64__f89vgcf3qm37t.Appx</package>
+    <package>https://10storedraydenyt.vercel.app/files/1773766721_12199Asparion.Taschenlampe_1.2.5.0_x64__f89vgcf3qm37t.Appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
