@@ -90,7 +90,7 @@ MSN News works in partnership with hundreds of publishers in dozens of countries
     <version>1.2.0.43</version>
     <icon>https://10storedraydenyt.vercel.app/files/1000228009-1774950695.png</icon>
     <publisher>ZeptoLabUKLimited</publisher>
-    <featured>false</featured>
+    <featured>true</featured>
     <description/>
     <package>https://appxboxdl.dankassassin368.com/Windows%208.1%20APPX%20Files/Games/Cut%20The%20Rope/x86/8.1/ZeptoLabUKLimited.CutTheRope_1.2.0.43_x86__sq9zxnwrk84pj.appx</package>
     <pcCapable>true</pcCapable>
