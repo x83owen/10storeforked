@@ -2,4 +2,15 @@
 <data>
   <apps>
   </apps>
+  <app id="ray-usic-for-indows-10">
+    <name>DrayMusic for Windows 10</name>
+    <version>1.0.0.0</version>
+    <icon>https://10storedraydenyt.vercel.app/files/project-1774969890.png</icon>
+    <publisher>DraydenYT</publisher>
+    <featured>false</featured>
+    <description/>
+    <package>https://10storedraydenyt.vercel.app/files/DrayMusic_1.0.0.0_AnyCPU-1774969880.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
