@@ -19,4 +19,15 @@
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
+  <app id="miling-ag-licker-for-indows-8-1">
+    <name>Smiling Bag Clicker for Windows 8.1</name>
+    <version>1.0.0.0</version>
+    <icon>https://10storedraydenyt.vercel.app/files/1000217269-1774951777.png</icon>
+    <publisher>Smiling Bag &amp;amp; DraydenYT</publisher>
+    <featured>false</featured>
+    <description/>
+    <package>https://10storedraydenyt.vercel.app/files/SmileBagClick_1.0.0.0_AnyCPU-1774951776.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
