@@ -2,6 +2,10 @@
 <data>
   <categories>
     <category title="Featured" type="featured"/>
+    <category title="DraydenYT Apps" type="picks">
+      <appIds>
+      </appIds>
+    </category>
   </categories>
   <apps/>
   <app id="msn-weather">
