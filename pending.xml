@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><data>
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
   <parsererror xmlns="http://www.w3.org/1999/xhtml" style="display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black">
     <h3>This page contains the following errors:</h3>
     <div style="font-family:monospace;font-size:12px">error on line 17 at column 8: Opening and ending tag mismatch: apps line 3 and data
@@ -7,5 +8,15 @@
   </parsererror>
   <apps>
   </apps>
-  
+  <app id="miling-ag-licker-for-indows-8-1">
+    <name>Smiling Bag Clicker for Windows 8.1</name>
+    <version>1.0.0.0</version>
+    <icon>https://10storedraydenyt.vercel.app/files/1000217269-1774951769.png</icon>
+    <publisher>Smiling Bag &amp;amp; DraydenYT</publisher>
+    <featured>false</featured>
+    <description/>
+    <package>https://10storedraydenyt.vercel.app/files/SmileBagClick_1.0.0.0_AnyCPU-1774951768.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
