@@ -3,9 +3,7 @@
     <category title="Featured" type="featured"/>
     
     
-    <category title="Video" type="picks">
-      <appIds>vlc-uwp,GrJoGJjh,dY265Bi3,XW2VB89E,Y0wouMtZ,g9QQPJD0</appIds>
-    </category>
+    
     <category title="Social" type="picks">
       <appIds>kRSswZ9K,9XrDWeBp,bing-news-newrreiled</appIds>
     </category>
