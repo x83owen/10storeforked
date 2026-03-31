@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<data>
+<?xml version="1.0" encoding="UTF-8"?><data>
   <parsererror xmlns="http://www.w3.org/1999/xhtml" style="display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black">
     <h3>This page contains the following errors:</h3>
     <div style="font-family:monospace;font-size:12px">error on line 17 at column 8: Opening and ending tag mismatch: apps line 3 and data
@@ -8,15 +7,5 @@
   </parsererror>
   <apps>
   </apps>
-  <app id="ut-the-ope">
-    <name>Cut the Rope</name>
-    <version>1.2.0.43</version>
-    <icon>https://10storedraydenyt.vercel.app/files/1000228009-1774950695.png</icon>
-    <publisher>ZeptoLabUKLimited</publisher>
-    <featured>false</featured>
-    <description/>
-    <package>https://appxboxdl.dankassassin368.com/Windows%208.1%20APPX%20Files/Games/Cut%20The%20Rope/x86/8.1/ZeptoLabUKLimited.CutTheRope_1.2.0.43_x86__sq9zxnwrk84pj.appx</package>
-    <pcCapable>true</pcCapable>
-    <mobileCapable>true</mobileCapable>
-  </app>
+  
 </data>
