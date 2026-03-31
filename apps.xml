@@ -3,8 +3,7 @@
   <categories>
     <category title="Featured" type="featured"/>
     <category title="DraydenYT Apps" type="picks">
-      <appIds>
-      </appIds>
+      <appIds>draymusic,ray-usic-for-indows-10</appIds>
     </category>
   </categories>
   <apps/>
