@@ -88,7 +88,7 @@ MSN News works in partnership with hundreds of publishers in dozens of countries
     <mobileCapable>false</mobileCapable>
   </app>
   <app id="msn-money-newretiled">
-    <name>MSN Money (newPISSRetiled)</name>
+    <name>MSN Money (newRetiled)</name>
     <version>4.3.193.0</version>
     <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773747295_msnmoney.png</icon>
     <publisher>Microsoft Corporation</publisher>
