@@ -1,17 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<data>
+<?xml version="1.0" encoding="UTF-8"?><data><parsererror xmlns="http://www.w3.org/1999/xhtml" style="display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black"><h3>This page contains the following errors:</h3><div style="font-family:monospace;font-size:12px">error on line 17 at column 8: Opening and ending tag mismatch: apps line 3 and data
+</div><h3>Below is a rendering of the page up to the first error.</h3></parsererror>
   <apps>
-  <app id="fzdbxzfdbfzdbfzdbfdbfdbfzdbfd">
-    <name>bvxbvzx</name>
-    <version>4.3.193.0</version>
-    <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773702852_msnweather.png</icon>
-    <publisher>Microsoft Corporation</publisher>
-    <featured>true</featured>
-    <description>MSN Weather: The best way to plan your day.
-
-Get the latest weather conditions, whether you're hitting the slopes, or the beach, or checking the forecast for your commute. See accurate 10-day and hourly forecasts for whatever you do.</description>
-    <package>https://drayai81isbacknotfor8storescripts.42web.io/files/1773702852_Microsoft.BingWeather_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
-    <pcCapable>true</pcCapable>
-    <mobileCapable>false</mobileCapable>
-  </app>
-</data>
+  </apps></data>
