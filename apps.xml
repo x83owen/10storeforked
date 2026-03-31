@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><data>
 <categories>
     <category title="Featured" type="featured"/>
+    <category title="Test1">
+        <appIds></appIds>
+    </category>
 </categories>
   <apps/>
   <app id="msn-weather-newretiled">
