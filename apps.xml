@@ -10,7 +10,7 @@
     
     
     
-  <category title="Games"><appIds>ut-the-ope</appIds></category><category title="newRetiled"><appIds>msn-weather-newretiled,msn-news-newretiled,msn-money-newretiled</appIds></category><category title="Tools"><appIds/></category></categories>
+  <category title="Games"><appIds>ut-the-ope</appIds></category><category title="Tools"><appIds/></category><category title="newRetiled"><appIds>msn-weather-newretiled,msn-news-newretiled,msn-money-newretiled</appIds></category></categories>
   <apps/>
   <app id="msn-weather-newretiled">
     <name>MSN Weather (newRetiled)</name>
