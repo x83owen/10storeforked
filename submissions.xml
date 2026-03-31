@@ -13,4 +13,15 @@
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
+  <app id="ray-usic-for-indows-10">
+    <name>DrayMusic for Windows 10</name>
+    <version>1.0.0.0</version>
+    <icon>https://10storedraydenyt.vercel.app/files/image-1774970635.png</icon>
+    <publisher>DraydenYT</publisher>
+    <featured>false</featured>
+    <description/>
+    <package>https://10storedraydenyt.vercel.app/files/CnWeather_M1-1774970632.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
