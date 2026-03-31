@@ -45,8 +45,8 @@ Get the latest weather conditions, whether you're hitting the slopes, or the bea
     <pcCapable>false</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
-  <app id="msn-news-newretiled">
-    <name>MSN News (newRetiled)</name>
+  <app id="msn-news">
+    <name>MSN News</name>
     <version>4.3.193.0</version>
     <icon>https://drayai81isbacknotfor8storescripts.42web.io/files/1773744391_msnnews.png</icon>
     <publisher>Microsoft Corporation</publisher>
