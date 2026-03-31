@@ -10,7 +10,7 @@
     
     
     
-  </categories>
+  <category title="newRetiled"><appIds/></category></categories>
   <apps/>
   <app id="msn-weather-newretiled">
     <name>MSN Weather (newRetiled)</name>
