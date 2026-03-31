@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><data>
   <categories>
     <category title="Featured" type="featured"/>
-    <category title="Games" type="picks">
-      <appIds>browserquest,minecraft-for-windows,minecraft-for-windows-10-mobile,hill-climb-racing,transport-empire,rrDcTRXV,VnpOXSdk,8WvwEEYk,LhEiIzol,suVzYAz7,zLL7sl3w,tk0RL62i,wUQYvaL6,ejwJaoRi,where-s-my-water,el-chavo-juego</appIds>
-    </category>
+    
     <category title="Art" type="picks">
       <appIds>fresh-paint,paint-3d</appIds>
     </category>
