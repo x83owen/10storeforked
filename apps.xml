@@ -10,6 +10,9 @@
     <category title="Test3">
         <appIds></appIds>
     </category>
+    <category title="Test4">
+        <appIds></appIds>
+    </category>
 </categories>
   <apps/>
   <app id="msn-weather-newretiled">
