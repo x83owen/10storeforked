@@ -5,9 +5,7 @@
     
     
     
-    <category title="Movies/TV" type="picks">
-      <appIds>vlc-uwp,Y0wouMtZ,g9QQPJD0</appIds>
-    </category>
+    
     <category title="Food and Dining" type="picks">
       <appIds/>
     </category>
