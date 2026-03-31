@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><data>
-  <categories>
+<categories>
     <category title="Featured" type="featured"/>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  <category title="Movies &amp;amp; TV"><appIds/></category></categories>
+</categories>
   <apps/>
   <app id="msn-weather-newretiled">
     <name>MSN Weather (newRetiled)</name>
