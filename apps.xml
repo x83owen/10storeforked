@@ -10,6 +10,9 @@
     <category title="News and Weather">
         <appIds>msn-weather,msn-news</appIds>
     </category>
+    <category title="Media">
+        <appIds></appIds>
+    </category>
 </categories>
   <apps/>
   <app id="msn-weather">
