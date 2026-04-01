@@ -8,7 +8,7 @@
         <appIds>ut-the-ope</appIds>
     </category>
     <category title="News and Weather">
-        <appIds></appIds>
+        <appIds>msn-weather,msn-news</appIds>
     </category>
 </categories>
   <apps/>
