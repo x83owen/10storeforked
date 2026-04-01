@@ -5,7 +5,10 @@
     <category title="DraydenYT Apps" type="picks">
       <appIds>draymusic,ray-usic-for-indows-10,smiling-bag-clicker-for-windows-8-1</appIds>
     </category>
-  </categories>
+      <category title="Games">
+        <appIds></appIds>
+    </category>
+</categories>
   <apps/>
   <app id="msn-weather">
     <name>MSN Weather</name>
