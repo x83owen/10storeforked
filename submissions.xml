@@ -5,31 +5,6 @@
   <app id="8-ip">
     <name>8Zip</name>
     <version>1.2.103.1000</version>
-    <icon>https://10storedraydenyt.vercel.app/files/descarga-1-1775491409.png</icon>
-    <publisher>Finebits OÜ</publisher>
-    <featured>false</featured>
-    <description>Out with the old, in with the new. The powerful archiver 8 Zip has expanded its set of capabilities with the new Continuum, Cortana and Windows Hello technologies.
-    Now one app, one license, a uniform design and functionality can be had on all types of devices. Decrypt files through an iris scan or at a touch. Listen to music, read documents, and watch videos right in the app. Share files with friends – it’s simple.
-    8 Zip is a cutting-edge archiver.
-    Distinctive features:
-    • High-speed archiving and unpacking.
-    • Incorporation of Continuum technology.
-    • Ability to decrypt archives using Windows Hello.
-    • Play music and video, display images and text files directly in the app.
-    • Send files by e-mail, post them on social networks, or share them on OneDrive and DropBox.
-    • Select the compression level and password protection.
-    • Print documents and images.
-    • One purchase gives you a license that is valid for all of your Windows 10 device.
-    8 Zip knows over 38 languages.
-    The app has been downloaded more than 8,000,000 times
-    Thank you for helping to make 8 Zip better! Simply send your suggestions for improvement to 8zip@finebits.com and show your support by giving us a ★★★★★ review.</description>
-    <package>https://10storedraydenyt.vercel.app/files/BooStudioLLC.8ZipLite_1.2.103.1000_x86__b6e429xa66pga-1775491406.appx</package>
-    <pcCapable>true</pcCapable>
-    <mobileCapable>true</mobileCapable>
-  </app>
-  <app id="8-ip">
-    <name>8Zip</name>
-    <version>1.2.103.1000</version>
     <icon>https://10storedraydenyt.vercel.app/files/descarga-1-1775491465.png</icon>
     <publisher>Finebits OÜ</publisher>
     <featured>false</featured>
