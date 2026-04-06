@@ -2,4 +2,23 @@
 <data>
   <apps>
   </apps>
+  <app id="etro-ommander">
+    <name>Metro Commander</name>
+    <version>1.1.1.5.0</version>
+    <icon>https://10storedraydenyt.vercel.app/files/descarga-5-1775490623.png</icon>
+    <publisher>Finebits OÜ</publisher>
+    <featured>false</featured>
+    <description>Metro Commander is an orthodox file manager which allows you to manage your files and folders from within the Modern Windows UI interface.&#13;
+Easily create, open, preview, rename, copy, move, delete, search and share files and folders.&#13;
+Browse your documents faster with navigation buttons (back, forward, up), thumbnail previews, shortcuts to your Images, Music and Videos folders and the ability to add shortcuts to your favorite folders.&#13;
+Manage your online files by logging into your OneDrive account.</description>
+    <package>https://github.com/bloomthebloom/Appboxers/raw/refs/heads/main/BooStudioLLC.MetroCommander_1.1.15.0_x86__b6e429xa66pga.appx</package>
+    <screenshot1>https://10storedraydenyt.vercel.app/files/apps.37262.9007199266579522.4aefc0f4-1edb-491f-9be2-272074d59810-1775490624.jpg</screenshot1>
+    <screenshot2>https://10storedraydenyt.vercel.app/files/apps.36181.9007199266579522.3e99ba97-5b23-404b-a7e3-e22d9a561eeb-1775490624.jpg</screenshot2>
+    <screenshot3>https://10storedraydenyt.vercel.app/files/apps.36093.9007199266579522.eab2ebad-0b80-470d-bd4f-3bf73e2fa655-1775490625.jpg</screenshot3>
+    <screenshot4>https://10storedraydenyt.vercel.app/files/apps.27408.9007199266579522.9667b69c-a672-4fe1-b4a7-f084b4236f39-1775490626.jpg</screenshot4>
+    <screenshot5>https://10storedraydenyt.vercel.app/files/apps.8642.9007199266579522.a682fbb6-fb70-40de-81c4-a311622792c7-1775490627.jpg</screenshot5>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
