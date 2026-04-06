@@ -2,4 +2,29 @@
 <data>
   <apps>
   </apps>
+  <app id="resh-aint">
+    <name>Fresh Paint</name>
+    <version>3.1.10383.1000</version>
+    <icon>https://10storedraydenyt.vercel.app/files/apps.44755.9007199266251806.c139e5fd-5846-4901-9106-acd4938a4006-1775491909.png</icon>
+    <publisher>Microsoft Corporation</publisher>
+    <featured>false</featured>
+    <description>Unleash your inner creative with Fresh Paint – the ultimate canvas for your big ideas. &#13;
+&#13;
+Fresh Paint is a fun and easy to use painting app with the right tools for artists of all ages. &#13;
+&#13;
+We believe that brilliant, creative ideas can come from anyone, anytime.  It’s time to set your creativity free.&#13;
+&#13;
+Create original artwork, turn photos into beautiful paintings, or choose an activity pack to help you get started quickly. From whimsical pictures of your friends to amazing landscapes, Fresh Paint enables you to create anything.&#13;
+&#13;
+“Utterly superb” – Brad Chacos, PC World&#13;
+&#13;
+“Windows 8’s coolest app: Fresh Paint” – David Goldman, CNNMoney&#13;
+&#13;
+“The most realistic painting app I have ever used” – Joe Fedewa, WinSource&#13;
+&#13;
+“There's no better demonstration of the cool types of things you can do with multitouch than Fresh Paint.” – Michael Muchmore, PC Magazine</description>
+    <package>http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/3cc3da5a-32ff-4e98-a417-b90964a260cc?P1=1775494458&amp;P2=404&amp;P3=2&amp;P4=HwSrNg0jr344S6Hah%2bn50NWNooY%2fe6NtwrkzhSpc%2bOFj2eb6qOGpRpEQNsQwAqlUvvdhtGAOpEMsVTuc3uxN%2fA%3d%3d</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
