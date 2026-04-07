@@ -150,7 +150,7 @@
     <version>1.1.1.5.0</version>
     <icon>https://10storedraydenyt.vercel.app/files/descarga-5-1775490623.png</icon>
     <publisher>Finebits OÜ</publisher>
-    <featured>false</featured>
+    <featured>true</featured>
     <description>Metro Commander is an orthodox file manager which allows you to manage your files and folders from within the Modern Windows UI interface.
     Easily create, open, preview, rename, copy, move, delete, search and share files and folders.
     Browse your documents faster with navigation buttons (back, forward, up), thumbnail previews, shortcuts to your Images, Music and Videos folders and the ability to add shortcuts to your favorite folders.
