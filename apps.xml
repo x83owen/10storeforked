@@ -82,7 +82,7 @@
     <version>1.2.5.0</version>
     <icon>https://10storedraydenyt.vercel.app/files/1773766721_flashlightplus.png</icon>
     <publisher>Asparion</publisher>
-    <featured>true</featured>
+    <featured>false</featured>
     <description>Turn your Windows device into a flashlight. Use the camera flash or your screen to light your way anytime anywhere. Adjust the brightness to get the most out of your device.</description>
     <package>https://10storedraydenyt.vercel.app/files/1773766721_12199Asparion.Taschenlampe_1.2.5.0_x64__f89vgcf3qm37t.Appx</package>
     <pcCapable>true</pcCapable>
