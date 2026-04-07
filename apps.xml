@@ -55,7 +55,7 @@
     <version>4.3.193.0</version>
     <icon>https://10storedraydenyt.vercel.app/files/1773744391_msnnews.png</icon>
     <publisher>Microsoft Corporation</publisher>
-    <featured>true</featured>
+    <featured>false</featured>
     <description>MSN News delivers breaking news and trusted, in-depth reporting from the world's best journalists.
     - Our editors curate the most trusted, important, interesting and trending news
     - You choose which topics matter most to you.
