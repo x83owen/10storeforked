@@ -2,9 +2,6 @@
 <data>
   <categories>
     <category title="Featured" type="featured"/>
-    <category title="Games">
-      <appIds>draymusic,ray-usic-for-indows-10,smiling-bag-clicker-for-windows-8-1</appIds>
-    </category>
     <category title="DraydenYT Apps" type="picks">
       <appIds>draymusic,ray-usic-for-indows-10,smiling-bag-clicker-for-windows-8-1</appIds>
     </category>
