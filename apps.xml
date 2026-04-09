@@ -18,7 +18,7 @@
     <version>4.3.193.0</version>
     <icon>https://10storedraydenyt.vercel.app/files/1773702852_msnweather.png</icon>
     <publisher>Microsoft Corporation</publisher>
-    <featured>true</featured>
+    <featured>false</featured>
     <description>MSN Weather: The best way to plan your day.
     Get the latest weather conditions, whether you're hitting the slopes, or the beach, or checking the forecast for your commute. See accurate 10-day and hourly forecasts for whatever you do.</description>
     <package>https://10storedraydenyt.vercel.app/files/1773702852_Microsoft.BingWeather_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
