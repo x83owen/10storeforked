@@ -99,7 +99,7 @@
                 '</div>';
 
             wrapper.onclick = (function (appId) {
-                return function () { window.location.href = 'app.html?id=' + appId; };
+                return function () { window.location.href = 'ms-appx-web:///app.html?id=' + appId; };
             })(id);
 
             wrapper.appendChild(card);
