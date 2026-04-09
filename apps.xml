@@ -241,4 +241,15 @@
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
+  <app id="icrosoft-ibs-for-32-bits">
+    <name>Microsoft VCLibs for 32 bits</name>
+    <version>14.0.33519.0</version>
+    <icon>https://10storedraydenyt.vercel.app/files/apps.31504.14066169654408422.36c4fe2f-9afd-4a7a-ab2b-245d0cfb8762-1775757988.png</icon>
+    <publisher>Microsoft Corporation</publisher>
+    <featured>false</featured>
+    <description/>
+    <package>https://10storedraydenyt.vercel.app/files/Microsoft.VCLibs.140.00_14.0.33519.0_x86__8wekyb3d8bbwe-1775757986.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
