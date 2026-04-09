@@ -8,6 +8,10 @@
     <category title="Dependencies" type="picks">
       <appIds>icrosoft-ibs,icrosoft-ibs-for-32-bits,icrosoft-ative-ramework</appIds>
     </category>
+    <category title="Games" type="picks">
+      <appIds>
+      </appIds>
+    </category>
   </categories>
   <apps/>
   <app id="msn-weather">
