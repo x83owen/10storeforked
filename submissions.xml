@@ -13,16 +13,4 @@
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
-  <app id="ray-i-or-indows-10">
-    <name>DrayAi For Windows 10</name>
-    <version>3.3.0.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/Square150x150Logo.scale-400-1775753552.png</icon>
-    <publisher>DraydenYT</publisher>
-    <featured>false</featured>
-    <description>DrayAi 3.3 Is here!</description>
-    <package>https://10storedraydenyt.vercel.app/files/DrayAi_3.3.0.0_AnyCPU-1775753551.appx</package>
-    <screenshot1>https://10storedraydenyt.vercel.app/files/Untitled-1775753553.png</screenshot1>
-    <pcCapable>true</pcCapable>
-    <mobileCapable>true</mobileCapable>
-  </app>
 </data>
