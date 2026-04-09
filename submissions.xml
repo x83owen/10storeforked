@@ -2,15 +2,4 @@
 <data>
   <apps>
   </apps>
-  <app id="iano-ime-ro">
-    <name>Piano Time Pro</name>
-    <version>1.0.0.16</version>
-    <icon>https://10storedraydenyt.vercel.app/files/Logo.scale-180-1775673264.png</icon>
-    <publisher>Revel Software</publisher>
-    <featured>false</featured>
-    <description>A simple piano app.</description>
-    <package>https://10storedraydenyt.vercel.app/files/RevelSoftware.PianoTimePro_1.0.0.16_neutral__rm1v733ay04k0-1775673263.appx</package>
-    <pcCapable>true</pcCapable>
-    <mobileCapable>true</mobileCapable>
-  </app>
 </data>
