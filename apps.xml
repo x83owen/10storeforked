@@ -8,6 +8,10 @@
     <category title="News &amp; Weather">
       <appIds>msn-weather,msn-news</appIds>
     </category>
+    <category title="Dependencies" type="picks">
+      <appIds>
+      </appIds>
+    </category>
   </categories>
   <apps/>
   <app id="msn-weather">
