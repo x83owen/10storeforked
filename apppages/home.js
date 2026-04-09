@@ -267,7 +267,7 @@
                 '</div>';
 
             wrapper.onclick = function () {
-                window.location.href = 'app.html?id=' + encodeURIComponent(id);
+                window.location.href = 'ms-appx-web:///app.html?id=' + encodeURIComponent(id);
             };
 
             wrapper.appendChild(card);
