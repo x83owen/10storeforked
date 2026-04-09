@@ -16,44 +16,44 @@
   <app id="msn-weather">
     <name>MSN Weather</name>
     <version>4.3.193.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/1773702852_msnweather.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773702852_msnweather.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>false</featured>
     <description>MSN Weather: The best way to plan your day.
     Get the latest weather conditions, whether you're hitting the slopes, or the beach, or checking the forecast for your commute. See accurate 10-day and hourly forecasts for whatever you do.</description>
-    <package>https://10storedraydenyt.vercel.app/files/1773702852_Microsoft.BingWeather_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773702852_Microsoft.BingWeather_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
   <app id="draymusic">
     <name>DrayMusic</name>
     <version>1.0.0.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/1773704616_wave-sound.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773704616_wave-sound.png</icon>
     <publisher>DraydenYT</publisher>
     <featured>false</featured>
     <description>DrayMusic For 8.1, get the best music streaming experience, Was originally made for 8Store, but screw them. rework was always better anyways. app may work on rt</description>
-    <package>https://10storedraydenyt.vercel.app/files/1773704616_DrayMusic_1.0.0.0_AnyCPU.appx</package>
-    <screenshot1>https://10storedraydenyt.vercel.app/files/1773704616_image.png</screenshot1>
-    <screenshot2>https://10storedraydenyt.vercel.app/files/1773704616_image2.png</screenshot2>
-    <screenshot3>https://10storedraydenyt.vercel.app/files/1773704616_image3.png</screenshot3>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773704616_DrayMusic_1.0.0.0_AnyCPU.appx</package>
+    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773704616_image.png</screenshot1>
+    <screenshot2>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773704616_image2.png</screenshot2>
+    <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773704616_image3.png</screenshot3>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
   <app id="lumia-camera">
     <name>Lumia Camera</name>
     <version>5.0.2.54</version>
-    <icon>https://10storedraydenyt.vercel.app/files/1773704804_StoreLogo.scale-240.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773704804_StoreLogo.scale-240.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>true</featured>
     <description/>
-    <package>https://10storedraydenyt.vercel.app/files/1773704804_Lumia-Camera-5.0.2.54.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773704804_Lumia-Camera-5.0.2.54.appx</package>
     <pcCapable>false</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="msn-news">
     <name>MSN News</name>
     <version>4.3.193.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/1773744391_msnnews.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773744391_msnnews.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>false</featured>
     <description>MSN News delivers breaking news and trusted, in-depth reporting from the world's best journalists.
@@ -62,36 +62,36 @@
     - MSN News updates you with notifications of breaking news, quickly and accurately, 24/7
     - Sync your preferences across the app and the Web.
     MSN News works in partnership with hundreds of publishers in dozens of countries globally. Select from editions</description>
-    <package>https://10storedraydenyt.vercel.app/files/1773744391_Microsoft.BingNews_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773744391_Microsoft.BingNews_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
   <app id="msn-money">
     <name>MSN Money</name>
     <version>4.3.193.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/1773747295_msnmoney.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773747295_msnmoney.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>false</featured>
     <description>MSN Money: Finance simplified. Know more about your money with the world’s best financial news and data. Grow your finances with handy tools and calculators, any time and anywhere.</description>
-    <package>https://10storedraydenyt.vercel.app/files/1773747295_Microsoft.BingFinance_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773747295_Microsoft.BingFinance_4.3.193.0_x86__8wekyb3d8bbwe.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
   <app id="asparion-flashlight">
     <name>Asparion Flashlight+</name>
     <version>1.2.5.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/1773766721_flashlightplus.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773766721_flashlightplus.png</icon>
     <publisher>Asparion</publisher>
     <featured>false</featured>
     <description>Turn your Windows device into a flashlight. Use the camera flash or your screen to light your way anytime anywhere. Adjust the brightness to get the most out of your device.</description>
-    <package>https://10storedraydenyt.vercel.app/files/1773766721_12199Asparion.Taschenlampe_1.2.5.0_x64__f89vgcf3qm37t.Appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773766721_12199Asparion.Taschenlampe_1.2.5.0_x64__f89vgcf3qm37t.Appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
   <app id="ut-the-ope">
     <name>Cut the Rope</name>
     <version>1.2.0.43</version>
-    <icon>https://10storedraydenyt.vercel.app/files/1000228009-1774950695.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1000228009-1774950695.png</icon>
     <publisher>ZeptoLabUKLimited</publisher>
     <featured>false</featured>
     <description/>
@@ -102,53 +102,53 @@
   <app id="smiling-bag-clicker-for-windows-8-1">
     <name>Smiling Bag Clicker for Windows 8.1</name>
     <version>1.0.0.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/1000217269-1774951769.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1000217269-1774951769.png</icon>
     <publisher>Smiling Bag &amp; DraydenYT</publisher>
     <featured>true</featured>
     <description/>
-    <package>https://10storedraydenyt.vercel.app/files/SmileBagClick_1.0.0.0_AnyCPU-1774951768.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/SmileBagClick_1.0.0.0_AnyCPU-1774951768.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="ray-usic-for-indows-10">
     <name>DrayMusic for Windows 10</name>
     <version>1.0.0.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/wave-sound-1774971068.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/wave-sound-1774971068.png</icon>
     <publisher>DraydenYT</publisher>
     <featured>true</featured>
     <description>DrayMusic for Windows 10 - Play Great Music on your Windows 10 Device - Online, Free.</description>
-    <package>https://10storedraydenyt.vercel.app/files/DrayMusic_1.0.0.0_AnyCPU-1774971064.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/DrayMusic_1.0.0.0_AnyCPU-1774971064.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="miling-ag-licker-for-indows-10">
     <name>Smiling Bag Clicker for Windows 10</name>
     <version>1.0.0.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/Square44x44Logo.altform-unplated_targetsize-256-1774999781.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Square44x44Logo.altform-unplated_targetsize-256-1774999781.png</icon>
     <publisher>Ryzen (Smiling bin)</publisher>
     <featured>false</featured>
     <description>Get this game now!
     Smiling Bag Clicker came to Android, then Windows 8.1 and now Windows 10!
     (Might have some bugs)</description>
-    <package>https://10storedraydenyt.vercel.app/files/SmillingBagClicker_1.0.0.0_x64_Debug-1774999778.appxbundle</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/SmillingBagClicker_1.0.0.0_x64_Debug-1774999778.appxbundle</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="enon-tore">
     <name>XenonStore</name>
     <version>0.0.1.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/xs_store-1775002300.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/xs_store-1775002300.png</icon>
     <publisher>MSN Money Apps Corporation</publisher>
     <featured>false</featured>
     <description/>
-    <package>https://10storedraydenyt.vercel.app/files/XenonStore_0.0.1.0_AnyCPU_Debug-1775002299.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/XenonStore_0.0.1.0_AnyCPU_Debug-1775002299.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="etro-ommander">
     <name>Metro Commander</name>
     <version>1.1.1.5.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/descarga-5-1775490623.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/descarga-5-1775490623.png</icon>
     <publisher>Finebits OÜ</publisher>
     <featured>true</featured>
     <description>Metro Commander is an orthodox file manager which allows you to manage your files and folders from within the Modern Windows UI interface.
@@ -156,18 +156,18 @@
     Browse your documents faster with navigation buttons (back, forward, up), thumbnail previews, shortcuts to your Images, Music and Videos folders and the ability to add shortcuts to your favorite folders.
     Manage your online files by logging into your OneDrive account.</description>
     <package>https://github.com/bloomthebloom/Appboxers/raw/refs/heads/main/BooStudioLLC.MetroCommander_1.1.15.0_x86__b6e429xa66pga.appx</package>
-    <screenshot1>https://10storedraydenyt.vercel.app/files/apps.37262.9007199266579522.4aefc0f4-1edb-491f-9be2-272074d59810-1775490624.jpg</screenshot1>
-    <screenshot2>https://10storedraydenyt.vercel.app/files/apps.36181.9007199266579522.3e99ba97-5b23-404b-a7e3-e22d9a561eeb-1775490624.jpg</screenshot2>
-    <screenshot3>https://10storedraydenyt.vercel.app/files/apps.36093.9007199266579522.eab2ebad-0b80-470d-bd4f-3bf73e2fa655-1775490625.jpg</screenshot3>
-    <screenshot4>https://10storedraydenyt.vercel.app/files/apps.27408.9007199266579522.9667b69c-a672-4fe1-b4a7-f084b4236f39-1775490626.jpg</screenshot4>
-    <screenshot5>https://10storedraydenyt.vercel.app/files/apps.8642.9007199266579522.a682fbb6-fb70-40de-81c4-a311622792c7-1775490627.jpg</screenshot5>
+    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.37262.9007199266579522.4aefc0f4-1edb-491f-9be2-272074d59810-1775490624.jpg</screenshot1>
+    <screenshot2>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.36181.9007199266579522.3e99ba97-5b23-404b-a7e3-e22d9a561eeb-1775490624.jpg</screenshot2>
+    <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.36093.9007199266579522.eab2ebad-0b80-470d-bd4f-3bf73e2fa655-1775490625.jpg</screenshot3>
+    <screenshot4>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.27408.9007199266579522.9667b69c-a672-4fe1-b4a7-f084b4236f39-1775490626.jpg</screenshot4>
+    <screenshot5>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.8642.9007199266579522.a682fbb6-fb70-40de-81c4-a311622792c7-1775490627.jpg</screenshot5>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="8-ip">
     <name>8Zip</name>
     <version>1.2.103.1000</version>
-    <icon>https://10storedraydenyt.vercel.app/files/descarga-1-1775491174.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/descarga-1-1775491174.png</icon>
     <publisher>Finebits OÜ</publisher>
     <featured>true</featured>
     <description>Out with the old, in with the new. The powerful archiver 8 Zip has expanded its set of capabilities with the new Continuum, Cortana and Windows Hello technologies.
@@ -185,14 +185,14 @@
     8 Zip knows over 38 languages.
     The app has been downloaded more than 8,000,000 times
     Thank you for helping to make 8 Zip better! Simply send your suggestions for improvement to 8zip@finebits.com and show your support by giving us a ★★★★★ review.</description>
-    <package>https://10storedraydenyt.vercel.app/files/BooStudioLLC.8ZipLite_1.2.103.1000_x86__b6e429xa66pga-1775491170.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/BooStudioLLC.8ZipLite_1.2.103.1000_x86__b6e429xa66pga-1775491170.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="resh-aint">
     <name>Fresh Paint</name>
     <version>3.1.10383.1000</version>
-    <icon>https://10storedraydenyt.vercel.app/files/apps.44755.9007199266251806.c139e5fd-5846-4901-9106-acd4938a4006-1775491909.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.44755.9007199266251806.c139e5fd-5846-4901-9106-acd4938a4006-1775491909.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>true</featured>
     <description>Unleash your inner creative with Fresh Paint – the ultimate canvas for your big ideas.
@@ -210,74 +210,74 @@
   <app id="ray-i-or-indows-10">
     <name>DrayAi For Windows 10</name>
     <version>3.3.0.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/Square150x150Logo.scale-400-1775753552.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Square150x150Logo.scale-400-1775753552.png</icon>
     <publisher>DraydenYT</publisher>
     <featured>false</featured>
     <description>DrayAi 3.3 Is here!</description>
-    <package>https://10storedraydenyt.vercel.app/files/DrayAi_3.3.0.0_AnyCPU-1775753551.appx</package>
-    <screenshot1>https://10storedraydenyt.vercel.app/files/Untitled-1775753553.png</screenshot1>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/DrayAi_3.3.0.0_AnyCPU-1775753551.appx</package>
+    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Untitled-1775753553.png</screenshot1>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="iano-ime-ro">
     <name>Piano Time Pro</name>
     <version>1.0.0.16</version>
-    <icon>https://10storedraydenyt.vercel.app/files/Logo.scale-180-1775673264.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Logo.scale-180-1775673264.png</icon>
     <publisher>Revel Software</publisher>
     <featured>false</featured>
     <description>A simple piano app.</description>
-    <package>https://10storedraydenyt.vercel.app/files/RevelSoftware.PianoTimePro_1.0.0.16_neutral__rm1v733ay04k0-1775673263.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/RevelSoftware.PianoTimePro_1.0.0.16_neutral__rm1v733ay04k0-1775673263.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="icrosoft-ibs">
     <name>Microsoft VCLibs</name>
     <version>14.0.33519.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/apps.31504.14066169654408422.36c4fe2f-9afd-4a7a-ab2b-245d0cfb8762-1775757988.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.31504.14066169654408422.36c4fe2f-9afd-4a7a-ab2b-245d0cfb8762-1775757988.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>false</featured>
     <description>64 bits version</description>
-    <package>https://10storedraydenyt.vercel.app/files/Microsoft.VCLibs.140.00_14.0.33519.0_x64__8wekyb3d8bbwe-1775754459.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Microsoft.VCLibs.140.00_14.0.33519.0_x64__8wekyb3d8bbwe-1775754459.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="icrosoft-ibs-for-32-bits">
     <name>Microsoft VCLibs for 32 bits</name>
     <version>14.0.33519.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/apps.31504.14066169654408422.36c4fe2f-9afd-4a7a-ab2b-245d0cfb8762-1775757988.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.31504.14066169654408422.36c4fe2f-9afd-4a7a-ab2b-245d0cfb8762-1775757988.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>false</featured>
     <description/>
-    <package>https://10storedraydenyt.vercel.app/files/Microsoft.VCLibs.140.00_14.0.33519.0_x86__8wekyb3d8bbwe-1775757986.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Microsoft.VCLibs.140.00_14.0.33519.0_x86__8wekyb3d8bbwe-1775757986.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="icrosoft-ative-ramework">
     <name>Microsoft .NET Native Framework</name>
     <version>1.2.23231.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/apps.31504.14066169654408422.36c4fe2f-9afd-4a7a-ab2b-245d0cfb8762-1775760189.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.31504.14066169654408422.36c4fe2f-9afd-4a7a-ab2b-245d0cfb8762-1775760189.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>false</featured>
     <description/>
-    <package>https://10storedraydenyt.vercel.app/files/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x86__8wekyb3d8bbwe-1775760188.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Microsoft.NET.Native.Framework.1.2_1.2.23231.0_x86__8wekyb3d8bbwe-1775760188.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="icrosoft-ative-ramework">
     <name>Microsoft .NET Native Framework</name>
     <version>1.3.24211.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/apps.31504.14066169654408422.36c4fe2f-9afd-4a7a-ab2b-245d0cfb8762-1775760289.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.31504.14066169654408422.36c4fe2f-9afd-4a7a-ab2b-245d0cfb8762-1775760289.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>false</featured>
     <description/>
-    <package>https://10storedraydenyt.vercel.app/files/Microsoft.NET.Native.Framework.1.3_1.3.24211.0_x64__8wekyb3d8bbwe-1775760287.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Microsoft.NET.Native.Framework.1.3_1.3.24211.0_x64__8wekyb3d8bbwe-1775760287.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="rowser-uest">
     <name>BrowserQuest</name>
     <version>2.6.2.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/descarga-6-1775771183.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/descarga-6-1775771183.png</icon>
     <publisher>Mads &amp; Peter Sandberg Brun</publisher>
     <featured>true</featured>
     <description>BrowserQuest is a small multiplayer game inviting you to explore a world of adventure from your Windows device.
@@ -292,11 +292,11 @@
   <app id="ports">
     <name>MSN Sports</name>
     <version>4.3.193.0</version>
-    <icon>https://10storedraydenyt.vercel.app/files/Captura-de-pantalla-110-1775771827.png</icon>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Captura-de-pantalla-110-1775771827.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>false</featured>
     <description/>
-    <package>https://10storedraydenyt.vercel.app/files/Microsoft.BingSports_4.3.193.0_x86__8wekyb3d8bbwe-1775771825.appx</package>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Microsoft.BingSports_4.3.193.0_x86__8wekyb3d8bbwe-1775771825.appx</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
