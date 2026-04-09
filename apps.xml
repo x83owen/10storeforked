@@ -9,8 +9,7 @@
       <appIds>msn-weather,msn-news</appIds>
     </category>
     <category title="Dependencies" type="picks">
-      <appIds>
-      </appIds>
+      <appIds>icrosoft-ibs</appIds>
     </category>
   </categories>
   <apps/>
