@@ -2,4 +2,15 @@
 <data>
   <apps>
   </apps>
+  <app id="ports">
+    <name>MSN Sports</name>
+    <version>4.3.193.0</version>
+    <icon>https://10storedraydenyt.vercel.app/files/Captura-de-pantalla-110-1775771827.png</icon>
+    <publisher>Microsoft Corporation</publisher>
+    <featured>false</featured>
+    <description/>
+    <package>https://10storedraydenyt.vercel.app/files/Microsoft.BingSports_4.3.193.0_x86__8wekyb3d8bbwe-1775771825.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
