@@ -143,7 +143,7 @@
     <description/>
     <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/XenonStore_0.0.1.0_AnyCPU_Debug-1775002299.appx</package>
     <pcCapable>true</pcCapable>
-    <mobileCapable>true</mobileCapable>
+    <mobileCapable>false</mobileCapable>
   </app>
   <app id="etro-ommander">
     <name>Metro Commander</name>
