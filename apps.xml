@@ -97,7 +97,7 @@
     <description/>
     <package>https://appxboxdl.dankassassin368.com/Windows%208.1%20APPX%20Files/Games/Cut%20The%20Rope/x86/8.1/ZeptoLabUKLimited.CutTheRope_1.2.0.43_x86__sq9zxnwrk84pj.appx</package>
     <pcCapable>true</pcCapable>
-    <mobileCapable>true</mobileCapable>
+    <mobileCapable>false</mobileCapable>
   </app>
   <app id="smiling-bag-clicker-for-windows-8-1">
     <name>Smiling Bag Clicker for Windows 8.1</name>
