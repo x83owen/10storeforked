@@ -2,19 +2,4 @@
 <data>
   <apps>
   </apps>
-  <app id="etronome">
-    <name>Metronome+</name>
-    <version>3.0.4.0</version>
-    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/descarga-8-1775842758.png</icon>
-    <publisher>Asparion</publisher>
-    <featured>false</featured>
-    <description>This is what every musician needs. A metronome. You can change the BPM (beats per minute) and you can select one of the pre-defined bars. The bars can be customized exactly as you like and it is possible to choose different sounds.</description>
-    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/12199Asparion.Metronom_3.0.4.0_x86__f89vgcf3qm37t-1775842756.appx</package>
-    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.59573.9007199266251517.697227b2-b11e-4fe1-9e9e-2b524fe0f231-1775842759.jpg</screenshot1>
-    <screenshot2>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.27925.9007199266251517.c0f91afe-192c-42c2-9832-6f6568515f56-1775842761.jpg</screenshot2>
-    <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.20512.9007199266251517.77f19011-4714-4ba7-8e0d-74595c9644ad-1775842762.jpg</screenshot3>
-    <screenshot4>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.16534.9007199266251517.9ef4f4cc-b6b6-4962-a5d7-5faeecc0413d-1775842763.jpg</screenshot4>
-    <pcCapable>true</pcCapable>
-    <mobileCapable>true</mobileCapable>
-  </app>
 </data>
