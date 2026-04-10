@@ -313,4 +313,15 @@
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
+  <app id="lashlight">
+    <name>Flashlight+</name>
+    <version>1.2.5.0</version>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/descarga-9-1775848504.png</icon>
+    <publisher>Asparion</publisher>
+    <featured>false</featured>
+    <description>Turn your Windows device into a flashlight. Use the camera flash or your screen to light your way anytime anywhere. Adjust the brightness to get the most out of your device.</description>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/12199Asparion.Taschenlampe_1.2.5.0_x64__f89vgcf3qm37t-1775848502.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
