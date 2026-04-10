@@ -15,7 +15,7 @@
   <apps/>
   <app id="msn-weather">
     <name>MSN Weather</name>
-    <version>4.3.193.0</version>
+    <version>4.4.193.0</version>
     <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773702852_msnweather.png</icon>
     <publisher>Microsoft Corporation</publisher>
     <featured>false</featured>
