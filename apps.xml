@@ -205,7 +205,7 @@
     “There's no better demonstration of the cool types of things you can do with multitouch than Fresh Paint.” – Michael Muchmore, PC Magazine</description>
     <package>http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/3cc3da5a-32ff-4e98-a417-b90964a260cc?P1=1775494458&amp;P2=404&amp;P3=2&amp;P4=HwSrNg0jr344S6Hah%2bn50NWNooY%2fe6NtwrkzhSpc%2bOFj2eb6qOGpRpEQNsQwAqlUvvdhtGAOpEMsVTuc3uxN%2fA%3d%3d</package>
     <pcCapable>true</pcCapable>
-    <mobileCapable>true</mobileCapable>
+    <mobileCapable>false</mobileCapable>
   </app>
   <app id="ray-i-or-indows-10">
     <name>DrayAi For Windows 10</name>
