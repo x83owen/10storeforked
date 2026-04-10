@@ -2,4 +2,38 @@
 <data>
   <apps>
   </apps>
+  <app id="inecraft">
+    <name>Minecraft</name>
+    <version>1.16.4002.0</version>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft-1775849251.png</icon>
+    <publisher>Microsoft Studios</publisher>
+    <featured>false</featured>
+    <description>Explore infinite worlds and build everything from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep into the world in survival mode, crafting weapons and armor to fend off dangerous mobs. Create, explore and survive alone or with friends on mobile devices, Switch, Xbox One and Windows 10.&#13;
+&#13;
+EXPAND YOUR GAME: &#13;
+&#13;
+Marketplace - Discover the latest community creations in the marketplace! Get unique maps, skins, and texture packs from your favorite creators. &#13;
+&#13;
+Slash commands - Tweak how the game plays: you can give items away, summon mobs, change the time of day, and more. &#13;
+&#13;
+Add-Ons - Customize your experience even further with free Add-Ons! If you're more tech-inclined, you can modify data-driven behaviors in the game to create new resource packs. MULTIPLAYER &#13;
+&#13;
+Realms - Play with up to 10 friends cross-platform, anytime, anywhere on Realms, your own private server that we host for you. Try a free 30-day trial in-app. &#13;
+&#13;
+Multiplayer - Play with up to 4 friends with a free Xbox Live account online. &#13;
+&#13;
+Servers - Join free massive multiplayer servers and play with thousands of others! &#13;
+&#13;
+Discover gigantic community-run worlds, compete in unique mini-games and socialize in lobbies full of new friends. &#13;
+&#13;
+SUPPORT: https:///www.minecraft.net/help LEARN MORE: https:///www.minecraft.net/</description>
+    <package>https://archive.org/download/MinecraftWindows10Mobile/Microsoft.Minecraft_8wekyb3d8bbwe.zip/Microsoft.Minecraft_1.16.4002.0_arm__8wekyb3d8bbwe.Appx</package>
+    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft0-1775849252.png</screenshot1>
+    <screenshot2>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft1-1775849253.png</screenshot2>
+    <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft2-1775849254.png</screenshot3>
+    <screenshot4>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft3-1775849256.png</screenshot4>
+    <screenshot5>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft6-1775849258.png</screenshot5>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
