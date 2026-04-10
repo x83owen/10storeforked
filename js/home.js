@@ -14,7 +14,7 @@
 
     function loadHomeContent() {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://10storedraydenytserverxmlendpointhost.netlify.app/apps.xml", true);
+        xhr.open("GET", "https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/apps.xml", true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var xml = xhr.responseXML;
@@ -108,7 +108,7 @@
 
         var links = [
             { name: "All apps", url: "apps.html", icon: "https://cdn-icons-png.flaticon.com/512/2387/2387661.png" },
-            { name: "Upload", url: "https://drayaiupdatehost.netlify.app/10store/upload.html", icon: "https://cdn-icons-png.flaticon.com/512/9326/9326001.png" }
+            { name: "Upload", url: "https://drayai81isbacknotfor8storescripts.42web.io", icon: "https://cdn-icons-png.flaticon.com/512/9326/9326001.png" }
         ];
 
         for (var i = 0; i < links.length; i++) {
