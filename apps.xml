@@ -285,7 +285,7 @@
     <version>2.0.6.0</version>
     <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/descarga-7-1775843334.png</icon>
     <publisher>Asparion</publisher>
-    <featured>false</featured>
+    <featured>true</featured>
     <description>Let your device talk. Just for fun or be productive and learn the pronunciation of words in foreign languages.</description>
     <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/12199Asparion.Sag_2.0.6.0_x86__f89vgcf3qm37t-1775843332.appx</package>
     <pcCapable>true</pcCapable>
