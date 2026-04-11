@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10Store | Live</title>
+    <title>10Store Live</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        :root {
-            --win-blue: #0078D7;
-            --bg-color: #F2F2F2;
+        html, body {
+            -webkit-app-region: drag;
         }
-
+        
         body {
             margin: 0; display: flex; justify-content: center; align-items: center;
-            height: 100vh; background-color: var(--bg-color);
+            height: 100vh;
             font-family: 'Segoe UI', sans-serif; overflow: hidden;
         }
 
@@ -23,7 +22,7 @@
 
         #app-count {
             display: block; font-size: 12rem; font-weight: 800;
-            color: var(--win-blue); line-height: 1;
+            color: #0078D7; line-height: 1;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -36,10 +35,10 @@
 <body>
 
     <div class="container">
-        <h1>LIVE APPS</h1>
+        <h1>Live Apps</h1>
         <span id="app-count">...</span>
         <div class="status-box">
-            <span id="update-timer">Connecting to GitHub...</span>
+            <span id="update-timer">Connecting to 10Store Servers</span>
         </div>
         <div id="error-log"></div>
     </div>
