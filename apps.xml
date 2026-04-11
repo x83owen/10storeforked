@@ -311,7 +311,7 @@
     <description/>
     <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Microsoft.UI.Xaml.2.7_7.2409.9001.0_x64__8wekyb3d8bbwe-1775848012.appx</package>
     <pcCapable>true</pcCapable>
-    <mobileCapable>true</mobileCapable>
+    <mobileCapable>false</mobileCapable>
   </app>
   <app id="lashlight">
     <name>Flashlight+</name>
