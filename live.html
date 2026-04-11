@@ -72,7 +72,7 @@ async function fetchAppCount() {
         }
 
         errorLog.style.display = 'none';
-        document.getElementById('update-timer').innerText = "Live Monitoring Active";
+        document.getElementById('update-timer').innerText = "Live";
 
     } catch (error) {
         showError(error.message);
@@ -80,7 +80,6 @@ async function fetchAppCount() {
 }
 
         function updateDisplay(count) {
-            // Milestone Confetti (100, 150, 200, 250, 300)
             if (currentCount !== -1 && count > currentCount && count % 50 === 0) {
                 triggerConfetti();
             }
@@ -102,7 +101,6 @@ async function fetchAppCount() {
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#0078D7', '#107C10'] });
         }
 
-        // Refresh every 10 seconds for more "live" feel
         setInterval(fetchAppCount, 10000);
         fetchAppCount();
     </script>
