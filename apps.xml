@@ -11,6 +11,10 @@
     <category title="Games" type="picks">
       <appIds>rowser-uest,ut-the-ope,miling-ag-licker-for-indows-10,smiling-bag-clicker-for-windows-8-1,iano-ime-ro,inecraft</appIds>
     </category>
+    <category title="Lost Media" type="picks">
+      <appIds>
+      </appIds>
+    </category>
   </categories>
   <apps/>
   <app id="msn-weather">
