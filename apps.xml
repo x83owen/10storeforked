@@ -15,8 +15,7 @@
       <appIds>onnect4</appIds>
     </category>
     <category title="Lumia Apps" type="picks">
-      <appIds>
-      </appIds>
+      <appIds>lumia-camera</appIds>
     </category>
   </categories>
   <apps/>
