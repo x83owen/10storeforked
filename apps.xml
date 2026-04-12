@@ -14,9 +14,6 @@
     <category title="lost Media" type="picks">
       <appIds>onnect4,ing</appIds>
     </category>
-    <category title="Lumia Apps" type="picks">
-      <appIds>lumia-camera</appIds>
-    </category>
   </categories>
   <apps/>
   <app id="msn-weather">
