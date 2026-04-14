@@ -1,0 +1,73 @@
+@font-face {
+    font-family: "win-icon";
+    src: url("seguisym.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Windows 8 in CSS */
+html body {
+    font-family: "Segoe UI";
+    background: #1d1d1d;
+    color: white;
+    user-select: none;
+    cursor: default;
+}
+
+.win-button {
+    font-family: "win-icon";
+    padding: 6px 14px;
+    background: transparent;
+    border: 2px solid #FFF;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 32px;
+    max-width: 90px;
+    min-height: 32px;
+    min-width: 90px;
+    height: 32px;
+    width: 90px;
+}
+
+.win-button:hover {
+    background: #ffffff30;
+}
+
+.win-button:active {
+    background: #FFF;
+    color: #000;
+}
+
+.winround-button {
+    font-family: "win-icon";
+    font-size: 32px;
+    padding: 6px 14px;
+    background: transparent;
+    border: 2px solid #FFF;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    min-width: 40px;
+    height: 40px;
+    width: 40px;
+}
+
+
+.winround-button:hover {
+    background: #ffffff30;
+}
+
+.winround-button:active {
+    background: #FFF;
+    color: #000;
+}
