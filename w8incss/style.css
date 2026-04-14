@@ -7,8 +7,8 @@
     font-style: normal;
 }
 
-/* Windows 8 in CSS by DraydenYT */
-html body {
+/* Windows 8 in CSS by DraydenYT - Dark Theme */
+body.win-dark {
     font-family: "Segoe UI";
     background: #1d1d1d;
     color: white;
@@ -16,7 +16,7 @@ html body {
     cursor: default;
 }
 
-.win-button {
+body.win-dark .win-button {
     font-family: "win-icon";
     padding: 6px 14px;
     background: transparent;
@@ -31,16 +31,16 @@ html body {
     width: 90px;
 }
 
-.win-button:hover {
+body.win-dark .win-button:hover {
     background: #ffffff30;
 }
 
-.win-button:active {
+body.win-dark .win-button:active {
     background: #FFF;
     color: #000;
 }
 
-.winround-button {
+body.win-dark .winround-button {
     font-family: "win-icon";
     font-size: 32px;
     padding: 6px 14px;
@@ -62,12 +62,75 @@ html body {
     width: 40px;
 }
 
-
-.winround-button:hover {
+body.win-dark .winround-button:hover {
     background: #ffffff30;
 }
 
-.winround-button:active {
+body.win-dark .winround-button:active {
     background: #FFF;
     color: #000;
+}
+
+/* Windows 8 in CSS by DraydenYT - Light Theme */
+body.win-light {
+    font-family: "Segoe UI";
+    background: #ffffff;
+    color: #000000;
+    user-select: none;
+    cursor: default;
+}
+
+body.win-light .win-button {
+    font-family: "win-icon";
+    padding: 6px 14px;
+    background: transparent;
+    border: 2px solid #000000;
+    color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 32px;
+    min-width: 90px;
+    height: 32px;
+    width: 90px;
+}
+
+body.win-light .win-button:hover {
+    background: #00000030;
+}
+
+body.win-light .win-button:active {
+    background: #000000;
+    color: #ffffff;
+}
+
+body.win-light .winround-button {
+    font-family: "win-icon";
+    font-size: 32px;
+    padding: 6px 14px;
+    background: transparent;
+    border: 2px solid #000000;
+    color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    min-width: 40px;
+    height: 40px;
+    width: 40px;
+}
+
+body.win-light .winround-button:hover {
+    background: #00000030;
+}
+
+body.win-light .winround-button:active {
+    background: #000000;
+    color: #ffffff;
 }
