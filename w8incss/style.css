@@ -40,6 +40,12 @@ body.win-dark .win-button:active {
     color: #000;
 }
 
+body.win-dark .win-button:disabled {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.4);
+}
+
 body.win-dark .winround-button {
     font-family: "win-icon";
     font-size: 32px;
@@ -69,6 +75,12 @@ body.win-dark .winround-button:hover {
 body.win-dark .winround-button:active {
     background: #FFF;
     color: #000;
+}
+
+body.win-dark .winround-button:disabled {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.4);
 }
 
 /* Windows 8 in CSS by DraydenYT - Light Theme */
@@ -104,6 +116,12 @@ body.win-light .win-button:active {
     color: #ffffff;
 }
 
+body.win-light .win-button:disabled {
+    background-color: rgba(202, 202, 202, 0.4);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.4);
+}
+
 body.win-light .winround-button {
     font-family: "win-icon";
     font-size: 32px;
@@ -133,4 +151,10 @@ body.win-light .winround-button:hover {
 body.win-light .winround-button:active {
     background: #000000;
     color: #ffffff;
+}
+
+body.win-light .winround-button:disabled {
+    background-color: rgba(202, 202, 202, 0.4);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.4);
 }
