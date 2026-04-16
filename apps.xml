@@ -432,4 +432,15 @@
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
+  <app id="uma-horts">
+    <name>Luma Shorts</name>
+    <version>1.0.0.0</version>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/2026-04-16-180851-1776352154.png</icon>
+    <publisher>Luma Projects</publisher>
+    <featured>false</featured>
+    <description>A simple short form content app. Reimagined.</description>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/lumashortsdesktop-1776352153.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
