@@ -30,14 +30,20 @@ function checkScriptIntegrity() {
     xhr.open('GET', remoteScriptUrl, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            var remoteCode = xhr.responseText.trim();
-            var localScriptTag = document.querySelector('script[src="js/store.js"]');
+            // Normalize: remove carriage returns and trim edges
+            var remoteCode = xhr.responseText.replace(/\r/g, "").trim();
+
             var localXhr = new XMLHttpRequest();
             localXhr.open('GET', 'js/store.js', false);
             localXhr.send();
-            var localCode = localXhr.responseText.trim();
 
+            // Normalize: remove carriage returns and trim edges
+            var localCode = localXhr.responseText.replace(/\r/g, "").trim();
+
+            // Log both to console so you can see the difference if it still fails
             if (remoteCode !== localCode) {
+                console.log("Remote length:", remoteCode.length);
+                console.log("Local length:", localCode.length);
                 handleUnauthorizedModification();
             }
         }
