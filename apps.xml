@@ -337,7 +337,7 @@
     <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft2-1775849254.png</screenshot3>
     <screenshot4>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft3-1775849256.png</screenshot4>
     <screenshot5>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft6-1775849258.png</screenshot5>
-    <pcCapable>true</pcCapable>
+    <pcCapable>false</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="10-tore-1-0-atched">
