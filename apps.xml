@@ -435,4 +435,26 @@
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
+  <app id="etflix">
+    <name>Netflix</name>
+    <version>6.99.5.0</version>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Logo.Store.scale-100-1776508469.png</icon>
+    <publisher>Netflix, Inc.</publisher>
+    <featured>false</featured>
+    <description>Looking for the most talked about TV shows and movies from around the world? They’re all on Netflix.
+    We’ve got award-winning series, movies, documentaries, and stand-up specials. And with the mobile app, you get Netflix while you travel, commute, or just take a break.
+    What you’ll love about Netflix:
+    - We add TV shows and movies all the time. Browse new titles or search for your favorites, and stream videos right on your device.
+    - The more you watch, the better Netflix gets at recommending TV shows and movies you’ll love.
+    - Enjoy a safe watching experience just for kids with family-friendly entertainment.
+    - Preview quick videos of our series and movies and get notifications for new episodes and releases.
+    Netflix membership is a month-to-month paid subscription that begins at sign up. You can easily cancel anytime, online, 24 hours a day. There are no long-term contracts or cancellation fees. We just want you to love what you watch.
+    By clicking INSTALL, you consent to the installation of the Netflix application and any updates or upgrades thereto.</description>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/4DF9E0F8.Netflix_6.99.5.0_neutral_-_mcm4njqhnhss8-1776508466.appxbundle</package>
+    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/netflix_scr1-1776508470.png</screenshot1>
+    <screenshot2>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/netflix_scr2-1776508472.png</screenshot2>
+    <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/netflix_scr3-1776508474.png</screenshot3>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
