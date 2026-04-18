@@ -2,4 +2,15 @@
 <data>
   <apps>
   </apps>
+  <app id="yufgufyegui-dfh">
+    <name>yufgufyegui\dfh\</name>
+    <version>0.0.0.0</version>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/2-1776507025.png</icon>
+    <publisher>xfbcgxnngndfxnndg</publisher>
+    <featured>false</featured>
+    <description>fbsbbfbfbfbf</description>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/XenonStore_0.0.1.0_AnyCPU_Debug-1776507025.appx</package>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
