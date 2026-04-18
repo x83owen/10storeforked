@@ -457,4 +457,18 @@
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
+  <app id="hrome-etro-lient">
+    <name>Chrome Metro (Client)</name>
+    <version>1.0.0.0</version>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Google_Chrome_icon_-March_2011-.svg-1776508598.png</icon>
+    <publisher>ReOpenGlebsur</publisher>
+    <featured>false</featured>
+    <description>Google Metro Client For Windows 8.1 (Win8Mode at the Chrome 24)</description>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/ChromeUWP_1.0.0.0_AnyCPU-1776508597.appx</package>
+    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/image-1776508600.png</screenshot1>
+    <screenshot2>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/image-1-1776508600.png</screenshot2>
+    <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/image-2-1776508602.png</screenshot3>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
 </data>
