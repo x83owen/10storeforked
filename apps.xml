@@ -56,7 +56,7 @@
     <featured>true</featured>
     <description/>
     <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/1773704804_Lumia-Camera-5.0.2.54.appx</package>
-    <pcCapable>false</pcCapable>
+    <pcCapable>ture</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="msn-news">
@@ -171,24 +171,6 @@
     The app has been downloaded more than 8,000,000 times
     Thank you for helping to make 8 Zip better! Simply send your suggestions for improvement to 8zip@finebits.com and show your support by giving us a ★★★★★ review.</description>
     <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/BooStudioLLC.8ZipLite_1.2.103.1000_x86__b6e429xa66pga-1775491170.appx</package>
-    <pcCapable>true</pcCapable>
-    <mobileCapable>false</mobileCapable>
-  </app>
-  <app id="resh-aint">
-    <name>Fresh Paint</name>
-    <version>3.1.10383.1000</version>
-    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.44755.9007199266251806.c139e5fd-5846-4901-9106-acd4938a4006-1775491909.png</icon>
-    <publisher>Microsoft Corporation</publisher>
-    <featured>true</featured>
-    <description>Unleash your inner creative with Fresh Paint – the ultimate canvas for your big ideas.
-    Fresh Paint is a fun and easy to use painting app with the right tools for artists of all ages.
-    We believe that brilliant, creative ideas can come from anyone, anytime.  It’s time to set your creativity free.
-    Create original artwork, turn photos into beautiful paintings, or choose an activity pack to help you get started quickly. From whimsical pictures of your friends to amazing landscapes, Fresh Paint enables you to create anything.
-    “Utterly superb” – Brad Chacos, PC World
-    “Windows 8’s coolest app: Fresh Paint” – David Goldman, CNNMoney
-    “The most realistic painting app I have ever used” – Joe Fedewa, WinSource
-    “There's no better demonstration of the cool types of things you can do with multitouch than Fresh Paint.” – Michael Muchmore, PC Magazine</description>
-    <package>http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/3cc3da5a-32ff-4e98-a417-b90964a260cc?P1=1775494458&amp;P2=404&amp;P3=2&amp;P4=HwSrNg0jr344S6Hah%2bn50NWNooY%2fe6NtwrkzhSpc%2bOFj2eb6qOGpRpEQNsQwAqlUvvdhtGAOpEMsVTuc3uxN%2fA%3d%3d</package>
     <pcCapable>true</pcCapable>
     <mobileCapable>false</mobileCapable>
   </app>
@@ -355,7 +337,7 @@
     <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft2-1775849254.png</screenshot3>
     <screenshot4>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft3-1775849256.png</screenshot4>
     <screenshot5>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/minecraft6-1775849258.png</screenshot5>
-    <pcCapable>true</pcCapable>
+    <pcCapable>ture</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
   <app id="10-tore-1-0-atched">
@@ -435,15 +417,85 @@
     <pcCapable>true</pcCapable>
     <mobileCapable>true</mobileCapable>
   </app>
-  <app id="uma-horts">
-    <name>Luma Shorts</name>
-    <version>1.0.0.0</version>
-    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/2026-04-16-180851-1776352154.png</icon>
-    <publisher>Luma Projects</publisher>
-    <featured>false</featured>
-    <description>A simple short form content app. Reimagined.</description>
-    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/lumashortsdesktop-1776352153.appx</package>
+  <app id="etflix">
+    <name>Netflix</name>
+    <version>6.99.5.0</version>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Logo.Store.scale-100-1776508469.png</icon>
+    <publisher>Netflix, Inc.</publisher>
+    <featured>true</featured>
+    <description>Looking for the most talked about TV shows and movies from around the world? They’re all on Netflix.
+    We’ve got award-winning series, movies, documentaries, and stand-up specials. And with the mobile app, you get Netflix while you travel, commute, or just take a break.
+    What you’ll love about Netflix:
+    - We add TV shows and movies all the time. Browse new titles or search for your favorites, and stream videos right on your device.
+    - The more you watch, the better Netflix gets at recommending TV shows and movies you’ll love.
+    - Enjoy a safe watching experience just for kids with family-friendly entertainment.
+    - Preview quick videos of our series and movies and get notifications for new episodes and releases.
+    Netflix membership is a month-to-month paid subscription that begins at sign up. You can easily cancel anytime, online, 24 hours a day. There are no long-term contracts or cancellation fees. We just want you to love what you watch.
+    By clicking INSTALL, you consent to the installation of the Netflix application and any updates or upgrades thereto.</description>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/4DF9E0F8.Netflix_6.99.5.0_neutral_-_mcm4njqhnhss8-1776508466.appxbundle</package>
+    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/netflix_scr1-1776508470.png</screenshot1>
+    <screenshot2>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/netflix_scr2-1776508472.png</screenshot2>
+    <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/netflix_scr3-1776508474.png</screenshot3>
     <pcCapable>true</pcCapable>
-    <mobileCapable>false</mobileCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
+  <app id="hrome-etro-lient">
+    <name>Chrome Metro (Client)</name>
+    <version>1.0.0.0</version>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Google_Chrome_icon_-March_2011-.svg-1776508598.png</icon>
+    <publisher>ReOpenGlebsur</publisher>
+    <featured>false</featured>
+    <description>Google Metro Client For Windows 8.1 (Win8Mode at the Chrome 24)</description>
+    <package>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/ChromeUWP_1.0.0.0_AnyCPU-1776508597.appx</package>
+    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/image-1776508600.png</screenshot1>
+    <screenshot2>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/image-1-1776508600.png</screenshot2>
+    <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/image-2-1776508602.png</screenshot3>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
+  <app id="resh-aint">
+    <name>Fresh Paint</name>
+    <version>3.1.10383.1000</version>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/apps.44755.9007199266251806.c139e5fd-5846-4901-9106-acd4938a4006-1776509234.png</icon>
+    <publisher>Microsoft Corporation</publisher>
+    <featured>false</featured>
+    <description>Unleash your inner creative with Fresh Paint – the ultimate canvas for your big ideas.
+    Fresh Paint is a fun and easy to use painting app with the right tools for artists of all ages.
+    We believe that brilliant, creative ideas can come from anyone, anytime.  It’s time to set your creativity free.
+    Create original artwork, turn photos into beautiful paintings, or choose an activity pack to help you get started quickly. From whimsical pictures of your friends to amazing landscapes, Fresh Paint enables you to create anything.
+    “Utterly superb” – Brad Chacos, PC World
+    “Windows 8’s coolest app: Fresh Paint” – David Goldman, CNNMoney
+    “The most realistic painting app I have ever used” – Joe Fedewa, WinSource
+    “There's no better demonstration of the cool types of things you can do with multitouch than Fresh Paint.” – Michael Muchmore, PC Magazine</description>
+    <package>https://archive.org/download/msfreshpaint_202503/Microsoft.FreshPaint_8wekyb3d8bbwe.zip/Microsoft.FreshPaint_3.1.10383.1000_x86__8wekyb3d8bbwe.Appx</package>
+    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/appfreshpaint-1776509235.png</screenshot1>
+    <screenshot2>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/freshpaint1-1776509236.png</screenshot2>
+    <screenshot3>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/freshpaint2-1776509238.png</screenshot3>
+    <screenshot4>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/freshpaint4-1776509240.png</screenshot4>
+    <screenshot5>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/freshpaint8-1776509240.png</screenshot5>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
+  </app>
+  <app id="inecraft-for-indows-10">
+    <name>Minecraft for Windows 10</name>
+    <version>1.0.0.0</version>
+    <icon>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Logo.scale-400-1776522639.png</icon>
+    <publisher>Microsoft</publisher>
+    <featured>ture</featured>
+    <description>Explore infinite worlds and build everything from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep into the world in survival mode, crafting weapons and armor to fend off dangerous mobs. Create, explore and survive alone or with friends on mobile devices, Switch, Xbox One and Windows 10.
+    EXPAND YOUR GAME:
+    Marketplace - Discover the latest community creations in the marketplace! Get unique maps, skins, and texture packs from your favorite creators.
+    Slash commands - Tweak how the game plays: you can give items away, summon mobs, change the time of day, and more.
+    Add-Ons - Customize your experience even further with free Add-Ons! If you're more tech-inclined, you can modify data-driven behaviors in the game to create new resource packs. MULTIPLAYER
+    Realms - Play with up to 10 friends cross-platform, anytime, anywhere on Realms, your own private server that we host for you. Try a free 30-day trial in-app.
+    Multiplayer - Play with up to 4 friends with a free Xbox Live account online.
+    Servers - Join free massive multiplayer servers and play with thousands of others!
+    Discover gigantic community-run worlds, compete in unique mini-games and socialize in lobbies full of new friends.
+    SUPPORT: https:///www.minecraft.net/help LEARN MORE: https:///www.minecraft.net/&lt;/description&gt;</description>
+    <package>https://ia601800.us.archive.org/view_archive.php?archive=/29/items/mcbe-versions/0.16.1.~/0.16.1.~.7z&amp;file=Minecraft-0.16.1.0%20%28Release%29.Appx</package>
+    <screenshot1>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/Minecraft-first-screen-1776522640.png</screenshot1>
+    <screenshot2>https://raw.githubusercontent.com/draydenthemiiyt-maker/10-Store/refs/heads/main/files/maxresdefault-1-1776522641.jpg</screenshot2>
+    <pcCapable>true</pcCapable>
+    <mobileCapable>true</mobileCapable>
   </app>
 </data>
